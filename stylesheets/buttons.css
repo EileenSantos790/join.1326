@@ -1,40 +1,139 @@
-.buttonClassic {
-    height: 48px;
-    width: 99px;
+button {
     border-radius: 10px;
     border: none;
 }
 
-.buttonClassic:hover {
+button:hover {
     cursor: pointer;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-/* Filled Classic Button */
-.buttonFilledGrayClassic {
+/* Primary Button */
+.buttonPrimary {
+    width: 99px;
+    height: 48px;
     background-color: #2A3647;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
 }
 
-.buttonFilledBlueClassic {
+.buttonPrimary:hover {
     background-color: #29ABE2;
 }
 
-.buttonFilledDarkBlueClassic {
+.buttonPrimary:active {
     background-color: #091931;
 }
 
-/* Non Filled Classic Button */
-.buttonNonFilledGrayClassic {
+/* Secondary Button */
+.buttonSecondary {
+    width: 99px;
+    height: 48px;
     background-color: transparent;
     border: 2px solid #2A3647;
+    font-size: 16px;
+    color: #2A3647;
 }
 
-.buttonNonFilledBlueClassic {
-    background-color: transparent;
+.buttonSecondary:hover {
     border: 2px solid #29ABE2;
+    color: #29ABE2;
 }
 
-.buttonNonFilledDarkBlueClassic {
-    background-color: transparent;
+.buttonSecondary:active {
     border: 2px solid #091931;
+    color: #091931;
+}
+
+/* Create Task Button */
+.buttonCreateTask {
+    width: 183px;
+    height: 56px;
+    background-color: #2A3647;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.buttonCreateTask:hover {
+    background-color: #29ABE2;
+}
+
+.buttonCreateTask:active {
+    background-color: #091931;
+}
+
+.buttonCreateTask::after {
+    content: url('../assets/icons/check.svg');
+    width: 24px;
+    height: 24px;
+}
+
+/* Add new Contact Button */
+.buttonAddContact {
+    width: 255px;
+    height: 56px;
+    background-color: #2A3647;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.buttonAddContact:hover {
+    background-color: #29ABE2;
+}
+
+.buttonAddContact:active {
+    background-color: #091931;
+}
+
+.buttonAddContact::after {
+    content: url('../assets/icons/person_add.svg');
+    width: 24px;
+    height: 24px;
+}
+
+/* Cancle Button */
+.buttonCancle {
+    width: 126px;
+    height: 56px;
+    background-color: transparent;
+    border: 2px solid #2A3647;
+    font-size: 20px;
+    color: #2A3647;
+}
+
+.buttonCancle:hover {
+    border: 2px solid #29ABE2;
+    color: #29ABE2;
+}
+
+.buttonCancle:active {
+    border: 2px solid #091931;
+    color: #091931;
+}
+
+/* Add Task */
+.buttonAddTask {
+    width: 160px;
+    height: 56px;
+    background-color: #2A3647;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.buttonAddTask:hover {
+    background-color: #29ABE2;
+}
+
+.buttonAddTask:active {
+    background-color: #091931;
+}
+
+.buttonAddTask::after {
+    content: url('../assets/icons/add.svg');
+    width: 24px;
+    height: 24px;
 }
