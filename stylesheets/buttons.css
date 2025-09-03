@@ -1,0 +1,40 @@
+.buttonClassic {
+    height: 48px;
+    width: 99px;
+    border-radius: 10px;
+    border: none;
+}
+
+.buttonClassic:hover {
+    cursor: pointer;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Filled Classic Button */
+.buttonFilledGrayClassic {
+    background-color: #2A3647;
+}
+
+.buttonFilledBlueClassic {
+    background-color: #29ABE2;
+}
+
+.buttonFilledDarkBlueClassic {
+    background-color: #091931;
+}
+
+/* Non Filled Classic Button */
+.buttonNonFilledGrayClassic {
+    background-color: transparent;
+    border: 2px solid #2A3647;
+}
+
+.buttonNonFilledBlueClassic {
+    background-color: transparent;
+    border: 2px solid #29ABE2;
+}
+
+.buttonNonFilledDarkBlueClassic {
+    background-color: transparent;
+    border: 2px solid #091931;
+}
