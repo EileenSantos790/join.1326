@@ -10,3 +10,8 @@
     border-radius: 50%;
     border: 3px solid #2A3647;
 }
+
+.joinIcon{
+    width: 100px;
+    align-items: center;
+}

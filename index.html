@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./stylesheets/style.css">
     <link rel="stylesheet" href="./stylesheets/assets.css">
     <link rel="stylesheet" href="./stylesheets/header.css">
+    <link rel="stylesheet" href="./stylesheets/navigationBar.css">
 
     <script src="./js/tamplates.js"></script>
 
@@ -35,7 +36,35 @@
 
 
     <!-- Navigation Container - left side bar-->
-    <div id="navContainer"></div>
+    <div class="navContainer">
+        <div class="navContainerLogo">
+            <img class="joinIcon" src="./assets/img/joinSymbolWhite.svg" alt="Join Icon">
+        </div>
+        <div class="navContainerMenu">
+            <div class="navLine">
+                <img class="navIcon" src="./assets/icons/summaryIcon.svg" alt="Summary Icon">
+                <p>Summary</p>
+            </div>
+            <div class="navLine">
+                <img class="navIcon" src="./assets/icons/addTaskIcon.svg" alt="Add Task Icon">
+                <p>Add Task</p>
+            </div>
+            <div class="navLine">
+                <img class="navIcon" src="./assets/icons/boardIcon.svg" alt="Board Icon">
+                <p>Board</p>
+            </div>
+            <div class="navLine">
+                <img class="navIcon" src="./assets/icons/contactIcon.svg" alt="Contact Icon">
+                <p>Contacts</p>
+            </div>
+        </div>
+
+        <div class="navContainerSites">
+            <div class="linkNavContainer"><p>Privacy Policy</p></div>
+            <div class="linkNavContainer"><p>Legal notice</p></div>
+        </div>
+
+    </div>
 
     <!-- Content Container - all content area -->
     <div id="contentContainer"></div>
