@@ -18,3 +18,17 @@
     align-items: center;
     gap: 16px;
 }
+
+.loginPageHeader {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.loginPageHeaderContent {
+    display: flex;
+    justify-content: end;
+    margin-top: 67px;
+    margin-right: 122px;
+    gap: 35px;
+}
