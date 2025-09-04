@@ -20,7 +20,6 @@
     gap: 15px;
     display: flex;
     flex-direction: column;
-    padding-left: 56px;
 }
 
 .navLine{
@@ -30,6 +29,7 @@
     color: #CDCDCD;
     cursor: pointer;
     align-items: center;
+    padding-left: 56px;
 }
 
 .navIcon{
@@ -46,7 +46,18 @@
     gap: 4px;
 }
 
-.linkNavContainer {
+.sitesNavContainer {
     color: #CDCDCD;
     padding-left: 56px;
+}
+
+/* active nav Bar CSS */
+
+.navLine.active {
+    background-color: #091931;
+    color: white;
+}
+
+.navLine.active .navIcon {
+    filter: brightness(0) invert(1); /* Icon is white */
 }

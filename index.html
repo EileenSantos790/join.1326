@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="./stylesheets/assets.css">
     <link rel="stylesheet" href="./stylesheets/header.css">
     <link rel="stylesheet" href="./stylesheets/navigationBar.css">
+    <link rel="stylesheet" href="./stylesheets/contentContainer.css">
 
     <script src="./js/tamplates.js"></script>
+    <script src="./js/navigationBar.js"></script>
 
     <link rel="stylesheet" href="./stylesheets/fonts.css">
 
@@ -41,27 +43,27 @@
             <img class="joinIcon" src="./assets/img/joinSymbolWhite.svg" alt="Join Icon">
         </div>
         <div class="navContainerMenu">
-            <div class="navLine">
+            <div class="navLine" data-file="./htmlTamplates/summary.html">
                 <img class="navIcon" src="./assets/icons/summaryIcon.svg" alt="Summary Icon">
                 <p>Summary</p>
             </div>
-            <div class="navLine">
+            <div class="navLine" data-file="./htmlTamplates/addTask.html">
                 <img class="navIcon" src="./assets/icons/addTaskIcon.svg" alt="Add Task Icon">
                 <p>Add Task</p>
             </div>
-            <div class="navLine">
+            <div class="navLine" data-file="./htmlTamplates/board.html">
                 <img class="navIcon" src="./assets/icons/boardIcon.svg" alt="Board Icon">
                 <p>Board</p>
             </div>
-            <div class="navLine">
+            <div class="navLine" data-file="./htmlTamplates/contacts.html">
                 <img class="navIcon" src="./assets/icons/contactIcon.svg" alt="Contact Icon">
                 <p>Contacts</p>
             </div>
         </div>
 
         <div class="navContainerSites">
-            <div class="linkNavContainer"><p>Privacy Policy</p></div>
-            <div class="linkNavContainer"><p>Legal notice</p></div>
+            <div class="sitesNavContainer"><p>Privacy Policy</p></div>
+            <div class="sitesNavContainer"><p>Legal notice</p></div>
         </div>
 
     </div>
