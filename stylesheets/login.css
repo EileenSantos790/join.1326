@@ -1,3 +1,55 @@
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255);
+    z-index: 1;
+    animation: fadeOut 0.5s ease forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.loginPageMoveLogo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 274px;
+    z-index: 2;
+    animation: moveLogo 0.5s ease forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes moveLogo {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 274px;
+    }
+
+    100% {
+        top: 80px;
+        left: 77px;
+        transform: translate(0, 0);
+        width: 100px;
+    }
+}
+
 .loginPageMainSection {
     display: flex;
     justify-content: center;
@@ -8,8 +60,11 @@
 .loginPageMainContent {
     background-color: #FFFFFF;
     border-radius: 15px;
-    width: 652px;
-    height: 449px;
+    max-width: 652px;
+    width: 90%;
+    max-height: 449px;
+    height: 100%;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
 }
 
 .loginPageMainContentHeadline {
@@ -36,15 +91,12 @@
 }
 
 .loginPageMainContentInputs input {
-    width: 397px;
+    width: 100%;
+    max-width: 397px;
     height: 48px;
     border-radius: 15px;
     font-size: 20px;
 }
-
-/* .signUpPageMainContentInputs input::placeholder {
-    padding-left: 10px;
-} */
 
 .loginPageMainContentButtons {
     display: flex;
@@ -71,6 +123,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
+    max-width: 1920px;
 }
 
 .loginPageFooterContent {
@@ -113,3 +166,9 @@
     padding-left: 25px;
 }
 
+.contentLimitation {
+    margin: 0 auto;
+    max-width: 1920px;
+    width: 100%;
+    position: relative;
+}
