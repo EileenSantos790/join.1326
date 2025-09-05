@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="./stylesheets/assets.css">
+    <link rel="stylesheet" href="./stylesheets/header.css">
+    <link rel="stylesheet" href="./stylesheets/navigationBar.css">
+    <link rel="stylesheet" href="./stylesheets/contentContainer.css">
+
+    <script src="./js/tamplates.js"></script>
+    <script src="./js/navigationBar.js"></script>
+
+    <link rel="stylesheet" href="./stylesheets/fonts.css">
+
+    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+
+</head>
+
+<body>
+    <!-- Overlay for Join Icon -->
+    <div id="joinIconOverlay"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="headerContainer">
+            <p>Kanban Project Managment Tool</p>
+            <div class="headerIcons">
+                <img class="helpIcon" src="./assets/icons/help.png" alt="help icon">
+                <img id="userIcon" src="./assets/icons/user-sm.png" alt="user icon">
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Navigation Container - left side bar-->
+    <div class="navContainer">
+        <div class="navContainerLogo">
+            <img class="joinIcon" src="./assets/img/joinSymbolWhite.svg" alt="Join Icon">
+        </div>
+        <div class="navContainerMenu">
+            <div class="navLine" data-file="./htmlTamplates/summary.html">
+                <img class="navIcon" src="./assets/icons/summaryIcon.svg" alt="Summary Icon">
+                <p>Summary</p>
+            </div>
+            <div class="navLine" data-file="./htmlTamplates/addTask.html">
+                <img class="navIcon" src="./assets/icons/addTaskIcon.svg" alt="Add Task Icon">
+                <p>Add Task</p>
+            </div>
+            <div class="navLine" data-file="./htmlTamplates/board.html">
+                <img class="navIcon" src="./assets/icons/boardIcon.svg" alt="Board Icon">
+                <p>Board</p>
+            </div>
+            <div class="navLine" data-file="./htmlTamplates/contacts.html">
+                <img class="navIcon" src="./assets/icons/contactIcon.svg" alt="Contact Icon">
+                <p>Contacts</p>
+            </div>
+        </div>
+
+        <div class="navContainerSites">
+            <div class="sitesNavContainer"><p>Privacy Policy</p></div>
+            <div class="sitesNavContainer"><p>Legal notice</p></div>
+        </div>
+
+    </div>
+
+    <!-- Content Container - all content area -->
+    <div id="contentContainer"></div>
+
+</body>
+
+</html>

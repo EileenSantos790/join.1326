@@ -11,7 +11,6 @@ window.addEventListener('DOMContentLoaded', renderMainContent);
 function renderMainContent() {
   const content = document.getElementById('contentContainer');
   const items = document.querySelectorAll('.navLine');
-  console.log(items);
 
   setClickEvents(items, content);
 
