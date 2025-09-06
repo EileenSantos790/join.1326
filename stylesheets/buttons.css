@@ -54,6 +54,11 @@ button:hover {
     color: white;
     font-size: 21px;
     font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .buttonCreateTask:hover {
@@ -65,9 +70,16 @@ button:hover {
 }
 
 .buttonCreateTask::after {
-    content: url('../assets/icons/check.svg');
-    width: 24px;
-    height: 24px;
+    content: "";
+    display: flex;
+    width: 33px;
+    height: 33px;
+
+
+    background-image: url('../assets/icons/check.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* Add new Contact Button */
@@ -78,6 +90,11 @@ button:hover {
     color: white;
     font-size: 21px;
     font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 }
 
 .buttonAddContact:hover {
@@ -89,9 +106,15 @@ button:hover {
 }
 
 .buttonAddContact::after {
-    content: url('../assets/icons/person_add.svg');
-    width: 24px;
-    height: 24px;
+    content: "";
+    display: flex;
+    width: 33px;
+    height: 33px;
+
+    background-image: url('../assets/icons/person_add.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* Cancle Button */
@@ -102,6 +125,12 @@ button:hover {
     border: 2px solid #2A3647;
     font-size: 20px;
     color: #2A3647;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
 }
 
 .buttonCancle:hover {
@@ -122,6 +151,11 @@ button:hover {
     color: white;
     font-size: 21px;
     font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .buttonAddTask:hover {
@@ -133,7 +167,13 @@ button:hover {
 }
 
 .buttonAddTask::after {
-    content: url('../assets/icons/add.svg');
-    width: 24px;
-    height: 24px;
+    content: "";
+    display: flex;
+    width: 33px;
+    height: 33px;
+
+    background-image: url('../assets/icons/add.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
