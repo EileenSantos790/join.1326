@@ -1,4 +1,6 @@
 #contentContainer {
-    padding-left: 232px;
-    
+    margin-left: 232px;
+    padding-left: 116px;
+    padding-right: 40px;
+    padding-block: 20px;
 }
