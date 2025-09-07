@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', renderMainContent);
 /**
  * Finds the main content container and all menu items.
  * Sets up click events and opens the first menu automatically.
+ * Calls a function to open a page based on URL parameter if available.
  */
 function renderMainContent() {
   const content = document.getElementById('contentContainer');
@@ -19,6 +20,8 @@ function renderMainContent() {
   if (items.length > 0) {
     items[0].click();
   }
+
+  openPageFromUrl(items);
 }
 
 /**
@@ -37,6 +40,7 @@ function setClickEvents(items, content) {
     });
   }
 }
+
 
 /**
  * Highlights the clicked menu item and removes highlight from others.
@@ -67,6 +71,7 @@ function loadPage(file, content) {
     .catch(error => showError(error, content));
 }
 
+
 /**
  * Checks if the fetched file response is OK.
  * Throws an error if the file cannot be loaded.
@@ -82,6 +87,7 @@ function checkFile(response, file) {
   return response.text();
 }
 
+
 /**
  * Displays an error message in the content container.
  *
@@ -91,3 +97,34 @@ function checkFile(response, file) {
 function showError(error, content) {
   content.innerHTML = '<p style="color:red;">' + error.message + '</p>';
 }
+
+
+/**
+ * Opens a page based on the URL parameter "page".
+ * If the parameter is "privacyPolicy" or "legalNotice", 
+ * it clicks the corresponding menu item to load the content into the content container.
+ * If no valid parameter is found, it opens the first menu item by default.
+ *
+ * @param {NodeList} items
+ */
+function openPageFromUrl(items) {
+  const params = new URLSearchParams(window.location.search);
+  const page = params.get("page");
+
+  let fileToOpen = "";
+
+  if (page === "privacyPolicy") {
+    fileToOpen = "./htmlTamplates/privacyPolicy.html";
+  } else if (page === "legalNotice") {
+    fileToOpen = "./htmlTamplates/legalNotice.html";
+  } else if (items.length > 0) {
+    items[0].click();
+    return;
+  }
+
+  const menuItem = document.querySelector(`[data-file="${fileToOpen}"]`);
+  if (menuItem) {
+    menuItem.click();
+  }
+}
+
