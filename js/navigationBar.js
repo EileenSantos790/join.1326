@@ -11,8 +11,10 @@ window.addEventListener('DOMContentLoaded', renderMainContent);
 function renderMainContent() {
   const content = document.getElementById('contentContainer');
   const items = document.querySelectorAll('.navLine');
+  const siteItems = document.querySelectorAll('.sitesNavContainer');
 
   setClickEvents(items, content);
+  setClickEvents(siteItems, content);
 
   if (items.length > 0) {
     items[0].click();

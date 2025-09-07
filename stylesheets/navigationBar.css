@@ -51,6 +51,11 @@
     padding-left: 56px;
 }
 
+.sitesNavContainer:hover {
+    color: #2AABE1;
+    cursor: pointer;
+}
+
 /* active nav Bar CSS */
 
 .navLine.active {
