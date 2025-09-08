@@ -18,12 +18,18 @@ button:hover {
     font-weight: 700;
 }
 
-.buttonPrimary:hover {
+.buttonPrimary:hover:not(:disabled) {
     background-color: #29ABE2;
 }
 
+.buttonPrimary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .buttonPrimary:active {
-    background-color: #091931;
+    background-color: #091931 !important;
 }
 
 /* Secondary Button */

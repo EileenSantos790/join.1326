@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="./stylesheets/header.css">
     <link rel="stylesheet" href="./stylesheets/buttons.css">
 
+    <script src="./script.js"></script>
+
 </head>
 
 <body class="contentLimitation">
@@ -44,13 +46,14 @@
                     </div>
                 </div>
                 <div class="signUpAcceptPrivacyContent">
-                    <img src="./assets/icons/check-button.svg" alt="checkbox">
-                    <p>I accept the <a href="#">Privacy Policy</a></p>
+                    <img id="checkboxChecked" onclick="toggleCheckbox('checkboxChecked','checkboxUnchecked','signUpButton')" class="checkboxImg d-none" src="./assets/icons/checked.svg" alt="checkbox checked">
+                    <img id="checkboxUnchecked" onclick="toggleCheckbox('checkboxChecked','checkboxUnchecked', 'signUpButton')" class="checkboxImg " src="./assets/icons/check-button.svg" alt="checkbox">
+                    <p>I accept the <a href="home.html?page=privacyPolicy">Privacy Policy</a></p>
                 </div>
             </div>
 
             <div class="loginPageMainContentButtons">
-                <button class="buttonPrimary">Sign up</button>
+                <button id="signUpButton" class="buttonPrimary" disabled>Sign up</button>
             </div>
         </div>
     </section>

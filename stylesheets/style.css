@@ -3,3 +3,7 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #F6F7F8;
 }
+
+.d-none {
+    display: none;
+}

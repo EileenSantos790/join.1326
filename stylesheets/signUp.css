@@ -148,3 +148,14 @@ a {
   color: #D1D1D1;
   opacity: 1;
 }
+
+.checkboxImg {
+    width: 24px;
+    height: 24px;
+}
+
+.checkboxImg:hover {
+    cursor: pointer;
+    background-color: #EDF2FA;
+    border-radius: 43px;
+}
