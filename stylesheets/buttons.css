@@ -193,3 +193,14 @@ button:hover {
 
     color: #29ABE2;
 }
+
+.buttonsFooterIndex {
+    color: #CDCDCD;
+    padding-left: 56px;
+    text-decoration: none;
+}
+
+.buttonsFooterIndex:hover {
+    color: #2AABE1;
+    cursor: pointer;
+}
