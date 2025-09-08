@@ -1,0 +1,150 @@
+.signUpPageLogo {
+    position: absolute;
+    top: 80px;
+    left: 77px;
+    width: 100px;
+}
+
+.signUpPageMainSection {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.signUpPageMainContent {
+    background-color: #ffffff;
+    border-radius: 30px;
+    max-width: 598px;
+    width: 90%;
+    max-height: 630px;
+    height: 100%;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 197px;
+}
+
+.signUpPageInputSection {
+    max-width: 420px;
+    width: 90%;
+    max-height: 326px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.signUpPageMainContentInputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+input {
+    max-width: 380px;
+    width: 100%;
+    height: 24px;
+    font-size: 20px;
+    box-sizing: border-box;
+    border: 0px solid;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* input[type=text]:focus {
+    border: unset;
+} */
+
+.signUpInputContainer {
+    height: 46px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.signUpInputContainerWithValidation {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    width: calc(100% + 2px);
+    position: relative;
+}
+
+.signUpValidationInputContainer {
+    height: 46px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.signUpPageFooter {
+    position: absolute;
+    width: 100%;
+    max-width: 1920px;
+    top: 949px;
+}
+
+.signUpPageFooterContent {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    font-size: 16px;
+    gap: 16px;
+}
+
+.signUpPageFooterContent button {
+    color: #A8A8A8;
+    font-size: 16px;
+    border-style: unset;
+    background: unset;
+    height: 35px;
+    width: 110px;
+    padding: 0;
+}
+
+.signUpPageFooterContent button:hover {
+    cursor: pointer;
+    color: #29ABE2 !important;
+    font-weight: bold;
+    box-shadow: none;
+}
+
+.contentLimitation {
+    margin: 0 auto;
+    max-width: 1920px;
+    width: 100%;
+    position: relative;
+}
+
+.signUpAcceptPrivacyContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+}
+
+.signUpAcceptPrivacyContent p {
+    margin-block: unset;
+}
+
+a {
+    text-decoration: none;
+    color: #29ABE2;
+}
+
+::placeholder {
+  color: #D1D1D1;
+  opacity: 1;
+}
