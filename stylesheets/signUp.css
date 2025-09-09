@@ -45,7 +45,7 @@
 
 input {
     max-width: 380px;
-    width: 100%;
+    width: 95%;
     height: 24px;
     font-size: 20px;
     box-sizing: border-box;
@@ -56,9 +56,31 @@ input:focus {
     outline: none;
 }
 
-/* input[type=text]:focus {
-    border: unset;
-} */
+input:placeholder-shown~.inputPasswordIcon {
+    display: unset;
+}
+
+input:not(:placeholder-shown)~.inputPasswordIcon {
+    display: none;
+}
+
+input:placeholder-shown~.inputVisibilityOffIcon {
+    opacity: 0;
+    pointer-events: none;
+}
+
+input:not(:placeholder-shown)~.inputVisibilityOffIcon {
+    opacity: 1;
+}
+
+input:placeholder-shown~.inputVisibilityIcon {
+    opacity: 0;
+    pointer-events: none;
+}
+
+input:not(:placeholder-shown)~.inputVisibilityIcon {
+    opacity: 1;
+}
 
 .signUpInputContainer {
     height: 46px;
@@ -68,6 +90,8 @@ input:focus {
     align-items: center;
     justify-content: center;
     width: 100%;
+    position: relative;
+    transition: opacity 0.3s, transform 0.3s;
 }
 
 .signUpInputContainerWithValidation {
@@ -85,7 +109,8 @@ input:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: calc(100% - 2px);
+    position: absolute;
 }
 
 .signUpPageFooter {
@@ -145,8 +170,8 @@ a {
 }
 
 ::placeholder {
-  color: #D1D1D1;
-  opacity: 1;
+    color: #D1D1D1;
+    opacity: 1;
 }
 
 .checkboxImg {

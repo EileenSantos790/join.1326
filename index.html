@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./stylesheets/header.css">
     <link rel="stylesheet" href="./stylesheets/buttons.css">
 
+
     <script src="./script.js"></script>
     <script src="./js/firebase.js"></script>
 
@@ -38,11 +39,16 @@
             </div>
             <div class="loginPageMainContentInputs">
                 <div class="signUpInputContainer">
-                    <input id="emailInput" type="email" class="inputEmailIcon" placeholder="Email">
+                    <input id="emailInput" type="email" placeholder="Email">
+                    <img class="inputEmailIcon" src="./assets/icons/mail.svg" alt="mail icon">
                 </div>
                 <div class="loginInputContainerWithValidation">
                     <div class="signUpValidationInputContainer">
-                        <input id="passwordInput" type="password" class="inputPasswordIcon" placeholder="Password">
+                        <input id="passwordInput" type="password" placeholder="Password">
+                        <img class="inputPasswordIcon" src="./assets/icons/lock.svg" alt="lock icon">
+                        <img id="loginPasswordVisibilityOff" onclick="togglePasswordVisibility('passwordInput','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
+                        <img id="loginPasswordVisibility" onclick="togglePasswordVisibility('passwordInput','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
+
                     </div>
                     <div id="loginFormValidationErrorMessage" class="loginFormValidationErrorMessage"></div>
                 </div>

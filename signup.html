@@ -31,28 +31,32 @@
             <div class="signUpPageInputSection">
                 <div class="signUpPageMainContentInputs">
                     <div class="signUpInputContainer">
-                        <input id="signUpNameInput" type="name" class="inputPersonIcon" placeholder="Name">
+                        <input id="signUpNameInput" type="name" placeholder="Name">
+                        <img class="inputPersonIcon" src="./assets/icons/person.svg" alt="person icon">
                     </div>
                     <div class="signUpInputContainer">
-                        <input id="signUpEmailInput" type="email" class="inputEmailIcon" placeholder="Email">
+                        <input id="signUpEmailInput" type="email" placeholder="Email">
+                        <img class="inputEmailIcon" src="./assets/icons/mail.svg" alt="mail icon">
                     </div>
                     <div class="signUpInputContainer">
-                        <input id="signUpPasswordInput" type="password" class="inputPasswordIcon" placeholder="Password">
+                        <input id="signUpPasswordInput" type="password" placeholder="Password">
+                        <img class="inputPasswordIcon" src="./assets/icons/lock.svg" alt="lock icon">
+                        <img id="signUpPasswordVisibilityOff" onclick="togglePasswordVisibility('signUpPasswordInput','signUpPasswordVisibilityOff','signUpPasswordVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
+                        <img id="signUpPasswordVisibility" onclick="togglePasswordVisibility('signUpPasswordInput','signUpPasswordVisibilityOff','signUpPasswordVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
                     </div>
                     <div class="signUpInputContainerWithValidation">
                         <div class="signUpValidationInputContainer">
-                            <input id="signUpPasswordConfirmInput" type="password" class="inputPasswordIcon" placeholder="Confirm Password">
+                            <input id="signUpPasswordConfirmInput" type="password" placeholder="Confirm Password">
+                            <img class="inputPasswordIcon" src="./assets/icons/lock.svg" alt="lock icon">
+                            <img id="signUpConfirmVisibilityOff" onclick="togglePasswordVisibility('signUpPasswordConfirmInput','signUpConfirmVisibilityOff','signUpConfirmVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
+                            <img id="signUpConfirmVisibility" onclick="togglePasswordVisibility('signUpPasswordConfirmInput','signUpConfirmVisibilityOff','signUpConfirmVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
                         </div>
                         <div id="signUpFormValidationErrorMessage" class="loginFormValidationErrorMessage"></div>
                     </div>
                 </div>
                 <div class="signUpAcceptPrivacyContent">
-                    <img id="checkboxChecked"
-                        onclick="toggleCheckbox('checkboxChecked','checkboxUnchecked','signUpButton')"
-                        class="checkboxImg d-none" src="./assets/icons/checked.svg" alt="checkbox checked">
-                    <img id="checkboxUnchecked"
-                        onclick="toggleCheckbox('checkboxChecked','checkboxUnchecked', 'signUpButton')"
-                        class="checkboxImg " src="./assets/icons/check-button.svg" alt="checkbox">
+                    <img id="checkboxChecked" onclick="toggleCheckbox('checkboxChecked','checkboxUnchecked','signUpButton')" class="checkboxImg d-none" src="./assets/icons/checked.svg" alt="checkbox checked">
+                    <img id="checkboxUnchecked" onclick="toggleCheckbox('checkboxChecked','checkboxUnchecked', 'signUpButton')" class="checkboxImg " src="./assets/icons/check-button.svg" alt="checkbox">
                     <p>I accept the <a href="home.html?page=privacyPolicy">Privacy Policy</a></p>
                 </div>
             </div>
