@@ -7,6 +7,12 @@ function toggleCheckbox(checkId, uncheckId, buttonId) {
     buttonStatus.toggleAttribute('disabled');
 }
 
-function loadSignUp(){
+function loadSignUp() {
     window.location.href = "signup.html";
+}
+
+function isUserLoggedIn() {
+    // if (sessionStorage.getItem("userfound") !== "true") {
+    //     window.location.href = "index.html";
+    // }
 }

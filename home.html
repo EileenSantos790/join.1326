@@ -14,6 +14,8 @@
 
     <script src="./js/tamplates.js"></script>
     <script src="./js/navigationBar.js"></script>
+    <script src="./js/firebase.js"></script>
+    <script src="./script.js"></script>
 
     <link rel="stylesheet" href="./stylesheets/fonts.css">
 
@@ -21,7 +23,7 @@
 
 </head>
 
-<body>
+<body onload="isUserLoggedIn()">
     <!-- Overlay for Join Icon -->
     <div id="joinIconOverlay"></div>
 
