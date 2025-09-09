@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="./stylesheets/header.css">
     <link rel="stylesheet" href="./stylesheets/buttons.css">
 
-    <script src="script.js"></script>
+
+    <script src="./script.js"></script>
+    <script src="./js/firebase.js"></script>
 
 </head>
 
@@ -25,7 +27,7 @@
     <header class="loginPageHeader">
         <div class="loginPageHeaderContent">
             <p>Not a Join user?</p>
-            <button class="buttonPrimary">Sign up</button>
+            <button class="buttonPrimary" onclick="loadSignUp()">Sign up</button>
         </div>
     </header>
 
@@ -37,23 +39,24 @@
             </div>
             <div class="loginPageMainContentInputs">
                 <div class="signUpInputContainer">
-                    <input type="email" placeholder="Email">
+                    <input id="emailInput" type="email" placeholder="Email">
                     <img class="inputEmailIcon" src="./assets/icons/mail.svg" alt="mail icon">
                 </div>
                 <div class="loginInputContainerWithValidation">
                     <div class="signUpValidationInputContainer">
-                        <input id="loginInputPassword" type="password" placeholder="Password">
+                        <input id="passwordInput" type="password" placeholder="Password">
                         <img class="inputPasswordIcon" src="./assets/icons/lock.svg" alt="lock icon">
-                        <img id="loginPasswordVisibilityOff" onclick="togglePasswordVisibility('loginInputPassword','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
-                        <img id="loginPasswordVisibility" onclick="togglePasswordVisibility('loginInputPassword','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
+                        <img id="loginPasswordVisibilityOff" onclick="togglePasswordVisibility('passwordInput','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
+                        <img id="loginPasswordVisibility" onclick="togglePasswordVisibility('passwordInput','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
+
                     </div>
-                    <div class="loginFormValidationErrorMessage">test message</div>
+                    <div id="loginFormValidationErrorMessage" class="loginFormValidationErrorMessage"></div>
                 </div>
 
             </div>
 
             <div class="loginPageMainContentButtons">
-                <button class="buttonPrimary loginPageLogInButton">Log in</button>
+                <button class="buttonPrimary loginPageLogInButton" onclick="tryToLogin()">Log in</button>
                 <button class="buttonSecondary loginPageGuestLogInButton">Guest Log in</button>
             </div>
         </div>

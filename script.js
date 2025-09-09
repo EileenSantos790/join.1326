@@ -25,3 +25,8 @@ function togglePasswordVisibility(inputId, iconOffId, iconOnId) {
         input.type = "password";
     }
 }
+
+
+function loadSignUp(){
+    window.location.href = "signup.html";
+}
