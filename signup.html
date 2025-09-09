@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./stylesheets/buttons.css">
 
     <script src="./script.js"></script>
+    <script src="./js/firebase.js"></script>
 
 </head>
 
@@ -30,30 +31,34 @@
             <div class="signUpPageInputSection">
                 <div class="signUpPageMainContentInputs">
                     <div class="signUpInputContainer">
-                        <input type="name" class="inputPersonIcon" placeholder="Name">
+                        <input id="signUpNameInput" type="name" class="inputPersonIcon" placeholder="Name">
                     </div>
                     <div class="signUpInputContainer">
-                        <input type="email" class="inputEmailIcon" placeholder="Email">
+                        <input id="signUpEmailInput" type="email" class="inputEmailIcon" placeholder="Email">
                     </div>
                     <div class="signUpInputContainer">
-                        <input type="password" class="inputPasswordIcon" placeholder="Password">
+                        <input id="signUpPasswordInput" type="password" class="inputPasswordIcon" placeholder="Password">
                     </div>
                     <div class="signUpInputContainerWithValidation">
                         <div class="signUpValidationInputContainer">
-                            <input type="password" class="inputPasswordIcon" placeholder="Confirm Password">
+                            <input id="signUpPasswordConfirmInput" type="password" class="inputPasswordIcon" placeholder="Confirm Password">
                         </div>
-                        <div class="loginFormValidationErrorMessage">test message</div>
+                        <div id="signUpFormValidationErrorMessage" class="loginFormValidationErrorMessage"></div>
                     </div>
                 </div>
                 <div class="signUpAcceptPrivacyContent">
-                    <img id="checkboxChecked" onclick="toggleCheckbox('checkboxChecked','checkboxUnchecked','signUpButton')" class="checkboxImg d-none" src="./assets/icons/checked.svg" alt="checkbox checked">
-                    <img id="checkboxUnchecked" onclick="toggleCheckbox('checkboxChecked','checkboxUnchecked', 'signUpButton')" class="checkboxImg " src="./assets/icons/check-button.svg" alt="checkbox">
+                    <img id="checkboxChecked"
+                        onclick="toggleCheckbox('checkboxChecked','checkboxUnchecked','signUpButton')"
+                        class="checkboxImg d-none" src="./assets/icons/checked.svg" alt="checkbox checked">
+                    <img id="checkboxUnchecked"
+                        onclick="toggleCheckbox('checkboxChecked','checkboxUnchecked', 'signUpButton')"
+                        class="checkboxImg " src="./assets/icons/check-button.svg" alt="checkbox">
                     <p>I accept the <a href="home.html?page=privacyPolicy">Privacy Policy</a></p>
                 </div>
             </div>
 
             <div class="loginPageMainContentButtons">
-                <button id="signUpButton" class="buttonPrimary" disabled>Sign up</button>
+                <button id="signUpButton" class="buttonPrimary" disabled onclick="tryToSignUp()">Sign up</button>
             </div>
         </div>
     </section>

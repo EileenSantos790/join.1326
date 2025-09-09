@@ -6,3 +6,7 @@ function toggleCheckbox(checkId, uncheckId, buttonId) {
     unchecked.classList.toggle('d-none');
     buttonStatus.toggleAttribute('disabled');
 }
+
+function loadSignUp(){
+    window.location.href = "signup.html";
+}

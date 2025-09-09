@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="./stylesheets/header.css">
     <link rel="stylesheet" href="./stylesheets/buttons.css">
 
+    <script src="./script.js"></script>
+    <script src="./js/firebase.js"></script>
+
 </head>
 
 <body class="contentLimitation">
@@ -23,7 +26,7 @@
     <header class="loginPageHeader">
         <div class="loginPageHeaderContent">
             <p>Not a Join user?</p>
-            <button class="buttonPrimary">Sign up</button>
+            <button class="buttonPrimary" onclick="loadSignUp()">Sign up</button>
         </div>
     </header>
 
@@ -35,19 +38,19 @@
             </div>
             <div class="loginPageMainContentInputs">
                 <div class="signUpInputContainer">
-                    <input type="email" class="inputEmailIcon" placeholder="Email">
+                    <input id="emailInput" type="email" class="inputEmailIcon" placeholder="Email">
                 </div>
                 <div class="loginInputContainerWithValidation">
                     <div class="signUpValidationInputContainer">
-                        <input type="password" class="inputPasswordIcon" placeholder="Password">
+                        <input id="passwordInput" type="password" class="inputPasswordIcon" placeholder="Password">
                     </div>
-                    <div class="loginFormValidationErrorMessage">test message</div>
+                    <div id="loginFormValidationErrorMessage" class="loginFormValidationErrorMessage"></div>
                 </div>
 
             </div>
 
             <div class="loginPageMainContentButtons">
-                <button class="buttonPrimary loginPageLogInButton">Log in</button>
+                <button class="buttonPrimary loginPageLogInButton" onclick="tryToLogin()">Log in</button>
                 <button class="buttonSecondary loginPageGuestLogInButton">Guest Log in</button>
             </div>
         </div>
