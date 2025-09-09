@@ -160,24 +160,59 @@
 }
 
 .inputEmailIcon {
-    background: url(../assets/icons/mail.svg);
-    background-size: 24px;
-    background-position: right center;
-    background-repeat: no-repeat;
+    position: absolute;
+    right: 21px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
 }
 
 .inputPasswordIcon {
-    background: url(../assets/icons/lock.svg);
-    background-size: 24px;
-    background-position: right center;
-    background-repeat: no-repeat;
+    position: absolute;
+    right: 21px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
 }
 
 .inputPersonIcon {
-    background: url(../assets/icons/person.svg);
-    background-size: 24px;
-    background-position: right center;
-    background-repeat: no-repeat;
+    position: absolute;
+    right: 21px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+}
+
+.inputVisibilityIcon {
+    position: absolute;
+    right: 21px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+}
+
+.inputVisibilityOffIcon {
+    position: absolute;
+    right: 21px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+}
+
+.inputVisibilityIcon:hover {
+    cursor: pointer;
+}
+
+.inputVisibilityOffIcon:hover {
+    cursor: pointer;
 }
 
 .contentLimitation {

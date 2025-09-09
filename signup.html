@@ -30,17 +30,25 @@
             <div class="signUpPageInputSection">
                 <div class="signUpPageMainContentInputs">
                     <div class="signUpInputContainer">
-                        <input type="name" class="inputPersonIcon" placeholder="Name">
+                        <input type="name" placeholder="Name">
+                        <img class="inputPersonIcon" src="./assets/icons/person.svg" alt="person icon">
                     </div>
                     <div class="signUpInputContainer">
-                        <input type="email" class="inputEmailIcon" placeholder="Email">
+                        <input type="email" placeholder="Email">
+                        <img class="inputEmailIcon" src="./assets/icons/mail.svg" alt="mail icon">
                     </div>
                     <div class="signUpInputContainer">
-                        <input type="password" class="inputPasswordIcon" placeholder="Password">
+                        <input id="signUpInputPassword" type="password" placeholder="Password">
+                        <img class="inputPasswordIcon" src="./assets/icons/lock.svg" alt="lock icon">
+                        <img id="signUpPasswordVisibilityOff" onclick="togglePasswordVisibility('signUpInputPassword','signUpPasswordVisibilityOff','signUpPasswordVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
+                        <img id="signUpPasswordVisibility" onclick="togglePasswordVisibility('signUpInputPassword','signUpPasswordVisibilityOff','signUpPasswordVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
                     </div>
                     <div class="signUpInputContainerWithValidation">
                         <div class="signUpValidationInputContainer">
-                            <input type="password" class="inputPasswordIcon" placeholder="Confirm Password">
+                            <input id="signUpInputConfirmPassword" type="password" placeholder="Confirm Password">
+                            <img class="inputPasswordIcon" src="./assets/icons/lock.svg" alt="lock icon">
+                            <img id="signUpConfirmVisibilityOff" onclick="togglePasswordVisibility('signUpInputConfirmPassword','signUpConfirmVisibilityOff','signUpConfirmVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
+                            <img id="signUpConfirmVisibility" onclick="togglePasswordVisibility('signUpInputConfirmPassword','signUpConfirmVisibilityOff','signUpConfirmVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
                         </div>
                         <div class="loginFormValidationErrorMessage">test message</div>
                     </div>

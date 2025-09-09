@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="./stylesheets/header.css">
     <link rel="stylesheet" href="./stylesheets/buttons.css">
 
+    <script src="script.js"></script>
+
 </head>
 
 <body class="contentLimitation">
@@ -35,11 +37,15 @@
             </div>
             <div class="loginPageMainContentInputs">
                 <div class="signUpInputContainer">
-                    <input type="email" class="inputEmailIcon" placeholder="Email">
+                    <input type="email" placeholder="Email">
+                    <img class="inputEmailIcon" src="./assets/icons/mail.svg" alt="mail icon">
                 </div>
                 <div class="loginInputContainerWithValidation">
                     <div class="signUpValidationInputContainer">
-                        <input type="password" class="inputPasswordIcon" placeholder="Password">
+                        <input id="loginInputPassword" type="password" placeholder="Password">
+                        <img class="inputPasswordIcon" src="./assets/icons/lock.svg" alt="lock icon">
+                        <img id="loginPasswordVisibilityOff" onclick="togglePasswordVisibility('loginInputPassword','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
+                        <img id="loginPasswordVisibility" onclick="togglePasswordVisibility('loginInputPassword','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
                     </div>
                     <div class="loginFormValidationErrorMessage">test message</div>
                 </div>
