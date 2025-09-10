@@ -32,7 +32,7 @@ function loadSignUp() {
 }
 
 function isUserLoggedIn() {
-    // if (sessionStorage.getItem("userfound") !== "true") {
-    //     window.location.href = "index.html";
-    // }
+    if (sessionStorage.getItem("userfound") !== "true") {
+        window.location.href = "index.html";
+    }
 }

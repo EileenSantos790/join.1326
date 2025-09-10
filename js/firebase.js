@@ -16,7 +16,7 @@ function tryToLogin() {
         checkIfDataIsCorrect();
     }
     else {
-        loginFormValidationErrorMessage.innerText = "Please fill in all fields!";
+        loginFormValidationErrorMessage.innerText = "Check your email and password. Please try again.";
     }
 }
 
@@ -49,7 +49,7 @@ function tryToSignUp() {
             checkIfUserAlreadyExists(signUpEmail, signUpName, signUpPassword);
         }
         else {
-            signUpFormValidationErrorMessage.innerText = "Passwords do not match!";
+            signUpFormValidationErrorMessage.innerText = "Your passwords don't match. Please try again.";
         }
     }
     else {
