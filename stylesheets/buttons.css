@@ -202,11 +202,11 @@ button:hover {
 
 .buttonsFooterIndex {
     color: #CDCDCD;
-    padding-left: 56px;
     text-decoration: none;
 }
 
 .buttonsFooterIndex:hover {
     color: #2AABE1;
     cursor: pointer;
+    font-weight: bold;
 }

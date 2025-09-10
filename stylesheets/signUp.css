@@ -167,6 +167,7 @@ input:not(:placeholder-shown)~.inputVisibilityIcon {
 a {
     text-decoration: none;
     color: #29ABE2;
+    width: 110px;
 }
 
 ::placeholder {
