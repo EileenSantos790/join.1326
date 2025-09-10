@@ -1,0 +1,191 @@
+.blueSeparationLine {
+    width: 3px;
+    height: 53px;
+    background-color: #0C8CE9;
+    border-radius: 50px;
+}
+
+.greySeparationLine {
+    width: 3px;
+    height: 102px;
+    background-color: #D1D1D1;
+    border-radius: 50px;
+}
+
+.summaryFirstLine {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    width: auto;
+    padding-bottom: 30px;
+    height: 73px;
+    width: 625px;
+}
+
+.summaryDashboard {
+    display: flex;
+    padding-top: 60px;
+    max-width: 560px;
+    justify-content: space-between;
+}
+
+.summaryDashboardContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    justify-content: center;
+}
+
+.summaryDashboardContainerLeft {
+    display: flex;
+    flex-direction: column;
+    width: 560px;
+}
+
+.summaryDashboardContainerRight {
+    display: flex;
+    flex-direction: column;
+    width: 560px;
+    justify-content: center;
+}
+
+.smallWindows {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.summaryIcon {
+    display: block;
+}
+
+.smallWindowContainer {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    width: 164px;
+    height: 168px;
+    border-radius: 30px;
+    padding-inline: 38px;
+    padding-block: 19px;
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    --icon-bg: #2A3747;
+    --icon-fg: #ffffff;
+}
+
+.smallWindowContainer .icon-bg { fill:var(--icon-bg); transition:fill .3s ease; }
+.smallWindowContainer .icon-fg {
+  stroke:var(--icon-fg);
+  stroke-width:7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  transition:stroke .3s ease;
+}
+
+.smallWindowContainer:hover{
+  --icon-bg:#ffffff;
+  --icon-fg:#2A3747;
+  transform:scale(1.05);
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+  cursor:pointer;
+  background-color: #2A3647;
+  color: white;
+}
+
+.largeWindowFirstPart {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    align-items: center;
+    justify-content: center;
+}
+
+.largeWindowContainer {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    Height: 168px;
+    border-radius: 30px;
+    padding-inline: 48px;
+    padding-block: 28px;
+    display: flex;
+    margin-block: 30px;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 61px;
+    transition: all 0.3s ease;
+    color: #2A3647;
+}
+
+.xsmallWindowsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+}
+
+.xsmallWindows {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    width: 164px;
+    Height: 168px;
+    border-radius: 30px;
+    padding-inline: 38px;
+    padding-block: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: #2A3647;
+}
+
+.summaryNumber {
+    font-size: 64px;
+    font-weight: 600;
+
+}
+
+.todoAndDoneText {
+    font-size: 20px;
+    font-weight: 400;
+
+}
+
+.urgentText {
+    font-size: 16px;
+    font-weight: 400;
+
+}
+
+.thirdLineText {
+    font-size: 20px;
+    font-weight: 400;
+    color: #2A3647;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    text-align: center;
+}
+
+#calenderDate {
+    font-size: 21px;
+    font-weight: 700;
+    color: #2A3647;
+}
+
+#greetingDayTime {
+    font-size: 47px;
+    font-weight: 500;
+    color: #2A3647;
+}
+
+#greetingUserName {
+    font-size: 64px;
+    font-weight: 700;
+    color: #23A3E9;
+}

@@ -1,6 +1,7 @@
 #contentContainer {
     margin-left: 232px;
-    padding-left: 116px;
+    padding-left: 96px;
     padding-right: 40px;
-    padding-block: 20px;
+    padding-block: 70px;
+    background-color:#F6F7F8;
 }

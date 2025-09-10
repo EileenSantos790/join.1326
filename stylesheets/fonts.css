@@ -15,10 +15,17 @@ h1{
 
 h2 {
   font-weight: 700; /* Bold */
+  font-weight: bold;
 }
 
 h3 {
   font-weight: 500; /* Semi-Bold */
+}
+
+h4 {
+  font-weight: 400; /* Regular */
+  font-size: 27px;
+  color: #2A3647;
 }
 
 p {
