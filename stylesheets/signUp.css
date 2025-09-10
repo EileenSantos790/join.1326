@@ -24,6 +24,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 197px;
+    position: relative;
 }
 
 .signUpPageInputSection {
@@ -184,4 +185,27 @@ a {
     cursor: pointer;
     background-color: #EDF2FA;
     border-radius: 43px;
+}
+
+.signUpArrowButton {
+    position: absolute;
+    top: 64px;
+    left: 48px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../assets/icons/arrow-smal.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.signUpArrowButton:hover {
+    cursor: pointer;
+    background-color: #d1d1d152;
+    border-radius: 43px;
+    top: 63px;
+    left: 46px;
+    background-image: url(../assets/icons/arrow.svg);
 }

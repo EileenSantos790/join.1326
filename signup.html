@@ -32,22 +32,22 @@
             <div class="signUpPageInputSection">
                 <div class="signUpPageMainContentInputs">
                     <div class="signUpInputContainer">
-                        <input id="signUpNameInput" type="name" placeholder="Name">
+                        <input id="signUpNameInput" class="fontInter" type="name" placeholder="Name">
                         <img class="inputPersonIcon" src="./assets/icons/person.svg" alt="person icon">
                     </div>
                     <div class="signUpInputContainer">
-                        <input id="signUpEmailInput" type="email" placeholder="Email">
+                        <input id="signUpEmailInput" class="fontInter" type="email" placeholder="Email">
                         <img class="inputEmailIcon" src="./assets/icons/mail.svg" alt="mail icon">
                     </div>
                     <div class="signUpInputContainer">
-                        <input id="signUpPasswordInput" type="password" placeholder="Password">
+                        <input id="signUpPasswordInput" class="fontInter" type="password" placeholder="Password">
                         <img class="inputPasswordIcon" src="./assets/icons/lock.svg" alt="lock icon">
                         <img id="signUpPasswordVisibilityOff" onclick="togglePasswordVisibility('signUpPasswordInput','signUpPasswordVisibilityOff','signUpPasswordVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
                         <img id="signUpPasswordVisibility" onclick="togglePasswordVisibility('signUpPasswordInput','signUpPasswordVisibilityOff','signUpPasswordVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
                     </div>
                     <div class="signUpInputContainerWithValidation">
                         <div class="signUpValidationInputContainer">
-                            <input id="signUpPasswordConfirmInput" type="password" placeholder="Confirm Password">
+                            <input id="signUpPasswordConfirmInput" class="fontInter" type="password" placeholder="Confirm Password">
                             <img class="inputPasswordIcon" src="./assets/icons/lock.svg" alt="lock icon">
                             <img id="signUpConfirmVisibilityOff" onclick="togglePasswordVisibility('signUpPasswordConfirmInput','signUpConfirmVisibilityOff','signUpConfirmVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
                             <img id="signUpConfirmVisibility" onclick="togglePasswordVisibility('signUpPasswordConfirmInput','signUpConfirmVisibilityOff','signUpConfirmVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
@@ -65,6 +65,9 @@
             <div class="loginPageMainContentButtons">
                 <button id="signUpButton" class="buttonPrimary" disabled onclick="tryToSignUp()">Sign up</button>
             </div>
+            <div class="signUpArrowButton" onclick="loadSignUp('index.html')">
+            </div>
+            
         </div>
     </section>
 

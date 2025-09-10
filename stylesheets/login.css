@@ -1,3 +1,7 @@
+.fontInter {
+    font-family: 'Inter';
+}
+
 #overlay {
     position: fixed;
     width: 100%;

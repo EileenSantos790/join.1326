@@ -27,8 +27,8 @@ function togglePasswordVisibility(inputId, iconOffId, iconOnId) {
 }
 
 
-function loadSignUp() {
-    window.location.href = "signup.html";
+function loadSignUp(htmlName) {
+    window.location.href = htmlName;
 }
 
 function isUserLoggedIn() {
