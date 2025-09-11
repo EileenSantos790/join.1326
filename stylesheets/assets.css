@@ -2,6 +2,12 @@
     width: 20px;
     height: 20px;
     padding-inline: 6px;
+    transition: transform 0.3s ease;
+}
+
+.helpIcon:hover{
+    cursor: pointer;
+    transform: scale(1.2);;
 }
 
 #userIcon{

@@ -5,9 +5,14 @@ window.addEventListener('DOMContentLoaded', renderMainContent);
 
 
 /**
- * Finds the main content container and all menu items.
- * Sets up click events and opens the first menu automatically.
- * Calls a function to open a page based on URL parameter if available.
+ * Initializes the main content area and navigation.
+ *
+ * - Finds the main content container and all navigation elements.
+ * - Attaches click events to the main menu items (left sidebar).
+ * - Attaches click events to the site menu items (privacy policy, legal notice).
+ * - Attaches click event to the help icon in the header.
+ * - If a "page" URL parameter is present, it opens that page.
+ * - Otherwise, it automatically opens the first main menu item.
  */
 function renderMainContent() {
   const content = document.getElementById('contentContainer');
@@ -16,6 +21,7 @@ function renderMainContent() {
 
   setClickEvents(items, content);
   setClickEvents(sites, content);
+  attachHelp(content);
 
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.has('page')) openPageFromUrl(content);
@@ -99,15 +105,18 @@ function showError(error, content) {
 
 
 /**
- * Opens a page based on the URL parameter "page".
- * If the parameter is "privacyPolicy" or "legalNotice", 
- * it clicks the corresponding menu item to load the content into the content container.
- * If no valid parameter is found, it opens the first menu item by default.
+ * Opens a specific page based on the URL parameter "page".
  *
- * @param {NodeList} items
+ * - Supports the values "privacyPolicy" and "legalNotice".
+ * - Looks up the corresponding HTML file path in the `files` map.
+ * - If a matching navigation item exists, it triggers a click on that item
+ *   (so it also gets marked as active).
+ * - If no navigation item exists, it directly loads the file into the content container.
+ * - If the "page" parameter is missing or invalid, nothing happens.
+ *
+ * @param {HTMLElement} content
  */
 function openPageFromUrl(content) {
-  debugger;
   const page = new URLSearchParams(window.location.search).get("page");
 
   const files = {
@@ -123,3 +132,25 @@ function openPageFromUrl(content) {
   else loadPage(fileToOpen, content);
 }
 
+
+/**
+ * Attaches a click event to the help icon in the header.
+ * When clicked, it loads the HTML file specified in the icon's "data-file" attribute
+ * into the given content container.
+ *
+ * Removes the "active" class from all navigation and site menu items,
+ *   so the help icon acts independently of the side navigation.
+ * Uses the loadPage() function to fetch and display the file.
+ *
+ * @param {HTMLElement} content
+ */
+function attachHelp(content) {
+  const helpIcon = document.querySelector('.helpIcon');
+  if (!helpIcon) return;
+  helpIcon.addEventListener('click', () => {
+    const file = helpIcon.getAttribute('data-file');
+    if (!file) return;
+    document.querySelectorAll('.navLine, .sitesNavContainer').forEach(el => el.classList.remove('active'));
+    loadPage(file, content);
+  });
+}
