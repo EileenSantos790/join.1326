@@ -66,3 +66,15 @@
 .navLine.active .navIcon {
     filter: brightness(0) invert(1); /* Icon is white */
 }
+
+
+/* active nav Bar CSS */
+
+.navLine:hover {
+  background-color: #091931;
+  color: white;
+}
+
+.navLine:hover .navIcon {
+  filter: brightness(0) invert(1); /* Icon wird weiß */
+}

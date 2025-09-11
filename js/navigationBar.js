@@ -12,16 +12,14 @@ window.addEventListener('DOMContentLoaded', renderMainContent);
 function renderMainContent() {
   const content = document.getElementById('contentContainer');
   const items = document.querySelectorAll('.navLine');
-  const siteItems = document.querySelectorAll('.sitesNavContainer');
+  const sites = document.querySelectorAll('.sitesNavContainer');
 
   setClickEvents(items, content);
-  setClickEvents(siteItems, content);
+  setClickEvents(sites, content);
 
-  if (items.length > 0) {
-    items[0].click();
-  }
-
-  openPageFromUrl(items);
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('page')) openPageFromUrl(content);
+  else if (items.length > 0) items[0].click();
 }
 
 /**
@@ -51,7 +49,8 @@ function setClickEvents(items, content) {
 function markActive(items, activeItem) {
   for (const item of items) {
     item.classList.remove('active');
-  } activeItem.classList.add('active');
+  }
+  activeItem.classList.add('active');
 }
 
 
@@ -107,24 +106,20 @@ function showError(error, content) {
  *
  * @param {NodeList} items
  */
-function openPageFromUrl(items) {
-  const params = new URLSearchParams(window.location.search);
-  const page = params.get("page");
+function openPageFromUrl(content) {
+  debugger;
+  const page = new URLSearchParams(window.location.search).get("page");
 
-  let fileToOpen = "";
+  const files = {
+    privacyPolicy: "./htmlTamplates/privacyPolicy.html",
+    legalNotice: "./htmlTamplates/legalNotice.html"
+  };
 
-  if (page === "privacyPolicy") {
-    fileToOpen = "./htmlTamplates/privacyPolicy.html";
-  } else if (page === "legalNotice") {
-    fileToOpen = "./htmlTamplates/legalNotice.html";
-  } else if (items.length > 0) {
-    items[0].click();
-    return;
-  }
+  const fileToOpen = files[page];
+  if (!fileToOpen) return;
 
   const menuItem = document.querySelector(`[data-file="${fileToOpen}"]`);
-  if (menuItem) {
-    menuItem.click();
-  }
+  if (menuItem) menuItem.click();
+  else loadPage(fileToOpen, content);
 }
 

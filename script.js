@@ -19,7 +19,7 @@ function togglePasswordVisibility(inputId, iconOffId, iconOnId) {
     let iconOn = document.getElementById(iconOnId);
     iconOff.classList.toggle('d-none');
     iconOn.classList.toggle('d-none');
-    if(input.type === "password") {
+    if (input.type === "password") {
         input.type = "text";
     } else {
         input.type = "password";
@@ -32,7 +32,29 @@ function loadSignUp(htmlName) {
 }
 
 function isUserLoggedIn() {
-    if (sessionStorage.getItem("userfound") !== "true") {
-        window.location.href = "index.html";
+    const page = new URLSearchParams(location.search).get('page');
+    const allowPublic = page === 'privacyPolicy' || page === 'legalNotice';
+    const loggedIn = sessionStorage.getItem('userfound') === 'true';
+
+    if (!loggedIn && allowPublic) {
+        const nav = document.querySelector('.navContainer');
+        if (nav) nav.innerHTML = `
+        <div class="navContainer">
+            <div class="navContainerLogo">
+                <img class="joinIcon" src="./assets/img/joinSymbolWhite.svg" alt="Join Icon">
+            </div>
+            <div class="navContainerMenu">
+                <div class="navLine" onclick="location.href='index.html'">
+                    <img class="navIcon" src="./assets/icons/LogInIcon.svg" alt="Login Icon">
+                    <p>Log In</p>
+                </div>
+            </div>
+        </div>
+    `;
+        return;
+    }
+
+    if (!loggedIn && !allowPublic) {
+        window.location.href = 'index.html';
     }
 }
