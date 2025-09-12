@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../stylesheets/addTask.css">
+    <link rel="stylesheet" href="../stylesheets/buttons.css">
+
+</head>
+
+
+<body>
+    <div class="addTaskHeadline">
+        <h1>Add Task</h1>
+    </div>
+
+    <div class="addTaskMainContent">
+        <div class="addTaskInputsLeftSide">
+            <div class="addTaskTitleInputContent">
+                <p>Title<span class="requiredStar">*</span></p>
+                <div class="addTaskInputContainerWithValidation">
+                    <div class="signUpValidationInputContainer bgWhite">
+                        <input class="addTaskInputs" type="title" placeholder="Enter a title">
+                    </div>
+                    <div class="loginFormValidationErrorMessage">test</div>
+                </div>
+            </div>
+            <div class="addTaskDescriptionInputContent">
+                <p>Description</p>
+                <div class="addTaskDescriptionContainerWithValidation">
+                    <div class="addTaskDescriptionInputContainer bgWhite">
+                        <textarea name="Description" id=""></textarea>
+                    </div>
+                    <div class="loginFormValidationErrorMessage"></div>
+                </div>
+            </div>
+            <div>
+                <p>Due date<span class="requiredStar">*</span></p>
+                <div class="addTaskInputContainerWithValidation">
+                    <div class="signUpValidationInputContainer bgWhite">
+                        <input class="addTaskInputs" type="date" lang="en-GB">
+                    </div>
+                    <div class="loginFormValidationErrorMessage"></div>
+                </div>
+            </div>
+        </div>
+        <div class="addTaskSeperator"></div>
+        <div>
+            <div>
+                <p>Priority</p>
+                <div class="addTaskPriorityButtons">
+                    <button class="buttonUrgent">Urgent</button>
+                    <button class="buttonMedium">Medium</button>
+                    <button class="buttonLow">Low</button>
+                </div>
+            </div>
+            <div>
+                <p>Assigned to</p>
+                <div class="dropdown">
+                    <div class="dropdownContent">
+                        <input type="text">
+                        <!-- <img src="../assets/icons/dropdown-up.svg" alt="Arrown up"> -->
+                        <label class="dropdownItem">Name1<img src="../assets/icons/check-button.svg" alt=""></label>
+                        <label class="dropdownItem">Name2<input type="checkbox"></label>
+                        <label class="dropdownItem">Name3<input type="checkbox"></label>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

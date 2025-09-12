@@ -210,3 +210,27 @@ button:hover {
     cursor: pointer;
     font-weight: bold;
 }
+
+.buttonUrgent {
+    width: 136px;
+    height: 56px;
+    background-color: #FFFFFF;
+    font-size: 20px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.buttonMedium {
+    width: 136px;
+    height: 56px;
+    background-color: #FFFFFF;
+    font-size: 20px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.buttonLow {
+    width: 136px;
+    height: 56px;
+    background-color: #FFFFFF;
+    font-size: 20px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}

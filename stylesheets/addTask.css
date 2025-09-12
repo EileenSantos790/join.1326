@@ -1,0 +1,121 @@
+.addTaskHeadline {
+    height: 73px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 48px;
+}
+
+.addTaskMainContent {
+    width: 90%;
+    max-height: 376px;
+    height: 100%;
+    display: flex;
+    gap: 48px;
+    /* justify-content: space-between;
+    align-items: center; */
+}
+
+.addTaskInputsLeftSide {
+    max-width: 440px;
+    width: 100%;
+}
+
+.addTaskMainContent p {
+    margin: 0;
+    font-size: 20px;
+}
+
+.requiredStar {
+    color: #FF8190;
+}
+
+.addTaskInputContainerWithValidation {
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    margin-top: 8px;
+}
+
+.addTaskDescriptionContainerWithValidation {
+    height: 136px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    margin-top: 8px;
+}
+
+.addTaskDescriptionInputContent {
+    height: 168px;
+    padding-bottom: 16px;
+}
+
+.addTaskDescriptionInputContainer {
+    height: 120px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 2px);
+    position: absolute;
+}
+
+.bgWhite {
+    background-color: #FFFFFF;
+}
+
+.addTaskTitleInputContent {
+    height: 96px;
+    padding-bottom: 16px;
+}
+
+.addTaskInputs {
+    max-width: 398px;
+}
+
+.addTaskSeperator {
+    height: 424px;
+    width: 1px;
+    background-color: #D1D1D1;
+    border-radius: 3px;
+}
+
+.addTaskPriorityButtons {
+    max-width: 440px;
+    width: 100%;
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.dropdown {
+    position: relative;
+    width: 250px;
+}
+
+.dropdownContent {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #FFFFFF;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    /* display: none; */
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+
+/* label css: 
+
+    display: flex;
+    justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px; */
