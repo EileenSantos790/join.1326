@@ -39,17 +39,16 @@
                 <div class="loginPageMainContentSeperator"></div>
             </div>
             <div class="loginPageMainContentInputs">
-                <div class="signUpInputContainer">
-                    <input id="emailInput" class="fontInter" type="email" placeholder="Email">
+                <div id="emailInputContainer" class="signUpInputContainer">
+                    <input id="emailInput" class="fontInter" type="email" placeholder="Email" onfocus="setFocusBorder('emailInputContainer','loginFormValidationErrorMessage')" onblur="removeFocusBorder('emailInputContainer')">
                     <img class="inputEmailIcon" src="./assets/icons/mail.svg" alt="mail icon">
                 </div>
                 <div class="loginInputContainerWithValidation">
-                    <div class="signUpValidationInputContainer">
-                        <input id="passwordInput" class="fontInter" type="password" placeholder="Password">
+                    <div id="passwordInputContainer" class="signUpValidationInputContainer">
+                        <input id="passwordInput" class="fontInter" type="password" placeholder="Password" onfocus="setFocusBorder('passwordInputContainer','loginFormValidationErrorMessage')" onblur="removeFocusBorder('passwordInputContainer')">
                         <img class="inputPasswordIcon" src="./assets/icons/lock.svg" alt="lock icon">
                         <img id="loginPasswordVisibilityOff" onclick="togglePasswordVisibility('passwordInput','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
                         <img id="loginPasswordVisibility" onclick="togglePasswordVisibility('passwordInput','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
-
                     </div>
                     <div id="loginFormValidationErrorMessage" class="loginFormValidationErrorMessage"></div>
                 </div>
@@ -57,7 +56,7 @@
             </div>
 
             <div class="loginPageMainContentButtons">
-                <button class="buttonPrimary loginPageLogInButton" onclick="tryToLogin()">Log in</button>
+                <button class="buttonPrimary loginPageLogInButton" onclick="tryToLogin('emailInputContainer','passwordInputContainer')">Log in</button>
                 <button class="buttonSecondary loginPageGuestLogInButton">Guest Log in</button>
             </div>
         </div>

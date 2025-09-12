@@ -239,3 +239,11 @@
   color: #D1D1D1;
   opacity: 1;
 }
+
+.inputBorderColorFocus {
+    border: 1px solid #29ABE2 !important;
+}
+
+.inputErrorBorder {
+    border: 1px solid #E60026 !important;
+}

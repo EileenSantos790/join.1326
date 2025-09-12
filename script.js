@@ -58,3 +58,26 @@ function isUserLoggedIn() {
         window.location.href = 'index.html';
     }
 }
+
+
+function setFocusBorder(containerId, errorMessageId) {
+    document.getElementById(containerId).classList.add('inputBorderColorFocus');
+    document.getElementById(containerId).classList.remove('inputErrorBorder');
+    let errorMessage = document.getElementById(errorMessageId);
+    if (errorMessage){
+        errorMessage.innerText = "";
+    }
+}
+
+
+function removeFocusBorder(containerId) {
+    document.getElementById(containerId).classList.remove('inputBorderColorFocus');
+}
+
+
+function setErrorBorder(containerLoginId, containerPasswordId) {
+    document.getElementById(containerLoginId).classList.add('inputErrorBorder');
+    if (containerPasswordId) {
+        document.getElementById(containerPasswordId).classList.add('inputErrorBorder');
+    }
+}

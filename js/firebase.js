@@ -7,20 +7,21 @@ let signUpFormValidationErrorMessage;
 
 let userfound = false;
 
-function tryToLogin() {
+function tryToLogin(containerLoginId, containerPasswordId) {
     email = document.getElementById("emailInput").value;
     password = document.getElementById("passwordInput").value;
     loginFormValidationErrorMessage = document.getElementById("loginFormValidationErrorMessage");
 
     if (email !== "" && password !== "") {
-        checkIfDataIsCorrect();
+        checkIfDataIsCorrect(containerLoginId, containerPasswordId);
     }
     else {
         loginFormValidationErrorMessage.innerText = "Check your email and password. Please try again.";
+        setErrorBorder(containerLoginId, containerPasswordId);
     }
 }
 
-async function checkIfDataIsCorrect() {
+async function checkIfDataIsCorrect(containerLoginId, containerPasswordId) {
     let responseUseres = await fetch(BASE_URL + "users.json");
     let users = await responseUseres.json();
 
@@ -35,10 +36,11 @@ async function checkIfDataIsCorrect() {
     }
     if (!userfound) {
         loginFormValidationErrorMessage.innerText = "Wrong email or password!";
+        setErrorBorder(containerLoginId, containerPasswordId);
     }
 }
 
-function tryToSignUp() {
+function tryToSignUp(confirmId) {
     let signUpName = document.getElementById("signUpNameInput").value;
     let signUpEmail = document.getElementById("signUpEmailInput").value;
     let signUpPassword = document.getElementById("signUpPasswordInput").value;
@@ -50,6 +52,7 @@ function tryToSignUp() {
         }
         else {
             signUpFormValidationErrorMessage.innerText = "Your passwords don't match. Please try again.";
+            setErrorBorder(confirmId);
         }
     }
     else {
