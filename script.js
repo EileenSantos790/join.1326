@@ -1,3 +1,5 @@
+let userInitials;
+let greetingUserName;
 /**
  * Check the box and activate the button. 
  */
@@ -54,9 +56,18 @@ function isUserLoggedIn() {
         return;
     }
 
+    userInitials = document.getElementById('userInitials');
+    greetingUserName = document.getElementById('greetingUserName');
+
+    checkSessionStorage();
     if (!loggedIn && !allowPublic) {
         window.location.href = 'index.html';
     }
+}
+
+function checkSessionStorage() {
+    userInitials.innerText = sessionStorage.getItem('userName').split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+    greetingUserName.innerHTML = sessionStorage.getItem('userName');
 }
 
 
@@ -64,7 +75,7 @@ function setFocusBorder(containerId, errorMessageId) {
     document.getElementById(containerId).classList.add('inputBorderColorFocus');
     document.getElementById(containerId).classList.remove('inputErrorBorder');
     let errorMessage = document.getElementById(errorMessageId);
-    if (errorMessage){
+    if (errorMessage) {
         errorMessage.innerText = "";
     }
 }

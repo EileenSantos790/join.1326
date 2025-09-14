@@ -1,23 +1,43 @@
-.helpIcon{
+.helpIcon {
     width: 20px;
     height: 20px;
     padding-inline: 6px;
     transition: transform 0.3s ease;
 }
 
-.helpIcon:hover{
+.helpIcon:hover {
     cursor: pointer;
-    transform: scale(1.2);;
+    transform: scale(1.2);
+    ;
 }
 
-#userIcon{
+#userIcon {
     width: 56px;
     height: 56px;
     border-radius: 50%;
     border: 3px solid #2A3647;
 }
 
-.joinIcon{
+.joinIcon {
     width: 100px;
     align-items: center;
+}
+
+.userProfileCirle {
+    background: white;
+    border: 3px solid #2A3647;
+    width: 56px;
+    height: 56px;
+
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    text-align: center;
+    display: flex;
+}
+
+.userProfileCirle p {
+    font-size: 20px;
+    font-weight: 700;
+    color: #29ABE2;
 }

@@ -23,9 +23,9 @@ button:hover {
 }
 
 .buttonPrimary:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  pointer-events: none;
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .buttonPrimary:active {
@@ -182,22 +182,6 @@ button:hover {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-}
-
-.userProfileCirle {
-    background: white;
-    border: 4px solid #2A3647;
-    color: #000;
-    width: 56px;
-    height: 56px;
-
-    justify-content: center;
-    align-items: center;
-    border-radius: 100%;
-    text-align: center;
-    display: flex;
-
-    color: #29ABE2;
 }
 
 .buttonsFooterIndex {

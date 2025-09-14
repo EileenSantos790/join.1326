@@ -31,6 +31,7 @@ async function checkIfDataIsCorrect(containerLoginId, containerPasswordId) {
             window.location.href = "home.html";
             userfound = true;
             sessionStorage.setItem("userfound", userfound);
+            sessionStorage.setItem("userName", users[key].user.name);
             break;
         }
     }
@@ -38,6 +39,13 @@ async function checkIfDataIsCorrect(containerLoginId, containerPasswordId) {
         loginFormValidationErrorMessage.innerText = "Wrong email or password!";
         setErrorBorder(containerLoginId, containerPasswordId);
     }
+}
+
+function loginAsGuest() {
+    sessionStorage.setItem("userfound", true);
+    sessionStorage.setItem("userName", "Guest");
+
+    window.location.href = "home.html";
 }
 
 function tryToSignUp(confirmId) {
