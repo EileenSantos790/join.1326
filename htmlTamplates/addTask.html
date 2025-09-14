@@ -24,7 +24,7 @@
                 <p>Title<span class="requiredStar">*</span></p>
                 <div class="addTaskInputContainerWithValidation">
                     <div class="signUpValidationInputContainer bgWhite">
-                        <input class="addTaskInputs" type="title" placeholder="Enter a title">
+                        <input class="addTaskInputs defaultInput" type="title" placeholder="Enter a title">
                     </div>
                     <div class="loginFormValidationErrorMessage">test</div>
                 </div>
@@ -42,7 +42,7 @@
                 <p>Due date<span class="requiredStar">*</span></p>
                 <div class="addTaskInputContainerWithValidation">
                     <div class="signUpValidationInputContainer bgWhite">
-                        <input class="addTaskInputs" type="date">
+                        <input class="addTaskInputs defaultInput" type="date">
                     </div>
                     <div class="loginFormValidationErrorMessage"></div>
                 </div>
@@ -50,7 +50,7 @@
         </div>
         <div class="addTaskSeperator"></div>
         <div>
-            <div>
+            <div class="paddingBottom24">
                 <p>Priority</p>
                 <div class="addTaskPriorityButtons">
                     <button class="buttonUrgent">Urgent</button>
@@ -58,22 +58,46 @@
                     <button class="buttonLow">Low</button>
                 </div>
             </div>
-            <div>
+            <div class="paddingBottom24">
                 <p>Assigned to</p>
                 <div class="dropdown">
-                    <div class="dropdownContent">
-                        <input type="text">
-                        <!-- <img src="../assets/icons/dropdown-up.svg" alt="Arrown up"> -->
-                        <label class="dropdownItem">Name1<img src="../assets/icons/check-button.svg" alt=""></label>
-                        <label class="dropdownItem">Name2<input type="checkbox"></label>
-                        <label class="dropdownItem">Name3<input type="checkbox"></label>
+                    <div class="addTaskDropdownContainer bgWhite">
+                        <span>Select contacts to assign</span>
+                        <img class="dropdownDownIcon" src="../assets/icons/dropdown-down.svg" alt="Arrown down">
+                    </div>
+                    <div class="d-none">
+                        <div class="addTaskDropdownContainer bgWhite">
+                            <input type="text">
+                            <img class="dropdownDownIcon" src="../assets/icons/dropdown-up.svg" alt="Arrown up">
+                        </div>
+                        <div class="dropdownContent bgWhite">
+                            <label class="dropdownItem">Name1<img src="../assets/icons/check-button.svg"
+                                    alt="checkbox empty"></label>
+                            <label class="dropdownItem">Name2<img src="../assets/icons/check-button.svg"
+                                    alt="checkbox empty"></label>
+                            <label class="dropdownItem">Name3<img src="../assets/icons/check-button.svg"
+                                    alt="checkbox empty"></label>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div></div>
-            <div></div>
+            <div class="paddingBottom24">
+                <p>Category<span class="requiredStar">*</span></p>
+                <div class="dropdown">
+                    <div class="addTaskDropdownContainer bgWhite">
+                        <span>Select task category</span>
+                        <img class="dropdownDownIcon" src="../assets/icons/dropdown-down.svg" alt="Arrown down">
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <p>Subtasks</p>
+                <div class="subtaskInputContainer">
+                    <input class="subtaskInput" type="text" placeholder="Add new subtask">
+                </div>
+            </div>
         </div>
-    </div>
 
 
 </body>

@@ -40,12 +40,12 @@
             </div>
             <div class="loginPageMainContentInputs">
                 <div id="emailInputContainer" class="signUpInputContainer">
-                    <input id="emailInput" class="fontInter" type="email" placeholder="Email" onfocus="setFocusBorder('emailInputContainer','loginFormValidationErrorMessage')" onblur="removeFocusBorder('emailInputContainer')">
+                    <input id="emailInput" class="fontInter defaultInput" type="email" placeholder="Email" onfocus="setFocusBorder('emailInputContainer','loginFormValidationErrorMessage')" onblur="removeFocusBorder('emailInputContainer')">
                     <img class="inputEmailIcon" src="./assets/icons/mail.svg" alt="mail icon">
                 </div>
                 <div class="loginInputContainerWithValidation">
                     <div id="passwordInputContainer" class="signUpValidationInputContainer">
-                        <input id="passwordInput" class="fontInter" type="password" placeholder="Password" onfocus="setFocusBorder('passwordInputContainer','loginFormValidationErrorMessage')" onblur="removeFocusBorder('passwordInputContainer')">
+                        <input id="passwordInput" class="fontInter defaultInput" type="password" placeholder="Password" onfocus="setFocusBorder('passwordInputContainer','loginFormValidationErrorMessage')" onblur="removeFocusBorder('passwordInputContainer')">
                         <img class="inputPasswordIcon" src="./assets/icons/lock.svg" alt="lock icon">
                         <img id="loginPasswordVisibilityOff" onclick="togglePasswordVisibility('passwordInput','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
                         <img id="loginPasswordVisibility" onclick="togglePasswordVisibility('passwordInput','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
