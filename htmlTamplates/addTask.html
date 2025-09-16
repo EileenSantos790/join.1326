@@ -33,7 +33,8 @@
                 <p>Description</p>
                 <div class="addTaskDescriptionContainerWithValidation">
                     <div class="addTaskDescriptionInputContainer bgWhite">
-                        <textarea name="Description" id=""></textarea>
+                        <textarea class="addTaskTextarea" name="Description" placeholder="Enter a Description" id=""></textarea>
+                        <img src="../assets/icons/textarea_icon.svg" alt="resize icon">
                     </div>
                     <div class="loginFormValidationErrorMessage"></div>
                 </div>
@@ -42,10 +43,13 @@
                 <p>Due date<span class="requiredStar">*</span></p>
                 <div class="addTaskInputContainerWithValidation">
                     <div class="signUpValidationInputContainer bgWhite">
-                        <input class="addTaskInputs defaultInput" type="date">
+                        <input class="addTaskInputs defaultInput placeholderStyle" type="date">
                     </div>
                     <div class="loginFormValidationErrorMessage"></div>
                 </div>
+            </div>
+            <div class="addTaskRequiredInfo">
+                <span class="requiredStar">*</span><span>This field is required</span>
             </div>
         </div>
         <div class="addTaskSeperator"></div>
@@ -96,6 +100,10 @@
                 <div class="subtaskInputContainer">
                     <input class="subtaskInput" type="text" placeholder="Add new subtask">
                 </div>
+            </div>
+            <div class="addTaskMainButtons">
+                <button class="buttonCancle width110">Clear</button>
+                <button class="buttonCreateTask">Create Task</button>
             </div>
         </div>
 
