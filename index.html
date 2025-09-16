@@ -13,10 +13,12 @@
     <link rel="stylesheet" href="./stylesheets/header.css">
     <link rel="stylesheet" href="./stylesheets/buttons.css">
     <link rel="stylesheet" href="./stylesheets/fonts.css">
+    <link rel="stylesheet" href="../stylesheets/addContactPushUp.css">
+</head>
 
 
-    <script src="./script.js"></script>
-    <script src="./js/firebase.js"></script>
+<script src="./script.js"></script>
+<script src="./js/firebase.js"></script>
 
 </head>
 
@@ -40,15 +42,25 @@
             </div>
             <div class="loginPageMainContentInputs">
                 <div id="emailInputContainer" class="signUpInputContainer">
-                    <input id="emailInput" class="fontInter defaultInput" type="email" placeholder="Email" onfocus="setFocusBorder('emailInputContainer','loginFormValidationErrorMessage')" onblur="removeFocusBorder('emailInputContainer')">
+                    <input id="emailInput" class="fontInter defaultInput" type="email" placeholder="Email"
+                        onfocus="setFocusBorder('emailInputContainer','loginFormValidationErrorMessage')"
+                        onblur="removeFocusBorder('emailInputContainer')">
                     <img class="inputEmailIcon" src="./assets/icons/mail.svg" alt="mail icon">
                 </div>
                 <div class="loginInputContainerWithValidation">
                     <div id="passwordInputContainer" class="signUpValidationInputContainer">
-                        <input id="passwordInput" class="fontInter defaultInput" type="password" placeholder="Password" onfocus="setFocusBorder('passwordInputContainer','loginFormValidationErrorMessage')" onblur="removeFocusBorder('passwordInputContainer')">
+                        <input id="passwordInput" class="fontInter defaultInput" type="password" placeholder="Password"
+                            onfocus="setFocusBorder('passwordInputContainer','loginFormValidationErrorMessage')"
+                            onblur="removeFocusBorder('passwordInputContainer')">
                         <img class="inputPasswordIcon" src="./assets/icons/lock.svg" alt="lock icon">
-                        <img id="loginPasswordVisibilityOff" onclick="togglePasswordVisibility('passwordInput','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg" alt="visibility off icon">
-                        <img id="loginPasswordVisibility" onclick="togglePasswordVisibility('passwordInput','loginPasswordVisibilityOff','loginPasswordVisibility')" class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg" alt="visibility icon">
+                        <img id="loginPasswordVisibilityOff"
+                            onclick="togglePasswordVisibility('passwordInput','loginPasswordVisibilityOff','loginPasswordVisibility')"
+                            class="inputVisibilityOffIcon" src="./assets/icons/visibility_off.svg"
+                            alt="visibility off icon">
+                        <img id="loginPasswordVisibility"
+                            onclick="togglePasswordVisibility('passwordInput','loginPasswordVisibilityOff','loginPasswordVisibility')"
+                            class="inputVisibilityIcon d-none" src="./assets/icons/visibility.svg"
+                            alt="visibility icon">
                     </div>
                     <div id="loginFormValidationErrorMessage" class="loginFormValidationErrorMessage"></div>
                 </div>
@@ -56,7 +68,8 @@
             </div>
 
             <div class="loginPageMainContentButtons">
-                <button class="buttonPrimary loginPageLogInButton" onclick="tryToLogin('emailInputContainer','passwordInputContainer')">Log in</button>
+                <button class="buttonPrimary loginPageLogInButton"
+                    onclick="tryToLogin('emailInputContainer','passwordInputContainer')">Log in</button>
                 <button class="buttonSecondary loginPageGuestLogInButton" onclick="loginAsGuest()">Guest Log in</button>
             </div>
         </div>

@@ -1,0 +1,113 @@
+.bodyaddContactPushUp{
+    margin: 0px;
+}
+
+.addContactPushUpContainer{
+    display: flex;
+    flex-direction: row;
+    height: 594px;
+    color: white;
+    border-radius: 30px;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.addContactPushUpContainerLeft{
+    width: 467px;
+    background-color:#293647;
+    display: flex;
+    width: 467px;
+    justify-content: center;
+    flex-direction: column;
+    padding-inline: 48px;
+    padding-block: 66px;
+}
+
+.addContactPushUpContainerRight{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 83px;
+    gap: 72px;
+    height: 594px;
+    width: auto;
+}
+
+.addContactIcon{
+    width: 55.6px;
+    height: 66.48px;
+    padding-bottom: 12px;
+}
+
+.addContactfontBold {
+    font-weight: 700;
+    font-size: 61px;
+    padding-bottom: 8px;
+}
+
+.addContactfontNormal {
+    font-weight: 400;
+    font-size: 27px;
+}
+
+.decorationLineBlue{
+    width: 90px;
+    height: 3px;
+    background-color: rgba(41, 171, 226, 1);
+    border-radius: 50px;
+    margin-top: 16px;
+}
+
+.addingContactSectionWidht{
+    width: 422px;
+    height: 215px;
+}
+
+.contactImg{
+    width: 42.67px;
+    height: 42.67px;
+}
+
+.contactImgDiv{
+    display: flex;
+    justify-content: center;
+    height: 120px;
+    width: 120px;
+    border-radius: 100%;
+    background-color: rgba(209, 209, 209, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addContactInputContainer {
+    width: 420px;
+    height: 50px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.inputInside {
+    max-width: 380px;
+    width: 95%;
+    height: 24px;
+    font-size: 20px;
+    font-weight: 400;
+    box-sizing: border-box;
+    border: none;
+}
+
+.addContactMainContentInputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
