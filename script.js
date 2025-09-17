@@ -59,15 +59,42 @@ function isUserLoggedIn() {
     userInitials = document.getElementById('userInitials');
     greetingUserName = document.getElementById('greetingUserName');
 
-    checkSessionStorage();
+
     if (!loggedIn && !allowPublic) {
         window.location.href = 'index.html';
     }
+    else {
+        sessionInit();
+    }
 }
 
-function checkSessionStorage() {
+function sessionInit() {
     userInitials.innerText = sessionStorage.getItem('userName').split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
-    greetingUserName.innerHTML = sessionStorage.getItem('userName');
+    setGreetingMessage();
+}
+
+async function setGreetingMessage() {
+
+    const currentHour = new Date().getHours();
+
+    if (currentHour < 12) {
+        document.getElementById("greetingDayTime").innerText = 'Good Morning, ';
+    }
+    else if (currentHour < 18) {
+        document.getElementById("greetingDayTime").innerText = 'Good Afternoon, ';
+    }
+    else if (currentHour < 24) {
+        document.getElementById("greetingDayTime").innerText = 'Good Night, ';
+    }
+
+    if (sessionStorage.getItem('userName') == 'Guest') {
+
+        greetingDayTime.innerText = greetingDayTime.innerText.slice(0, -1) + '!';
+        greetingUserName.innerHTML = "";
+    }
+    else {
+        greetingUserName.innerHTML = sessionStorage.getItem('userName');
+    }
 }
 
 
