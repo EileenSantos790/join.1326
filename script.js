@@ -59,7 +59,7 @@ function isUserLoggedIn() {
     userInitials = document.getElementById('userInitials');
     greetingUserName = document.getElementById('greetingUserName');
 
-    checkSessionStorage();
+    sessionInit();
     if (!loggedIn && !allowPublic) {
         window.location.href = 'index.html';
     }
@@ -93,7 +93,6 @@ async function setGreetingMessage() {
         greetingUserName.innerHTML = sessionStorage.getItem('userName');
     }
 }
-
 
 function setFocusBorder(containerId, errorMessageId) {
     document.getElementById(containerId).classList.add('inputBorderColorFocus');
