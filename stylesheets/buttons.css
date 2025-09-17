@@ -288,3 +288,23 @@ button:hover {
     height: 74px;
     font-weight: 400;
 }
+
+.addContactButton{
+    width: auto !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding-inline: 16px;
+}
+
+.addNewContactButton{
+    font-size: 21px;
+    font-weight: 700;
+    height: 52px !important;
+    width: 352px !important;
+    gap: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
