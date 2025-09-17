@@ -44,13 +44,14 @@
     gap: 24px;
 }
 
-input {
+.defaultInput {
     max-width: 380px;
     width: 95%;
     height: 24px;
     font-size: 20px;
     box-sizing: border-box;
     border: 0px solid;
+    font-family: 'Inter';
 }
 
 input:focus {

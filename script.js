@@ -59,12 +59,9 @@ function isUserLoggedIn() {
     userInitials = document.getElementById('userInitials');
     greetingUserName = document.getElementById('greetingUserName');
 
-
+    checkSessionStorage();
     if (!loggedIn && !allowPublic) {
         window.location.href = 'index.html';
-    }
-    else {
-        sessionInit();
     }
 }
 

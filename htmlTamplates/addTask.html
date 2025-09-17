@@ -14,68 +14,117 @@
 
 
 <body>
-    <div class="addTaskHeadline">
-        <h1>Add Task</h1>
-    </div>
+    <div class="contentContainerPadding"> <!-- Ergänzende Div aufgrund von Änderung zum Padding-Left -->
+        <div class="addTaskHeadline">
+            <h1>Add Task</h1>
+        </div>
 
-    <div class="addTaskMainContent">
-        <div class="addTaskInputsLeftSide">
-            <div class="addTaskTitleInputContent">
-                <p>Title<span class="requiredStar">*</span></p>
-                <div class="addTaskInputContainerWithValidation">
-                    <div class="signUpValidationInputContainer bgWhite">
-                        <input class="addTaskInputs" type="title" placeholder="Enter a title">
+        <div class="addTaskMainContent">
+            <div class="addTaskInputsLeftSide">
+                <div class="addTaskTitleInputContent">
+                    <p>Title<span class="requiredStar">*</span></p>
+                    <div class="addTaskInputContainerWithValidation">
+                        <div class="signUpValidationInputContainer bgWhite">
+                            <input class="addTaskInputs defaultInput" type="title" placeholder="Enter a title">
+                        </div>
+                        <div class="loginFormValidationErrorMessage">test</div>
                     </div>
-                    <div class="loginFormValidationErrorMessage">test</div>
+                </div>
+                <div class="addTaskDescriptionInputContent">
+                    <p>Description</p>
+                    <div class="addTaskDescriptionContainerWithValidation">
+                        <div class="addTaskDescriptionInputContainer bgWhite">
+                            <textarea class="addTaskTextarea" name="Description" placeholder="Enter a Description"
+                                id=""></textarea>
+                            <img src="../assets/icons/textarea_icon.svg" alt="resize icon">
+                        </div>
+                        <div class="loginFormValidationErrorMessage"></div>
+                    </div>
+                </div>
+                <div>
+                    <p>Due date<span class="requiredStar">*</span></p>
+                    <div class="addTaskInputContainerWithValidation">
+                        <div class="signUpValidationInputContainer bgWhite">
+                            <input class="addTaskInputs defaultInput placeholderStyle" type="date">
+                        </div>
+                        <div class="loginFormValidationErrorMessage"></div>
+                    </div>
+                </div>
+                <div class="addTaskRequiredInfo">
+                    <span class="requiredStar">*</span><span>This field is required</span>
                 </div>
             </div>
-            <div class="addTaskDescriptionInputContent">
-                <p>Description</p>
-                <div class="addTaskDescriptionContainerWithValidation">
-                    <div class="addTaskDescriptionInputContainer bgWhite">
-                        <textarea name="Description" id=""></textarea>
-                    </div>
-                    <div class="loginFormValidationErrorMessage"></div>
-                </div>
-            </div>
+            <div class="addTaskSeperator"></div>
             <div>
-                <p>Due date<span class="requiredStar">*</span></p>
-                <div class="addTaskInputContainerWithValidation">
-                    <div class="signUpValidationInputContainer bgWhite">
-                        <input class="addTaskInputs" type="date">
+                <div class="paddingBottom24">
+                    <p>Priority</p>
+                    <div class="addTaskPriorityButtons">
+                        <button id="addTaskUrgentButton"
+                            onclick="activatePriorityButton('addTaskUrgentButton','buttonUrgentActive','urgentButtonOff','urgentButtonOn')"
+                            class="buttonUrgent">Urgent <img id="urgentButtonOff" class="buttonUrgentIcon"
+                                src="../assets/icons/prio_high.svg" alt="Urgent Button Icon"><img id="urgentButtonOn"
+                                class="buttonUrgentIcon d-none" src="../assets/icons/prio_high_white.svg"
+                                alt="Urgent Button Icon"></button>
+                        <button id="addTaskMediumButton"
+                            onclick="activatePriorityButton('addTaskMediumButton','buttonMediumActive','mediumButtonOff','mediumButtonOn')"
+                            class="buttonMedium buttonMediumActive">Medium <img id="mediumButtonOff"
+                                class="buttonMediumIcon d-none" src="../assets/icons/prio_media.svg"
+                                alt="Medium Button Icon"><img id="mediumButtonOn" class="buttonMediumIcon"
+                                src="../assets/icons/prio_media_white.svg" alt="Medium Button Icon"></button>
+                        <button id="addTaskLowButton"
+                            onclick="activatePriorityButton('addTaskLowButton','buttonLowActive','lowButtonOff','lowButtonOn')"
+                            class="buttonLow">Low <img id="lowButtonOff" class="buttonLowIcon"
+                                src="../assets/icons/prio_low.svg" alt="Low Button Icon"><img id="lowButtonOn"
+                                class="buttonLowIcon d-none" src="../assets/icons/prio_low_white.svg"
+                                alt="Low Button Icon"></button>
                     </div>
-                    <div class="loginFormValidationErrorMessage"></div>
+                </div>
+                <div class="paddingBottom24">
+                    <p>Assigned to</p>
+                    <div class="dropdown">
+                        <div class="addTaskDropdownContainer bgWhite">
+                            <span>Select contacts to assign</span>
+                            <img class="dropdownDownIcon" src="../assets/icons/dropdown-down.svg" alt="Arrown down">
+                        </div>
+                        <div class="d-none">
+                            <div class="addTaskDropdownContainer bgWhite">
+                                <input type="text">
+                                <img class="dropdownDownIcon" src="../assets/icons/dropdown-up.svg" alt="Arrown up">
+                            </div>
+                            <div class="dropdownContent bgWhite">
+                                <label class="dropdownItem">Name1<img src="../assets/icons/check-button.svg"
+                                        alt="checkbox empty"></label>
+                                <label class="dropdownItem">Name2<img src="../assets/icons/check-button.svg"
+                                        alt="checkbox empty"></label>
+                                <label class="dropdownItem">Name3<img src="../assets/icons/check-button.svg"
+                                        alt="checkbox empty"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="paddingBottom24">
+                    <p>Category<span class="requiredStar">*</span></p>
+                    <div class="dropdown">
+                        <div class="addTaskDropdownContainer bgWhite">
+                            <span>Select task category</span>
+                            <img class="dropdownDownIcon" src="../assets/icons/dropdown-down.svg" alt="Arrown down">
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+                <div>
+                    <p>Subtasks</p>
+                    <div class="subtaskInputContainer">
+                        <input class="subtaskInput" type="text" placeholder="Add new subtask">
+                    </div>
+                </div>
+                <div class="addTaskMainButtons">
+                    <button class="buttonCancle width110">Clear</button>
+                    <button class="buttonCreateTask">Create Task</button>
                 </div>
             </div>
         </div>
-        <div class="addTaskSeperator"></div>
-        <div>
-            <div>
-                <p>Priority</p>
-                <div class="addTaskPriorityButtons">
-                    <button class="buttonUrgent">Urgent</button>
-                    <button class="buttonMedium">Medium</button>
-                    <button class="buttonLow">Low</button>
-                </div>
-            </div>
-            <div>
-                <p>Assigned to</p>
-                <div class="dropdown">
-                    <div class="dropdownContent">
-                        <input type="text">
-                        <!-- <img src="../assets/icons/dropdown-up.svg" alt="Arrown up"> -->
-                        <label class="dropdownItem">Name1<img src="../assets/icons/check-button.svg" alt=""></label>
-                        <label class="dropdownItem">Name2<input type="checkbox"></label>
-                        <label class="dropdownItem">Name3<input type="checkbox"></label>
-                    </div>
-                </div>
-            </div>
-            <div></div>
-            <div></div>
-        </div>
     </div>
-
-
 </body>
 
 </html>

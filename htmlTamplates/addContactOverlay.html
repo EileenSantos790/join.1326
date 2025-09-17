@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../stylesheets/assets.css">
+    <link rel="stylesheet" href="../stylesheets/header.css">
+    <link rel="stylesheet" href="../stylesheets/navigationBar.css">
+    <link rel="stylesheet" href="../stylesheets/contentContainer.css">
+    <link rel="stylesheet" href="../stylesheets/summary.css">
+    <link rel="stylesheet" href="../stylesheets/buttons.css">
+    <link rel="stylesheet" href="../stylesheets/fonts.css">
+    <link rel="stylesheet" href="../stylesheets/login.css">
+    <link rel="stylesheet" href="../stylesheets/signUp.css">
+    <link rel="stylesheet" href="../stylesheets/addContactPushUp.css">
+
+    <link rel="stylesheet" href="../stylesheets/signUp.css">
+
+    <script src="../script.js"></script>
+    <script src="../js/firebase.js"></script>
+
+</head>
+
+<body class="bodyaddContactPushUp">
+    <div class="addContactPushUpContainer">
+        <section class="addContactPushUpContainerLeft">
+            <img class="addContactIcon" src="../assets/img/joinSymbolWhite.svg" alt="join icon">
+            <div class="addContactfontBold">Add Contact</div>
+            <div class="addContactfontNormal">Tasks are better with a Team!</div>
+            <div class="decorationLineBlue"></div>
+        </section>
+        <section>
+            <div class="addContactPushUpContainerRight">
+                <section class="sectionPositionClose"><img class="closeIcon" src="../assets/icons/close.svg" alt="close icon"></section>
+                <section class="imputAndImageContainer">
+                    <div class="contactImgDiv">
+                        <img class="contactImg" src="../assets/img/person.svg" alt="contact image">
+                    </div>
+                    <div class="addingContactSectionWidth">
+                        <div class="addContactMainContentInputs">
+                            <div class="addContactInputContainer">
+                                <input id="containerId" class="fontInter inputInside" type="text" placeholder="Name"
+                                    onfocus="setFocusBorder('signUpNameInputContainer','signUpFormValidationErrorMessage')"
+                                    onblur="removeFocusBorder('signUpNameInputContainer')">
+                                <img class="inputPersonIcon" src="../assets/icons/person.svg" alt="person icon">
+                            </div>
+                            <div id="signUpEmailInputContainer" class="addContactInputContainer">
+                                <input id="containerId" class="fontInter inputInside" type="email" placeholder="Email"
+                                    onfocus="setFocusBorder('signUpEmailInputContainer','signUpFormValidationErrorMessage')"
+                                    onblur="removeFocusBorder('signUpEmailInputContainer')">
+                                <img class="inputEmailIcon" src="../assets/icons/mail.svg" alt="mail icon">
+                            </div>
+                            <div>
+                                <div class="addContactInputContainer">
+                                    <input id="containerId" class="fontInter inputInside" type="tel" placeholder="Phone"
+                                        onfocus="setFocusBorder('signUpPasswordInputContainer','signUpFormValidationErrorMessage')"
+                                        onblur="removeFocusBorder('signUpPasswordInputContainer')">
+                                    <img class="inputPasswordIcon" src="../assets/icons/call.svg" alt="lock icon">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="addContactButtonSection">
+                    <div>
+                        <button class="buttonSecondary addContactButton">Cancel
+                            <img class="closeIcon" src="../assets/icons/cancle.svg" alt="cancel icon">
+                        </button>
+                    </div>
+                    <button class="buttonPrimary addContactButton">Create Contact
+                        <img class="checkIcon" src="../assets/icons/check.svg" alt="check icon">
+                    </button>
+                </section>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

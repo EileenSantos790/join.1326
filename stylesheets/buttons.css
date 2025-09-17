@@ -78,8 +78,8 @@ button:hover {
 .buttonCreateTask::after {
     content: "";
     display: flex;
-    width: 33px;
-    height: 33px;
+    width: 24px;
+    height: 24px;
 
 
     background-image: url('../assets/icons/check.svg');
@@ -149,6 +149,17 @@ button:hover {
     color: #091931;
 }
 
+.buttonCancle::after {
+    content: "";
+    display: flex;
+    width: 24px;
+    height: 24px;
+
+    background-color: currentColor;
+    mask: url("../assets/icons/cancle.svg") no-repeat center;
+    mask-size: contain;
+}
+
 /* Add Task */
 .buttonAddTask {
     width: 160px;
@@ -201,6 +212,21 @@ button:hover {
     background-color: #FFFFFF;
     font-size: 20px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.buttonUrgentIcon {
+    width: 20px;
+    height: 14.51px;
+}
+
+.buttonUrgentActive {
+    background-color: #FF3D00;
+    color: #FFFFFF;
+    box-shadow: unset !important;
 }
 
 .buttonMedium {
@@ -209,6 +235,21 @@ button:hover {
     background-color: #FFFFFF;
     font-size: 20px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.buttonMediumIcon {
+    width: 20px;
+    height: 7.45px;
+}
+
+.buttonMediumActive {
+    background-color: #FFA800;
+    color: #FFFFFF;
+    box-shadow: unset !important;
 }
 
 .buttonLow {
@@ -217,4 +258,53 @@ button:hover {
     background-color: #FFFFFF;
     font-size: 20px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.buttonLowIcon {
+    width: 20px;
+    height: 14.51px;
+}
+
+.buttonLowActive {
+    background-color: #7AE229;
+    color: #FFFFFF;
+    box-shadow: unset !important;
+}
+
+.buttonContactCreated {
+    background-color: #293647;
+    color: white;
+    font-size: 20px;
+    font-family: inter, sans-serif;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+    width: 326px;
+    height: 74px;
+    font-weight: 400;
+}
+
+.addContactButton{
+    width: auto !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding-inline: 16px;
+}
+
+.addNewContactButton{
+    font-size: 21px;
+    font-weight: 700;
+    height: 52px !important;
+    width: 352px !important;
+    gap: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

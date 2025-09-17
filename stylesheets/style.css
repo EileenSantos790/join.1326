@@ -5,5 +5,9 @@ body {
 }
 
 .d-none {
-    display: none;
+    display: none !important;
+}
+
+.width110 {
+    width: 110px !important;
 }

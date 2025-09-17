@@ -18,14 +18,13 @@
     gap: 30px;
     align-items: center;
     width: auto;
-    padding-bottom: 30px;
     height: 73px;
     width: 625px;
 }
 
 .summaryDashboard {
     display: flex;
-    padding-top: 60px;
+    padding-top: 56px;
     max-width: 560px;
     justify-content: space-between;
 }
@@ -33,20 +32,18 @@
 .summaryDashboardContainer {
     display: flex;
     flex-direction: row;
-    gap: 60px;
+    gap: 80px;
     justify-content: center;
 }
 
 .summaryDashboardContainerLeft {
     display: flex;
     flex-direction: column;
-    width: 560px;
 }
 
 .summaryDashboardContainerRight {
     display: flex;
     flex-direction: column;
-    width: 560px;
     justify-content: center;
 }
 
@@ -58,16 +55,16 @@
 
 .summaryIcon {
     display: block;
+    width: 69px;
+    height: 69px;
 }
 
 .smallWindowContainer {
     background-color: #FFFFFF;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    width: 164px;
+    width: 264px;
     height: 168px;
     border-radius: 30px;
-    padding-inline: 38px;
-    padding-block: 19px;
     display: flex;
     flex-direction: row;
     gap: 18px;
@@ -114,8 +111,6 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     Height: 168px;
     border-radius: 30px;
-    padding-inline: 48px;
-    padding-block: 28px;
     display: flex;
     margin-block: 30px;
     justify-content: center;
@@ -144,11 +139,9 @@
 .xsmallWindows {
     background-color: #FFFFFF;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    width: 164px;
+    width: 168px;
     Height: 168px;
     border-radius: 30px;
-    padding-inline: 38px;
-    padding-block: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -168,19 +161,22 @@
 .summaryNumber {
     font-size: 64px;
     font-weight: 600;
-
+    display: flex;
+    justify-content: center;
 }
 
 .todoAndDoneText {
     font-size: 20px;
     font-weight: 400;
-
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 .urgentText {
     font-size: 16px;
     font-weight: 400;
-
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 .thirdLineText {
@@ -189,6 +185,7 @@
     margin-block-start: 0em;
     margin-block-end: 0em;
     text-align: center;
+    padding-inline: 42.5px;
 }
 
 #calenderDate {
@@ -205,10 +202,12 @@
     font-size: 47px;
     font-weight: 500;
     color: #2A3647;
+    width: 385px;
 }
 
 #greetingUserName {
     font-size: 64px;
     font-weight: 700;
     color: #23A3E9;
+    width: 385px;
 }

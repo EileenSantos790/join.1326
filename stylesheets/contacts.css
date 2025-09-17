@@ -1,0 +1,17 @@
+.contactContainer {
+    display: flex;
+    overflow: hidden;
+    flex-direction: row;
+}
+
+.contactContainerLeftSide {
+    width: 456px;
+    height: auto;
+}
+
+.contactButtonContainer {
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
