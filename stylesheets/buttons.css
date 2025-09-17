@@ -274,3 +274,17 @@ button:hover {
     color: #FFFFFF;
     box-shadow: unset !important;
 }
+
+.buttonContactCreated {
+    background-color: #293647;
+    color: white;
+    font-size: 20px;
+    font-family: inter, sans-serif;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+    width: 326px;
+    height: 74px;
+    font-weight: 400;
+}
