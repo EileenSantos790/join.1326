@@ -23,18 +23,26 @@
     flex-direction: column;
     padding-inline: 48px;
     padding-block: 66px;
+    width: 371px;
 }
 
 .addContactPushUpContainerRight{
     background-color: white;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     padding-left: 83px;
-    gap: 72px;
+    padding-right: 48px;
     height: 594px;
     width: auto;
+    border-radius: 30px;
+}
+
+.imputAndImageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 72px;
 }
 
 .addContactIcon{
@@ -110,4 +118,33 @@
     flex-direction: column;
     align-items: center;
     gap: 32px;
+}
+
+.addContactButtonSection{
+    padding-top: 48px;
+    display: flex;
+    gap: 24px;
+    justify-content: flex-start;
+    padding-left: 192px;
+}
+
+.addContactButton{
+    width: auto !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding-inline: 16px;
+}
+
+.closeIcon{
+    width: 24px;
+    height: 24px;
+}
+
+.sectionPositionClose{
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 57px;
+    padding-top: 48px;
 }
