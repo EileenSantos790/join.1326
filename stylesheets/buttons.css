@@ -212,6 +212,21 @@ button:hover {
     background-color: #FFFFFF;
     font-size: 20px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.buttonUrgentIcon {
+    width: 20px;
+    height: 14.51px;
+}
+
+.buttonUrgentActive {
+    background-color: #FF3D00;
+    color: #FFFFFF;
+    box-shadow: unset !important;
 }
 
 .buttonMedium {
@@ -220,6 +235,21 @@ button:hover {
     background-color: #FFFFFF;
     font-size: 20px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.buttonMediumIcon {
+    width: 20px;
+    height: 7.45px;
+}
+
+.buttonMediumActive {
+    background-color: #FFA800;
+    color: #FFFFFF;
+    box-shadow: unset !important;
 }
 
 .buttonLow {
@@ -228,4 +258,19 @@ button:hover {
     background-color: #FFFFFF;
     font-size: 20px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.buttonLowIcon {
+    width: 20px;
+    height: 14.51px;
+}
+
+.buttonLowActive {
+    background-color: #7AE229;
+    color: #FFFFFF;
+    box-shadow: unset !important;
 }
