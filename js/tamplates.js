@@ -29,3 +29,13 @@ function isUserLoggedIn() {
         window.location.href = 'index.html';
     }
 }
+
+
+function getContactTemplate(contact, index) {
+    return `
+        <div onclick="addTaskSelectContact('assignedToContact${index}','assignedToCheckbox${index}','assignedToCheckboxWhite${index}')" id="assignedToContact${index}" class="dropdownItem dropdownItemOff">
+            ${contact}<img id="assignedToCheckbox${index}" class="checkboxImg" src="../assets/icons/check-button.svg" alt="checkbox empty"><img
+            id="assignedToCheckboxWhite${index}" class="d-none" src="../assets/icons/checked_white.svg" alt="">
+        </div>
+    `;
+}

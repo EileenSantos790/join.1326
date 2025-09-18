@@ -27,7 +27,7 @@
                         <div class="signUpValidationInputContainer bgWhite">
                             <input class="addTaskInputs defaultInput" type="title" placeholder="Enter a title">
                         </div>
-                        <div class="loginFormValidationErrorMessage">test</div>
+                        <div class="loginFormValidationErrorMessage"></div>
                     </div>
                 </div>
                 <div class="addTaskDescriptionInputContent">
@@ -82,22 +82,30 @@
                 <div class="paddingBottom24">
                     <p>Assigned to</p>
                     <div class="dropdown">
-                        <div class="addTaskDropdownContainer bgWhite">
+                        <div onclick="toggleDropdownAssignedTo()" id="addTaskDropdownAssignedTo"
+                            class="addTaskDropdownContainer bgWhite">
                             <span>Select contacts to assign</span>
                             <img class="dropdownDownIcon" src="../assets/icons/dropdown-down.svg" alt="Arrown down">
                         </div>
-                        <div class="d-none">
-                            <div class="addTaskDropdownContainer bgWhite">
-                                <input type="text">
-                                <img class="dropdownDownIcon" src="../assets/icons/dropdown-up.svg" alt="Arrown up">
+                        <div id="addTaskAddedContactIcons" class=""></div>
+                        <div id="addTaskDropdownSearchContent" class="addTaskDropDownSection bgWhite d-none">
+                            <div class="addTaskDropdownContainerSearch">
+                                <input class="addTaskSearchInput" type="text">
+                                <img onclick="toggleDropdownAssignedTo()" class="dropdownDownIcon"
+                                    src="../assets/icons/dropdown-up.svg" alt="Arrown up">
                             </div>
-                            <div class="dropdownContent bgWhite">
-                                <label class="dropdownItem">Name1<img src="../assets/icons/check-button.svg"
-                                        alt="checkbox empty"></label>
-                                <label class="dropdownItem">Name2<img src="../assets/icons/check-button.svg"
-                                        alt="checkbox empty"></label>
-                                <label class="dropdownItem">Name3<img src="../assets/icons/check-button.svg"
-                                        alt="checkbox empty"></label>
+                            <div class="dropdownContent">
+                                <div id="assignedToContactContent" class="dropdownItemContainer">
+                                    <!-- <label onclick="addTaskSelectContact()" id="testLabel1"
+                                    class="dropdownItem dropdownItemOff">Name1<img id="testBox1" class="checkboxImg"
+                                        src="../assets/icons/check-button.svg" alt="checkbox empty"><img
+                                        id="testBoxWhite1" class="d-none" src="../assets/icons/checked_white.svg"
+                                        alt=""></label>
+                                <label class="dropdownItem dropdownItemOff">Name2<img class="checkboxImg"
+                                        src="../assets/icons/check-button.svg" alt="checkbox empty"></label>
+                                <label class="dropdownItem dropdownItemOff">Name3<img class="checkboxImg"
+                                        src="../assets/icons/check-button.svg" alt="checkbox empty"></label> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -119,7 +127,11 @@
                     </div>
                 </div>
                 <div class="addTaskMainButtons">
-                    <button class="buttonCancle width110">Clear</button>
+                    <button class="buttonCancle width110">Clear <svg width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M6 6l12 12M18 6L6 18" />
+                        </svg></button>
                     <button class="buttonCreateTask">Create Task</button>
                 </div>
             </div>

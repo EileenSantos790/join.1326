@@ -149,17 +149,6 @@ button:hover {
     color: #091931;
 }
 
-.buttonCancle::after {
-    content: "";
-    display: flex;
-    width: 24px;
-    height: 24px;
-
-    background-color: currentColor;
-    mask: url("../assets/icons/cancle.svg") no-repeat center;
-    mask-size: contain;
-}
-
 /* Add Task */
 .buttonAddTask {
     width: 160px;

@@ -105,17 +105,45 @@
     padding-left: 16px;
 }
 
+.dropdownItemContainer {
+    max-width: 416px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.dropdownItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 57px;
+    gap: 2px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+}
+
+.dropdownItemOff:hover {
+    cursor: pointer;
+    background-color: #d1d1d152;
+}
+
+.dropdownItemOn {
+    background-color: #2A3647;
+    color: #FFFFFF;
+}
+
+.dropdownItemOn:hover {
+    cursor: pointer;
+    background-color: #091931;
+}
+
 .dropdownContent {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
     background: #FFFFFF;
-    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    /* box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04); */
     border-radius: 0px 0px 10px 10px;
-    /* display: none; */
-    max-height: 200px;
-    overflow-y: auto;
+    max-height: 288px;
+    overflow: auto;
 }
 
 .paddingBottom24 {
@@ -138,7 +166,31 @@
     /* top: 21.5px; */
 }
 
+.addTaskDropDownSection {
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+}
+
 .addTaskDropdownContainer {
+    height: 46px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: calc(100% - 2px);
+    position: relative;
+    z-index: 1;
+}
+
+/* class for the contact icons when adding */
+.addTaskAddedContactIcons {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+}
+
+.addTaskDropdownContainerSearch {
     height: 46px;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
@@ -154,6 +206,16 @@
     cursor: pointer;
     border: 1px solid #b6b5b5;
 
+}
+
+.addTaskSearchInput {
+    height: 24px;
+    font-size: 20px;
+    box-sizing: border-box;
+    border: 0px solid;
+    font-family: 'Inter';
+    margin-left: 16px;
+    width: 85%;
 }
 
 .subtaskInputContainer {
