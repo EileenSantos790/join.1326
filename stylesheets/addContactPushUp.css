@@ -141,6 +141,10 @@
     height: 24px;
 }
 
+.closeIcon:hover{
+    cursor: pointer;
+}
+
 .sectionPositionClose{
     display: flex;
     justify-content: flex-end;

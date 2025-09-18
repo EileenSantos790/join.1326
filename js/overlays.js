@@ -1,22 +1,51 @@
+/**
+ * Opens the "Add Contact" overlay:
+ * - loads the HTML file with the form
+ * - puts it inside the overlay panel
+ * - calls further functions to connects the close buttons and to show the overlay
+ */
 async function slideinAddContactOverlay() {
   const root = document.getElementById('overlayRoot');
   const panel = document.getElementById('overlayPanel');
   const overlayfile = await fetch('./htmlTamplates/addContactOverlay.html');
   const html = await overlayfile.text();
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, 'text/html');
-  panel.innerHTML = doc.body.innerHTML;
+  panel.innerHTML = html;
+
+  callCancelBtns();
+  showoverlay(root);
+}
+
+
+/**
+ * Finds the close buttons inside the overlay
+ * and adds click events to close it.
+ */
+async function callCancelBtns(){
   const cancelBtn = document.getElementById('closeBtnBottom');
   const closeIcon = document.getElementById('closeBtnTop');
 
   if (cancelBtn) cancelBtn.addEventListener('click', closeAddContactOverlay);
   if (closeIcon) closeIcon.addEventListener('click', closeAddContactOverlay);
+}
 
+
+/**
+ * Shows the overlay:
+ * - stops background scrolling
+ * - adds the "show" class so CSS runs the slide-in animation
+ */
+async function showoverlay(root){
   document.body.classList.add('noscroll');
   root.classList.remove('initalHiddenOverlay');
   root.classList.add('show');
 }
 
+/**
+ * Closes the overlay:
+ * - slides the panel back to the right
+ * - removes the "show" class after the animation
+ * - clears the panel content
+ */
 function closeAddContactOverlay() {
   const root = document.getElementById('overlayRoot');
   const panel = document.getElementById('overlayPanel');

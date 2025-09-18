@@ -1,30 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join</title>
-    <link rel="stylesheet" href="../stylesheets/style.css">
-    <link rel="stylesheet" href="../stylesheets/assets.css">
-    <link rel="stylesheet" href="../stylesheets/header.css">
-    <link rel="stylesheet" href="../stylesheets/navigationBar.css">
-    <link rel="stylesheet" href="../stylesheets/contentContainer.css">
-    <link rel="stylesheet" href="../stylesheets/summary.css">
-    <link rel="stylesheet" href="../stylesheets/buttons.css">
-    <link rel="stylesheet" href="../stylesheets/fonts.css">
-    <link rel="stylesheet" href="../stylesheets/login.css">
-    <link rel="stylesheet" href="../stylesheets/signUp.css">
-    <link rel="stylesheet" href="../stylesheets/addContactPushUp.css">
-
-    <link rel="stylesheet" href="../stylesheets/signUp.css">
-
-    <script src="../script.js"></script>
-    <script src="../js/firebase.js"></script>
-
-</head>
-
-<body class="bodyaddContactPushUp">
+<div class="bodyaddContactPushUp">
     <div class="addContactPushUpContainer">
         <section class="addContactPushUpContainerLeft">
             <img class="addContactIcon" src="../assets/img/joinSymbolWhite.svg" alt="join icon">
@@ -34,7 +8,7 @@
         </section>
         <section>
             <div class="addContactPushUpContainerRight">
-                <section class="sectionPositionClose" id="closeBtnTop"><img class="closeIcon" src="../assets/icons/close.svg" alt="close icon"></section>
+                <section class="sectionPositionClose" id="closeBtnTop"><img class="closeIcon" onclick="closeAddContactOverlay()" src="../assets/icons/close.svg" alt="close icon"></section>
                 <section class="imputAndImageContainer">
                     <div class="contactImgDiv">
                         <img class="contactImg" src="../assets/img/person.svg" alt="contact image">
@@ -66,7 +40,7 @@
                 </section>
                 <section class="addContactButtonSection">
                     <div>
-                        <button class="buttonSecondary addContactButton" id="closeBtnBottom">Cancel
+                        <button class="buttonSecondary addContactButton" id="closeBtnBottom" onclick="closeAddContactOverlay()">Cancel
                             <img class="closeIcon" src="../assets/icons/cancle.svg" alt="cancel icon">
                         </button>
                     </div>
@@ -77,6 +51,4 @@
             </div>
         </section>
     </div>
-</body>
-
-</html>
+</div>
