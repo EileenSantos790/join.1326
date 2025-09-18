@@ -1,0 +1,38 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(191,191,191,0.8);
+  display: none;
+  z-index: 9999;
+}
+
+.overlay.show {
+  display: flex;
+}
+
+.initalHiddenOverlay { 
+    display: none; 
+}
+
+.overlayCenter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.overlayPanel {
+  overflow: hidden;
+  transform: translateX(100vw);
+  transition: transform 350ms ease-out;
+}
+
+.overlay.show .overlayPanel {
+  transform: translateX(0);
+}
+
+body.noscroll {
+  overflow: hidden;
+}
