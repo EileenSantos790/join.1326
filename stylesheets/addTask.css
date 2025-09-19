@@ -185,9 +185,12 @@
 
 /* class for the contact icons when adding */
 .addTaskAddedContactIcons {
-    margin-top: 8px;
     display: flex;
     gap: 8px;
+}
+
+.margin_top8 {
+    margin-top: 8px;
 }
 
 .addTaskDropdownContainerSearch {

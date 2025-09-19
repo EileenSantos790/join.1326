@@ -39,3 +39,10 @@ function getContactTemplate(contact, index) {
         </div>
     `;
 }
+
+
+function getSelectedContactTemplate(contact) {
+    return `
+            <div class="margin_top8">${contact}</div>
+    `;
+}

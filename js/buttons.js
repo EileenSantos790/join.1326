@@ -1,4 +1,5 @@
 let testContactArray = ['Anton A','Bernd B','Clara C','Dori D'];
+let selectedContactsAddTask = [];
 
 
 function activatePriorityButton(buttonId, buttonClass, buttonIconOff, buttonIconOn) {
@@ -37,6 +38,8 @@ function addTaskSelectContact(containerId, checkboxOffId, checkboxOnId) {
     document.getElementById(containerId).classList.toggle('dropdownItemOn');
     document.getElementById(checkboxOffId).classList.toggle('d-none');
     document.getElementById(checkboxOnId).classList.toggle('d-none');
+    saveClickedContact(containerId);
+    addContactToTask();
 }
 
 function renderContactsInAddTask() {
@@ -44,5 +47,30 @@ function renderContactsInAddTask() {
     contentDiv.innerHTML = "";
     testContactArray.forEach((contact, index) => {
         contentDiv.innerHTML += getContactTemplate(contact, index)
+    });
+}
+
+
+function saveClickedContact(containerId) {
+    let contactContent = document.getElementById(containerId).textContent;
+    // console.log(contactContent);
+    let index = selectedContactsAddTask.indexOf(contactContent);
+
+    if(selectedContactsAddTask.includes(contactContent)) {
+        selectedContactsAddTask.splice(index, 1);
+    } else {
+        selectedContactsAddTask.push(contactContent);
+    }
+
+    selectedContactsAddTask.sort();
+    // console.log(selectedContactsAddTask);
+}
+
+
+function addContactToTask() {
+    let contentDiv = document.getElementById('addTaskAddedContactIcons');
+    contentDiv.innerHTML = "";
+    selectedContactsAddTask.forEach((contact) => {
+        contentDiv.innerHTML += getSelectedContactTemplate(contact)
     });
 }
