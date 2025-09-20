@@ -1,5 +1,6 @@
 let testContactArray = ['Anton A','Bernd B','Clara C','Dori D'];
 let selectedContactsAddTask = [];
+let contactSearchArray = [];
 
 
 function activatePriorityButton(buttonId, buttonClass, buttonIconOff, buttonIconOn) {
@@ -24,15 +25,19 @@ function setPriorityButtonIconToDefault() {
     document.getElementById('lowButtonOn').classList.add('d-none');
 }
 
-
+/**
+ * renderContactsInAddTask() function => Execute when opening the "addTask" page so that contacts remain clicked in "Assigned to". (that the dropdown menu works correctly).
+ */
 function toggleDropdownAssignedTo() {
     document.getElementById('addTaskDropdownAssignedTo').classList.toggle('d-none');
     document.getElementById('addTaskDropdownSearchContent').classList.toggle('d-none');
     document.getElementById('addTaskAddedContactIcons').classList.toggle('d-none');
-    renderContactsInAddTask();
+    renderContactsInAddTask(testContactArray);
 }
 
-
+/**
+ * marks the clicked contact.
+ */
 function addTaskSelectContact(containerId, checkboxOffId, checkboxOnId) {
     document.getElementById(containerId).classList.toggle('dropdownItemOff');
     document.getElementById(containerId).classList.toggle('dropdownItemOn');
@@ -42,18 +47,22 @@ function addTaskSelectContact(containerId, checkboxOffId, checkboxOnId) {
     addContactToTask();
 }
 
-function renderContactsInAddTask() {
+/**
+ * Displays all contacts in the assigned to dropdown container.
+ */
+function renderContactsInAddTask(contactArray) {
     let contentDiv = document.getElementById('assignedToContactContent');
     contentDiv.innerHTML = "";
-    testContactArray.forEach((contact, index) => {
+    contactArray.forEach((contact, index) => {
         contentDiv.innerHTML += getContactTemplate(contact, index)
     });
 }
 
-
+/**
+ * Adds the contact to a separate array and sorts them alphabetically.
+ */
 function saveClickedContact(containerId) {
     let contactContent = document.getElementById(containerId).textContent;
-    // console.log(contactContent);
     let index = selectedContactsAddTask.indexOf(contactContent);
 
     if(selectedContactsAddTask.includes(contactContent)) {
@@ -63,10 +72,11 @@ function saveClickedContact(containerId) {
     }
 
     selectedContactsAddTask.sort();
-    // console.log(selectedContactsAddTask);
 }
 
-
+/**
+ * Displays selected contacts when the dropdown menu is closed.
+ */
 function addContactToTask() {
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
     contentDiv.innerHTML = "";
@@ -74,3 +84,22 @@ function addContactToTask() {
         contentDiv.innerHTML += getSelectedContactTemplate(contact)
     });
 }
+
+/**
+ * filter function to search for contacts.
+ */
+function searchContactsForTask() {
+    let inputRef = document.getElementById('addTaskSearchInput');
+    let searchInput = inputRef.value;
+
+    if(searchInput.length > 0) {
+        contactSearchArray = testContactArray.filter(contact => contact.toLowerCase().includes(searchInput.toLowerCase()));
+        renderContactsInAddTask(contactSearchArray);
+    } else {
+        renderContactsInAddTask(testContactArray);
+    }
+}
+
+/**
+ * The filter function is not yet working properly because the render function must be called elsewhere. (when opening the addTask page)
+ *  */ 

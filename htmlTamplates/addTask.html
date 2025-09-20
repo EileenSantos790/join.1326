@@ -90,7 +90,7 @@
                         <div id="addTaskAddedContactIcons" class="addTaskAddedContactIcons"></div>
                         <div id="addTaskDropdownSearchContent" class="addTaskDropDownSection bgWhite d-none">
                             <div class="addTaskDropdownContainerSearch">
-                                <input class="addTaskSearchInput" type="text">
+                                <input onkeyup="searchContactsForTask()" id="addTaskSearchInput" class="addTaskSearchInput" type="text">
                                 <img onclick="toggleDropdownAssignedTo()" class="dropdownDownIcon"
                                     src="../assets/icons/dropdown-up.svg" alt="Arrown up">
                             </div>
