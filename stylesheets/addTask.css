@@ -91,7 +91,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
-    
+
 }
 
 .dropdown {
@@ -116,7 +116,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 57px;
+    height: 56px;
     gap: 2px;
     padding-left: 16px;
     padding-right: 16px;
@@ -168,6 +168,10 @@
 
 .addTaskDropDownSection {
     border-radius: 10px 10px 10px 10px;
+
+}
+
+.boxShadow {
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
 }
 
@@ -275,19 +279,13 @@
     right: 6.1px;
 }
 
-/* .addTaskdropdownSearchInput {
-    border: 1px solid #D1D1D1;
-    border-radius: 10px;
+.dropdownCategoryItem {
     display: flex;
     align-items: center;
-    justify-content: start;
-    width: calc(100% - 2px);
-    position: relative;
-} */
+    height: 48px;
+}
 
-/* label css: 
-
-    display: flex;
-    justify-content: space-between;
-    padding-left: 16px;
-    padding-right: 16px; */
+.dropdownCategoryItem:hover {
+    background-color: #d1d1d152;
+    border-radius: 10px;
+}

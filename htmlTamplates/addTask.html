@@ -24,18 +24,23 @@
                 <div class="addTaskTitleInputContent">
                     <p>Title<span class="requiredStar">*</span></p>
                     <div class="addTaskInputContainerWithValidation">
-                        <div class="signUpValidationInputContainer bgWhite">
-                            <input class="addTaskInputs defaultInput" type="title" placeholder="Enter a title">
+                        <div id="addTasktTitleInputContainer" class="signUpValidationInputContainer bgWhite">
+                            <input
+                                onfocus="setFocusBorder('addTasktTitleInputContainer', 'addTasktTitleErrorContainer')"
+                                onblur="removeFocusBorderCheckInputValue('addTasktTitleInputContainer', 'addTasktTitleInput', 'addTasktTitleErrorContainer')"
+                                id="addTasktTitleInput" class="addTaskInputs defaultInput" type="title"
+                                placeholder="Enter a title">
                         </div>
-                        <div class="loginFormValidationErrorMessage"></div>
+                        <div id="addTasktTitleErrorContainer" class="loginFormValidationErrorMessage"></div>
                     </div>
                 </div>
                 <div class="addTaskDescriptionInputContent">
                     <p>Description</p>
                     <div class="addTaskDescriptionContainerWithValidation">
-                        <div class="addTaskDescriptionInputContainer bgWhite">
-                            <textarea class="addTaskTextarea" name="Description" placeholder="Enter a Description"
-                                id=""></textarea>
+                        <div id="addTaskDescriptionInputContainer" class="addTaskDescriptionInputContainer bgWhite">
+                            <textarea onfocus="setFocusBorder('addTaskDescriptionInputContainer')"
+                                onblur="removeFocusBorder('addTaskDescriptionInputContainer')" class="addTaskTextarea"
+                                name="Description" placeholder="Enter a Description" id=""></textarea>
                             <img src="../assets/icons/textarea_icon.svg" alt="resize icon">
                         </div>
                         <div class="loginFormValidationErrorMessage"></div>
@@ -44,10 +49,13 @@
                 <div>
                     <p>Due date<span class="requiredStar">*</span></p>
                     <div class="addTaskInputContainerWithValidation">
-                        <div class="signUpValidationInputContainer bgWhite">
-                            <input class="addTaskInputs defaultInput placeholderStyle" required type="date">
+                        <div id="addTasktDateInputContainer" class="signUpValidationInputContainer bgWhite">
+                            <input onfocus="setFocusBorder('addTasktDateInputContainer', 'addTasktDateErrorContainer')"
+                                onblur="removeFocusBorderCheckInputValue('addTasktDateInputContainer', 'addTasktDateInput', 'addTasktDateErrorContainer')"
+                                id="addTasktDateInput" class="addTaskInputs defaultInput placeholderStyle" required
+                                type="date">
                         </div>
-                        <div class="loginFormValidationErrorMessage"></div>
+                        <div id="addTasktDateErrorContainer" class="loginFormValidationErrorMessage"></div>
                     </div>
                 </div>
                 <div class="addTaskRequiredInfo">
@@ -81,16 +89,17 @@
                 </div>
                 <div class="paddingBottom24">
                     <p>Assigned to</p>
-                    <div class="dropdown">
+                    <div id="addTaskAssignedToDropdownContent" class="dropdown">
                         <div onclick="toggleDropdownAssignedTo()" id="addTaskDropdownAssignedTo"
                             class="addTaskDropdownContainer bgWhite">
                             <span>Select contacts to assign</span>
                             <img class="dropdownDownIcon" src="../assets/icons/dropdown-down.svg" alt="Arrown down">
                         </div>
                         <div id="addTaskAddedContactIcons" class="addTaskAddedContactIcons"></div>
-                        <div id="addTaskDropdownSearchContent" class="addTaskDropDownSection bgWhite d-none">
+                        <div id="addTaskDropdownSearchContent" class="addTaskDropDownSection bgWhite boxShadow d-none">
                             <div class="addTaskDropdownContainerSearch">
-                                <input onkeyup="searchContactsForTask()" id="addTaskSearchInput" class="addTaskSearchInput" type="text">
+                                <input onkeyup="searchContactsForTask()" id="addTaskSearchInput"
+                                    class="addTaskSearchInput" type="text">
                                 <img onclick="toggleDropdownAssignedTo()" class="dropdownDownIcon"
                                     src="../assets/icons/dropdown-up.svg" alt="Arrown up">
                             </div>
@@ -113,18 +122,41 @@
                 <div class="paddingBottom24">
                     <p>Category<span class="requiredStar">*</span></p>
                     <div class="dropdown">
-                        <div class="addTaskDropdownContainer bgWhite">
-                            <span>Select task category</span>
-                            <img class="dropdownDownIcon" src="../assets/icons/dropdown-down.svg" alt="Arrown down">
+                        <div id="addTaskCategoryDropdownContent" class="addTaskDropDownSection bgWhite">
+                            <div onclick="toggleDropdownCategory()" class="addTaskDropdownContainer bgWhite">
+                                <span id="categoryDropdownHeader">Select task category</span>
+                                <img id="dropdownDownIcon" class="dropdownDownIcon"
+                                    src="../assets/icons/dropdown-down.svg" alt="Arrown down">
+                                <img id="dropdownUpIcon" class="dropdownDownIcon d-none"
+                                    src="../assets/icons/dropdown-up.svg" alt="Arrow up">
+                            </div>
+                            <div id="categoryDropdownContent" class="selectList d-none">
+                                <div class="dropdownCategoryItem" data-value="option1" onclick="selectedCategory(this)">
+                                    <span>Technical Task</span>
+                                </div>
+                                <div class="dropdownCategoryItem" data-value="option2" onclick="selectedCategory(this)">
+                                    <span>User Story</span>
+                                </div>
+                                <!-- <select name="category" id="category">
+                                    <option class="" value="standardSelect" disabled selected>Select task category</option>
+                                    <option value="technical task">Technical Task</option>
+                                    <option value="user story">User Story</option>
+                                </select> -->
+                            </div>
                         </div>
-                        <div></div>
+
                     </div>
                 </div>
                 <div>
                     <p>Subtasks</p>
-                    <div class="subtaskInputContainer">
-                        <input class="subtaskInput" type="text" placeholder="Add new subtask">
+                    <div>
+                        <div class="subtaskInputContainer">
+                            <input class="subtaskInput" type="text" placeholder="Add new subtask">
+                        </div>
+                        <div>
+                        </div>
                     </div>
+
                 </div>
                 <div class="addTaskMainButtons">
                     <button class="buttonCancle width110">Clear <svg width="24" height="24" viewBox="0 0 24 24"
