@@ -162,3 +162,25 @@ function removeFocusBorderCheckInputValue(containerId, inputId, errorId) {
 
     }
 }
+
+function addSubtaskToList() {
+    let inputRef = document.getElementById('subtaskInput');
+    let input = inputRef.value;
+    let list = document.getElementById('subtaskListContent');
+    console.log(input);
+    list.innerHTML += getSubtaskListTemplate(input);
+    inputRef.value = "";
+}
+
+
+function clearSubtaskInput() {
+    let inputRef = document.getElementById('subtaskInput');
+    inputRef.value = "";
+}
+
+
+function getSubtaskListTemplate(input) {
+    return `
+            <div class="listHeight"><li >${input}</li></div>
+    `;
+}

@@ -234,6 +234,7 @@
     align-items: center;
     width: calc(100% - 2px);
     margin-top: 8px;
+    position: relative;
 }
 
 .subtaskInput {
@@ -242,6 +243,34 @@
     font-size: 20px;
     box-sizing: border-box;
     border: 0px solid;
+    width: 80%;
+}
+
+.subtaskInputIconContainer {
+    display: none;
+}
+
+.subtaskInput:not(:placeholder-shown) + .subtaskInputIconContainer {
+    display: flex;
+    position: absolute;
+    right: 16px;
+    gap: 4px;
+  }
+
+.subtaskInputIconContainer img {
+    width: 24px;
+    height: 24px;
+}
+
+.subtaskInputIcon:hover {
+    cursor: pointer;
+    background-color: #d1d1d152;
+    border-radius: 16px;
+}
+
+.subtaskSeperator {
+    height: 24px;
+    border: 1px solid #D1D1D1;
 }
 
 .addTaskRequiredInfo {
@@ -286,6 +315,19 @@
 }
 
 .dropdownCategoryItem:hover {
+    background-color: #d1d1d152;
+    border-radius: 10px;
+}
+
+.listHeight {
+    margin-top: 8px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding-left: 42px;
+}
+
+.listHeight:hover {
     background-color: #d1d1d152;
     border-radius: 10px;
 }

@@ -151,9 +151,18 @@
                     <p>Subtasks</p>
                     <div>
                         <div class="subtaskInputContainer">
-                            <input class="subtaskInput" type="text" placeholder="Add new subtask">
+                            <input id="subtaskInput" class="subtaskInput" type="text" placeholder="Add new subtask">
+                            <div class="subtaskInputIconContainer">
+                                <img onclick="clearSubtaskInput()" id="subtaskInputCancelButton" class="subtaskInputIcon" src="../assets/icons/cancle.svg" alt="cancel x Icon">
+                                <div class="subtaskSeperator"></div>
+                                <img onclick="addSubtaskToList()" id="subtaskInputCheckButton" class="subtaskInputIcon" src="../assets/icons/check_black.svg" alt="check Icon">
+                            </div>
                         </div>
                         <div>
+                            <div id="subtaskListContent">
+                                <!-- <div class="listHeight"><li >test</li></div>
+                                <div class="listHeight"><li >test2</li></div> -->
+                            </div>
                         </div>
                     </div>
 
