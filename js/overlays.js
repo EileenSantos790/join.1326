@@ -15,6 +15,17 @@ async function slideinAddContactOverlay() {
   showoverlay(root);
 }
 
+async function slideinEditContactOverlay() {
+  const root = document.getElementById('overlayRoot');
+  const panel = document.getElementById('overlayPanel');
+  const overlayfile = await fetch('./htmlTamplates/editContactOverlay.html');
+  const html = await overlayfile.text();
+  panel.innerHTML = html;
+
+  callCancelBtns();
+  showoverlay(root);
+}
+
 
 /**
  * Finds the close buttons inside the overlay

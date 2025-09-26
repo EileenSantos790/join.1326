@@ -1,17 +1,287 @@
-.contactContainer {
+/* .contactButtonContainer {
+    height: 101px;
+    width: 352px;
     display: flex;
-    overflow: hidden;
+    align-items: center;
+} */
+
+.contactsPageContainer {
+    display: flex;
     flex-direction: row;
+
 }
 
-.contactContainerLeftSide {
-    width: 456px;
-    height: auto;
-}
-
-.contactButtonContainer {
-    height: 110px;
+.addContactSectionContainer {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 456px;
+    background-color: #FFFFFF;
+    box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
+}
+
+#contactsSection {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+}
+
+.scrollbarSection {
+    width: 24px;
+    scrollbar-track-color: rgba(168, 168, 168, 1);
+}
+
+.contactListSection {
+    margin-top: 88px;
+    width: 456px;
+    height: 928px;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scrollbar-color: rgba(168, 168, 168, 1) white;
+    scrollbar-width: auto;
+}
+
+.alpha-letter {
+    cursor: pointer;
+    font-size: 12px;
+    padding: 2px 4px;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+}
+
+.alpha-letter:hover {
+    color: #60a5fa;
+    background: #1f2937;
+}
+
+/* Abschnittsüberschrift (Buchstabe) */
+.section {
+    display: flex;
+    width: 352px;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: flex-start;
+    padding-left: 88px;
+    font-weight: 400;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 1);
+}
+
+.separationLineContactListContainer {
+    width: 352px;
+    height: 16px;
+    margin-block: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.separationLineContactList {
+    border: solid 0.5px;
+    border-radius: 3px;
+    border-color: rgba(209, 209, 209, 1);
+    width: 352px;
+}
+
+/* Kontaktkarte */
+.card {
+    display: flex;
+    width: 304px;
+    border-radius: 10px;
+    justify-content: flex-start;
+    align-self: flex-start;
+    align-items: center;
+    color: rgba(0, 0, 0, 1);
+    padding-block: 15px;
+    padding-inline: 24px;
+    gap: 35px;
+    cursor: pointer;
+    margin-left: 52px;
+}
+
+.card:hover {
+    background-color: #F6F7F8;
+}
+
+/* Avatar */
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    font-weight: 400;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 1);
+    overflow: hidden;
+    border: solid 2px;
+    border-color: white;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Name + Email */
+.name {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.email {
+    font-size: 14px;
+    color: #60a5fa;
+    text-decoration: none;
+}
+
+.email:hover {
+    text-decoration: underline;
+}
+
+.contactListBtnContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.showDetailsContactsContainer {
+    display: flex;
+    margin-left: 55px;
+    margin-top: 110px;
+}
+
+.detailsCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 54px;
+    margin-left: 62px;
+    margin-top: 32px;
+    color: rgba(0, 0, 0, 1);
+}
+
+.containerEditContact {
+    gap: 16px;
+    display: flex;
+}
+
+.editContactBtn {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.editContactBtn:hover {
+    cursor: pointer;
+    color: #2AAAE2;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.editContactBtn .deleteAndEditIcon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+}
+
+.sizeAvatarDetails {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    font-weight: 500;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 1);
+    overflow: hidden;
+    background-color: rgb(199, 87, 21);
+    border: solid 3px;
+    border-color: white;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    font-size: 47px;
+}
+
+.nameDetailsContact {
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.contactInformationContainer {
+    display: flex;
+    gap: 24px;
+    margin-top: 21px;
+    margin-left: 62px;
+    font-size: 20px;
+    font-weight: 400;
+    height: 74px;
+    align-items: center;
+
+}
+
+.mailAndPhoneContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-left: 62px;
+    height: 140px;
+    margin-top: 21px;
+}
+
+.subclassMailPhone {
+    color: rgba(0, 0, 0, 1);
+    font-weight: 700;
+    font-size: 16px;
+    gap: 22px;
+}
+
+.userConfirmationContainerContacts {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 200px;
+}
+
+.contactOverlay {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.contactOverlay.active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.inputBorderColorFocus {
+    border: 1px solid #29ABE2 !important;
+}
+
+.inputErrorBorder {
+    border: 1px solid #E60026 !important;
+}
+
+.addContactInputContainer {
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.addContactInputContainer:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }

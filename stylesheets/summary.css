@@ -12,16 +12,6 @@
     border-radius: 50px;
 }
 
-.summaryFirstLine {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    align-items: center;
-    width: auto;
-    height: 73px;
-    width: 625px;
-}
-
 .summaryDashboard {
     display: flex;
     padding-top: 56px;
@@ -112,7 +102,7 @@
     Height: 168px;
     border-radius: 30px;
     display: flex;
-    margin-block: 30px;
+    margin-block: 28px;
     justify-content: center;
     flex-direction: row;
     align-items: center;

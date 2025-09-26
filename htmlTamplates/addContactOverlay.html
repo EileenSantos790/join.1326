@@ -8,43 +8,53 @@
         </section>
         <section>
             <div class="addContactPushUpContainerRight">
-                <section class="sectionPositionClose" id="closeBtnTop"><img class="closeIcon" onclick="closeAddContactOverlay()" src="../assets/icons/close.svg" alt="close icon"></section>
+                <section class="sectionPositionClose" id="closeBtnTop"><img class="closeIcon"
+                        onclick="closeAddContactOverlay()" src="../assets/icons/close.svg" alt="close icon"></section>
                 <section class="imputAndImageContainer">
                     <div class="contactImgDiv">
                         <img class="contactImg" src="../assets/img/person.svg" alt="contact image">
                     </div>
                     <div class="addingContactSectionWidth">
                         <div class="addContactMainContentInputs">
-                            <div class="addContactInputContainer">
-                                <input id="containerId" class="fontInter inputInside" type="text" placeholder="Name"
-                                    onfocus="setFocusBorder('signUpNameInputContainer','signUpFormValidationErrorMessage')"
-                                    onblur="removeFocusBorder('signUpNameInputContainer')">
-                                <img class="inputPersonIcon" src="../assets/icons/person.svg" alt="person icon">
-                            </div>
-                            <div id="signUpEmailInputContainer" class="addContactInputContainer">
-                                <input id="containerId" class="fontInter inputInside" type="email" placeholder="Email"
-                                    onfocus="setFocusBorder('signUpEmailInputContainer','signUpFormValidationErrorMessage')"
-                                    onblur="removeFocusBorder('signUpEmailInputContainer')">
-                                <img class="inputEmailIcon" src="../assets/icons/mail.svg" alt="mail icon">
-                            </div>
+
                             <div>
                                 <div class="addContactInputContainer">
-                                    <input id="containerId" class="fontInter inputInside" type="tel" placeholder="Phone"
-                                        onfocus="setFocusBorder('signUpPasswordInputContainer','signUpFormValidationErrorMessage')"
-                                        onblur="removeFocusBorder('signUpPasswordInputContainer')">
+                                    <input id="contactName" class="fontInter inputInside" type="text"
+                                        placeholder="Name" required>
+                                    <img class="inputPersonIcon" src="../assets/icons/person.svg" alt="person icon">
+                                </div>
+                                <div id="contactNameError" class="inputErrrorMessage" style="display:none"></div>
+                            </div>
+
+                            <div>
+                                <div class="addContactInputContainer">
+                                    <input id="contactEmail" class="fontInter inputInside" type="email"
+                                        placeholder="Email" required>
+                                    <img class="inputEmailIcon" src="../assets/icons/mail.svg" alt="mail icon">
+                                </div>
+                                <div id="contactEmailError" class="inputErrrorMessage" style="display:none"></div>
+                            </div>
+
+                            <div>
+                                <div class="addContactInputContainer">
+                                    <input id="contactPhone" class="fontInter inputInside" type="tel"
+                                        placeholder="Phone" required>
                                     <img class="inputPasswordIcon" src="../assets/icons/call.svg" alt="lock icon">
                                 </div>
+                                <div id="contactPhoneError" class="inputErrrorMessage" style="display:none"></div>
                             </div>
+
                         </div>
                     </div>
                 </section>
                 <section class="addContactButtonSection">
                     <div>
-                        <button class="buttonSecondary addContactButton" id="closeBtnBottom" onclick="closeAddContactOverlay()">Cancel
+                        <button class="buttonSecondary addContactButton" id="closeBtnBottom"
+                            onclick="closeAddContactOverlay()">Cancel
                             <img class="closeIcon" src="../assets/icons/cancle.svg" alt="cancel icon">
                         </button>
                     </div>
-                    <button class="buttonPrimary addContactButton">Create Contact
+                    <button class="buttonPrimary addContactButton" onclick="createContact()">Create Contact
                         <img class="checkIcon" src="../assets/icons/check.svg" alt="check icon">
                     </button>
                 </section>

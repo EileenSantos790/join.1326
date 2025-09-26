@@ -1,12 +1,21 @@
-<div class="contactContainer">
-    <div class="contactContainerLeftSide">
-        <div class="contactList" id="listOfContacts">
-        </div>
-        <div class="contactButtonContainer" id="contactButtonContainer">
-            <button class="buttonPrimary addNewContactButton" onclick="slideinAddContactOverlay()">
+<div class="contactsPageContainer">
+    <section class="addContactSectionContainer">
+        <div class="contactListBtnContainer">
+            <button class="buttonPrimary addNewContactButton" onclick="handleCreateContact()">
                 Add new contact
                 <img src="../assets/icons/person_add.svg">
             </button>
         </div>
-    </div>
+        <div class="contactListSection">
+            <div id="contactsSection"></div>
+    </section>
+
+    <section>
+        <div class="templteTitle showDetailsContactsContainer">
+            <h1>Contacts</h1>
+            <div class="blueSeparationLine"></div>
+            <h4>Better with a Team</h4>
+        </div>
+        <div id="contactOverlay" class="contactOverlay"></div>
+    </section>
 </div>

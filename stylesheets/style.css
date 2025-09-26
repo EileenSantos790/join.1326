@@ -11,3 +11,13 @@ body {
 .width110 {
     width: 110px !important;
 }
+
+.templteTitle {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    width: auto;
+    height: 73px;
+    width: 625px;
+}

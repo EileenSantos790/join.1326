@@ -1,0 +1,21 @@
+<form data-validate-form>
+  <label>
+    Nome:
+    <input type="text" name="nome" data-validate="required">
+  </label>
+  <br><br>
+
+  <label>
+    Email:
+    <input type="text" name="email" data-validate="required|email">
+  </label>
+  <br><br>
+
+  <label>
+    Senha:
+    <input type="password" name="senha" data-validate="required|min6">
+  </label>
+  <br><br>
+
+  <button type="submit">Salvar</button>
+</form>

@@ -151,3 +151,12 @@
     padding-bottom: 57px;
     padding-top: 48px;
 }
+.inputErrrorMessage{
+    color: red;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    margin-top: 4px;
+    margin-bottom: -20px;
+    padding-left: 8px;
+}
