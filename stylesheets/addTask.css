@@ -250,12 +250,12 @@
     display: none;
 }
 
-.subtaskInput:not(:placeholder-shown) + .subtaskInputIconContainer {
+.subtaskInput:not(:placeholder-shown)+.subtaskInputIconContainer {
     display: flex;
     position: absolute;
     right: 16px;
     gap: 4px;
-  }
+}
 
 .subtaskInputIconContainer img {
     width: 24px;
@@ -319,15 +319,56 @@
     border-radius: 10px;
 }
 
-.listHeight {
+.subtaskItem {
     margin-top: 8px;
     height: 32px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding-left: 42px;
 }
 
-.listHeight:hover {
+.subtaskItemEdit {
+    margin-top: 8px;
+    height: 31px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #29ABE2;
+}
+
+.subtaskItem:hover {
     background-color: #d1d1d152;
     border-radius: 10px;
+}
+
+.subtaskActions {
+    display: none;
+    gap: 4px;
+    padding-right: 16px;
+}
+
+.subtaskActionsEdit {
+    gap: 4px;
+    padding-right: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.subtaskItem:hover .subtaskActions {
+    display: flex;
+    align-items: center;
+}
+
+.subtaskActions img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.subtaskActionsEdit img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
 }

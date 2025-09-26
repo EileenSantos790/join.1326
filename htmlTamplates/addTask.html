@@ -105,15 +105,6 @@
                             </div>
                             <div class="dropdownContent">
                                 <div id="assignedToContactContent" class="dropdownItemContainer">
-                                    <!-- <label onclick="addTaskSelectContact()" id="testLabel1"
-                                    class="dropdownItem dropdownItemOff">Name1<img id="testBox1" class="checkboxImg"
-                                        src="../assets/icons/check-button.svg" alt="checkbox empty"><img
-                                        id="testBoxWhite1" class="d-none" src="../assets/icons/checked_white.svg"
-                                        alt=""></label>
-                                <label class="dropdownItem dropdownItemOff">Name2<img class="checkboxImg"
-                                        src="../assets/icons/check-button.svg" alt="checkbox empty"></label>
-                                <label class="dropdownItem dropdownItemOff">Name3<img class="checkboxImg"
-                                        src="../assets/icons/check-button.svg" alt="checkbox empty"></label> -->
                                 </div>
                             </div>
                         </div>
@@ -137,31 +128,27 @@
                                 <div class="dropdownCategoryItem" data-value="option2" onclick="selectedCategory(this)">
                                     <span>User Story</span>
                                 </div>
-                                <!-- <select name="category" id="category">
-                                    <option class="" value="standardSelect" disabled selected>Select task category</option>
-                                    <option value="technical task">Technical Task</option>
-                                    <option value="user story">User Story</option>
-                                </select> -->
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div>
                     <p>Subtasks</p>
                     <div>
-                        <div class="subtaskInputContainer">
-                            <input id="subtaskInput" class="subtaskInput" type="text" placeholder="Add new subtask">
+                        <div id="subtaskInputContainer" class="subtaskInputContainer">
+                            <input onfocus="setFocusBorder('subtaskInputContainer')"
+                                onblur="removeFocusBorder('subtaskInputContainer')" id="subtaskInput"
+                                class="subtaskInput" type="text" placeholder="Add new subtask">
                             <div class="subtaskInputIconContainer">
-                                <img onclick="clearSubtaskInput()" id="subtaskInputCancelButton" class="subtaskInputIcon" src="../assets/icons/cancle.svg" alt="cancel x Icon">
+                                <img onclick="clearSubtaskInput()" id="subtaskInputCancelButton"
+                                    class="subtaskInputIcon" src="../assets/icons/cancle.svg" alt="cancel x Icon">
                                 <div class="subtaskSeperator"></div>
-                                <img onclick="addSubtaskToList()" id="subtaskInputCheckButton" class="subtaskInputIcon" src="../assets/icons/check_black.svg" alt="check Icon">
+                                <img onclick="addSubtaskToList()" id="subtaskInputCheckButton" class="subtaskInputIcon"
+                                    src="../assets/icons/check_black.svg" alt="check Icon">
                             </div>
                         </div>
                         <div>
                             <div id="subtaskListContent">
-                                <!-- <div class="listHeight"><li >test</li></div>
-                                <div class="listHeight"><li >test2</li></div> -->
                             </div>
                         </div>
                     </div>

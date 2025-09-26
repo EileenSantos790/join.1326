@@ -46,3 +46,31 @@ function getSelectedContactTemplate(contact) {
             <div class="margin_top8">${contact}</div>
     `;
 }
+
+
+function getSubtaskListTemplate(subtask) {
+    return `
+      <div class="subtaskItem" id="subtask${subtask.id}" ondblclick="editSubtask(${subtask.id})">
+        <li class="subtaskText" id="subtaskText${subtask.id}">${subtask.text}</li>
+        <div class="subtaskActions">
+          <img src="../assets/icons/subtask_edit.svg" alt="Edit" onclick="editSubtask(${subtask.id})">
+          <div class="subtaskSeperator"></div>
+          <img src="../assets/icons/subtask_delete.svg" alt="Delete" onclick="deleteSubtask(${subtask.id})">
+        </div>
+      </div>
+    `;
+}
+
+
+function getSubtaskEditTemplate(subtask) {
+    return `
+      <div class="subtaskItemEdit" id="subtask${subtask.id}">
+        <input onblur="handleBlurSubtask(${subtask.id})" class="subtaskInput" type="text" id="editInput${subtask.id}" value="${subtask.text}">
+        <div class="subtaskActionsEdit">
+          <img src="../assets/icons/subtask_delete.svg" alt="Save" onclick="deleteSubtask(${subtask.id})">
+          <div class="subtaskSeperator"></div>
+          <img src="../assets/icons/check_black.svg" alt="Cancel" onclick="saveSubtask(${subtask.id})">
+        </div>
+      </div>
+    `;
+}

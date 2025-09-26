@@ -1,6 +1,8 @@
 let testContactArray = ['Anton A', 'Bernd B', 'Clara C', 'Dori D'];
 let selectedContactsAddTask = [];
 let contactSearchArray = [];
+let subtasks = [];
+let subtaskIdCounter = 0;
 
 
 function activatePriorityButton(buttonId, buttonClass, buttonIconOff, buttonIconOn) {
@@ -165,10 +167,11 @@ function removeFocusBorderCheckInputValue(containerId, inputId, errorId) {
 
 function addSubtaskToList() {
     let inputRef = document.getElementById('subtaskInput');
-    let input = inputRef.value;
-    let list = document.getElementById('subtaskListContent');
-    console.log(input);
-    list.innerHTML += getSubtaskListTemplate(input);
+    let input = inputRef.value.trim();
+    subtaskIdCounter++;
+    let newSubtask = { "id": subtaskIdCounter, "text": input, "done": false };
+    subtasks.push(newSubtask);
+    renderSubtasks();
     inputRef.value = "";
 }
 
@@ -179,8 +182,52 @@ function clearSubtaskInput() {
 }
 
 
-function getSubtaskListTemplate(input) {
-    return `
-            <div class="listHeight"><li >${input}</li></div>
-    `;
+function renderSubtasks() {
+    let list = document.getElementById('subtaskListContent');
+    list.innerHTML = "";
+    subtasks.forEach(subtask => {
+        list.innerHTML += getSubtaskListTemplate(subtask);
+    })
+}
+
+
+function deleteSubtask(id) {
+    subtasks = subtasks.filter(s => s.id !== id);
+    renderSubtasks();
+}
+
+
+function editSubtask(id) {
+    let subtask = subtasks.find(s => s.id === id);
+    if(!subtask) return;
+
+    let element = document.getElementById(`subtask${id}`);
+    element.outerHTML = getSubtaskEditTemplate(subtask);
+
+    let input = document.getElementById(`editInput${id}`);
+    let inputlength = input.value.length;
+    input.focus();
+    input.setSelectionRange(inputlength, inputlength);
+}
+
+
+function saveSubtask(id) {
+    let input = document.getElementById(`editInput${id}`);
+    if(!input) return;
+
+    let newText = input.value.trim() || "untitled";
+    let subtask = subtasks.find(s => s.id === id);
+    if(subtask) subtask.text = newText; 
+
+    renderSubtasks();
+}
+
+
+function handleBlurSubtask(id) {
+  setTimeout(() => {
+    const input = document.getElementById(`editInput${id}`);
+    if (input) {
+      saveSubtask(id);
+    }
+  }, 100);
 }
