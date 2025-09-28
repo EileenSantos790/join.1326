@@ -59,7 +59,7 @@ function isUserLoggedIn() {
     userInitials = document.getElementById('userInitials');
     greetingUserName = document.getElementById('greetingUserName');
 
-    //sessionInit();
+    sessionInit();
     if (!loggedIn && !allowPublic) {
         window.location.href = 'index.html';
     }

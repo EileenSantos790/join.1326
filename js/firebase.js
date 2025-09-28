@@ -89,7 +89,8 @@ async function checkIfUserAlreadyExists(email, name, password) {
 async function saveNewUserToDB(name, email, password) {
     signUpFormValidationErrorMessage = document.getElementById("signUpFormValidationErrorMessage");
     signUpFormValidationErrorMessage.innerText = "";
-    const userJson = basicJsonStructure(name, email, password);
+    const color = getRandomHexColor();
+    const userJson = basicJsonStructure(name, email, password, color);
 
     let response = await fetch(BASE_URL + "users.json", {
         method: "POST",
@@ -98,12 +99,23 @@ async function saveNewUserToDB(name, email, password) {
     });
 }
 
-function basicJsonStructure(name, email, password) {
+function basicJsonStructure(name, email, password, color) {
     return {
         user: {
             name: name,
             email: email,
-            passwort: password
+            passwort: password,
+            color: color,
+            initial: getInitials(name),
+            phone: "123-456-7890"
         }
     };
+}
+
+function getRandomHexColor() {
+    return "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
+}
+
+function getInitials(name){
+    return name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
 }
