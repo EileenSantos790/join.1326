@@ -191,6 +191,8 @@
 .addTaskAddedContactIcons {
     display: flex;
     gap: 8px;
+    max-width: 440px;
+    flex-wrap: wrap;
 }
 
 .margin_top8 {

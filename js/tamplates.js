@@ -33,17 +33,21 @@ function isUserLoggedIn() {
 
 function getContactTemplate(contact, index) {
     return `
-        <div onclick="addTaskSelectContact('assignedToContact${index}','assignedToCheckbox${index}','assignedToCheckboxWhite${index}')" id="assignedToContact${index}" class="dropdownItem dropdownItemOff">
-            ${contact}<img id="assignedToCheckbox${index}" class="checkboxImg" src="../assets/icons/check-button.svg" alt="checkbox empty"><img
-            id="assignedToCheckboxWhite${index}" class="d-none" src="../assets/icons/checked_white.svg" alt="">
+        <div onclick="addTaskSelectContact('assignedToContact${index}','assignedToCheckbox${index}','assignedToCheckboxWhite${index}','${contact[index].initial}','${contact[index].color}')" id="assignedToContact${index}" class="dropdownItem dropdownItemOff">
+            <div style="display: flex;align-items: center;gap: 16px">
+                <div id="" class="avatar" style="background:${contact[index].color};color:#fff;">${contact[index].initial}</div>
+                <div>${contact[index].name}</div>
+            </div> 
+            <img id="assignedToCheckbox${index}" class="checkboxImg" src="../assets/icons/check-button.svg" alt="checkbox empty">
+            <img id="assignedToCheckboxWhite${index}" class="d-none" src="../assets/icons/checked_white.svg" alt="">
         </div>
     `;
 }
 
 
-function getSelectedContactTemplate(contact) {
+function getSelectedContactTemplate(contact, color) {
     return `
-            <div class="margin_top8">${contact}</div>
+            <div class="margin_top8 avatar" style="background:${color};color:#fff;">${contact}</div>
     `;
 }
 

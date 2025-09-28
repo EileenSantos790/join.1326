@@ -1,8 +1,14 @@
-let testContactArray = ['Anton A', 'Bernd B', 'Clara C', 'Dori D'];
 let selectedContactsAddTask = [];
 let contactSearchArray = [];
 let subtasks = [];
 let subtaskIdCounter = 0;
+
+
+async function fetchAllContacts() {
+    let usersList = await fetch(BASE_URL + "users.json");
+    let allUsers = await usersList.json();
+    return allUsers;
+}
 
 
 function activatePriorityButton(buttonId, buttonClass, buttonIconOff, buttonIconOn) {
@@ -34,45 +40,63 @@ function toggleDropdownAssignedTo() {
     document.getElementById('addTaskDropdownAssignedTo').classList.toggle('d-none');
     document.getElementById('addTaskDropdownSearchContent').classList.toggle('d-none');
     document.getElementById('addTaskAddedContactIcons').classList.toggle('d-none');
-    renderContactsInAddTask(testContactArray);
+    renderContactsInAddTask();
 }
 
 /**
  * marks the clicked contact.
  */
-function addTaskSelectContact(containerId, checkboxOffId, checkboxOnId) {
+function addTaskSelectContact(containerId, checkboxOffId, checkboxOnId, initial, color) {
     document.getElementById(containerId).classList.toggle('dropdownItemOff');
     document.getElementById(containerId).classList.toggle('dropdownItemOn');
     document.getElementById(checkboxOffId).classList.toggle('d-none');
     document.getElementById(checkboxOnId).classList.toggle('d-none');
-    saveClickedContact(containerId);
+    saveClickedContact(initial, color);
     addContactToTask();
 }
 
 /**
- * Displays all contacts in the assigned to dropdown container.
+ * Displays all or filtered contacts in the assigned to dropdown container.
  */
-function renderContactsInAddTask(contactArray) {
+async function renderContactsInAddTask(searchArray) {
     let contentDiv = document.getElementById('assignedToContactContent');
     contentDiv.innerHTML = "";
-    contactArray.forEach((contact, index) => {
-        contentDiv.innerHTML += getContactTemplate(contact, index)
-    });
+    if (searchArray) {
+        for (let index = 0; index < searchArray.length; index++) {
+            contentDiv.innerHTML += getContactTemplate(searchArray, index);
+        }
+    } else {
+        renderAllContacts();
+    }
+}
+
+
+async function renderAllContacts() {
+    let allUsers = await fetchAllContacts();
+    let contentDiv = document.getElementById('assignedToContactContent');
+    contentDiv.innerHTML = "";
+    let contacts = getUserDataToArray(allUsers);
+    contacts.sort((a, b) =>
+        a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+    );
+
+    for (let index = 0; index < contacts.length; index++) {
+        contentDiv.innerHTML += getContactTemplate(contacts, index);
+    }
 }
 
 /**
  * Adds the contact to a separate array and sorts them alphabetically.
  */
-function saveClickedContact(containerId) {
-    let contactContent = document.getElementById(containerId).textContent;
-    let index = selectedContactsAddTask.indexOf(contactContent);
 
-    if (selectedContactsAddTask.includes(contactContent)) {
+async function saveClickedContact(initial, color) {
+    let index = selectedContactsAddTask.findIndex(c => c.initial === initial);
+
+    if (index !== -1) {
         selectedContactsAddTask.splice(index, 1);
     } else {
-        selectedContactsAddTask.push(contactContent);
+        selectedContactsAddTask.push({ "initial": initial, "color": color });
     }
-
     selectedContactsAddTask.sort();
 }
 
@@ -83,28 +107,29 @@ function addContactToTask() {
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
     contentDiv.innerHTML = "";
     selectedContactsAddTask.forEach((contact) => {
-        contentDiv.innerHTML += getSelectedContactTemplate(contact)
+        contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color);
     });
 }
 
 /**
  * filter function to search for contacts.
  */
-function searchContactsForTask() {
+async function searchContactsForTask() {
     let inputRef = document.getElementById('addTaskSearchInput');
     let searchInput = inputRef.value;
+    let allUsers = await fetchAllContacts();
+    let contacts = getUserDataToArray(allUsers);
 
     if (searchInput.length > 0) {
-        contactSearchArray = testContactArray.filter(contact => contact.toLowerCase().includes(searchInput.toLowerCase()));
+        contactSearchArray = contacts.filter(contact => contact.name.toLowerCase().includes(searchInput.toLowerCase()));
         renderContactsInAddTask(contactSearchArray);
     } else {
-        renderContactsInAddTask(testContactArray);
+        renderContactsInAddTask();
     }
 }
-
 /**
  * The filter function is not yet working properly because the render function must be called elsewhere. (when opening the addTask page)
- *  */
+ */
 
 
 function toggleDropdownCategory() {
@@ -113,6 +138,7 @@ function toggleDropdownCategory() {
     document.getElementById('dropdownUpIcon').classList.toggle('d-none');
     document.getElementById('addTaskCategoryDropdownContent').classList.toggle('boxShadow');
 }
+
 
 function selectedCategory(option) {
     let header = document.getElementById('categoryDropdownHeader');
@@ -199,7 +225,7 @@ function deleteSubtask(id) {
 
 function editSubtask(id) {
     let subtask = subtasks.find(s => s.id === id);
-    if(!subtask) return;
+    if (!subtask) return;
 
     let element = document.getElementById(`subtask${id}`);
     element.outerHTML = getSubtaskEditTemplate(subtask);
@@ -213,21 +239,21 @@ function editSubtask(id) {
 
 function saveSubtask(id) {
     let input = document.getElementById(`editInput${id}`);
-    if(!input) return;
+    if (!input) return;
 
     let newText = input.value.trim() || "untitled";
     let subtask = subtasks.find(s => s.id === id);
-    if(subtask) subtask.text = newText; 
+    if (subtask) subtask.text = newText;
 
     renderSubtasks();
 }
 
 
 function handleBlurSubtask(id) {
-  setTimeout(() => {
-    const input = document.getElementById(`editInput${id}`);
-    if (input) {
-      saveSubtask(id);
-    }
-  }, 100);
+    setTimeout(() => {
+        const input = document.getElementById(`editInput${id}`);
+        if (input) {
+            saveSubtask(id);
+        }
+    }, 100);
 }
