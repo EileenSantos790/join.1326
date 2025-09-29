@@ -14,7 +14,7 @@
 
 
 <body>
-    <div class="contentContainerPadding">
+    <div class="contentContainerPadding addTaskMainSection">
         <div class="addTaskHeadline">
             <h1>Add Task</h1>
         </div>
@@ -40,7 +40,7 @@
                         <div id="addTaskDescriptionInputContainer" class="addTaskDescriptionInputContainer bgWhite">
                             <textarea onfocus="setFocusBorder('addTaskDescriptionInputContainer')"
                                 onblur="removeFocusBorder('addTaskDescriptionInputContainer')" class="addTaskTextarea"
-                                name="Description" placeholder="Enter a Description" id=""></textarea>
+                                name="Description" placeholder="Enter a Description" id="addTaskTextarea"></textarea>
                             <img src="../assets/icons/textarea_icon.svg" alt="resize icon">
                         </div>
                         <div class="loginFormValidationErrorMessage"></div>
@@ -114,7 +114,7 @@
                     <p>Category<span class="requiredStar">*</span></p>
                     <div class="dropdown">
                         <div id="addTaskCategoryDropdownContent" class="addTaskDropDownSection bgWhite">
-                            <div onclick="toggleDropdownCategory()" class="addTaskDropdownContainer bgWhite">
+                            <div id="addTaskCategoryHeaderContainer" onclick="toggleDropdownCategory()" class="addTaskDropdownContainer bgWhite">
                                 <span id="categoryDropdownHeader">Select task category</span>
                                 <img id="dropdownDownIcon" class="dropdownDownIcon"
                                     src="../assets/icons/dropdown-down.svg" alt="Arrown down">
@@ -155,14 +155,17 @@
 
                 </div>
                 <div class="addTaskMainButtons">
-                    <button class="buttonCancle width110">Clear <svg width="24" height="24" viewBox="0 0 24 24"
+                    <button onclick="resetAddTaskSide()" class="buttonCancle width110">Clear <svg width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round">
                             <path d="M6 6l12 12M18 6L6 18" />
                         </svg></button>
-                    <button class="buttonCreateTask">Create Task</button>
+                    <button onclick="createTask()" class="buttonCreateTask">Create Task</button>
                 </div>
             </div>
+        </div>
+        <div id="addTaskOverlay" class="addTaskOverlay">
+            <div id="addTaskOverlayContent" class="addTaskOverlayContent">Task added to board <img src="../assets/icons/boardIcon.svg" alt="board Icon"></div>
         </div>
     </div>
 </body>

@@ -115,3 +115,11 @@ function setErrorBorder(containerLoginId, containerPasswordId) {
         document.getElementById(containerPasswordId).classList.add('inputErrorBorder');
     }
 }
+
+
+function setErrorBorderForCategory(containerId) {
+    let categoryHeader = document.getElementById('categoryDropdownHeader');
+    if (categoryHeader.textContent == "Select task category") {
+        document.getElementById(containerId).classList.add('inputErrorBorder');
+    }
+}

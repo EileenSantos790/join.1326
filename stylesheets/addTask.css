@@ -1,3 +1,16 @@
+.addTaskOverlayContent {
+    z-index: 1;
+    width: 326px;
+    height: 74px;
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #2A3647;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
 .addTaskHeadline {
     height: 73px;
     display: flex;

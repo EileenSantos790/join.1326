@@ -89,7 +89,7 @@ async function renderAllContacts() {
  * Adds the contact to a separate array and sorts them alphabetically.
  */
 
-async function saveClickedContact(initial, color) {
+function saveClickedContact(initial, color) {
     let index = selectedContactsAddTask.findIndex(c => c.initial === initial);
 
     if (index !== -1) {
@@ -137,6 +137,7 @@ function toggleDropdownCategory() {
     document.getElementById('dropdownDownIcon').classList.toggle('d-none');
     document.getElementById('dropdownUpIcon').classList.toggle('d-none');
     document.getElementById('addTaskCategoryDropdownContent').classList.toggle('boxShadow');
+    document.getElementById('addTaskCategoryHeaderContainer').classList.remove('inputErrorBorder');
 }
 
 
@@ -187,9 +188,9 @@ function removeFocusBorderCheckInputValue(containerId, inputId, errorId) {
     if (!input.value) {
         document.getElementById(containerId).classList.add('inputErrorBorder');
         errorMessage.textContent = "This field is required";
-
     }
 }
+
 
 function addSubtaskToList() {
     let inputRef = document.getElementById('subtaskInput');
@@ -256,4 +257,86 @@ function handleBlurSubtask(id) {
             saveSubtask(id);
         }
     }, 100);
+}
+
+
+function resetAddTaskSide() {
+    resetInput('addTasktTitleInput', 'addTasktTitleErrorContainer', 'addTasktTitleInputContainer');
+    resetInput('addTaskTextarea', '', 'addTaskDescriptionInputContainer');
+    resetInput('addTasktDateInput', 'addTasktDateErrorContainer', 'addTasktDateInputContainer');
+    resetPriority();
+    resetAssignedTo();
+    resetCategory();
+    resetSubtask();
+}
+
+
+function resetInput(inputId, errorId, containerId) {
+    let input = document.getElementById(inputId);
+    input.value = "";
+    if (errorId){
+        let errorMessage = document.getElementById(errorId);
+    errorMessage.innerText = "";
+    }
+
+    removeFocusBorder(containerId);
+    document.getElementById(containerId).classList.remove('inputErrorBorder');
+}
+
+
+function resetPriority() {
+    activatePriorityButton('addTaskMediumButton','buttonMediumActive','mediumButtonOff','mediumButtonOn');
+}
+
+
+function resetAssignedTo() {
+    document.getElementById('addTaskDropdownAssignedTo').classList.remove('d-none');
+    document.getElementById('addTaskDropdownSearchContent').classList.add('d-none');
+    let addedContacts = document.getElementById('addTaskAddedContactIcons');
+    addedContacts.classList.remove('d-none');
+    addedContacts.innerHTML = "";
+    selectedContactsAddTask = [];
+}
+
+
+function resetCategory() {
+    document.getElementById('categoryDropdownContent').classList.add('d-none');
+    document.getElementById('dropdownDownIcon').classList.remove('d-none');
+    document.getElementById('dropdownUpIcon').classList.add('d-none');
+    document.getElementById('addTaskCategoryHeaderContainer').classList.remove('inputErrorBorder');
+    document.getElementById('addTaskCategoryDropdownContent').classList.remove('boxShadow');
+    let header = document.getElementById('categoryDropdownHeader');
+    header.textContent = "Select task category";
+}
+
+
+function resetSubtask() {
+    clearSubtaskInput();
+    let list = document.getElementById('subtaskListContent');
+    list.innerHTML = "";
+    subtasks = [];
+    subtaskIdCounter = 0;
+}
+
+
+function createTask() {
+    if (!checkRequiredFields()) {return;}
+    // saveTaskToDatabase();
+    // showSuccessMessage();
+    // goToBoardHtml();
+}
+
+
+function checkRequiredFields() {
+    let inputTitle = document.getElementById('addTasktTitleInput');
+    let inputDate = document.getElementById('addTasktDateInput');
+    let categoryHeader = document.getElementById('categoryDropdownHeader');
+    if (inputTitle.value == "" || inputDate.value == "" || categoryHeader.textContent == "Select task category") {
+        removeFocusBorderCheckInputValue('addTasktTitleInputContainer', 'addTasktTitleInput', 'addTasktTitleErrorContainer');
+        removeFocusBorderCheckInputValue('addTasktDateInputContainer', 'addTasktDateInput', 'addTasktDateErrorContainer');
+        setErrorBorderForCategory('addTaskCategoryHeaderContainer'); 
+        return false;
+    } else {
+        return true;
+    }
 }
