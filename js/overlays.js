@@ -7,7 +7,7 @@
 async function slideinAddContactOverlay() {
   const root = document.getElementById('overlayRoot');
   const panel = document.getElementById('overlayPanel');
-  const overlayfile = await fetch('./htmlTamplates/addContactOverlay.html');
+  const overlayfile = await fetch('./htmlTemplates/addContactOverlay.html');
   const html = await overlayfile.text();
   panel.innerHTML = html;
 
@@ -18,7 +18,7 @@ async function slideinAddContactOverlay() {
 async function slideinEditContactOverlay() {
   const root = document.getElementById('overlayRoot');
   const panel = document.getElementById('overlayPanel');
-  const overlayfile = await fetch('./htmlTamplates/editContactOverlay.html');
+  const overlayfile = await fetch('./htmlTemplates/editContactOverlay.html');
   const html = await overlayfile.text();
   panel.innerHTML = html;
 

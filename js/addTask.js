@@ -46,12 +46,12 @@ function toggleDropdownAssignedTo() {
 /**
  * marks the clicked contact.
  */
-function addTaskSelectContact(containerId, checkboxOffId, checkboxOnId, initial, color) {
+function addTaskSelectContact(containerId, checkboxOffId, checkboxOnId, initial, color, userId) {
     document.getElementById(containerId).classList.toggle('dropdownItemOff');
     document.getElementById(containerId).classList.toggle('dropdownItemOn');
     document.getElementById(checkboxOffId).classList.toggle('d-none');
     document.getElementById(checkboxOnId).classList.toggle('d-none');
-    saveClickedContact(initial, color);
+    saveClickedContact(initial, color, userId);
     addContactToTask();
 }
 
@@ -89,13 +89,13 @@ async function renderAllContacts() {
  * Adds the contact to a separate array and sorts them alphabetically.
  */
 
-function saveClickedContact(initial, color) {
+function saveClickedContact(initial, color, userId) {
     let index = selectedContactsAddTask.findIndex(c => c.initial === initial);
 
     if (index !== -1) {
         selectedContactsAddTask.splice(index, 1);
     } else {
-        selectedContactsAddTask.push({ "initial": initial, "color": color });
+        selectedContactsAddTask.push({ "initial": initial, "color": color, "id": userId });
     }
     selectedContactsAddTask.sort();
 }
@@ -107,7 +107,7 @@ function addContactToTask() {
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
     contentDiv.innerHTML = "";
     selectedContactsAddTask.forEach((contact) => {
-        contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color);
+        contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color, contact.id);
     });
 }
 
@@ -318,12 +318,12 @@ function resetSubtask() {
     subtaskIdCounter = 0;
 }
 
-
+/* Create task function */
 function createTask() {
-    if (!checkRequiredFields()) {return;}
-    // saveTaskToDatabase();
-    // showSuccessMessage();
-    // goToBoardHtml();
+    if (!checkRequiredFields()) { return; }
+    const taskData = getTaskData();
+    saveTaskToDatabase(taskData);
+    goToBoardHtml();
 }
 
 
@@ -339,4 +339,72 @@ function checkRequiredFields() {
     } else {
         return true;
     }
+}
+
+function getTaskData() {
+    const title = document.getElementById('addTasktTitleInput').value;
+    const description = document.getElementById('addTaskTextarea').value;
+    const dueDate = document.getElementById('addTasktDateInput').value;
+    const priority = getSelectedPriority();
+    const category = document.getElementById('categoryDropdownHeader').dataset.value;
+    const assignedTo = selectedContactsAddTask.map(contact => contact.id);
+    const oSubtasks = subtasks.map(subtask => ({ text: subtask.text, done: subtask.done }));
+    const status = "todo"
+    return { title, description, dueDate, priority, category, assignedTo, oSubtasks, status };
+}
+
+function getSelectedPriority() {
+    if (document.getElementById('addTaskUrgentButton').classList.contains('buttonUrgentActive')) {
+        return 'Urgent';
+    } else if (document.getElementById('addTaskMediumButton').classList.contains('buttonMediumActive')) {
+        return 'Medium';
+    } else if (document.getElementById('addTaskLowButton').classList.contains('buttonLowActive')) {
+        return 'Low';
+    } else { return null; }
+}
+
+/* Save task on DB */
+function saveTaskToDatabase(taskData) {
+    let id;
+    fetch(BASE_URL + "tasks.json", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(taskData) })
+        .then(response => { if (!response.ok) { throw new Error("Erro on save contact"); } return response.json(); })
+        .then(data => {
+            assignedToUser(data.name);
+            showMessageDialog("Task added to board");
+        })
+        .catch(error => {
+            console.error("Erro:", error);
+            showMessageDialog("Erro:", error);
+        });
+        return id;
+}
+
+/* Redirect to board */
+function goToBoardHtml() {
+    const boardMenuItem = document.querySelector('.navLine[data-file*="board"], .navLine[data-file*="Board"]');
+    if (boardMenuItem) {
+        boardMenuItem.click();
+        return;
+    }
+}
+
+/* Save task for all assigned users*/
+async function assignedToUser(taskId) {
+    const task = await getTaskById(taskId);
+    const users = task.assignedTo;
+    for (let index = 0; index < users.length; index++) {
+        const userId = users[index];
+        const user = await searchContactById(userId);
+        user.task ?  user.task.push(taskId) : [taskId] ;
+        updateContact(userId, user, true);
+    }
+
+}
+
+/* Get task by id */
+async function getTaskById(taskId) {
+    const url = `${BASE_URL}tasks/${taskId}.json`;
+    const res = await fetch(url);
+    const task = await res.json();
+    return task
 }

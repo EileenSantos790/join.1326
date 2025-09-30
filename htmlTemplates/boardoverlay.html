@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../stylesheets/assets.css">
+    <link rel="stylesheet" href="../stylesheets/header.css">
+    <link rel="stylesheet" href="../stylesheets/navigationBar.css">
+    <link rel="stylesheet" href="../stylesheets/contentContainer.css">
+    <link rel="stylesheet" href="../stylesheets/summary.css">
+    <link rel="stylesheet" href="../stylesheets/buttons.css">
+    <link rel="stylesheet" href="../stylesheets/fonts.css">
+    <link rel="stylesheet" href="../stylesheets/login.css">
+    <link rel="stylesheet" href="../stylesheets/signUp.css">
+    <link rel="stylesheet" href="../stylesheets/addContactPushUp.css">
+    <link rel="stylesheet" href="../stylesheets/contacts.css">
+    <link rel="stylesheet" href="../stylesheets/overlays.css">
+    <link rel="stylesheet" href="../stylesheets/board.css">
+</head>
+
+<body>
+
+    <div class="boardCardContainerOverlay">
+        <!-- Cards will be dynamically added here -->
+        <div class="overlineHeadline">
+            <div class="categoryFieldUserStoryOverlay">User Story</div>
+            <img class="closeOverlayBoardImg" src="../assets/icons/close.svg">
+        </div>
+        <div class="titleOfTaskOverlay">Responsive and Mobile Version to applicate in future</div>
+        <div class="descriptionOfTaskOverlay">Task description</div>
+        <div class="detailsOverlayContainer">
+            <span>Due date:</span>
+            <span> 12.10.2024</span>
+        </div>
+        <div class="detailsOverlayContainer">
+            <span>Priority:</span>
+            <div class="priorityImg">Medium <img src="../assets/icons/prio_media.svg"></div>
+        </div>
+        <div class="detailsOverlayContainer">
+            <span>Assigned To:</span>
+        </div>
+        <div class="contactBoardAssignedTo">Hier die Kontakte einfügen</div>
+        <div class="detailsOverlayContainer">Subtasks</div>
+
+        <label class="cb">
+            <input type="checkbox" class="cbInput">
+            <svg class="cbSvg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                <defs>
+                    <mask id="cb-notch">
+                        <rect x="0" y="0" width="24" height="24" fill="white" />
+                        <circle cx="19" cy="5" r="4" fill="black" />
+                    </mask>
+                </defs>
+
+                <rect class="cbBox" x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="#2A3647"
+                    stroke-width="2" />
+
+                <rect class="cbBoxMasked" x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="#2A3647"
+                    stroke-width="2" mask="url(#cb-notch)" />
+
+                <g class="cbCheck" transform="translate(6,2)">
+                    <path d="M1 9L5 13L13 1.5" fill="none" stroke="#2A3647" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </g>
+            </svg>
+            <span class="cbLabel">Subtask</span>
+        </label>
+
+        <div class="containerEditTaskOverlay">
+            <div class="editContactBtn" onclick="editContact('${userID}')">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z"
+                        fill="currentColor" />
+                </svg>
+                <p>Edit</p>
+            </div>
+            <div class="separationLineGrey"></div>
+            <div class="editContactBtn" onclick="deleteContact('${userID}')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="deleteAndEditIcon">
+                    <mask id="mask0_369895_4535" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+                        width="24" height="24">
+                        <rect width="24" height="24" fill="#D9D9D9" />
+                    </mask>
+                    <g mask="url(#mask0_369895_4535)">
+                        <path
+                            d="M7 21C6.45 21 5.97917 20.8042 5.5875 20.4125C5.19583 20.0208 5 19.55 5 19V6C4.71667 6 4.47917 5.90417 4.2875 5.7125C4.09583 5.52083 4 5.28333 4 5C4 4.71667 4.09583 4.47917 4.2875 4.2875C4.47917 4.09583 4.71667 4 5 4H9C9 3.71667 9.09583 3.47917 9.2875 3.2875C9.47917 3.09583 9.71667 3 10 3H14C14.2833 3 14.5208 3.09583 14.7125 3.2875C14.9042 3.47917 15 3.71667 15 4H19C19.2833 4 19.5208 4.09583 19.7125 4.2875C19.9042 4.47917 20 4.71667 20 5C20 5.28333 19.9042 5.52083 19.7125 5.7125C19.5208 5.90417 19.2833 6 19 6V19C19 19.55 18.8042 20.0208 18.4125 20.4125C18.0208 20.8042 17.55 21 17 21H7ZM7 6V19H17V6H7ZM9 16C9 16.2833 9.09583 16.5208 9.2875 16.7125C9.47917 16.9042 9.71667 17 10 17C10.2833 17 10.5208 16.9042 10.7125 16.7125C10.9042 16.5208 11 16.2833 11 16V9C11 8.71667 10.9042 8.47917 10.7125 8.2875C10.5208 8.09583 10.2833 8 10 8C9.71667 8 9.47917 8.09583 9.2875 8.2875C9.09583 8.47917 9 8.71667 9 9V16ZM13 16C13 16.2833 13.0958 16.5208 13.2875 16.7125C13.4792 16.9042 13.7167 17 14 17C14.2833 17 14.5208 16.9042 14.7125 16.7125C14.9042 16.5208 15 16.2833 15 16V9C15 8.71667 14.9042 8.47917 14.7125 8.2875C14.5208 8.09583 14.2833 8 14 8C13.7167 8 13.4792 8.09583 13.2875 8.2875C13.0958 8.47917 13 8.71667 13 9V16Z"
+                            fill="currentColor" />
+                    </g>
+                </svg>
+                <p>Delete</p>
+            </div>
+        </div>
+
+</body>
+
+</html>

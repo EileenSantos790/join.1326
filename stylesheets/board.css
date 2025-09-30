@@ -1,0 +1,331 @@
+.containerOfBoard {
+    margin-left: 64px;
+    margin-right: 88px;
+}
+
+.headerContainerOfBoard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 79.5px;
+}
+
+.headerContainerFormAndButton {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.searchForm {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    border: solid 1px;
+    border-color: #C9C9C9;
+    width: 312px;
+    padding-inline: 16px;
+    padding-block: 8px;
+    background-color: #FFFFFF;
+}
+
+.searchField {
+    border: none;
+    outline: none;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.searchIcon {
+    width: 32px;
+    height: 32px;
+}
+
+.buttonaddTaskOnBoard {
+    width: 160px;
+    height: 48px;
+    cursor: pointer;
+    padding-inline: 16px;
+    padding-block: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.spaceHolderContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #A8A8A8;
+    width: 246px;
+    height: 48px;
+    border: dashed 1px;
+    border-color: #A8A8A8;
+    border-radius: 10px;
+    background-color: #E7E7E7;
+}
+
+.boardProgressContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 32px;
+    gap: 26px;
+    overflow-x: auto;
+}
+
+.boardProgressTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 244px;
+    margin-top: 48px;
+    margin-bottom: 7.5px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.boardCardContainer {
+    display: flex;
+    height: auto;
+    width: 252px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 79.5px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 24px;
+    padding: 16px;
+}
+
+.categoryFieldTechnicalTask {
+    color: white;
+    background-color: rgba(31, 215, 193, 1);
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    padding-inline: 16px;
+    padding-block: 4px;
+}
+
+.categoryFieldUserStory {
+    color: white;
+    background-color: rgba(0, 56, 255, 1);
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    padding-inline: 16px;
+    padding-block: 4px;
+}
+
+.titleOfTask {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(42, 54, 71, 1);
+}
+
+.descriptionOfTask {
+    color: rgba(168, 168, 168, 1);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.processBarContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 252px;
+}
+
+.progress {
+    width: 128px;
+    height: 8px;
+    background: #F2F4F7;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 100%;
+    background: #3B82F6;
+    border-radius: inherit;
+    transition: width .3s ease;
+}
+
+.progressLabel {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+}
+
+.contactsAndPriorityContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 252px;
+}
+
+.priorityIconBoard {
+    width: 32px;
+    height: 32px;
+}
+
+.boardCardContainerOverlay {
+    display: flex;
+    height: auto;
+    width: 445px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 30px;
+    padding-inline: 40px;
+    padding-block: 48px;
+}
+
+.categoryFieldUserStoryOverlay {
+    color: white;
+    background-color: rgba(0, 56, 255, 1);
+    border-radius: 8px;
+    font-size: 23px;
+    font-weight: 400;
+    padding-inline: 24px;
+    padding-block: 4px;
+}
+
+.titleOfTaskOverlay {
+    font-size: 61px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 1)
+}
+
+.descriptionOfTaskOverlay {
+    color: rgba(0, 0, 0, 1);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.detailsOverlayContainer {
+    display: flex;
+    gap: 25px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.priorityImg {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 139px;
+}
+
+.contactBoardAssignedTo {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 19px;
+    font-weight: 400;
+    padding-left: 16px;
+}
+
+.separationLineGrey {
+    height: 24px;
+    background-color: #D1D1D1;
+    width: 1px;
+}
+
+.containerEditTaskOverlay {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    width: 100%;
+}
+
+.overlineHeadline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.closeOverlayBoardImg {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.closeOverlayBoardImg:hover {
+    background-color: rgba(209, 209, 209, 1);
+    border-radius: 50px;
+}
+
+.subtaskText {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+}
+
+.cb {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.cbInput {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cbSvg {
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+.cbCheck {
+    opacity: 0;
+    transition: opacity .15s ease;
+}
+
+.cbBoxMasked {
+    display: none;
+}
+
+.cbInput:checked+.cbSvg .cbCheck {
+    opacity: 1;
+}
+
+.cbInput:checked+.cbSvg .cbBox {
+    display: none;
+}
+
+.cbInput:checked+.cbSvg .cbBoxMasked {
+    display: block;
+}
+
+.confirmationOverlay {
+    width: 326px;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    font-weight: 400;
+    font-size: 20px;
+    border-radius: 20px;
+    background-color: rgba(42, 54, 71, 1);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+    color: white;
+}
+
+.confirmationOverlayImg {
+    width: 30px;
+    height: 30px;
+}

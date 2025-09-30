@@ -422,7 +422,7 @@ async function handleUpdateContact() {
  * @param {Object} user - The updated user data to be sent to the server.
  * @returns {void}
  */
-function updateContact(userID, user) {
+function updateContact(userID, user, createTask = false) {
     fetch(`${BASE_URL}users/${userID}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ user }) })
         .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
         .then(() => {
@@ -430,8 +430,10 @@ function updateContact(userID, user) {
             const overlay = document.getElementById("contactOverlay");
             if (overlay) { overlay.classList.remove("active"); overlay.innerHTML = ""; }
             if (selectedCardEl) { selectedCardEl.style.backgroundColor = ""; selectedCardEl.style.color = "#000000"; selectedCardEl = null; }
-            loadContacts();
-            showMessageDialog("Contact successfully updated");
+            if (!createTask){
+                loadContacts();
+                showMessageDialog("Contact successfully updated");
+            }
         })
         .catch(error => { console.error("Error:", error); });
 }

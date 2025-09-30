@@ -120,8 +120,8 @@ function openPageFromUrl(content) {
   const page = new URLSearchParams(window.location.search).get("page");
 
   const files = {
-    privacyPolicy: "./htmlTamplates/privacyPolicy.html",
-    legalNotice: "./htmlTamplates/legalNotice.html"
+    privacyPolicy: "./htmlTemplates/privacyPolicy.html",
+    legalNotice: "./htmlTemplates/legalNotice.html"
   };
 
   const fileToOpen = files[page];
