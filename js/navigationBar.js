@@ -76,7 +76,7 @@ function loadPage(file, content) {
     .catch(error => showError(error, content));
   
   if (file === "./htmlTemplates/addTask.html") {
-    renderContactsInAddTask();
+    resetAddTaskSide();
   }
 }
 

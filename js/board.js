@@ -2,7 +2,8 @@ function openAddTaskOverlay() {
     let overlay = document.getElementById('addTaskBoardOverlayMainSection');
     overlay.classList.add('show');
     document.getElementById('homeBody').style.overflow = 'hidden';
-    renderContactsInAddTask();      //=> for the task overlay when the main task page is rendered correctly
+    // renderContactsInAddTask();      //=> Only needed if addTask is not reset
+    resetAddTaskSide();
 }
 
 
