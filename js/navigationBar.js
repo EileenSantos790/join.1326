@@ -74,6 +74,10 @@ function loadPage(file, content) {
     .then(response => checkFile(response, file))
     .then(html => content.innerHTML = html)
     .catch(error => showError(error, content));
+  
+  if (file === "./htmlTemplates/addTask.html") {
+    renderContactsInAddTask();
+  }
 }
 
 

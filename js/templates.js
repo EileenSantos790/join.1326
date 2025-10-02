@@ -32,14 +32,17 @@ function isUserLoggedIn() {
 
 
 function getContactTemplate(contact, index) {
+    const contacts = contact[index];
+    const isSelected = selectedContactsAddTask.some(c => c.id === contacts.id);
+
     return `
-        <div onclick="addTaskSelectContact('assignedToContact${index}','assignedToCheckbox${index}','assignedToCheckboxWhite${index}','${contact[index].initial}','${contact[index].color}','${contact[index].id}')" id="assignedToContact${index}" class="dropdownItem dropdownItemOff">
+        <div onclick="addTaskSelectContact('assignedToContact${index}','assignedToCheckbox${index}','assignedToCheckboxWhite${index}','${contact[index].initial}','${contact[index].color}','${contact[index].id}')" id="assignedToContact${index}" class="dropdownItem ${isSelected ? 'dropdownItemOn' : 'dropdownItemOff'}">
             <div style="display: flex;align-items: center;gap: 16px">
                 <div id="" class="avatar" style="background:${contact[index].color};color:#fff;">${contact[index].initial}</div>
                 <div>${contact[index].name}</div>
             </div> 
-            <img id="assignedToCheckbox${index}" class="checkboxImg" src="../assets/icons/check-button.svg" alt="checkbox empty">
-            <img id="assignedToCheckboxWhite${index}" class="d-none" src="../assets/icons/checked_white.svg" alt="">
+            <img id="assignedToCheckbox${index}" class="checkboxImg ${isSelected ? 'd-none' : ''}" src="../assets/icons/check-button.svg" alt="checkbox empty">
+            <img id="assignedToCheckboxWhite${index}" class="${isSelected ? '' : 'd-none'}" src="../assets/icons/checked_white.svg" alt="">
         </div>
     `;
 }

@@ -40,7 +40,7 @@ function toggleDropdownAssignedTo() {
     document.getElementById('addTaskDropdownAssignedTo').classList.toggle('d-none');
     document.getElementById('addTaskDropdownSearchContent').classList.toggle('d-none');
     document.getElementById('addTaskAddedContactIcons').classList.toggle('d-none');
-    renderContactsInAddTask();
+    // renderContactsInAddTask();
 }
 
 /**
@@ -296,6 +296,7 @@ function resetAssignedTo() {
     addedContacts.classList.remove('d-none');
     addedContacts.innerHTML = "";
     selectedContactsAddTask = [];
+    renderContactsInAddTask();
 }
 
 
