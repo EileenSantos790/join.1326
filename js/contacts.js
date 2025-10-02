@@ -426,13 +426,15 @@ function updateContact(userID, user, createTask = false) {
     fetch(`${BASE_URL}users/${userID}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ user }) })
         .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
         .then(() => {
-            closeAddContactOverlay();
-            const overlay = document.getElementById("contactOverlay");
-            if (overlay) { overlay.classList.remove("active"); overlay.innerHTML = ""; }
-            if (selectedCardEl) { selectedCardEl.style.backgroundColor = ""; selectedCardEl.style.color = "#000000"; selectedCardEl = null; }
             if (!createTask){
+                closeAddContactOverlay();
+                const overlay = document.getElementById("contactOverlay");
+                if (overlay) { overlay.classList.remove("active"); overlay.innerHTML = ""; }
+                if (selectedCardEl) { selectedCardEl.style.backgroundColor = ""; selectedCardEl.style.color = "#000000"; selectedCardEl = null; }
                 loadContacts();
                 showMessageDialog("Contact successfully updated");
+            }else{
+                showAddTaskDialog();
             }
         })
         .catch(error => { console.error("Error:", error); });

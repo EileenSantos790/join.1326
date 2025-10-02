@@ -372,7 +372,6 @@ function saveTaskToDatabase(taskData) {
         .then(response => { if (!response.ok) { throw new Error("Erro on save contact"); } return response.json(); })
         .then(data => {
             assignedToUser(data.name);
-            showMessageDialog("Task added to board");
         })
         .catch(error => {
             console.error("Erro:", error);
@@ -383,17 +382,13 @@ function saveTaskToDatabase(taskData) {
 
 /* Redirect to board */
 function goToBoardHtml() {
-    const overlay = document.getElementById("addTaskOverlay");
-    overlay.classList.add("show");
-    document.getElementById('addTaskOverlayBackground').style.display = "flex";
     const boardMenuItem = document.querySelector('.navLine[data-file*="board"], .navLine[data-file*="Board"]');
-
     setTimeout(() => {
         if (boardMenuItem) {
             boardMenuItem.click();
             return;
         }
-    }, 2000);
+    }, 1000);
 }
 
 /* Save task for all assigned users*/
@@ -403,7 +398,12 @@ async function assignedToUser(taskId) {
     for (let index = 0; index < users.length; index++) {
         const userId = users[index];
         const user = await searchContactById(userId);
-        user.task ? user.task.push(taskId) : [taskId];
+
+        if (user.tasks?.length){
+            user.tasks.push(taskId)
+        }else {
+             user.tasks = [taskId]
+        }
         updateContact(userId, user, true);
     }
 
@@ -415,4 +415,11 @@ async function getTaskById(taskId) {
     const res = await fetch(url);
     const task = await res.json();
     return task
+}
+
+/* Show Add Task Success Dialog */
+function showAddTaskDialog() {
+    const overlay = document.getElementById("addTaskOverlay");
+    overlay.classList.add("show");
+    document.getElementById('addTaskOverlayBackground').style.display = "flex";
 }
