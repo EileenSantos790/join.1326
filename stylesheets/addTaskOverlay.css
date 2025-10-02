@@ -1,0 +1,80 @@
+.addTaskOverlayMainSection {
+    width: 100%;
+    height: 100%;
+    background-color: #3d3c3c52;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.1s ease-in-out;
+    transform: translateX(100%);
+}
+
+.addTaskOverlayMainSection.show {
+    right: unset;
+    left: 0;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.addTaskOverlayMainContainer {
+    max-width: 1116px;
+    max-height: 870px;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    margin: 50px;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+}
+
+.addTaskOverlayMainContainer .addTaskMainSection {
+    padding-top: 64px;
+    padding-left:  74px;
+    padding-right: 50px;
+    position: relative;
+}
+
+.addTaskOverlayMainContainer .addTaskMainContent {
+    width: 100%;
+    max-height: 576px;
+}
+
+.addTaskOverlayMainContainer .addTaskMainButtons {
+    padding: unset;
+}
+
+.addTaskOverlayMainContainer .addTaskRequiredInfo {
+    padding-top: 213px;
+}
+
+.addTaskOverlayMainContainer .addTaskOverlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    z-index: 1000;
+    bottom: unset;
+}
+
+.addTaskBoarOverlayCloseButton {
+    position: absolute;
+    top: 64px;
+    right: 40px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addTaskBoarOverlayCloseButton:hover {
+    background-color: #d1d1d152;
+    border-radius: 43px;
+    cursor: pointer;
+}

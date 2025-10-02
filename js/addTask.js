@@ -274,9 +274,9 @@ function resetAddTaskSide() {
 function resetInput(inputId, errorId, containerId) {
     let input = document.getElementById(inputId);
     input.value = "";
-    if (errorId){
+    if (errorId) {
         let errorMessage = document.getElementById(errorId);
-    errorMessage.innerText = "";
+        errorMessage.innerText = "";
     }
 
     removeFocusBorder(containerId);
@@ -285,7 +285,7 @@ function resetInput(inputId, errorId, containerId) {
 
 
 function resetPriority() {
-    activatePriorityButton('addTaskMediumButton','buttonMediumActive','mediumButtonOff','mediumButtonOn');
+    activatePriorityButton('addTaskMediumButton', 'buttonMediumActive', 'mediumButtonOff', 'mediumButtonOn');
 }
 
 
@@ -334,12 +334,13 @@ function checkRequiredFields() {
     if (inputTitle.value == "" || inputDate.value == "" || categoryHeader.textContent == "Select task category") {
         removeFocusBorderCheckInputValue('addTasktTitleInputContainer', 'addTasktTitleInput', 'addTasktTitleErrorContainer');
         removeFocusBorderCheckInputValue('addTasktDateInputContainer', 'addTasktDateInput', 'addTasktDateErrorContainer');
-        setErrorBorderForCategory('addTaskCategoryHeaderContainer'); 
+        setErrorBorderForCategory('addTaskCategoryHeaderContainer');
         return false;
     } else {
         return true;
     }
 }
+
 
 function getTaskData() {
     const title = document.getElementById('addTasktTitleInput').value;
@@ -352,6 +353,7 @@ function getTaskData() {
     const status = "todo"
     return { title, description, dueDate, priority, category, assignedTo, oSubtasks, status };
 }
+
 
 function getSelectedPriority() {
     if (document.getElementById('addTaskUrgentButton').classList.contains('buttonUrgentActive')) {
@@ -376,16 +378,22 @@ function saveTaskToDatabase(taskData) {
             console.error("Erro:", error);
             showMessageDialog("Erro:", error);
         });
-        return id;
+    return id;
 }
 
 /* Redirect to board */
 function goToBoardHtml() {
+    const overlay = document.getElementById("addTaskOverlay");
+    overlay.classList.add("show");
+    document.getElementById('addTaskOverlayBackground').style.display = "flex";
     const boardMenuItem = document.querySelector('.navLine[data-file*="board"], .navLine[data-file*="Board"]');
-    if (boardMenuItem) {
-        boardMenuItem.click();
-        return;
-    }
+
+    setTimeout(() => {
+        if (boardMenuItem) {
+            boardMenuItem.click();
+            return;
+        }
+    }, 2000);
 }
 
 /* Save task for all assigned users*/
@@ -395,7 +403,7 @@ async function assignedToUser(taskId) {
     for (let index = 0; index < users.length; index++) {
         const userId = users[index];
         const user = await searchContactById(userId);
-        user.task ?  user.task.push(taskId) : [taskId] ;
+        user.task ? user.task.push(taskId) : [taskId];
         updateContact(userId, user, true);
     }
 

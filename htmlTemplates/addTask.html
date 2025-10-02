@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="addTaskSeperator"></div>
-            <div>
+            <div class="addTaskInputRightSide">
                 <div class="paddingBottom24">
                     <p>Priority</p>
                     <div class="addTaskPriorityButtons">
@@ -114,7 +114,8 @@
                     <p>Category<span class="requiredStar">*</span></p>
                     <div class="dropdown">
                         <div id="addTaskCategoryDropdownContent" class="addTaskDropDownSection bgWhite">
-                            <div id="addTaskCategoryHeaderContainer" onclick="toggleDropdownCategory()" class="addTaskDropdownContainer bgWhite">
+                            <div id="addTaskCategoryHeaderContainer" onclick="toggleDropdownCategory()"
+                                class="addTaskDropdownContainer bgWhite">
                                 <span id="categoryDropdownHeader">Select task category</span>
                                 <img id="dropdownDownIcon" class="dropdownDownIcon"
                                     src="../assets/icons/dropdown-down.svg" alt="Arrown down">
@@ -152,21 +153,22 @@
                             </div>
                         </div>
                     </div>
-
-                </div>
-                <div class="addTaskMainButtons">
-                    <button onclick="resetAddTaskSide()" class="buttonCancle width110">Clear <svg width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path d="M6 6l12 12M18 6L6 18" />
-                        </svg></button>
-                    <button onclick="createTask()" class="buttonCreateTask">Create Task</button>
                 </div>
             </div>
         </div>
-        <div id="addTaskOverlay" class="addTaskOverlay">
-            <div id="addTaskOverlayContent" class="addTaskOverlayContent">Task added to board <img src="../assets/icons/boardIcon.svg" alt="board Icon"></div>
+        <div class="addTaskMainButtons">
+            <button onclick="resetAddTaskSide()" class="buttonCancle width110">Clear <svg width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M6 6l12 12M18 6L6 18" />
+                </svg></button>
+            <button onclick="createTask()" class="buttonCreateTask">Create Task</button>
         </div>
+    </div>
+    <div id="addTaskOverlayBackground" class="addTaskOverlayBackground"></div>
+    <div id="addTaskOverlay" class="addTaskOverlay">
+        <div id="addTaskOverlayContent" class="addTaskOverlayContent">Task added to board <img
+                src="../assets/icons/boardIcon.svg" alt="board Icon"></div>
     </div>
 </body>
 

@@ -1,8 +1,36 @@
+.addTaskOverlayBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: none;
+    pointer-events: all;
+    z-index: 100;
+}
+
+.addTaskOverlay {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+.addTaskOverlay.show {
+    bottom: 50%;
+    transform: translate(-50%, 50%);
+    opacity: 1;
+}
+
 .addTaskOverlayContent {
     z-index: 1;
     width: 326px;
     height: 74px;
-    display: none;
+    display: flex;
     justify-content: space-evenly;
     align-items: center;
     background-color: #2A3647;
@@ -24,11 +52,12 @@
     height: 100%;
     display: flex;
     gap: 48px;
+    max-height: 562px;
     /* justify-content: space-between;
     align-items: center; */
 }
 
-.addTaskInputsLeftSide {
+.addTaskInputsLeftSide, .addTaskInputRightSide {
     max-width: 440px;
     width: 100%;
 }
@@ -295,11 +324,18 @@
 }
 
 .addTaskMainButtons {
-    padding-top: 162px;
-    padding-bottom: 79px;
+    /* padding-top: 162px;
+    padding-bottom: 79px; */
+    /* position: absolute; */
     display: flex;
     justify-content: end;
     gap: 16px;
+    /* top: 889px;
+    left: 995.25px; */
+    z-index: 1;
+    position: relative;
+    max-width: 976.25px;
+    padding-right: 102px;
 }
 
 .addTaskTextarea {
