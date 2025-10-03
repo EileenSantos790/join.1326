@@ -170,7 +170,7 @@ async function openTaskDetails(taskId) {
                 <p>Edit</p>
             </div>
             <div class="separationLineGrey"></div>
-            <div class="editContactBtn" onclick="deleteContact('MEuID')">
+            <div class="editContactBtn" onclick="deleteTask('${task.id}')">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                     class="deleteAndEditIcon">
                     <mask id="mask0_369895_4535" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -250,8 +250,84 @@ function getSubtasksOnBoardDetails(subtasks) {
             </svg>
             <span class="cbLabel">${subtask.text}</span>
         </label>`
-        
+
     });
     return template;
 }
 
+async function deleteTask(taskId) {
+    try {
+        await updateContactTask(taskId);
+        await fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "DELETE" });
+
+        allTasks = allTasks.filter(t => t.id !== taskId);
+        renderBoard(allTasks);
+        closeOverlay();
+    } catch (err) {
+        console.error("Error on delete task", err);
+    }
+}
+
+async function updateContactTask(taskId) {
+    try {
+        const resp = await fetch(`${BASE_URL}users.json`);
+        const users = await resp.json();
+        if (!users) return [];
+        for (const userId in users) {
+            const user = users[userId].user;
+            const tasksNode = user.tasks || [];
+            if (tasksNode.includes(taskId)) {
+                const updatedTasks = tasksNode.filter(id => id !== taskId);
+                refreshContactTasksOnDb(userId, updatedTasks);
+            }
+        }
+    } catch (err) {
+        console.error("Error getUsersTasks:", err);
+        return [];
+    }
+}
+
+function refreshContactTasksOnDb(userId, updatedTasks) {
+    try {
+        fetch(`${BASE_URL}users/${userId}/user/tasks.json`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedTasks)
+        });
+    } catch (error) {
+        console.error("Erro update contact tasks:", err);
+        return [];
+    }
+}
+
+async function removeAllTasksFromUser(userId) {
+    if (!userId) return;
+    try {
+        const res = await fetch(BASE_URL + "tasks.json");
+        if (!res.ok) throw new Error("Error loading tasks");
+        const tasks = await res.json();
+        if (!tasks) return;
+
+        const ops = [];
+        for (const taskId in tasks) {
+            const task = tasks[taskId] || {};
+            const assigned = Array.isArray(task.assignedTo) ? task.assignedTo : [];
+            const filtered = assigned.filter(a => a && a.id !== userId);
+
+            if (filtered.length !== assigned.length) {
+                if (filtered.length === 0) {
+                    ops.push(fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "DELETE" }));
+                } else {
+                    ops.push(fetch(`${BASE_URL}tasks/${taskId}.json`, {
+                        method: "PATCH",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ assignedTo: filtered })
+                    }));
+                }
+            }
+        }
+        await Promise.all(ops);
+    } catch (err) {
+        console.error("Error removing user's tasks:", err);
+    }
+}

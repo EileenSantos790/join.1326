@@ -359,7 +359,9 @@ function deleteContact(userID) {
             if (overlay) { overlay.classList.remove("active"); overlay.innerHTML = ""; }
             if (selectedCardEl) { selectedCardEl.style.backgroundColor = ""; selectedCardEl.style.color = "#000000"; selectedCardEl = null; }
             loadContacts();
+            removeAllTasksFromUser(userID)
             showMessageDialog("Contact successfully deleted");
+            
         })
         .catch(error => { console.error("Error:", error); });
 }
@@ -433,9 +435,11 @@ function updateContact(userID, user, createTask = false) {
                 if (selectedCardEl) { selectedCardEl.style.backgroundColor = ""; selectedCardEl.style.color = "#000000"; selectedCardEl = null; }
                 loadContacts();
                 showMessageDialog("Contact successfully updated");
+                removeAllTasksFromUser(userID)
             }else{
                 showAddTaskDialog();
             }
         })
         .catch(error => { console.error("Error:", error); });
 }
+
