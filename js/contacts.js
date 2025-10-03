@@ -270,7 +270,7 @@ function saveContact(newContact) {
     fetch(BASE_URL + "users.json", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ user: newContact }) })
         .then(response => { if (!response.ok) { throw new Error("Erro on save contact"); } return response.json(); })
         .then(data => {
-            closeAddContactOverlay();
+            closeOverlay();
             loadContacts();
             showMessageDialog("Contact successfully created/updated");
         })
@@ -427,7 +427,7 @@ function updateContact(userID, user, createTask = false) {
         .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
         .then(() => {
             if (!createTask){
-                closeAddContactOverlay();
+                closeOverlay();
                 const overlay = document.getElementById("contactOverlay");
                 if (overlay) { overlay.classList.remove("active"); overlay.innerHTML = ""; }
                 if (selectedCardEl) { selectedCardEl.style.backgroundColor = ""; selectedCardEl.style.color = "#000000"; selectedCardEl = null; }

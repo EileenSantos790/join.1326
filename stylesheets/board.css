@@ -99,6 +99,7 @@
     border-radius: 24px;
     padding: 16px;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .categoryFieldTechnicalTask {
@@ -279,6 +280,11 @@
     user-select: none;
 }
 
+label:hover{
+    background-color: #CACACB;
+    cursor: pointer;
+}
+
 .cbInput {
     position: absolute;
     opacity: 0;
@@ -325,6 +331,32 @@
     justify-content: center;
     align-items: center;
     margin-right: -8px;
+}
+
+.avatarBoardDetails {
+    border-radius: 50%;
+    display: flex;
+    font-weight: 400;
+    font-size: 12px;
+    border: solid 2px;
+    border-color: white;
+    width: 42px;
+    height: 42px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+}
+
+.contactBoardDetailsContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 20px;
+    font-weight: 400;
+    padding-inline: 16px;
+    padding-block: 2px;
+    flex-direction: row;
 }
 
 .boardContactsContainer {

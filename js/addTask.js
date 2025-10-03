@@ -46,12 +46,12 @@ function toggleDropdownAssignedTo() {
 /**
  * marks the clicked contact.
  */
-function addTaskSelectContact(containerId, checkboxOffId, checkboxOnId, initial, color, userId) {
+function addTaskSelectContact(containerId, checkboxOffId, checkboxOnId, initial, color, userId, name) {
     document.getElementById(containerId).classList.toggle('dropdownItemOff');
     document.getElementById(containerId).classList.toggle('dropdownItemOn');
     document.getElementById(checkboxOffId).classList.toggle('d-none');
     document.getElementById(checkboxOnId).classList.toggle('d-none');
-    saveClickedContact(initial, color, userId);
+    saveClickedContact(initial, color, userId, name);
     addContactToTask();
 }
 
@@ -89,13 +89,13 @@ async function renderAllContacts() {
  * Adds the contact to a separate array and sorts them alphabetically.
  */
 
-function saveClickedContact(initial, color, userId) {
+function saveClickedContact(initial, color, userId, name) {
     let index = selectedContactsAddTask.findIndex(c => c.initial === initial);
 
     if (index !== -1) {
         selectedContactsAddTask.splice(index, 1);
     } else {
-        selectedContactsAddTask.push({ "initial": initial, "color": color, "id": userId });
+        selectedContactsAddTask.push({ initial, color, "id": userId, name });
     }
     selectedContactsAddTask.sort();
 }
@@ -107,7 +107,7 @@ function addContactToTask() {
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
     contentDiv.innerHTML = "";
     selectedContactsAddTask.forEach((contact) => {
-        contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color, contact.id);
+        contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color, contact.id, contact.name);
     });
 }
 
@@ -352,6 +352,7 @@ function getTaskData() {
     const assignedTo = selectedContactsAddTask.map(contact => ({
         id: contact.id,
         initial: contact.initial,
+        name: contact.name,
         color: contact.color
     }));
     const oSubtasks = subtasks.map(subtask => ({ text: subtask.text, done: subtask.done }));

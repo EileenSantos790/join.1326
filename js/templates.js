@@ -36,7 +36,7 @@ function getContactTemplate(contact, index) {
     const isSelected = selectedContactsAddTask.some(c => c.id === contacts.id);
 
     return `
-        <div onclick="addTaskSelectContact('assignedToContact${index}','assignedToCheckbox${index}','assignedToCheckboxWhite${index}','${contact[index].initial}','${contact[index].color}','${contact[index].id}')" id="assignedToContact${index}" class="dropdownItem ${isSelected ? 'dropdownItemOn' : 'dropdownItemOff'}">
+        <div onclick="addTaskSelectContact('assignedToContact${index}','assignedToCheckbox${index}','assignedToCheckboxWhite${index}','${contact[index].initial}','${contact[index].color}','${contact[index].id}', '${contact[index].name}')" id="assignedToContact${index}" class="dropdownItem ${isSelected ? 'dropdownItemOn' : 'dropdownItemOff'}">
             <div style="display: flex;align-items: center;gap: 16px">
                 <div id="" class="avatar" style="background:${contact[index].color};color:#fff;">${contact[index].initial}</div>
                 <div>${contact[index].name}</div>

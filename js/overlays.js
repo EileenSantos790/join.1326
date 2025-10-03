@@ -21,7 +21,6 @@ async function slideinEditContactOverlay() {
   const overlayfile = await fetch('./htmlTemplates/editContactOverlay.html');
   const html = await overlayfile.text();
   panel.innerHTML = html;
-
   callCancelBtns();
   showoverlay(root);
 }
@@ -35,8 +34,8 @@ async function callCancelBtns(){
   const cancelBtn = document.getElementById('closeBtnBottom');
   const closeIcon = document.getElementById('closeBtnTop');
 
-  if (cancelBtn) cancelBtn.addEventListener('click', closeAddContactOverlay);
-  if (closeIcon) closeIcon.addEventListener('click', closeAddContactOverlay);
+  if (cancelBtn) cancelBtn.addEventListener('click', closeOverlay);
+  if (closeIcon) closeIcon.addEventListener('click', closeOverlay);
 }
 
 
@@ -57,7 +56,7 @@ async function showoverlay(root){
  * - removes the "show" class after the animation
  * - clears the panel content
  */
-function closeAddContactOverlay() {
+function closeOverlay() {
   const root = document.getElementById('overlayRoot');
   const panel = document.getElementById('overlayPanel');
 
@@ -69,4 +68,13 @@ function closeAddContactOverlay() {
     panel.innerHTML = '';
     panel.style.transform = '';
   }, 350);
+}
+
+async function slideinBoardDetailsOverlay() {
+  const root = document.getElementById('overlayRoot');
+  const panel = document.getElementById('overlayPanel');
+  const overlayfile = await fetch('./htmlTemplates/boardoverlay.html');
+  const html = await overlayfile.text();
+  panel.innerHTML = html;
+  showoverlay(root);
 }
