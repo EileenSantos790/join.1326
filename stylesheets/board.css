@@ -1,5 +1,5 @@
 .containerOfBoard {
-    margin-left: 64px;
+    margin-left: 54px;
     margin-right: 88px;
 }
 
@@ -63,12 +63,12 @@
     border-color: #A8A8A8;
     border-radius: 10px;
     background-color: #E7E7E7;
+    margin-left: 10px;
 }
 
 .boardProgressContainer {
     display: flex;
     flex-direction: row;
-    align-items: center;
     margin-top: 32px;
     gap: 26px;
     overflow-x: auto;
@@ -76,27 +76,29 @@
 
 .boardProgressTitle {
     display: flex;
-    align-items: center;
+    position: relative;
     justify-content: space-between;
     width: 244px;
     margin-top: 48px;
-    margin-bottom: 7.5px;
+    margin-bottom: 15.5px;
     font-weight: 700;
     font-size: 20px;
+    margin-left: 10px;
 }
 
 .boardCardContainer {
     display: flex;
     height: auto;
-    width: 252px;
+    width: 220px;
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
-    margin-bottom: 79.5px;
+    margin-bottom: 16px;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
     background-color: rgba(255, 255, 255, 1);
     border-radius: 24px;
     padding: 16px;
+    margin-left: 10px;
 }
 
 .categoryFieldTechnicalTask {
@@ -135,7 +137,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 252px;
+    width: 100%;
 }
 
 .progress {
@@ -163,7 +165,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 252px;
+    width: 100%;
 }
 
 .priorityIconBoard {
@@ -310,22 +312,23 @@
     display: block;
 }
 
-.confirmationOverlay {
-    width: 326px;
-    height: 74px;
+.avatarBoard {
+    border-radius: 50%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
+    flex-direction: row;
     font-weight: 400;
-    font-size: 20px;
-    border-radius: 20px;
-    background-color: rgba(42, 54, 71, 1);
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
-    color: white;
+    font-size: 12px;
+    border: solid 2px;
+    border-color: white;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    margin-right: -8px;
 }
 
-.confirmationOverlayImg {
-    width: 30px;
-    height: 30px;
+.boardContactsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }

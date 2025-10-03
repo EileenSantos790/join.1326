@@ -349,10 +349,14 @@ function getTaskData() {
     const dueDate = document.getElementById('addTasktDateInput').value;
     const priority = getSelectedPriority();
     const category = document.getElementById('categoryDropdownHeader').dataset.value;
-    const assignedTo = selectedContactsAddTask.map(contact => contact.id);
+    const assignedTo = selectedContactsAddTask.map(contact => ({
+        id: contact.id,
+        initial: contact.initial,
+        color: contact.color
+    }));
     const oSubtasks = subtasks.map(subtask => ({ text: subtask.text, done: subtask.done }));
     const status = "todo"
-    return { title, description, dueDate, priority, category, assignedTo, oSubtasks, status };
+    return { title, description, dueDate, priority, category, assignedTo, subtasks: oSubtasks, status };
 }
 
 
@@ -368,7 +372,6 @@ function getSelectedPriority() {
 
 /* Save task on DB */
 function saveTaskToDatabase(taskData) {
-    let id;
     fetch(BASE_URL + "tasks.json", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(taskData) })
         .then(response => { if (!response.ok) { throw new Error("Erro on save contact"); } return response.json(); })
         .then(data => {
@@ -378,7 +381,6 @@ function saveTaskToDatabase(taskData) {
             console.error("Erro:", error);
             showMessageDialog("Erro:", error);
         });
-    return id;
 }
 
 /* Redirect to board */
@@ -389,7 +391,7 @@ function goToBoardHtml() {
             boardMenuItem.click();
             return;
         }
-    }, 1000);
+    }, 2000);
 }
 
 /* Save task for all assigned users*/
@@ -397,9 +399,8 @@ async function assignedToUser(taskId) {
     const task = await getTaskById(taskId);
     const users = task.assignedTo;
     for (let index = 0; index < users.length; index++) {
-        const userId = users[index];
+        const userId = users[index].id;
         const user = await searchContactById(userId);
-
         if (user.tasks?.length){
             user.tasks.push(taskId)
         }else {

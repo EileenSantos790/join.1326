@@ -107,7 +107,7 @@ function basicJsonStructure(name, email, password, color) {
             passwort: password,
             color: color,
             initial: getInitials(name),
-            phone: "123-456-7890"
+            phone: "1234567890123"
         }
     };
 }
@@ -118,4 +118,10 @@ function getRandomHexColor() {
 
 function getInitials(name){
     return name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+}
+
+async function getTasks() {
+    const tasks = await fetch(BASE_URL + "tasks.json");
+    const results = await tasks.json();
+    return results;
 }
