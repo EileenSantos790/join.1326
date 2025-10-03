@@ -115,19 +115,6 @@ function closeAddTaskOverlay() {
     document.getElementById('addTaskBoardOverlay').classList.add('d-none');
 }
 
-
-function createTaskInOverlay() {
-    if (!checkRequiredFields()) { return; }
-    // const taskData = getTaskData();     => // disabled for testing purposes
-    // saveTaskToDatabase(taskData);       =>// disabled for testing purposes
-    showAddTaskOverlaySuccessMessage();
-
-    setTimeout(() => {
-        closeAddTaskOverlay();
-    }, 1000);
-}
-
-
 function showAddTaskOverlaySuccessMessage() {
     document.getElementById('addTaskBoardOverlay').classList.remove('d-none');
 }

@@ -364,3 +364,7 @@ label:hover{
     align-items: center;
     justify-content: flex-start;
 }
+
+.addNewTeskImg {
+    cursor: pointer;
+}

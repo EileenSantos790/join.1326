@@ -436,8 +436,6 @@ function updateContact(userID, user, createTask = false) {
                 loadContacts();
                 showMessageDialog("Contact successfully updated");
                 removeAllTasksFromUser(userID)
-            }else{
-                showAddTaskDialog();
             }
         })
         .catch(error => { console.error("Error:", error); });

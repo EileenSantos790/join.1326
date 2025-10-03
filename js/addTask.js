@@ -324,6 +324,7 @@ function createTask() {
     if (!checkRequiredFields()) { return; }
     const taskData = getTaskData();
     saveTaskToDatabase(taskData);
+    showAddTaskDialog();
     goToBoardHtml();
 }
 
@@ -399,13 +400,14 @@ function goToBoardHtml() {
 async function assignedToUser(taskId) {
     const task = await getTaskById(taskId);
     const users = task.assignedTo;
+    if (!users) return [];
     for (let index = 0; index < users.length; index++) {
         const userId = users[index].id;
         const user = await searchContactById(userId);
-        if (user.tasks?.length){
+        if (user.tasks?.length) {
             user.tasks.push(taskId)
-        }else {
-             user.tasks = [taskId]
+        } else {
+            user.tasks = [taskId]
         }
         updateContact(userId, user, true);
     }
@@ -424,5 +426,14 @@ async function getTaskById(taskId) {
 function showAddTaskDialog() {
     const overlay = document.getElementById("addTaskOverlay");
     overlay.classList.add("show");
-    document.getElementById('addTaskOverlayBackground').style.display = "flex";
+    const taskOverlay = document.getElementById('addTaskOverlayBackground');
+
+    if (taskOverlay) {
+        taskOverlay.style.display = "flex"
+    } else {
+        showAddTaskOverlaySuccessMessage();
+        setTimeout(() => {
+            closeAddTaskOverlay();
+        }, 1000);
+    }
 }
