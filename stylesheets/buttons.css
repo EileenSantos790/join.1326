@@ -311,3 +311,25 @@ button:hover {
     background-color: #2A3647;
     color: white;
 }
+
+.buttonOk {
+    width: 89px;
+    height: 57px;
+    background-color: #2A3647;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.buttonOk:hover {
+    background-color: #29ABE2;
+}
+
+.buttonOk:active {
+    background-color: #091931;
+}

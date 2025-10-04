@@ -461,3 +461,9 @@ function onDragLeave(ev) {
         lane.querySelectorAll('.insertionBefore').forEach(el => el.classList.remove('insertionBefore'));
     }
 }
+
+
+function editContact(parameter) {
+    const content = document.getElementById("boardOverlayContent");
+    content.innerHTML = getBoardOverlayEditTaskTemplate();
+}
