@@ -1,6 +1,8 @@
 let allTasks = [];
+let draggedTaskId = null;
+let dropPlaceholder = document.createElement('div');
+dropPlaceholder.className = 'dropPlaceholder';
 
-// Trigger callback every time the element appears (e.g., when navigating to Board)
 function onElementAppear(selector, cb) {
     let present = false;
     const check = () => {
@@ -8,14 +10,14 @@ function onElementAppear(selector, cb) {
         if (el && !present) {
             present = true;
             cb(el);
-        } else if (!el && present) { present = false; } // element removed; allow future appearances to trigger again
+        } else if (!el && present) { present = false; }
     };
-    check(); // initial check in case it's already there
-    const observer = new MutationObserver(() => check()); // observe DOM changes to detect future inserts/removals
+    check();
+    const observer = new MutationObserver(() => check());
     observer.observe(document.documentElement, { childList: true, subtree: true });
 }
 
-onElementAppear('#boardContainer', () => {
+onElementAppear('#boardTodoContainer', () => {
     loadBoard();
 });
 
@@ -23,24 +25,53 @@ async function loadBoard() {
     const tasks = await getTasks();
     const arrTasks = getTasksToArray(tasks)
     allTasks = arrTasks;
-    renderBoard(arrTasks);
+    arrTasks.length && renderBoard(arrTasks);
 }
 
 function renderBoard(tasks) {
-    const noTaskSection = document.getElementById("noTasks");
-    if (!tasks.length) { noTaskSection.innerHTML = `<div class="spaceHolderContainer">No tasks to do</div>`; return }
+    const statuses = ['Todo', 'Progress', 'Feedback', 'Done'];
 
-    const section = document.getElementById("boardContainer");
-    let html = "";
+    statuses.forEach(s => {
+        const lane = document.getElementById(`board${s}Container`);
+        const ph = document.getElementById(`spaceHolder${s}Container`);
+        if (lane) {
+            lane.innerHTML = '';
+            lane.classList.remove('dropActive', 'dropAtEnd');
+            if (!lane.dataset.dndBound) {
+                lane.addEventListener('dragover', onDragOver);
+                lane.addEventListener('drop', onDrop);
+                lane.addEventListener('dragleave', onDragLeave);
+                lane.dataset.dndBound = '1';
+            }
+            if (ph && !ph.dataset.dndBound) {
+                ph.addEventListener('dragover', onDragOver);
+                ph.addEventListener('drop', onDrop);
+                ph.addEventListener('dragleave', onDragLeave);
+                ph.dataset.dndBound = '1';
+            }
+        }
+        if (ph) ph.classList.remove('d-none');
+    });
+
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
-        html += `<div id=${task.id} class="boardCardContainer" onclick=openTaskDetails('${task.id}')>`;
-        const description = task.description.length > 7 ? task.description.split(" ", 7).join(" ").concat("...") : task.description
-        if (task.category === 'User Story') {
-            html += `<div class="categoryFieldUserStory">User Story</div>`
-        } else { html += `<div class="categoryFieldTechnicalTask">Technical Task</div>` }
+        const status = task.status;
+        const lane = document.getElementById(`board${status}Container`);
+        if (!lane) continue;
+        const ph = document.getElementById(`spaceHolder${status}Container`);
+        if (ph) ph.classList.add('d-none');
+        renderCard(task, lane);
+    }
+}
 
-        html += `<div class="titleOfTask">${task.title}</div>
+function renderCard(task, card) {
+    let html = `<div id="${task.id}" class="boardCardContainer drag" draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)" onclick="openTaskDetails('${task.id}')">`;
+    const description = task.description.length > 7 ? task.description.split(" ", 7).join(" ").concat("...") : task.description
+    if (task.category === 'User Story') {
+        html += `<div class="categoryFieldUserStory">User Story</div>`
+    } else { html += `<div class="categoryFieldTechnicalTask">Technical Task</div>` }
+
+    html += `<div class="titleOfTask">${task.title}</div>
                 <div class="descriptionOfTask">${description || ""}</div>
                 ${renderProgressBar(task)}
                 <div class="contactsAndPriorityContainer">
@@ -48,8 +79,8 @@ function renderBoard(tasks) {
                     <div>${renderPriorityOnBoard(task.priority)}</div>
                 </div>
                 </div>`;
-    }
-    section.innerHTML = html
+
+    card.innerHTML += html;
 }
 
 function renderProgressBar(task) {
@@ -246,10 +277,8 @@ async function deleteTask(taskId) {
     try {
         await updateContactTask(taskId);
         await fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "DELETE" });
-
-        allTasks = allTasks.filter(t => t.id !== taskId);
-        renderBoard(allTasks);
         closeOverlay();
+        goToBoardHtml();
     } catch (err) {
         console.error("Error on delete task", err);
     }
@@ -316,5 +345,119 @@ async function removeAllTasksFromUser(userId) {
         await Promise.all(ops);
     } catch (err) {
         console.error("Error removing user's tasks:", err);
+    }
+}
+
+function onDragStart(ev) {
+    const card = ev.currentTarget;
+    draggedTaskId = card.id;
+    ev.dataTransfer.effectAllowed = 'move';
+    ev.dataTransfer.setData('text/plain', draggedTaskId);
+    card.classList.add('dragging');
+    dropPlaceholder.style.height = card.offsetHeight + 'px';
+    dropPlaceholder.style.width = '100%';
+}
+
+function onDragEnd(ev) {
+    const card = ev.currentTarget;
+    card.classList.remove('dragging');
+    if (dropPlaceholder.parentElement) dropPlaceholder.parentElement.removeChild(dropPlaceholder);
+    draggedTaskId = null;
+}
+
+function onDragOver(ev) {
+    ev.preventDefault();
+    ev.dataTransfer.dropEffect = 'move';
+    let container = null;
+    const ct = ev.currentTarget;
+    if (ct.classList && ct.classList.contains('boardLaneBody')) {
+        container = ct;
+    } else if (ct.id && ct.id.startsWith('spaceHolder')) {
+        const mappedId = ct.id.replace('spaceHolder', 'board');
+        container = document.getElementById(mappedId);
+    } else {container = ct.closest('.boardLaneBody');}
+    if (!container) return;
+    container.classList.add('dropActive');
+    container.classList.remove('dropAtEnd');
+    container.querySelectorAll('.insertionBefore').forEach(el => el.classList.remove('insertionBefore'));
+    const afterElement = getDragAfterElement(container, ev.clientY);
+
+    if (afterElement == null) {
+        if (dropPlaceholder.parentElement !== container) container.appendChild(dropPlaceholder);
+        else container.appendChild(dropPlaceholder); // move to end if not already there
+        container.classList.add('dropAtEnd');
+    } else {
+        afterElement.classList.add('insertionBefore');
+        if (afterElement.previousSibling !== dropPlaceholder) {
+            container.insertBefore(dropPlaceholder, afterElement);
+        }
+    }
+}
+
+async function onDrop(ev) {
+    ev.preventDefault();
+    let container = null;
+    const ct = ev.currentTarget;
+    if (ct.classList && ct.classList.contains('boardLaneBody')) {
+        container = ct;
+    } else if (ct.id && ct.id.startsWith('spaceHolder')) {
+        const mappedId = ct.id.replace('spaceHolder', 'board');
+        container = document.getElementById(mappedId);
+    } else {
+        container = ct.closest('.boardLaneBody');
+    }
+    if (!container) return;
+
+    const targetStatus = container.dataset.status || '';
+    const droppedId = ev.dataTransfer.getData('text/plain') || draggedTaskId;
+    if (!droppedId) return;
+
+    const dragging = document.getElementById(droppedId);
+    if (dragging && dropPlaceholder.parentElement === container) {
+        container.insertBefore(dragging, dropPlaceholder);
+    } else if (dragging && !dropPlaceholder.parentElement) {
+        container.appendChild(dragging);
+    }
+    const byId = new Map(allTasks.map(t => [t.id, t]));
+    Array.from(container.querySelectorAll('.boardCardContainer')).forEach(el => {
+        const t = byId.get(el.id);
+        if (t) t.status = targetStatus;
+    });
+
+    try {
+        await fetch(`${BASE_URL}tasks/${droppedId}.json`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: targetStatus })
+        });
+    } catch (e) {
+        console.error('Failed to update task status:', e);
+    }
+
+    if (dropPlaceholder.parentElement) dropPlaceholder.parentElement.removeChild(dropPlaceholder);
+    container.classList.remove('dropActive', 'dropAtEnd');
+    container.querySelectorAll('.insertionBefore').forEach(el => el.classList.remove('insertionBefore'));
+    renderBoard(allTasks);
+}
+
+function getDragAfterElement(container, y) {
+    const elements = [...container.querySelectorAll('.boardCardContainer:not(.dragging)')];
+    return elements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - (box.top + box.height / 2);
+        if (offset < 0 && offset > closest.offset) {
+            return { offset, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
+}
+
+function onDragLeave(ev) {
+    const lane = ev.currentTarget;
+    if (lane && lane.classList) {
+        lane.classList.remove('dropActive');
+        lane.classList.remove('dropAtEnd');
+        lane.querySelectorAll('.insertionBefore').forEach(el => el.classList.remove('insertionBefore'));
     }
 }

@@ -357,7 +357,7 @@ function getTaskData() {
         color: contact.color
     }));
     const oSubtasks = subtasks.map(subtask => ({ text: subtask.text, done: subtask.done }));
-    const status = "todo"
+    const status = "Todo";
     return { title, description, dueDate, priority, category, assignedTo, subtasks: oSubtasks, status };
 }
 
