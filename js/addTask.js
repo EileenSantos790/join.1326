@@ -46,11 +46,17 @@ function toggleDropdownAssignedTo() {
 /**
  * marks the clicked contact.
  */
-function addTaskSelectContact(containerId, checkboxOffId, checkboxOnId, initial, color, userId, name) {
-    document.getElementById(containerId).classList.toggle('dropdownItemOff');
-    document.getElementById(containerId).classList.toggle('dropdownItemOn');
-    document.getElementById(checkboxOffId).classList.toggle('d-none');
-    document.getElementById(checkboxOnId).classList.toggle('d-none');
+
+function addTaskSelectContact(userId, initial, color, name) {
+    const container = document.getElementById(`assignedToContact-${userId}`);
+    const checkboxOff = document.getElementById(`assignedToCheckbox-${userId}`);
+    const checkboxOn = document.getElementById(`assignedToCheckboxWhite-${userId}`);
+
+    container.classList.toggle('dropdownItemOff');
+    container.classList.toggle('dropdownItemOn');
+    checkboxOff.classList.toggle('d-none');
+    checkboxOn.classList.toggle('d-none');
+
     saveClickedContact(initial, color, userId, name);
     addContactToTask();
 }
@@ -90,14 +96,14 @@ async function renderAllContacts() {
  */
 
 function saveClickedContact(initial, color, userId, name) {
-    let index = selectedContactsAddTask.findIndex(c => c.initial === initial);
+    let index = selectedContactsAddTask.findIndex(c => c.id === userId);
 
     if (index !== -1) {
         selectedContactsAddTask.splice(index, 1);
     } else {
         selectedContactsAddTask.push({ initial, color, "id": userId, name });
     }
-    selectedContactsAddTask.sort();
+    selectedContactsAddTask.sort((a, b) => a.initial.localeCompare(b.initial));
 }
 
 /**

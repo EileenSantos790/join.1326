@@ -318,3 +318,9 @@ async function removeAllTasksFromUser(userId) {
         console.error("Error removing user's tasks:", err);
     }
 }
+
+
+function editContact(parameter) {
+    const content = document.getElementById("boardOverlayContent");
+    content.innerHTML = getBoardOverlayEditTaskTemplate();
+}
