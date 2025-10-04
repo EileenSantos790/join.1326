@@ -59,16 +59,20 @@ function isUserLoggedIn() {
     userInitials = document.getElementById('userInitials');
     greetingUserName = document.getElementById('greetingUserName');
 
-    sessionInit();
+
     if (!loggedIn && !allowPublic) {
         window.location.href = 'index.html';
     }
+    else {
+        sessionInit();
+    }
 }
 
-function sessionInit() {
+async function sessionInit() {
     userInitials.innerText = sessionStorage.getItem('userName').split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
     setGreetingMessage();
 }
+
 
 async function setGreetingMessage() {
 

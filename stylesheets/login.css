@@ -11,7 +11,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(255, 255, 255);
-    z-index: 1;
+    z-index: 100;
     animation: fadeOut 0.5s ease forwards;
     animation-delay: 0.3s;
 }
@@ -33,7 +33,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 274px;
-    z-index: 2;
+    z-index: 101;
     animation: moveLogo 0.5s ease forwards;
     animation-delay: 0.3s;
 }

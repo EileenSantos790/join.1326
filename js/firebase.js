@@ -27,7 +27,7 @@ async function checkIfDataIsCorrect(containerLoginId, containerPasswordId) {
 
 
     for (let key in users) {
-        if (email == users[key].user.email && password == users[key].user.passwort) {
+        if (email == users[key].user.email && password == users[key].user.password) {
             window.location.href = "home.html";
             userfound = true;
             sessionStorage.setItem("userfound", userfound);
@@ -52,10 +52,10 @@ function tryToSignUp(confirmId) {
     let signUpName = document.getElementById("signUpNameInput").value;
     let signUpEmail = document.getElementById("signUpEmailInput").value;
     let signUpPassword = document.getElementById("signUpPasswordInput").value;
-    let signUpPasswortConfirm = document.getElementById("signUpPasswordConfirmInput").value;
+    let signUpPasswordConfirm = document.getElementById("signUpPasswordConfirmInput").value;
     signUpFormValidationErrorMessage = document.getElementById("signUpFormValidationErrorMessage");
-    if (signUpName !== "" && signUpEmail !== "" && signUpPassword !== "" && signUpPasswortConfirm !== "") {
-        if (signUpPassword === signUpPasswortConfirm) {
+    if (signUpName !== "" && signUpEmail !== "" && signUpPassword !== "" && signUpPasswordConfirm !== "") {
+        if (signUpPassword === signUpPasswordConfirm) {
             checkIfUserAlreadyExists(signUpEmail, signUpName, signUpPassword);
         }
         else {
@@ -104,7 +104,7 @@ function basicJsonStructure(name, email, password, color) {
         user: {
             name: name,
             email: email,
-            passwort: password,
+            password: password,
             color: color,
             initial: getInitials(name),
             phone: "1234567890123"

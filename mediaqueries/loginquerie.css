@@ -1,0 +1,26 @@
+@media (max-width: 1024px) {
+    #overlay {
+        background-color: #2A3647;
+    }
+
+    .loginPageMainContentHeadline {
+        font-size: 56px;
+    }
+
+    .loginPageMainContentSeperator {
+        width: 110px;
+        margin-bottom: 32px;
+    }
+
+    .loginPageMainContentButtons {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loginPageGuestLogInButton,
+    .loginPageLogInButton {
+        width: 180px;
+        height: 51px;
+    }
+}
