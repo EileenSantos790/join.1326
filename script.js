@@ -28,7 +28,6 @@ function togglePasswordVisibility(inputId, iconOffId, iconOnId) {
     }
 }
 
-
 function loadSignUp(htmlName) {
     window.location.href = htmlName;
 }
@@ -55,46 +54,13 @@ function isUserLoggedIn() {
     `;
         return;
     }
-
     userInitials = document.getElementById('userInitials');
     greetingUserName = document.getElementById('greetingUserName');
-
-
     if (!loggedIn && !allowPublic) {
         window.location.href = 'index.html';
     }
     else {
         sessionInit();
-    }
-}
-
-async function sessionInit() {
-    userInitials.innerText = sessionStorage.getItem('userName').split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
-    setGreetingMessage();
-}
-
-
-async function setGreetingMessage() {
-
-    const currentHour = new Date().getHours();
-
-    if (currentHour < 12) {
-        document.getElementById("greetingDayTime").innerText = 'Good Morning, ';
-    }
-    else if (currentHour < 18) {
-        document.getElementById("greetingDayTime").innerText = 'Good Afternoon, ';
-    }
-    else if (currentHour < 24) {
-        document.getElementById("greetingDayTime").innerText = 'Good Night, ';
-    }
-
-    if (sessionStorage.getItem('userName') == 'Guest') {
-
-        greetingDayTime.innerText = greetingDayTime.innerText.slice(0, -1) + '!';
-        greetingUserName.innerHTML = "";
-    }
-    else {
-        greetingUserName.innerHTML = sessionStorage.getItem('userName');
     }
 }
 
@@ -107,11 +73,9 @@ function setFocusBorder(containerId, errorMessageId) {
     }
 }
 
-
 function removeFocusBorder(containerId) {
     document.getElementById(containerId).classList.remove('inputBorderColorFocus');
 }
-
 
 function setErrorBorder(containerLoginId, containerPasswordId) {
     document.getElementById(containerLoginId).classList.add('inputErrorBorder');
@@ -120,10 +84,61 @@ function setErrorBorder(containerLoginId, containerPasswordId) {
     }
 }
 
-
 function setErrorBorderForCategory(containerId) {
     let categoryHeader = document.getElementById('categoryDropdownHeader');
     if (categoryHeader.textContent == "Select task category") {
         document.getElementById(containerId).classList.add('inputErrorBorder');
     }
 }
+
+async function sessionInit() {
+    const user = (sessionStorage.getItem('userName') || '').trim();
+    if (typeof userInitials !== 'undefined' && userInitials) {
+        userInitials.innerText = user
+            .split(' ')
+            .filter(Boolean)
+            .map(n => n[0])
+            .join('')
+            .slice(0, 2)
+            .toUpperCase();
+    }
+    setGreetingMessage();
+}
+
+function setGreetingMessage() {
+    const greetingDayTimeEl = document.getElementById('greetingDayTime');
+    const greetingUserNameEl = document.getElementById('greetingUserName');
+    if (!greetingDayTimeEl) return;
+
+    const h = new Date().getHours();
+    const greeting = h < 12 ? 'Good Morning, '
+                  : h < 18 ? 'Good Afternoon, '
+                           : 'Good Night, ';
+
+    const userName = (sessionStorage.getItem('userName') || '').trim();
+    greetingDayTimeEl.innerText = greeting;
+    if (greetingUserNameEl) {
+        greetingUserNameEl.textContent = userName || 'Guest';
+    }
+}
+
+(function setupGreetingAutoUpdate() {
+    const runNow = () => setGreetingMessage();
+    const schedule = () => {
+        runNow();
+        requestAnimationFrame(runNow);
+        setTimeout(runNow, 0);
+        setTimeout(runNow, 100);
+        setTimeout(runNow, 300);
+    };
+    schedule();
+    window.addEventListener('DOMContentLoaded', schedule);
+    window.addEventListener('load', schedule);
+    window.addEventListener('pageshow', schedule);
+    window.addEventListener('visibilitychange', schedule);
+    window.addEventListener('hashchange', schedule);
+    document.addEventListener('click', () => schedule(), true);
+    const observer = new MutationObserver(() => { schedule(); });
+    try { observer.observe(document.body, { childList: true, subtree: true }); } catch (_) {}
+    window.setGreetingMessage = setGreetingMessage;
+})();
