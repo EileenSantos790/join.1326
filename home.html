@@ -53,17 +53,20 @@
     <!-- Header -->
     <header id="header">
         <div class="headerContainer">
-            <p>Kanban Project Management Tool</p>
-            <div class="headerIcons">
-                <img data-file="./htmlTemplates/help.html" class="helpIcon" src="./assets/icons/help.png"
-                    alt="help icon">
+            <div class="headerContainerContent">
+                <p class="headerMainText">Kanban Project Management Tool</p>
+                <img class="headerJoinLogoMobile" src="./assets/img/joinSymbol.svg" alt="Join Logo">
+                <div class="headerIcons">
+                    <img data-file="./htmlTemplates/help.html" class="helpIcon" src="./assets/icons/help.png"
+                        alt="help icon">
 
-                <div class="userProfileCirle" onclick="showSubmenu()">
-                    <p id="userInitials">XX</p>
+                    <div class="userProfileCirle" onclick="showSubmenu()">
+                        <p id="userInitials">XX</p>
                     <div id="submenu" class="submenu d-none">
                         <p><a href="./htmlTemplates/privacyPolicy.html">Legal Notice</a></p>
                         <p><a href="./htmlTemplates/legalNotice.html">Privacy Policy</a></p>
                         <p><a onclick="logout()">Log out</a></p>
+                    </div>
                     </div>
                 </div>
             </div>

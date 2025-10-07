@@ -5,6 +5,14 @@
     border-radius: 50px;
 }
 
+.blueSeparationLineMobile {
+    width: 86px;
+    height: 0px;
+    border: 2px solid #0C8CE9;
+    border-radius: 50px;
+    display: none;
+}
+
 .greySeparationLine {
     width: 3px;
     height: 102px;
@@ -15,7 +23,7 @@
 .summaryDashboard {
     display: flex;
     padding-top: 56px;
-    max-width: 560px;
+    /* max-width: 560px; */
     justify-content: space-between;
 }
 
@@ -29,6 +37,8 @@
 .summaryDashboardContainerLeft {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 560px;
 }
 
 .summaryDashboardContainerRight {
@@ -41,6 +51,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 32px;
 }
 
 .summaryIcon {
@@ -49,10 +60,15 @@
     height: 69px;
 }
 
+.summaryIconMobile {
+    display: none;
+}
+
 .smallWindowContainer {
     background-color: #FFFFFF;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    width: 264px;
+    max-width: 264px;
+    width: 100%;
     height: 168px;
     border-radius: 30px;
     display: flex;
@@ -122,14 +138,15 @@
 .xsmallWindowsContainer {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 28px;
     justify-content: center;
 }
 
 .xsmallWindows {
     background-color: #FFFFFF;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    width: 168px;
+    max-width: 168px;
+    width: 100%;
     Height: 168px;
     border-radius: 30px;
     display: flex;
@@ -175,7 +192,8 @@
     margin-block-start: 0em;
     margin-block-end: 0em;
     text-align: center;
-    padding-inline: 42.5px;
+    /* padding-inline: 42.5px; */
+    padding: 0 10px;
 }
 
 #calenderDate {
@@ -192,12 +210,16 @@
     font-size: 47px;
     font-weight: 500;
     color: #2A3647;
-    width: 385px;
+    /* width: 385px; */
 }
 
 #greetingUserName {
     font-size: 64px;
     font-weight: 700;
     color: #23A3E9;
-    width: 385px;
+    /* width: 385px; */
+}
+
+.overlaySummaryGreeting {
+    display: none;
 }

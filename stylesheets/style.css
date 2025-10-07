@@ -20,5 +20,5 @@ body {
     align-items: center;
     width: auto;
     height: 73px;
-    width: 625px;
+    max-width: 625px;
 }

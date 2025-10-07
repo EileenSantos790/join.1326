@@ -1,13 +1,13 @@
 header{
     margin-left: 232px;
     position: relative;
-    z-index: 10;
+    z-index: 101;
 }
 
 .headerContainer{
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; */
     padding-block: 17px;
     background-color: #f8f9fa;
     padding-right: 40px;
@@ -17,6 +17,17 @@ header{
     margin: 0;
     position: relative;
     z-index: 10;
+}
+
+.headerJoinLogoMobile {
+    display: none;
+}
+
+.headerContainerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1920px;
 }
 
 .headerIcons{
