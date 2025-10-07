@@ -1,3 +1,14 @@
+@media (max-width: 1200px) {
+
+    .contentContainerPadding {
+        padding-left: 60px;
+    }
+
+    .summaryDashboardContainer {
+        gap: 40px;
+    }
+}
+
 @media (max-width: 1024px) {
 
     .navContainer {
@@ -78,5 +89,186 @@
         margin-left: 0 !important;
     }
 
+    #overlaySummaryMobile {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255);
+        z-index: 100;
+        animation: fadeOut 0.5s ease forwards;
+        animation-delay: 1s;
+    }
 
+    .overlaySummaryGreetingsMobile {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .summaryDashboardContainerRight {
+        display: none;
+    }
+
+    .overlaySummaryGreeting {
+        display: block;
+    }
+
+    #greetingDayTimeMobile {
+        font-size: 36px;
+        font-weight: 400;
+        color: #2A3647;
+    }
+
+    #greetingUserNameMobile {
+        font-size: 47px;
+        font-weight: 700;
+        color: #23A3E9;
+    }
+
+    .summaryDashboardContainerLeft {
+        max-width: 396px;
+    }
+
+    .contentContainerPadding {
+        padding-top: 48px;
+        padding-bottom: 120px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .blueSeparationLine {
+        display: none;
+    }
+
+    .blueSeparationLineMobile {
+        display: block;
+        margin-top: 8px;
+    }
+
+    .templteTitle {
+        display: flex;
+        flex-direction: column;
+        align-items: unset;
+        height: unset;
+        gap: 8px;
+    }
+
+    h1 {
+        font-size: 47px;
+    }
+
+    h4 {
+        font-size: 20px;
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+
+    .summaryDashboard {
+        padding-top: 40px;
+        display: block;
+    }
+
+    .helpIcon {
+        display: none;
+    }
+
+    .headerContainer {
+        padding-block: 9px;
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .userProfileCirle {
+        width: 34px;
+        height: 34px;
+    }
+
+    .userProfileCirle p {
+        font-size: 16px;
+    }
+
+    .headerMainText {
+        display: none;
+    }
+
+    .headerJoinLogoMobile {
+        display: block;
+        width: 32px;
+        height: 39px;
+    }
+
+    .smallWindows {
+        gap: 24px;
+    }
+
+    .largeWindowContainer {
+        gap: 20px;
+    }
+
+    .summaryDateContainerMobile {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #calenderDate {
+        font-size: 16px;
+    }
+
+    .penIcon,
+    .summaryIcon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .xsmallWindowsContainer {
+        gap: 24px;
+    }
+
+    .xsmallWindows {
+        max-width: 116px;
+        height: 116px;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .summaryPenIconNormal {
+        display: none;
+    }
+
+    .summaryIconMobile {
+        display: block;
+    }
+
+    .summaryNumber {
+        font-size: 47px;
+    }
+
+    .summaryTextMobile {
+        font-size: 14px;
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+
+    .greySeparationLine {
+        height: 68px;
+    }
+
+    .smallWindowContainer {
+        max-width: 186px;
+        height: 110px;
+    }
+
+    .largeWindowContainer {
+        height: 110px;
+    }
 }

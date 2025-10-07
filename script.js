@@ -108,17 +108,21 @@ async function sessionInit() {
 function setGreetingMessage() {
     const greetingDayTimeEl = document.getElementById('greetingDayTime');
     const greetingUserNameEl = document.getElementById('greetingUserName');
-    if (!greetingDayTimeEl) return;
+    const greetingDayTimeElMobile = document.getElementById('greetingDayTimeMobile');
+    const greetingUserNameElMobile = document.getElementById('greetingUserNameMobile');
+    if (!greetingDayTimeEl || !greetingDayTimeElMobile) return;
 
     const h = new Date().getHours();
     const greeting = h < 12 ? 'Good Morning, '
-                  : h < 18 ? 'Good Afternoon, '
-                           : 'Good Night, ';
+        : h < 18 ? 'Good Afternoon, '
+            : 'Good Night, ';
 
     const userName = (sessionStorage.getItem('userName') || '').trim();
     greetingDayTimeEl.innerText = greeting;
-    if (greetingUserNameEl) {
+    greetingDayTimeElMobile.innerText = greeting;
+    if (greetingUserNameEl || greetingUserNameElMobile) {
         greetingUserNameEl.textContent = userName || 'Guest';
+        greetingUserNameElMobile.textContent = userName || 'Guest'
     }
 }
 
@@ -139,6 +143,6 @@ function setGreetingMessage() {
     window.addEventListener('hashchange', schedule);
     document.addEventListener('click', () => schedule(), true);
     const observer = new MutationObserver(() => { schedule(); });
-    try { observer.observe(document.body, { childList: true, subtree: true }); } catch (_) {}
+    try { observer.observe(document.body, { childList: true, subtree: true }); } catch (_) { }
     window.setGreetingMessage = setGreetingMessage;
 })();
