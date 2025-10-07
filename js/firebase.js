@@ -7,6 +7,13 @@ let signUpFormValidationErrorMessage;
 
 let userfound = false;
 
+function isUserAlreadyLogedIn() {
+    const loggedIn = sessionStorage.getItem('userfound') === 'true';
+    if (loggedIn) {
+        window.location.href = 'home.html';
+    }
+}
+
 function tryToLogin(containerLoginId, containerPasswordId) {
     email = document.getElementById("emailInput").value;
     password = document.getElementById("passwordInput").value;
@@ -116,7 +123,7 @@ function getRandomHexColor() {
     return "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
 }
 
-function getInitials(name){
+function getInitials(name) {
     return name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
 }
 

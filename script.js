@@ -142,3 +142,13 @@ function setGreetingMessage() {
     try { observer.observe(document.body, { childList: true, subtree: true }); } catch (_) {}
     window.setGreetingMessage = setGreetingMessage;
 })();
+
+function showSubmenu() {
+    const submenu = document.getElementById('submenu');
+    submenu.classList.toggle('d-none');
+}
+
+function logout(){
+    sessionStorage.clear();
+    window.location.href = 'index.html';
+}

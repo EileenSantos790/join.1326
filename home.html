@@ -53,16 +53,23 @@
     <!-- Header -->
     <header id="header">
         <div class="headerContainer">
-            <p>Kanban Project Managment Tool</p>
+            <p>Kanban Project Management Tool</p>
             <div class="headerIcons">
                 <img data-file="./htmlTemplates/help.html" class="helpIcon" src="./assets/icons/help.png"
                     alt="help icon">
-                <div class="userProfileCirle">
+
+                <div class="userProfileCirle" onclick="showSubmenu()">
                     <p id="userInitials">XX</p>
+                    <div id="submenu" class="submenu d-none">
+                        <p><a href="./htmlTemplates/privacyPolicy.html">Legal Notice</a></p>
+                        <p><a href="./htmlTemplates/legalNotice.html">Privacy Policy</a></p>
+                        <p><a onclick="logout()">Log out</a></p>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
+
 
 
     <!-- Navigation Container - left side bar-->
@@ -266,7 +273,8 @@
                         </svg></button>
                     <button onclick="createTask()" class="buttonCreateTask">Create Task</button>
                 </div>
-                <div onclick="closeAddTaskOverlay()" class="addTaskBoarOverlayCloseButton"><img src="./assets/icons/close.svg" alt=""></div>
+                <div onclick="closeAddTaskOverlay()" class="addTaskBoarOverlayCloseButton"><img
+                        src="./assets/icons/close.svg" alt=""></div>
             </div>
             <div id="addTaskBoardOverlay" class="addTaskOverlay d-none">
                 <div id="addTaskOverlay" class="addTaskOverlayContent">Task added to board <img

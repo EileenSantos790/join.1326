@@ -23,4 +23,19 @@
         width: 180px;
         height: 51px;
     }
+
+    .signUpInputContainer,
+    .signUpValidationInputContainer {
+        height: 46px;
+        width: 364px;
+    }
+
+    .loginPageMainContentHeadline {
+        height: 475px;
+        width: 396px;
+    }
+
+    .loginPageHeader {
+        display: none;
+    }
 }
