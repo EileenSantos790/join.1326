@@ -178,13 +178,13 @@
     display: flex;
     gap: 8px;
     align-items: center;
+    cursor: pointer;
 }
 
 .editContactBtn:hover {
     cursor: pointer;
     color: #2AAAE2;
     font-weight: bold;
-    cursor: pointer;
 }
 
 .editContactBtn .deleteAndEditIcon {

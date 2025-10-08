@@ -361,7 +361,7 @@ function deleteContact(userID) {
             loadContacts();
             removeAllTasksFromUser(userID)
             showMessageDialog("Contact successfully deleted");
-            
+
         })
         .catch(error => { console.error("Error:", error); });
 }
@@ -428,7 +428,7 @@ function updateContact(userID, user, createTask = false) {
     fetch(`${BASE_URL}users/${userID}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ user }) })
         .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
         .then(() => {
-            if (!createTask){
+            if (!createTask) {
                 closeOverlay();
                 const overlay = document.getElementById("contactOverlay");
                 if (overlay) { overlay.classList.remove("active"); overlay.innerHTML = ""; }
@@ -439,5 +439,46 @@ function updateContact(userID, user, createTask = false) {
             }
         })
         .catch(error => { console.error("Error:", error); });
+}
+
+async function removeTaskFromUser(userId, taskId) {
+    try {
+        const user = await searchContactById(userId);
+        if (!user) return;
+        const tasks = Array.isArray(user.tasks) ? user.tasks : [];
+        const newTasks = tasks.filter(tid => tid !== taskId);
+        if (newTasks.length === tasks.length) return;
+        user.tasks = newTasks;
+        await updateContact(userId, user, true);
+    } catch (error) {
+        console.error(`Error removing task ${taskId} from user ${userId}:`, error);
+    }
+}
+
+async function removeTaskFromUsers(userIds, taskId) {
+    if (!Array.isArray(userIds) || !taskId) return;
+    const ops = userIds.map(uid => removeTaskFromUser(uid, taskId));
+    await Promise.allSettled(ops);
+}
+
+async function addTaskToUser(userId, taskId) {
+    try {
+        const user = await searchContactById(userId);
+        if (!user) return;
+        const tasks = Array.isArray(user.tasks) ? user.tasks : [];
+        if (!tasks.includes(taskId)) {
+            tasks.push(taskId);
+            user.tasks = tasks;
+            await updateContact(userId, user, true);
+        }
+    } catch (error) {
+        console.error(`Error adding task ${taskId} to user ${userId}:`, error);
+    }
+}
+
+async function addTaskToUsers(userIds, taskId) {
+    if (!Array.isArray(userIds) || !taskId) return;
+    const ops = userIds.map(uid => addTaskToUser(uid, taskId));
+    await Promise.allSettled(ops);
 }
 
