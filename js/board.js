@@ -1,4 +1,6 @@
 let allTasks = [];
+let subtasksListOnEdit = [];
+let usersListOnEdit = [];
 let draggedTaskId = null;
 let dropPlaceholder = document.createElement('div');
 dropPlaceholder.className = 'dropPlaceholder';
@@ -179,7 +181,7 @@ async function openTaskDetails(taskId) {
         ${getSubtasksOnBoardDetails(task.subtasks)}
 
         <div class="containerEditTaskOverlay">
-            <div class="editContactBtn" onclick="editContact('meuID')">
+            <div class="editContactBtn" onclick="editTask('${task.id}')">
                 <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z"
@@ -375,7 +377,7 @@ function onDragOver(ev) {
     } else if (ct.id && ct.id.startsWith('spaceHolder')) {
         const mappedId = ct.id.replace('spaceHolder', 'board');
         container = document.getElementById(mappedId);
-    } else {container = ct.closest('.boardLaneBody');}
+    } else { container = ct.closest('.boardLaneBody'); }
     if (!container) return;
     container.classList.add('dropActive');
     container.classList.remove('dropAtEnd');
@@ -463,7 +465,70 @@ function onDragLeave(ev) {
 }
 
 
-function editContact(parameter) {
+async function editTask(taskId) {
+    resetAddTaskSide()
     const content = document.getElementById("boardOverlayContent");
-    content.innerHTML = getBoardOverlayEditTaskTemplate();
+    content.innerHTML = getBoardOverlayEditTaskTemplate(taskId);
+    const task = await getTaskById(taskId)
+
+    if (task) {
+        document.getElementById("addTasktTitleInput").value = task.title;
+        document.getElementById("addTaskTextarea").innerHTML = task.description;
+        document.getElementById("addTasktDateInput").value = task.dueDate;
+
+        const oPriority = mapPriority(task.priority)
+        document.getElementById(oPriority.buttonIconOn).classList.remove('d-none');
+        document.getElementById(oPriority.buttonIconOff).classList.add('d-none');
+        document.getElementById(oPriority.buttonId)?.classList.add(oPriority.buttonClass);
+
+        getContactsOnEditBoardTemplate(task.assignedTo);
+        subtasksListOnEdit = task.subtasks;
+        renderSubtasksOnEdit(task.subtasks);
+
+    }
+}
+
+function mapPriority(priority) {
+    switch (priority) {
+        case "Urgent":
+            return { buttonId: "addTaskUrgentButton", buttonClass: "buttonUrgentActive", buttonIconOn: "urgentButtonOn", buttonIconOff: "urgentButtonOff" };
+        case "Medium":
+            return { buttonId: "addTaskMediumButton", buttonClass: "buttonMediumActive", buttonIconOn: "mediumButtonOn", buttonIconOff: "urgentButtonOff" };
+        default:
+            return { buttonId: "addTaskLowButton", buttonClass: "buttonLowActive", buttonIconOn: "lowButtonOn", buttonIconOff: "lowButtonOff" };
+    }
+}
+
+function getContactsOnEditBoardTemplate(users) {
+    if (!users) return "";
+    let contentDiv = document.getElementById('addTaskAddedContactIcons');
+    let template = ''
+    users.forEach(user => {
+        usersListOnEdit.push(user)
+        template += `<div class="margin_top8 avatar" style="background:${user.color}">${user.initial}</div>`
+    });
+    contentDiv.innerHTML = template;
+}
+
+let selectedTaskId = null;
+
+function selectTaskCard(taskId) {
+    document.querySelectorAll('.boardCardContainer.is-selected')
+        .forEach(el => el.classList.remove('is-selected'));
+    const el = document.getElementById(taskId);
+    if (el) { el.classList.add('is-selected'); selectedTaskId = taskId; }
+}
+
+function clearSelectedCard() {
+    document.querySelectorAll('.boardCardContainer.is-selected')
+        .forEach(el => el.classList.remove('is-selected'));
+    selectedTaskId = null;
+}
+
+function renderSubtasksOnEdit(subtasks) {
+    let list = document.getElementById('subtaskListContent');
+    list.innerHTML = "";
+    subtasks.forEach(subtask => {
+        list.innerHTML += getSubtaskListTemplate(subtask);
+    })
 }

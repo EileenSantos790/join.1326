@@ -30,7 +30,7 @@ async function slideinEditContactOverlay() {
  * Finds the close buttons inside the overlay
  * and adds click events to close it.
  */
-async function callCancelBtns(){
+async function callCancelBtns() {
   const cancelBtn = document.getElementById('closeBtnBottom');
   const closeIcon = document.getElementById('closeBtnTop');
 
@@ -44,7 +44,7 @@ async function callCancelBtns(){
  * - stops background scrolling
  * - adds the "show" class so CSS runs the slide-in animation
  */
-async function showoverlay(root){
+async function showoverlay(root) {
   document.body.classList.add('noscroll');
   root.classList.remove('initalHiddenOverlay');
   root.classList.add('show');

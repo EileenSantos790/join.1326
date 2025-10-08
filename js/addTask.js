@@ -40,7 +40,7 @@ function toggleDropdownAssignedTo() {
     document.getElementById('addTaskDropdownAssignedTo').classList.toggle('d-none');
     document.getElementById('addTaskDropdownSearchContent').classList.toggle('d-none');
     document.getElementById('addTaskAddedContactIcons').classList.toggle('d-none');
-    // renderContactsInAddTask();
+    renderContactsInAddTask();
 }
 
 /**
@@ -218,20 +218,26 @@ function clearSubtaskInput() {
 function renderSubtasks() {
     let list = document.getElementById('subtaskListContent');
     list.innerHTML = "";
-    subtasks.forEach(subtask => {
+    let arr = [];
+
+    if (subtasks.length){
+        arr = subtasks
+    }else {arr = subtasksListOnEdit}
+    arr.forEach(subtask => {
         list.innerHTML += getSubtaskListTemplate(subtask);
     })
 }
 
 
 function deleteSubtask(id) {
-    subtasks = subtasks.filter(s => s.id !== id);
+    subtasks = subtasks?.filter(s => s.id !== id);
+    subtasksListOnEdit = subtasksListOnEdit?.filter(s => s.id !== id);
     renderSubtasks();
 }
 
 
 function editSubtask(id) {
-    let subtask = subtasks.find(s => s.id === id);
+    let subtask = subtasks?.find(s => s.id === id) || subtasksListOnEdit.find(s => s.id === id);
     if (!subtask) return;
 
     let element = document.getElementById(`subtask${id}`);
@@ -249,7 +255,7 @@ function saveSubtask(id) {
     if (!input) return;
 
     let newText = input.value.trim() || "untitled";
-    let subtask = subtasks.find(s => s.id === id);
+    let subtask = subtasks?.find(s => s.id === id) || subtasksListOnEdit.find(s => s.id === id);
     if (subtask) subtask.text = newText;
 
     renderSubtasks();
@@ -350,19 +356,18 @@ function checkRequiredFields() {
 }
 
 
-function getTaskData() {
+function getTaskData(editTask = false) {
     const title = document.getElementById('addTasktTitleInput').value;
     const description = document.getElementById('addTaskTextarea').value;
     const dueDate = document.getElementById('addTasktDateInput').value;
     const priority = getSelectedPriority();
     const category = document.getElementById('categoryDropdownHeader').dataset.value;
-    const assignedTo = selectedContactsAddTask.map(contact => ({
-        id: contact.id,
-        initial: contact.initial,
-        name: contact.name,
-        color: contact.color
-    }));
-    const oSubtasks = subtasks.map(subtask => ({ text: subtask.text, done: subtask.done }));
+    const assignedTo = !editTask 
+        ? selectedContactsAddTask.map(contact => ({ id: contact.id, initial: contact.initial, name: contact.name, color: contact.color }))
+        : usersListOnEdit.map(contact => ({ id: contact.id, initial: contact.initial, name: contact.name, color: contact.color }));
+    const oSubtasks = !editTask 
+        ? subtasks.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done })) 
+        : subtasksListOnEdit.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done }));
     const status = "Todo";
     return { title, description, dueDate, priority, category, assignedTo, subtasks: oSubtasks, status };
 }
@@ -389,6 +394,22 @@ function saveTaskToDatabase(taskData) {
             console.error("Erro:", error);
             showMessageDialog("Erro:", error);
         });
+}
+
+function handleUpdateTask(taskId) {
+    const task = getTaskData(true);
+    updateTaskOnDatabase(taskId, task);
+}
+
+function updateTaskOnDatabase(taskId, task) {
+    fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task ) })
+        .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
+        .then(() => {
+                closeOverlay();
+                usersListOnEdit = [];
+                goToBoardHtml()
+        })
+        .catch(error => { console.error("Error:", error); });
 }
 
 /* Redirect to board */

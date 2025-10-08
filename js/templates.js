@@ -69,16 +69,14 @@ function getSelectedContactTemplate(contact, color) {
 
 
 function getSubtaskListTemplate(subtask) {
-    return `
-      <div class="subtaskItem" id="subtask${subtask.id}" ondblclick="editSubtask(${subtask.id})">
+    return `<div class="subtaskItem" id="subtask${subtask.id}" ondblclick="editSubtask(${subtask.id})">
         <li class="subtaskText" id="subtaskText${subtask.id}">${subtask.text}</li>
         <div class="subtaskActions">
           <img src="../assets/icons/subtask_edit.svg" alt="Edit" onclick="editSubtask(${subtask.id})">
           <div class="subtaskSeperator"></div>
           <img src="../assets/icons/subtask_delete.svg" alt="Delete" onclick="deleteSubtask(${subtask.id})">
         </div>
-      </div>
-    `;
+      </div>`;
 }
 
 
@@ -96,7 +94,7 @@ function getSubtaskEditTemplate(subtask) {
 }
 
 
-function getBoardOverlayEditTaskTemplate() {
+function getBoardOverlayEditTaskTemplate(taskId) {
     return `
         <div class="addTaskEditBoardOverlay">
             <div onclick="closeOverlay()" class="editBoardOverlayCloseSection"><img src="../assets/icons/close.svg"
@@ -153,7 +151,7 @@ function getBoardOverlayEditTaskTemplate() {
                                     src="../assets/icons/prio_high_white.svg" alt="Urgent Button Icon"></button>
                             <button id="addTaskMediumButton"
                                 onclick="activatePriorityButton('addTaskMediumButton','buttonMediumActive','mediumButtonOff','mediumButtonOn')"
-                                class="buttonMedium buttonMediumActive">Medium <img id="mediumButtonOff"
+                                class="buttonMedium">Medium <img id="mediumButtonOff"
                                     class="buttonMediumIcon d-none" src="../assets/icons/prio_media.svg"
                                     alt="Medium Button Icon"><img id="mediumButtonOn" class="buttonMediumIcon"
                                     src="../assets/icons/prio_media_white.svg" alt="Medium Button Icon"></button>
@@ -165,6 +163,7 @@ function getBoardOverlayEditTaskTemplate() {
                                     alt="Low Button Icon"></button>
                         </div>
                     </div>
+
                     <div class="paddingBottom24">
                         <p>Assigned to</p>
                         <div id="addTaskAssignedToDropdownContent" class="dropdown">
@@ -189,32 +188,7 @@ function getBoardOverlayEditTaskTemplate() {
                             </div>
                         </div>
                     </div>
-                    <div class="paddingBottom24">
-                        <p>Category</p>
-                        <div class="dropdown">
-                            <div id="addTaskCategoryDropdownContent" class="addTaskDropDownSection bgWhite">
-                                <div id="addTaskCategoryHeaderContainer" onclick="toggleDropdownCategory()"
-                                    class="addTaskDropdownContainer bgWhite">
-                                    <span id="categoryDropdownHeader">Select task category</span>
-                                    <img id="dropdownDownIcon" class="dropdownDownIcon"
-                                        src="../assets/icons/dropdown-down.svg" alt="Arrown down">
-                                    <img id="dropdownUpIcon" class="dropdownDownIcon d-none"
-                                        src="../assets/icons/dropdown-up.svg" alt="Arrow up">
-                                </div>
-                                <div id="categoryDropdownContent" class="selectList d-none">
-                                    <div class="dropdownCategoryItem" data-value="Technical Task"
-                                        onclick="selectedCategory(this)">
-                                        <span>Technical Task</span>
-                                    </div>
-                                    <div class="dropdownCategoryItem" data-value="User Story"
-                                        onclick="selectedCategory(this)">
-                                        <span>User Story</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
+
                         <p>Subtasks</p>
                         <div>
                             <div id="subtaskInputContainer" class="subtaskInputContainer">
@@ -230,14 +204,13 @@ function getBoardOverlayEditTaskTemplate() {
                                 </div>
                             </div>
                             <div>
-                                <div id="subtaskListContent">
-                                </div>
+                                <div id="subtaskListContent"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="editBoardOverlayButton"><button class="buttonOk">Ok <img src="../assets/icons/check.svg"
+            <div class="editBoardOverlayButton"><button class="buttonOk" onclick="handleUpdateTask('${taskId}')">Ok <img src="../assets/icons/check.svg"
                         alt="check Icon"></button></div>
         </div>
     `;
