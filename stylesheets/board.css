@@ -186,6 +186,16 @@
     border-radius: 30px;
     padding-inline: 40px;
     padding-block: 48px;
+    max-height: 930px;
+
+}
+
+.scrollBar {
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scrollbar-color: rgba(168, 168, 168, 1) white;
+    scrollbar-width: auto
 }
 
 .categoryFieldUserStoryOverlay {
@@ -280,7 +290,7 @@
     user-select: none;
 }
 
-label:hover{
+label:hover {
     background-color: #CACACB;
     cursor: pointer;
 }
@@ -370,41 +380,43 @@ label:hover{
 }
 
 .boardLaneBody.dropActive {
-  background: rgba(42,54,71,0.06);
+    background: rgba(42, 54, 71, 0.06);
 }
 
 .dropPlaceholder {
-  box-sizing: border-box;
-  width: 100%;
-  border: 2px dashed #2A3647;
-  border-radius: 12px;
-  background: rgba(42,54,71,0.04);
-  margin: 8px 0;
+    box-sizing: border-box;
+    width: 100%;
+    border: 2px dashed #2A3647;
+    border-radius: 12px;
+    background: rgba(42, 54, 71, 0.04);
+    margin: 8px 0;
 }
 
 .boardCardContainer.insertionBefore {
-  position: relative;
+    position: relative;
 }
+
 .boardCardContainer.insertionBefore::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -6px;
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -6px;
 }
 
 .boardLaneBody.dropAtEnd {
-  position: relative;
+    position: relative;
 }
+
 .boardLaneBody.dropAtEnd::after {
-  content: "";
-  position: absolute;
-  left: 8px;
-  right: 8px;
-  bottom: 4px;
+    content: "";
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 4px;
 }
 
 .boardCardContainer.dragging {
-  opacity: 0.6;
-  transform: scale(0.98);
+    opacity: 0.6;
+    transform: scale(0.98);
 }
