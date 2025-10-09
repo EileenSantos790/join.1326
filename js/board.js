@@ -152,8 +152,8 @@ function showAddTaskOverlaySuccessMessage() {
     document.getElementById('addTaskBoardOverlay').classList.remove('d-none');
 }
 
-async function openTaskDetails(taskId) {
-    const task = allTasks.find(task => task.id === taskId);
+async function openTaskDetails(taskId, editedTask = null) {
+    const task = !editedTask ? allTasks.find(task => task.id === taskId) : editedTask;
     await slideinBoardDetailsOverlay()
     const content = document.getElementById("boardOverlayContent");
     const categoryColor = task.category === 'User Story' ? '#0038FF' : '#1FD7C1';
@@ -181,16 +181,7 @@ async function openTaskDetails(taskId) {
         ${getSubtasksOnBoardDetails(task.subtasks)}
 
         <div class="containerEditTaskOverlay">
-            <div class="editContactBtn" onclick="editTask('${task.id}')">
-                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z"
-                        fill="currentColor" />
-                </svg>
-                <p>Edit</p>
-            </div>
-            <div class="separationLineGrey"></div>
-            <div class="editContactBtn" onclick="deleteTask('${task.id}')">
+            <div class="editContactBtn" onclick="deleteTask('${taskId}')">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                     class="deleteAndEditIcon">
                     <mask id="mask0_369895_4535" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -205,8 +196,36 @@ async function openTaskDetails(taskId) {
                 </svg>
                 <p>Delete</p>
             </div>
+            <div class="separationLineGrey"></div>
+            <div class="editContactBtn" onclick="editTask('${taskId}')">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z"
+                        fill="currentColor" />
+                </svg>
+                <p>Edit</p>
+            </div>
+            
         </div>`
     content.innerHTML = html;
+
+    // add event to capture checkbox subtasks (delegation scoped to the overlay)
+    content.addEventListener('change', (ev) => {
+        const input = ev.target.closest('input.cbInput');
+        if (!input) return;
+        const label = input.closest('label.cb');
+        const subtaskId = label?.dataset.subtaskId;
+        const isDone = input.checked;
+        onSubtaskToggle(task, subtaskId, isDone);
+        }, { once: false });
+}
+
+function onSubtaskToggle(task, subtaskId, isDone) {
+    const idx = (task.subtasks || []).findIndex(s => String(s.id) === String(subtaskId));
+    if (idx === -1) return;
+    if (task.subtasks[idx].done === isDone) return;
+    task.subtasks[idx].done = isDone;
+    updateTaskOnDatabase(task.id, task);
 }
 
 function getPriorityDetailsTemplate(priority) {
@@ -247,8 +266,8 @@ function getSubtasksOnBoardDetails(subtasks) {
     let template = ''
     subtasks.forEach(subtask => {
         template += `
-        <label class="cb">
-            <input type="checkbox" class="cbInput">
+        <label class="cb" data-subtask-id=${subtask.id}>
+            <input type="checkbox" class="cbInput" ${subtask.done ? 'checked' : ''}>
             <svg class="cbSvg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
                 <defs>
                     <mask id="cb-notch">
@@ -270,7 +289,6 @@ function getSubtasksOnBoardDetails(subtasks) {
             </svg>
             <span class="cbLabel">${subtask.text}</span>
         </label>`
-
     });
     return template;
 }
@@ -504,8 +522,8 @@ function getContactsOnEditBoardTemplate(users) {
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
     let template = ''
     users.forEach(user => {
-        usersListOnEdit.push(user)
-        template += `<div class="margin_top8 avatar" style="background:${user.color}">${user.initial}</div>`
+        usersListOnEdit.push(user);
+        template += `<div class="margin_top8 avatar" style="background:${user.color}">${user.initial}</div>`;
     });
     contentDiv.innerHTML = template;
 }
