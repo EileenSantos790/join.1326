@@ -5,7 +5,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,7 +74,7 @@
 }
 
 .addTaskBoarOverlayCloseButton:hover {
-    background-color: #d1d1d152;
+    background-color: #EEEEEE;
     border-radius: 43px;
     cursor: pointer;
 }

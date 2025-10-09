@@ -114,6 +114,10 @@
         text-align: center;
     }
 
+    .summaryDashboardContainer {
+        justify-content: center;
+    }
+
     .summaryDashboardContainerRight {
         display: none;
     }
@@ -241,12 +245,20 @@
         min-width: 0;
     }
 
+    .thirdLineText {
+        padding: 0px 10px;
+    }
+
     .summaryPenIconNormal {
         display: none;
     }
 
     .summaryIconMobile {
         display: block;
+    }
+
+    .smallWindowContainer:hover .summaryIconMobile {
+        content: url(../assets/icons/penicon_mobile_white.svg);
     }
 
     .summaryNumber {
@@ -271,4 +283,32 @@
     .largeWindowContainer {
         height: 110px;
     }
+
+    .submenu {
+        top: 49px;
+        right: 5px;
+        padding: 23px 0px;
+        gap: 24px;
+    }
+
+    .submenu p, a {
+        padding: 0;
+    }
+
+    .submenu p {
+        padding-left: 26px;
+    }
+
+    .submenu p:hover {
+        padding-left: 26px;
+        background-clip: content-box;
+    }
+
+    .submenuHelpButtonMobile {
+        display: block;
+    }
+
+    /* .addTaskOverlayMainSection {
+        display: none !important;
+    } */
 }
