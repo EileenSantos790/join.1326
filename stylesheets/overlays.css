@@ -24,7 +24,6 @@
 }
 
 .overlayPanel {
-    overflow: hidden;
     transform: translateX(100vw);
     transition: transform 350ms ease-out;
 }

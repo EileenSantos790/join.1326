@@ -178,7 +178,7 @@ async function openTaskDetails(taskId, editedTask = null) {
         ${getContactsOnBoardDetailsTemplate(task.assignedTo)}
         <div class="detailsOverlayContainer">Subtasks:</div>
 
-        ${getSubtasksOnBoardDetails(task.subtasks)}
+        ${getSubtasksOnBoardDetails(taskId, task.subtasks)}
 
         <div class="containerEditTaskOverlay">
             <div class="editContactBtn" onclick="deleteTask('${taskId}')">
@@ -216,6 +216,11 @@ async function openTaskDetails(taskId, editedTask = null) {
         const label = input.closest('label.cb');
         const subtaskId = label?.dataset.subtaskId;
         const isDone = input.checked;
+
+        if (!task?.id){
+            task.id = label?.dataset.taskId;
+        }
+
         onSubtaskToggle(task, subtaskId, isDone);
         }, { once: false });
 }
@@ -261,12 +266,12 @@ function getContactsOnBoardDetailsTemplate(users) {
     return template;
 }
 
-function getSubtasksOnBoardDetails(subtasks) {
+function getSubtasksOnBoardDetails(taskId, subtasks) {
     if (!subtasks) return "";
     let template = ''
     subtasks.forEach(subtask => {
         template += `
-        <label class="cb" data-subtask-id=${subtask.id}>
+        <label class="cb" data-subtask-id=${subtask.id} data-task-id=${taskId}>
             <input type="checkbox" class="cbInput" ${subtask.done ? 'checked' : ''}>
             <svg class="cbSvg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
                 <defs>
