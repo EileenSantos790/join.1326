@@ -18,9 +18,11 @@ function renderMainContent() {
   const content = document.getElementById('contentContainer');
   const items = document.querySelectorAll('.navLine');
   const sites = document.querySelectorAll('.sitesNavContainer');
+  const buttons = document.querySelectorAll('.submenuButton');
 
   setClickEvents(items, content);
   setClickEvents(sites, content);
+  setClickEvents(buttons, content);
   attachHelp(content);
 
   const urlParams = new URLSearchParams(window.location.search);

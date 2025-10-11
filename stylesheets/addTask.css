@@ -48,7 +48,7 @@
 
 .addTaskMainContent {
     width: 90%;
-    max-height: 376px;
+    /* max-height: 376px; */
     height: 100%;
     display: flex;
     gap: 48px;
@@ -131,9 +131,8 @@
     width: 100%;
     margin-top: 8px;
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     gap: 16px;
-
 }
 
 .dropdown {
@@ -321,6 +320,10 @@
     font-size: 16px;
     padding-top: 207px;
     padding-bottom: 71px;
+}
+
+.addTaskRequiredInfoMobile {
+    display: none;
 }
 
 .addTaskMainButtons {

@@ -195,8 +195,9 @@ button:hover {
     font-weight: bold;
 }
 
-.buttonUrgent {
-    width: 136px;
+.prioButtonAddTask {
+    /* width: 136px; */
+    flex: 1;
     height: 56px;
     background-color: #FFFFFF;
     font-size: 20px;
@@ -206,6 +207,18 @@ button:hover {
     align-items: center;
     gap: 8px;
 }
+
+/* .buttonUrgent {
+    width: 136px;
+    height: 56px;
+    background-color: #FFFFFF;
+    font-size: 20px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+} */
 
 .buttonUrgentIcon {
     width: 20px;
@@ -218,7 +231,7 @@ button:hover {
     box-shadow: unset !important;
 }
 
-.buttonMedium {
+/* .buttonMedium {
     width: 136px;
     height: 56px;
     background-color: #FFFFFF;
@@ -228,7 +241,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     gap: 8px;
-}
+} */
 
 .buttonMediumIcon {
     width: 20px;
@@ -241,7 +254,7 @@ button:hover {
     box-shadow: unset !important;
 }
 
-.buttonLow {
+/* .buttonLow {
     width: 136px;
     height: 56px;
     background-color: #FFFFFF;
@@ -251,7 +264,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     gap: 8px;
-}
+} */
 
 .buttonLowIcon {
     width: 20px;

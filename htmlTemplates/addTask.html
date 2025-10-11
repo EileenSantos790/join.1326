@@ -7,7 +7,6 @@
     <title>Add Task</title>
 
     <link rel="stylesheet" href="../stylesheets/style.css">
-    <link rel="stylesheet" href="../stylesheets/addTask.css">
     <link rel="stylesheet" href="../stylesheets/buttons.css">
 
 </head>
@@ -69,19 +68,19 @@
                     <div class="addTaskPriorityButtons">
                         <button id="addTaskUrgentButton"
                             onclick="activatePriorityButton('addTaskUrgentButton','buttonUrgentActive','urgentButtonOff','urgentButtonOn')"
-                            class="buttonUrgent">Urgent <img id="urgentButtonOff" class="buttonUrgentIcon"
-                                src="../assets/icons/prio_high.svg" alt="Urgent Button Icon"><img id="urgentButtonOn"
-                                class="buttonUrgentIcon d-none" src="../assets/icons/prio_high_white.svg"
-                                alt="Urgent Button Icon"></button>
+                            class="buttonUrgent prioButtonAddTask">Urgent <img id="urgentButtonOff"
+                                class="buttonUrgentIcon" src="../assets/icons/prio_high.svg"
+                                alt="Urgent Button Icon"><img id="urgentButtonOn" class="buttonUrgentIcon d-none"
+                                src="../assets/icons/prio_high_white.svg" alt="Urgent Button Icon"></button>
                         <button id="addTaskMediumButton"
                             onclick="activatePriorityButton('addTaskMediumButton','buttonMediumActive','mediumButtonOff','mediumButtonOn')"
-                            class="buttonMedium buttonMediumActive">Medium <img id="mediumButtonOff"
+                            class="buttonMedium prioButtonAddTask buttonMediumActive">Medium <img id="mediumButtonOff"
                                 class="buttonMediumIcon d-none" src="../assets/icons/prio_media.svg"
                                 alt="Medium Button Icon"><img id="mediumButtonOn" class="buttonMediumIcon"
                                 src="../assets/icons/prio_media_white.svg" alt="Medium Button Icon"></button>
                         <button id="addTaskLowButton"
                             onclick="activatePriorityButton('addTaskLowButton','buttonLowActive','lowButtonOff','lowButtonOn')"
-                            class="buttonLow">Low <img id="lowButtonOff" class="buttonLowIcon"
+                            class="buttonLow prioButtonAddTask">Low <img id="lowButtonOff" class="buttonLowIcon"
                                 src="../assets/icons/prio_low.svg" alt="Low Button Icon"><img id="lowButtonOn"
                                 class="buttonLowIcon d-none" src="../assets/icons/prio_low_white.svg"
                                 alt="Low Button Icon"></button>
@@ -123,10 +122,12 @@
                                     src="../assets/icons/dropdown-up.svg" alt="Arrow up">
                             </div>
                             <div id="categoryDropdownContent" class="selectList d-none">
-                                <div class="dropdownCategoryItem" data-value="Technical Task" onclick="selectedCategory(this)">
+                                <div class="dropdownCategoryItem" data-value="Technical Task"
+                                    onclick="selectedCategory(this)">
                                     <span>Technical Task</span>
                                 </div>
-                                <div class="dropdownCategoryItem" data-value="User Story" onclick="selectedCategory(this)">
+                                <div class="dropdownCategoryItem" data-value="User Story"
+                                    onclick="selectedCategory(this)">
                                     <span>User Story</span>
                                 </div>
                             </div>
@@ -154,6 +155,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="addTaskRequiredInfoMobile">
+                <span class="requiredStar">*</span><span>This field is required</span>
             </div>
         </div>
         <div class="addTaskMainButtons">

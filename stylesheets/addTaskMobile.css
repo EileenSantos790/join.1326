@@ -1,0 +1,215 @@
+@media (max-width: 1024px) {
+    .addTaskMainContent p {
+        font-size: 16px;
+    }
+
+    button.prioButtonAddTask {
+        height: 41px;
+        font-size: 16px;
+    }
+
+    .defaultInput {
+        height: 20px;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .addTaskInputContainerWithValidation {
+        height: 56px;
+    }
+
+    .signUpValidationInputContainer {
+        height: 38px;
+    }
+
+    .loginFormValidationErrorMessage {
+        font-size: 12px;
+        height: 12px;
+    }
+
+    .addTaskDescriptionInputContent {
+        height: 131px;
+    }
+
+    .addTaskDescriptionContainerWithValidation {
+        height: 104px;
+    }
+
+    .addTaskDescriptionInputContainer {
+        height: 86px;
+    }
+
+    .addTaskTextarea {
+        margin: 18px 21px;
+        height: unset;
+    }
+
+    .dropdown span {
+        font-size: 16px;
+
+    }
+
+    .addTaskSearchInput {
+        font-size: 16px;
+        height: 19px;
+    }
+
+    .avatar {
+        width: 38px;
+        height: 38px;
+    }
+
+    .dropdownCategoryItem {
+        height: 43px;
+    }
+
+    .subtaskInputContainer {
+        height: 41px;
+        margin-bottom: 4px;
+    }
+
+    .subtaskInput {
+        font-size: 16px;
+        height: 19px;
+    }
+
+    .subtaskItem {
+        height: 48px;
+        margin-top: 4px;
+    }
+
+    .subtaskItemEdit {
+        height: 48px;
+    }
+
+    .addTaskMainButtons {
+        gap: 32px;
+    }
+
+    .addTaskHeadline {
+        height: 112px;
+        display: flex;
+        align-items: end;
+        margin-bottom: 32px;
+        position: sticky;
+        background-color: #F6F7F8;
+        padding-left: 16px;
+        z-index: 1;
+    }
+
+    .addTaskMainContent {
+        width: auto;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        overflow: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        max-height: 590px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .addTaskInputsLeftSide, .addTaskInputRightSide {
+        max-width: 398px;
+    }
+
+    .addTaskSeperator {
+        display: none;
+    }
+
+    .addTaskRequiredInfo {
+        display: none;
+    }
+
+    .addTaskRequiredInfoMobile {
+        display: block;
+        margin-bottom: 60px;
+    }
+
+    .contentContainerPadding {
+        padding: 0;
+    }
+
+    .addTaskMainButtons {
+        position: sticky;
+        /* bottom: 88px;
+        right: 16px; */
+        padding-right: 16px;
+        padding-left: 16px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+    }
+
+    .navIcon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .navLine p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 800px) {
+    .addTaskMainContent {
+        align-items: unset;
+    }
+
+    .addTaskRequiredInfoMobile {
+        width: 100%;
+    }
+    
+    /* .addTaskHeadline {
+        height: 112px;
+        display: flex;
+        align-items: end;
+        margin-bottom: 32px;
+        position: sticky;
+        background-color: #F6F7F8;
+        padding-left: 16px;
+        z-index: 1;
+    }
+
+    .addTaskMainContent {
+        width: auto;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        overflow: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        max-height: 590px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .addTaskInputsLeftSide, .addTaskInputRightSide {
+        max-width: 398px;
+    }
+
+    .addTaskSeperator {
+        display: none;
+    }
+
+    .addTaskRequiredInfo {
+        display: none;
+    }
+
+    .addTaskRequiredInfoMobile {
+        display: block;
+        width: 100%;
+    }
+
+    .contentContainerPadding {
+        padding: 0;
+    }
+
+    .addTaskMainButtons {
+        position: absolute;
+        bottom: 88px;
+        right: 16px;
+        padding-right: 0;
+    } */
+}
