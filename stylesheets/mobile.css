@@ -284,27 +284,42 @@
         height: 110px;
     }
 
-    .submenu {
-        top: 49px;
-        right: 5px;
-        padding: 23px 0px;
-        gap: 24px;
+    .alignArrowLeft{
+        display: flex;
+        justify-content: flex-end;
+        cursor: pointer;
     }
 
-    .submenu p, a {
+    .contactListBtnContainer{
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 16px;
+    }
+
+    .addNewContactButton{
+        display: flex;
+        border-radius: 50%;
+        width: 56px !important;
+        height: 56px !important;
         padding: 0;
+        bottom: 112px;
+        position: fixed;
+        z-index: 9999;
     }
 
-    .submenu p {
-        padding-left: 26px;
+    .addNewContactButton .addContactBtnText {
+        display: none;
     }
 
-    .submenu p:hover {
-        padding-left: 26px;
-        background-clip: content-box;
+    .addContactSectionContainer{
+        flex-direction: column-reverse;
     }
+}
 
-    .submenuHelpButtonMobile {
-        display: block;
+
+@media (min-width: 1024px) {
+
+    .alignArrowLeft{
+        display: none;
     }
 }

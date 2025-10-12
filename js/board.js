@@ -132,11 +132,14 @@ function getTasksToArray(tasks) {
     return arr;
 }
 
-function openAddTaskOverlay() {
+function openAddTaskOverlay(status) {
     let overlay = document.getElementById('addTaskBoardOverlayMainSection');
     overlay.classList.add('show');
     document.getElementById('homeBody').style.overflow = 'hidden';
-    // renderContactsInAddTask();      //=> Only needed if addTask is not reset
+
+    const span = overlay.querySelector('span[data-status]');
+    span.dataset.status = status;
+
     resetAddTaskSide();
 }
 
@@ -181,7 +184,16 @@ async function openTaskDetails(taskId, editedTask = null) {
         ${getSubtasksOnBoardDetails(taskId, task.subtasks)}
 
         <div class="containerEditTaskOverlay">
-            <div class="editContactBtn" onclick="deleteTask('${taskId}')">
+            <div class="editContactBtn" onclick="editTask('${task.id}')">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z"
+                        fill="currentColor" />
+                </svg>
+                <p>Edit</p>
+            </div>
+            <div class="separationLineGrey"></div>
+            <div class="editContactBtn" onclick="deleteTask('${task.id}')">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                     class="deleteAndEditIcon">
                     <mask id="mask0_369895_4535" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -527,8 +539,8 @@ function getContactsOnEditBoardTemplate(users) {
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
     let template = ''
     users.forEach(user => {
-        usersListOnEdit.push(user);
-        template += `<div class="margin_top8 avatar" style="background:${user.color}">${user.initial}</div>`;
+        usersListOnEdit.push(user)
+        template += `<div class="margin_top8 avatar" style="background:${user.color}">${user.initial}</div>`
     });
     contentDiv.innerHTML = template;
 }
@@ -553,5 +565,64 @@ function renderSubtasksOnEdit(subtasks) {
     list.innerHTML = "";
     subtasks.forEach(subtask => {
         list.innerHTML += getSubtaskListTemplate(subtask);
+    })
+}
+
+/**
+ * Filter tasks based on search input.
+ */
+function filterTasks() {
+    let search = document.getElementById('searchTasks').value.toLowerCase();
+
+    if (search.trim() === '') {
+        //goToBoardHtml();
+        removeOverlayTaskNotFound()
+        renderBoard(allTasks);
+    } else {
+        clearTasksContainer();
+        for (let i = 0; i < allTasks.length; i++) {
+            const task = allTasks[i];
+            const title = task.title;
+            const description = task.description;
+            if (title.toLowerCase().includes(search) || description.toLowerCase().includes(search)) {
+                const card = document.getElementById(`board${task.status}Container`);
+                document.getElementById(`spaceHolder${task.status}Container`).classList.add('d-none');
+                renderCard(task, card)
+            }
+        }
+    }
+}
+
+/**
+ * Clear the task containers on the board.
+ */
+function clearTasksContainer() {
+    document.getElementById('boardTodoContainer').innerHTML = ``;
+    document.getElementById('boardProgressContainer').innerHTML = ``;
+    document.getElementById('boardFeedbackContainer').innerHTML = ``;
+    document.getElementById('boardDoneContainer').innerHTML = ``;
+
+    addOverlayTaskNotFound();
+}
+
+function addOverlayTaskNotFound() {
+    const aStatus = ['Todo', 'Progress', 'Feedback', 'Done'];
+
+    aStatus.forEach(status => {
+        document.getElementById(`spaceHolder${status}Container`).innerHTML = `No tasks found in ${status}`;
+        document.getElementById(`spaceHolder${status}Container`).classList.remove('d-none');
+        document.getElementById(`spaceHolder${status}Container`).style.borderColor = "red";
+        document.getElementById(`spaceHolder${status}Container`).style.backgroundColor = "#F6E1E1";
+    })
+}
+
+function removeOverlayTaskNotFound() {
+    const aStatus = ['Todo', 'Progress', 'Feedback', 'Done'];
+
+    aStatus.forEach(status => {
+        document.getElementById(`spaceHolder${status}Container`).innerHTML = `No tasks in ${status}`;
+        document.getElementById(`spaceHolder${status}Container`).classList.add('d-none');
+        document.getElementById(`spaceHolder${status}Container`).style.borderColor = "";
+        document.getElementById(`spaceHolder${status}Container`).style.backgroundColor = "rgba(42,54,71,0.06)";
     })
 }

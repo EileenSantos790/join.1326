@@ -220,9 +220,9 @@ function renderSubtasks() {
     list.innerHTML = "";
     let arr = [];
 
-    if (subtasks.length) {
+    if (subtasks.length){
         arr = subtasks
-    } else { arr = subtasksListOnEdit }
+    }else {arr = subtasksListOnEdit}
     arr.forEach(subtask => {
         list.innerHTML += getSubtaskListTemplate(subtask);
     })
@@ -363,13 +363,13 @@ function getTaskData(editTask = false) {
     const dueDate = document.getElementById('addTasktDateInput').value;
     const priority = getSelectedPriority();
     const category = document.getElementById('categoryDropdownHeader').dataset.value;
-    const assignedTo = selectedContactsAddTask.length
+    const assignedTo = !editTask 
         ? selectedContactsAddTask.map(contact => ({ id: contact.id, initial: contact.initial, name: contact.name, color: contact.color }))
         : usersListOnEdit.map(contact => ({ id: contact.id, initial: contact.initial, name: contact.name, color: contact.color }));
-    const oSubtasks = subtasks.length
-        ? subtasks.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done }))
+    const oSubtasks = !editTask 
+        ? subtasks.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done })) 
         : subtasksListOnEdit.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done }));
-    const status = "Todo";
+    const status = document.getElementById('status').getAttribute('data-status');
     return { title, description, dueDate, priority, category, assignedTo, subtasks: oSubtasks, status };
 }
 
@@ -397,33 +397,18 @@ function saveTaskToDatabase(taskData) {
         });
 }
 
-/* Handle update befor update on database */
-async function handleUpdateTask(taskId) {
-    const task = await getTaskById(taskId);
-    const updatedTask = getTaskData(true);
-    updatedTask.status = task.status;
-    updatedTask.category = task.category;
-
-    const oldUSersIds = task?.assignedTo?.map(u => u.id) || [];
-    const newUsersIds = updatedTask?.assignedTo?.map(u => u.id) || [];
-    const removedUsersIds = oldUSersIds.filter(id => !newUsersIds.includes(id));
-    const addedUsersIds = newUsersIds.filter(id => !oldUSersIds.includes(id));
-
-    if (removedUsersIds.length || addedUsersIds.length) {
-        removeTaskFromUsers(removedUsersIds, taskId);
-        addTaskToUsers(addedUsersIds, taskId);
-    }
-    updateTaskOnDatabase(taskId, updatedTask);
+function handleUpdateTask(taskId) {
+    const task = getTaskData(true);
+    updateTaskOnDatabase(taskId, task);
 }
 
-/* Updated edited task on database */
 function updateTaskOnDatabase(taskId, task) {
-    fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task) })
+    fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task ) })
         .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
         .then(() => {
-            openTaskDetails(taskId, task);
-            goToBoardHtml();
-            usersListOnEdit = [];
+                closeOverlay();
+                usersListOnEdit = [];
+                goToBoardHtml()
         })
         .catch(error => { console.error("Error:", error); });
 }

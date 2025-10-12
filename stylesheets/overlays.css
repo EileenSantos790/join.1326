@@ -63,11 +63,10 @@ a {
     margin: 0px;
     cursor: pointer;
     padding: 5px;
-    background-color: transparent;
 }
 
 .submenu p:hover {
-    background-color: rgba(35, 163, 233, 0.3);
+    background-color: #2A3D59;
     border-radius: 12px;
     /* padding: 5px; */
 }

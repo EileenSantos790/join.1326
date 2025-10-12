@@ -62,12 +62,11 @@
                         alt="help icon">
 
                     <div class="userProfileCirle" onclick="showSubmenu()">
-                        <p id="userInitials">XX</p>
+                        <p id="userInitials"></p>
                     <div id="submenu" class="submenu d-none">
-                        <p class="submenuHelpButtonMobile submenuButton" data-file="./htmlTemplates/help.html">Help</p>
-                        <p class="submenuButton"><a href="./htmlTemplates/privacyPolicy.html">Legal Notice</a></p>
-                        <p class="submenuButton"><a href="./htmlTemplates/legalNotice.html">Privacy Policy</a></p>
-                        <p class="submenuButton"><a onclick="logout()">Log out</a></p>
+                        <p><a href="home.html?page=legalNotice">Legal Notice</a></p>
+                        <p><a href="home.html?page=privacyPolicy">Privacy Policy</a></p>
+                        <p><a onclick="logout()">Log out</a></p>
                     </div>
                     </div>
                 </div>
@@ -286,6 +285,7 @@
                         src="../assets/icons/boardIcon.svg" alt="board Icon"></div>
             </div>
         </div>
+        <span id="status" data-status="Todo"></span>
     </section>
 
 </body>
