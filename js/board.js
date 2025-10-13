@@ -163,7 +163,14 @@ async function openTaskDetails(taskId, editedTask = null) {
 
     const html = `<div class="overlineHeadline" onclick="closeOverlay()">
             <div class="categoryFieldUserStoryOverlay" style="background:${categoryColor}"}>${task.category}</div>
-            <img class="closeOverlayBoardImg" src="../assets/icons/close.svg">
+            <svg class="closeOverlayBoardImg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_367575_1084" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                    <rect width="24" height="24" fill="#D9D9D9"/>
+                </mask>
+                <g mask="url(#mask0_367575_1084)">
+                    <path d="M12 13.4L7.10005 18.3C6.91672 18.4834 6.68338 18.575 6.40005 18.575C6.11672 18.575 5.88338 18.4834 5.70005 18.3C5.51672 18.1167 5.42505 17.8834 5.42505 17.6C5.42505 17.3167 5.51672 17.0834 5.70005 16.9L10.6 12L5.70005 7.10005C5.51672 6.91672 5.42505 6.68338 5.42505 6.40005C5.42505 6.11672 5.51672 5.88338 5.70005 5.70005C5.88338 5.51672 6.11672 5.42505 6.40005 5.42505C6.68338 5.42505 6.91672 5.51672 7.10005 5.70005L12 10.6L16.9 5.70005C17.0834 5.51672 17.3167 5.42505 17.6 5.42505C17.8834 5.42505 18.1167 5.51672 18.3 5.70005C18.4834 5.88338 18.575 6.11672 18.575 6.40005C18.575 6.68338 18.4834 6.91672 18.3 7.10005L13.4 12L18.3 16.9C18.4834 17.0834 18.575 17.3167 18.575 17.6C18.575 17.8834 18.4834 18.1167 18.3 18.3C18.1167 18.4834 17.8834 18.575 17.6 18.575C17.3167 18.575 17.0834 18.4834 16.9 18.3L12 13.4Z" fill="#2A3647"/>
+                </g>
+            </svg>
         </div>
         <div class="titleOfTaskOverlay">${task.title}</div>
         <div class="descriptionOfTaskOverlay">${task.description}</div>
@@ -242,7 +249,7 @@ function onSubtaskToggle(task, subtaskId, isDone) {
     if (idx === -1) return;
     if (task.subtasks[idx].done === isDone) return;
     task.subtasks[idx].done = isDone;
-    updateTaskOnDatabase(task.id, task);
+    updateTaskOnDatabase(task.id, task, true);
 }
 
 function getPriorityDetailsTemplate(priority) {
@@ -505,6 +512,7 @@ async function editTask(taskId) {
     const content = document.getElementById("boardOverlayContent");
     content.innerHTML = getBoardOverlayEditTaskTemplate(taskId);
     const task = await getTaskById(taskId)
+    updateListSelectedContacts(task.assignedTo);
 
     if (task) {
         document.getElementById("addTasktTitleInput").value = task.title;
@@ -516,10 +524,12 @@ async function editTask(taskId) {
         document.getElementById(oPriority.buttonIconOff).classList.add('d-none');
         document.getElementById(oPriority.buttonId)?.classList.add(oPriority.buttonClass);
 
-        getContactsOnEditBoardTemplate(task.assignedTo);
-        subtasksListOnEdit = task.subtasks;
+        //subtasksListOnEdit = task.subtasks;
+        subtasks = task.subtasks;
         renderSubtasksOnEdit(task.subtasks);
-
+        content.dataset.overlayStatus = task.status;
+        getContactsOnEditBoardTemplate(task.assignedTo);
+        selectedContactsAddTask = task.assignedTo;
     }
 }
 
@@ -563,7 +573,7 @@ function clearSelectedCard() {
 function renderSubtasksOnEdit(subtasks) {
     let list = document.getElementById('subtaskListContent');
     list.innerHTML = "";
-    subtasks.forEach(subtask => {
+    subtasks?.forEach(subtask => {
         list.innerHTML += getSubtaskListTemplate(subtask);
     })
 }

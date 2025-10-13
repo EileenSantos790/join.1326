@@ -186,7 +186,7 @@
     }
 
     .headerContainer {
-        padding-block: 9px;
+        padding-block: 20px;
         padding-right: 16px;
         padding-left: 16px;
     }
@@ -284,42 +284,234 @@
         height: 110px;
     }
 
-    .alignArrowLeft{
+    .alignArrowLeft {
         display: flex;
         justify-content: flex-end;
         cursor: pointer;
     }
 
-    .contactListBtnContainer{
+    .contactListBtnContainer {
         display: flex;
         justify-content: flex-end;
         padding-right: 16px;
     }
 
-    .addNewContactButton{
-        display: flex;
+    .addNewContactButton,
+    .containerMobileEditContact {
+        position: fixed;
+        right: 16px;
+        bottom: 112px;
+        z-index: 9999;
         border-radius: 50%;
         width: 56px !important;
         height: 56px !important;
-        padding: 0;
-        bottom: 112px;
-        position: fixed;
-        z-index: 9999;
     }
+
+    .threePointsEdit {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .addNewContactButton {
+        display: flex;
+    }
+
+    .containerMobileEditContact {
+        display: none;
+    }
+
 
     .addNewContactButton .addContactBtnText {
         display: none;
     }
 
-    .addContactSectionContainer{
+    .addContactSectionContainer {
         flex-direction: column-reverse;
+    }
+
+    .contactListSection {
+        margin-top: 24px;
+        width: 100%;
+    }
+
+    .responsiveContactsDetailsSection {
+        display: none;
+    }
+
+    .responsiveContactsDetailsSection.is-open {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: #f6f7f8;
+        z-index: 99;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body.scroll-locked {
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .contactsPageContainer {
+        justify-content: center;
+    }
+
+    .addContactSectionContainer {
+        box-shadow: unset;
+    }
+
+    .separationLineContactListContainer {
+        width: 300px;
+    }
+
+    .alignArrowContacts {
+        padding-right: 18px;
+        padding-top: 128px;
+    }
+
+    .showDetailsContactsContainer {
+        margin-left: 18px;
+        margin-top: 0px;
+    }
+
+    .detailsCard {
+        margin-left: 18px;
+        margin-top: 48px;
+        gap: 20px;
+    }
+
+    .contactInformationContainer {
+        margin-left: 18px;
+        margin-top: 21px;
+    }
+
+    .mailAndPhoneContainer {
+        margin-left: 18px;
+        margin-top: 21px;
+    }
+
+    .nameDetailsContact {
+        font-size: 36px;
+    }
+
+    .sizeAvatarDetails {
+        width: 80px;
+        height: 80px;
+        font-weight: 400;
+        font-size: 27px;
+    }
+
+    .containerEditContact {
+        display: none;
+    }
+
+    .addContactPushUpContainer {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .addContactPushUpContainerLeft {
+        width: auto;
+    }
+
+    .addContactIcon {
+        display: none;
+    }
+
+    .addContactfontBold {
+        font-size: 47px;
+    }
+
+    .addContactfontNormal {
+        font-size: 20px;
+    }
+
+    .imputAndImageContainer {
+        flex-direction: column;
+    }
+
+    .sectionPositionClose {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .closeIcon {
+        fill: white !important;
+    }
+
+    #closeBtnTop {
+        position: absolute;
+        top: 24px;
+        right: 16px;
+    }
+
+    #closeBtnTop .closeIcon path {
+        fill: #fff !important;
+    }
+
+    .addContactPushUpContainerRight{
+        position: relative;
+        padding-top: 92px;
+    }
+
+    .contactImgDiv{
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -50%);
+        z-index: 2;
     }
 }
 
 
 @media (min-width: 1024px) {
 
-    .alignArrowLeft{
+    .alignArrowLeft {
         display: none;
     }
 }
+
+@media (max-width: 460px) {
+
+    .contactListBtnContainer {
+        padding-right: 135px;
+    }
+
+    .sizeAvatarDetails {
+        width: 60px;
+        height: 60px;
+        font-weight: 400;
+        font-size: 21px;
+    }
+
+    .nameDetailsContact {
+        font-size: 28px;
+    }
+
+}
+
+@media (min-width: 460px) {
+
+    .showDetailsContactsContainer {
+        margin-left: 48px;
+    }
+
+    .detailsCard {
+        margin-left: 48px;
+        gap: 36px;
+    }
+
+    .contactInformationContainer {
+        margin-left: 48px;
+    }
+
+    .mailAndPhoneContainer {
+        margin-left: 48px;
+    }
+}
+
