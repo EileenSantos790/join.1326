@@ -1,16 +1,17 @@
 <div class="contactsPageContainer">
     <section class="addContactSectionContainer">
         <div class="contactListBtnContainer">
-            <button class="buttonPrimary addNewContactButton" onclick="handleCreateContact()">
+            <button id="btnAddNeuContact" class="buttonPrimary addNewContactButton" onclick="handleCreateContact()">
                 <span class="addContactBtnText">Add new contact</span>
                 <img src="../assets/icons/person_add.svg">
             </button>
-            <button class="buttonPrimary containerMobileEditContact" onclick="openResponsiveOverlayEdit()">
+            <button class="buttonPrimary containerMobileEditContact d-none" onclick="openResponsiveOverlayEdit()">
                 <img class="threePointsEdit" src="./assets/icons/threePoints.svg" alt="Edit"/>
             </button>
-        </div>
-        <div class="contactListSection">
-            <div id="contactsSection"></div>
+            </div>
+            <div class="contactListSection">
+                <div id="contactsSection"></div>
+            </div>
     </section>
 
     <section class="responsiveContactsDetailsSection" aria-hidden="true">
@@ -20,7 +21,7 @@
         <div class="templteTitle showDetailsContactsContainer">
             <h1>Contacts</h1>
             <div class="blueSeparationLine"></div>
-            <h4>Better with a Team</h4>
+            <h4 class="responsiveContactsHeader">Better with a Team</h4>
             <div class="blueSeparationLineMobile"></div>
         </div>
         <div id="contactOverlay" class="contactOverlay"></div>

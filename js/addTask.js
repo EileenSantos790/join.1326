@@ -427,14 +427,14 @@ function updateTaskOnDatabase(taskId, task, SubtaskToggle = false) {
 }
 
 /* Redirect to board */
-function goToBoardHtml() {
+function goToBoardHtml(timeout= 2000) {
     const boardMenuItem = document.querySelector('.navLine[data-file*="board"], .navLine[data-file*="Board"]');
     setTimeout(() => {
         if (boardMenuItem) {
             boardMenuItem.click();
             return;
         }
-    }, 2000);
+    }, timeout);
 }
 
 /* Save task for all assigned users*/

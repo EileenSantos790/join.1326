@@ -140,6 +140,7 @@
 
     .summaryDashboardContainerLeft {
         max-width: 396px;
+        padding-inline: 16px;
     }
 
     .contentContainerPadding {
@@ -300,7 +301,7 @@
     .containerMobileEditContact {
         position: fixed;
         right: 16px;
-        bottom: 112px;
+        bottom: 100px;
         z-index: 9999;
         border-radius: 50%;
         width: 56px !important;
@@ -446,28 +447,126 @@
 
     #closeBtnTop {
         position: absolute;
-        top: 24px;
         right: 16px;
+        padding-top: 24px;
     }
 
     #closeBtnTop .closeIcon path {
         fill: #fff !important;
     }
 
-    .addContactPushUpContainerRight{
-        position: relative;
-        padding-top: 92px;
+    .addContactPushUpContainerLeft {
+        padding-inline: 24px;
+        height: 352px;
+        padding-block: unset;
     }
 
-    .contactImgDiv{
-        position: absolute;
-        left: 50%;
-        top: 0;
-        transform: translate(-50%, -50%);
-        z-index: 2;
+    .addContactMainContentInputs {
+        height: auto;
+        gap: 15px;
+    }
+
+    .contactImgDiv {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: rgba(209, 209, 209, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: -60px auto 20px auto;
+    }
+
+    .addContactInputContainer {
+        width: auto;
+    }
+
+    .responsiveAddContactButton {
+        display: none;
+    }
+
+    .addContactButtonSection {
+        padding-bottom: 80px;
+        padding-top: 32px;
+        padding-left: unset;
+        align-items: center;
+        justify-content: center;
+        gap: unset;
+    }
+
+    .imputAndImageContainer {
+        position: relative;
+        gap: 0;
+    }
+
+    .overlayCenter {
+        width: 100%;
+    }
+
+    .addContactPushUpContainerRight {
+        padding-left: unset;
+        padding-right: unset;
+        height: auto;
+    }
+
+    .card {
+        margin-left: 0;
+        padding-inline: 10px;
+        width: 90%;
+        padding-block: 10px;
+
+    }
+
+    .section {
+        padding-left: 25px;
+    }
+
+    .overlayPanel {
+        transform: translateY(100vh);
+    }
+
+    .overlay.show .overlayPanel {
+        transform: translateY(0);
+    }
+
+    .miniOverlayResponsive {
+        display: flex;
+        justify-content: flex-end;
+        background-color: white;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px 20px 0px 20px;
     }
 }
 
+
+@media (max-width: 1255px) {
+
+    .showDetailsContactsContainer {
+        margin-left: 48px;
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        gap: 0;
+    }
+
+    .detailsCard {
+        margin-top: 64px;
+    }
+
+    .contactInformationContainer {
+        margin-top: 36px;
+    }
+
+    .mailAndPhoneContainer {
+        margin-top: 36px;
+    }
+
+    .responsiveContactsHeader {
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+        font-size: 21px;
+    }
+}
 
 @media (min-width: 1024px) {
 
@@ -483,8 +582,6 @@
     }
 
     .sizeAvatarDetails {
-        width: 60px;
-        height: 60px;
         font-weight: 400;
         font-size: 21px;
     }
@@ -514,4 +611,3 @@
         margin-left: 48px;
     }
 }
-

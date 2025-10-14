@@ -156,3 +156,7 @@ function logout(){
     sessionStorage.clear();
     window.location.href = 'index.html';
 }
+
+function isMobile() {
+    return window.innerWidth <= 1024;
+}

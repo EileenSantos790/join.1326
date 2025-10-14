@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', renderMainContent);
  * - If a "page" URL parameter is present, it opens that page.
  * - Otherwise, it automatically opens the first main menu item.
  */
-function renderMainContent() {
+async function renderMainContent() {
   const content = document.getElementById('contentContainer');
   const items = document.querySelectorAll('.navLine');
   const sites = document.querySelectorAll('.sitesNavContainer');
@@ -24,7 +24,6 @@ function renderMainContent() {
   setClickEvents(sites, content);
   setClickEvents(buttons, content);
   attachHelp(content);
-
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.has('page')) openPageFromUrl(content);
   else if (items.length > 0) items[0].click();
@@ -80,6 +79,11 @@ function loadPage(file, content) {
   if (file === "./htmlTemplates/addTask.html") {
     resetAddTaskSide();
   }
+
+    // if (file === "./htmlTemplates/summary.html") {
+    //     setStatusQuantity();
+    //     setUrgentPriorityQuantity();
+    // }
 }
 
 

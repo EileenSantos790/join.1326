@@ -142,6 +142,11 @@ function openContactDetails(userID) {
     const contact = usersById[userID].user;
     if (!contact) return;
     const initials = avatarDiv.innerText;
+
+    if (isMobile()) {
+        document.getElementById("btnAddNeuContact").classList.add("d-none");
+        document.getElementById("btnEditNewContact").classList.remove("d-none");
+    }
     //const color = avatarDiv.style.backgroundColor;
     card.style.backgroundColor = "#293647";
     card.style.color = "#FFFFFF";
@@ -200,6 +205,10 @@ function openMobileOverlayIfNeeded() {
 
 // Overlay schließen (mobil)
 function closeContactsOverlay() {
+    if (isMobile()) {
+        document.getElementById("btnEditNewContact").classList.add("d-none");
+        document.getElementById("btnAddNeuContact").classList.remove("d-none");
+    }
     const section = document.querySelector('.responsiveContactsDetailsSection');
     section.classList.remove('is-open');
     section.setAttribute('aria-hidden', 'true');
@@ -502,3 +511,6 @@ async function addTaskToUsers(userIds, taskId) {
     await Promise.allSettled(ops);
 }
 
+function editMenuContactMobile() {
+    console.log("hey")
+}
