@@ -22,3 +22,12 @@ body {
     height: 73px;
     max-width: 625px;
 }
+
+.redirectionTags{
+    color: black
+}
+
+redirectionTags :hover{
+    color:rgb(0, 106, 255);
+    cursor: hover;
+}

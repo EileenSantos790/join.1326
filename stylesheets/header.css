@@ -25,6 +25,8 @@ header {
     justify-content: space-between;
     align-items: center;
     max-width: 1920px;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .headerIcons {
