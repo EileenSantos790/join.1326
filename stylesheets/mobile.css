@@ -18,7 +18,7 @@
     }
 }
 
-@media (max-width: 1090px) {
+@media (max-width: 1024px) {
 
     .navContainer {
         left: 0;
@@ -634,9 +634,18 @@
     .submenuHelpButtonMobile{
         display: block;
     }
+    
+    .alignArrowLeft {
+        display: none;
+    }
+
+    .alignArrowLeft {
+        display: flex;
+        align-items: flex-end;
+    }
 }
 
-@media (min-width: 1090px) {
+@media (min-width: 1024px) {
 
     .alignArrowLeft {
         display: none;
