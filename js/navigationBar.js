@@ -160,3 +160,17 @@ function attachHelp(content) {
     loadPage(file, content);
   });
 }
+
+
+function openAddTaskSide(sideLink) {
+  const content = document.getElementById('contentContainer');
+  const items = document.querySelectorAll('.navLine');
+  const addTask = document.getElementById('navLineAddTask');
+
+  loadPage(sideLink, content);
+
+  for (const item of items) {
+    item.classList.remove('active');
+  }
+  addTask.classList.add('active');
+}
