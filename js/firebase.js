@@ -111,6 +111,7 @@ async function checkIfUserAlreadyExists(email, name, password) {
     }
 }
 
+
 /**
  * Save the new user to the database.
  */
