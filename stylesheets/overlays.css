@@ -17,11 +17,9 @@
 }
 
 .overlayCenter {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px;
     box-sizing: border-box;
 }
 
