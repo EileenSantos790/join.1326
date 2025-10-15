@@ -183,7 +183,7 @@ function openContactDetails(userID) {
             </div>
             <div class="mailAndPhoneContainer">
                 <div class="subclassMailPhone">E-Mail</div>
-                <a>${contact.email}</a>
+                <a class="email">${contact.email}</a>
                 <div class="subclassMailPhone">Phone</div>
                 <div>${contact.phone || "-"}</div>
             </div>

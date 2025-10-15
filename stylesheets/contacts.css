@@ -123,9 +123,10 @@
 }
 
 .email {
-    font-size: 14px;
+    font-size: 16px;
     color: #60a5fa;
     text-decoration: none;
+    padding: 0px;
 }
 
 .email:hover {
