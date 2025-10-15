@@ -13,7 +13,7 @@
                 <input id="searchTasks" class="searchField" placeholder="Find Task" onkeyup="filterTasks()">
                 <img class="searchIcon" src="../assets/icons/search.svg">
             </form>
-            <button onclick="openAddTaskOverlay()" class="buttonPrimary buttonaddTaskOnBoard">Add task
+            <button onclick="openAddTaskOverlay('Todo')" class="buttonPrimary buttonaddTaskOnBoard">Add task
                 <img src="../assets/icons/add.svg" alt="plus icon">
             </button>
         </div>
@@ -22,7 +22,7 @@
         <div class="boardProgressColumn">
             <div class="boardProgressTitle">
                 <div>To do</div>
-                <img class="addNewTeskImg" src="../assets/icons/plus button.svg" onclick="openAddTaskOverlay()">
+                <img class="addNewTeskImg" src="../assets/icons/plus button.svg" onclick="openAddTaskOverlay('Todo')">
             </div>
             <div id="spaceHolderTodoContainer" class="spaceHolderContainer">No tasks in To do</div>
             <div id="boardTodoContainer" class="boardLaneBody" data-status="Todo"></div>

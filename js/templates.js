@@ -166,7 +166,7 @@ function getBoardOverlayEditTaskTemplate(taskId) {
 
                     <div class="paddingBottom24">
                         <p>Assigned to</p>
-                        <div id="addTaskAssignedToDropdownContent" class="dropdown">
+                        <div id="addTaskAssignedToDropdownContent" class="dropdown" data-task-id="null">
                             <div onclick="toggleDropdownAssignedTo()" id="addTaskDropdownAssignedTo"
                                 class="addTaskDropdownContainer bgWhite">
                                 <span>Select contacts to assign</span>

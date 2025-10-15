@@ -36,6 +36,7 @@
     <script src="./js/validator.js"></script>
     <script src="./js/addTask.js"></script>
     <script src="./js/board.js"></script>
+    <script src="./js/summary.js"></script>
 
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
@@ -120,6 +121,7 @@
 
     <!-- ---------------------------------Add Task Overlay-------------------------------------- -->
     <section onclick="closeAddTaskOverlay()" id="addTaskBoardOverlayMainSection" class="addTaskOverlayMainSection">
+        <span id="status" data-status="null"></span>
         <div onclick="event.stopPropagation()" class="addTaskOverlayMainContainer">
             <div class="addTaskMainSection">
                 <div class="addTaskHeadline">
@@ -288,7 +290,6 @@
                         src="../assets/icons/boardIcon.svg" alt="board Icon"></div>
             </div>
         </div>
-        <span id="status" data-status="Todo"></span>
     </section>
 
 </body>

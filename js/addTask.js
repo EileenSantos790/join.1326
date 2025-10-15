@@ -36,11 +36,18 @@ function setPriorityButtonIconToDefault() {
 /**
  * renderContactsInAddTask() function => Execute when opening the "addTask" page so that contacts remain clicked in "Assigned to". (that the dropdown menu works correctly).
  */
-function toggleDropdownAssignedTo() {
+async function toggleDropdownAssignedTo() {
     document.getElementById('addTaskDropdownAssignedTo').classList.toggle('d-none');
     document.getElementById('addTaskDropdownSearchContent').classList.toggle('d-none');
     document.getElementById('addTaskAddedContactIcons').classList.toggle('d-none');
-    renderContactsInAddTask();
+
+    //const taskId = document.querySelector('[data-task-id]')?.dataset.taskId;
+    //const users = allTasks.find(task => task.id === taskId)?.assignedTo || [];
+
+    //makeSelectedContactsActive(selectedContactsAddTask);
+    //await renderContactsInAddTask([], users);
+    //getContactsOnEditBoardTemplate(users);
+    //await updateListSelectedContacts()
 }
 
 /**
@@ -58,22 +65,23 @@ function addTaskSelectContact(userId, initial, color, name) {
     checkboxOn.classList.toggle('d-none');
 
     saveClickedContact(initial, color, userId, name);
+    //updateListSelectedContacts();
     addContactToTask();
 }
 
 /**
  * Displays all or filtered contacts in the assigned to dropdown container.
  */
-async function renderContactsInAddTask(searchArray) {
-    let contentDiv = document.getElementById('assignedToContactContent');
-    contentDiv.innerHTML = "";
-    if (searchArray) {
+async function renderContactsInAddTask(searchArray = [], arrSelectedContacts = []) {
+    if (searchArray.length) {
+        let contentDiv = document.getElementById('assignedToContactContent');
+        contentDiv.innerHTML = "";
         for (let index = 0; index < searchArray.length; index++) {
             contentDiv.innerHTML += getContactTemplate(searchArray, index);
         }
-    } else {
-        renderAllContacts();
+        return
     }
+    await renderAllContacts();
 }
 
 
@@ -95,15 +103,18 @@ async function renderAllContacts() {
  * Adds the contact to a separate array and sorts them alphabetically.
  */
 
-function saveClickedContact(initial, color, userId, name) {
-    let index = selectedContactsAddTask.findIndex(c => c.id === userId);
+function saveClickedContact(initial, color, id, name) {
+    let index = selectedContactsAddTask.findIndex(c => c.id === id);
 
     if (index !== -1) {
         selectedContactsAddTask.splice(index, 1);
     } else {
-        selectedContactsAddTask.push({ initial, color, "id": userId, name });
+        selectedContactsAddTask.push({ id, name, initial, color });
+        //updateListSelectedContacts(id);
     }
     selectedContactsAddTask.sort((a, b) => a.initial.localeCompare(b.initial));
+
+    //makeSelectedContactsActive(selectedContactsAddTask);
 }
 
 /**
@@ -346,7 +357,7 @@ function checkRequiredFields() {
     let inputTitle = document.getElementById('addTasktTitleInput');
     let inputDate = document.getElementById('addTasktDateInput');
     let categoryHeader = document.getElementById('categoryDropdownHeader');
-    if (inputTitle.value == "" || inputDate.value == "" || categoryHeader.textContent == "Select task category") {
+    if (inputTitle.value === "" || inputDate.value === "" || categoryHeader.textContent === "Select task category") {
         removeFocusBorderCheckInputValue('addTasktTitleInputContainer', 'addTasktTitleInput', 'addTasktTitleErrorContainer');
         removeFocusBorderCheckInputValue('addTasktDateInputContainer', 'addTasktDateInput', 'addTasktDateErrorContainer');
         setErrorBorderForCategory('addTaskCategoryHeaderContainer');
@@ -363,14 +374,14 @@ function getTaskData(editTask = false) {
     const dueDate = document.getElementById('addTasktDateInput').value;
     const priority = getSelectedPriority();
     const category = document.getElementById('categoryDropdownHeader').dataset.value;
-    const assignedTo = !editTask 
-        ? selectedContactsAddTask.map(contact => ({ id: contact.id, initial: contact.initial, name: contact.name, color: contact.color }))
-        : usersListOnEdit.map(contact => ({ id: contact.id, initial: contact.initial, name: contact.name, color: contact.color }));
-    const oSubtasks = !editTask 
-        ? subtasks.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done })) 
-        : subtasksListOnEdit.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done }));
-    const status = document.getElementById('status').getAttribute('data-status');
-    return { title, description, dueDate, priority, category, assignedTo, subtasks: oSubtasks, status };
+    const assignedTo = selectedContactsAddTask;
+    // const oSubtasks = !editTask || subtasks || subtasksListOnEdit
+    //     ? subtasks.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done }))
+    //     : subtasksListOnEdit.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done }));
+    const status = !editTask
+        ? document.getElementById('status').getAttribute('data-status')
+        : document.getElementById('boardOverlayContent').getAttribute('data-overlay-status');
+    return { title, description, dueDate, priority, category, assignedTo, subtasks: subtasks, status };
 }
 
 
@@ -402,26 +413,28 @@ function handleUpdateTask(taskId) {
     updateTaskOnDatabase(taskId, task);
 }
 
-function updateTaskOnDatabase(taskId, task) {
+function updateTaskOnDatabase(taskId, task, SubtaskToggle = false) {
     fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task ) })
         .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
         .then(() => {
+            if (!SubtaskToggle){
                 closeOverlay();
-                usersListOnEdit = [];
-                goToBoardHtml()
+            }
+            usersListOnEdit = [];
+            goToBoardHtml();
         })
         .catch(error => { console.error("Error:", error); });
 }
 
 /* Redirect to board */
-function goToBoardHtml() {
+function goToBoardHtml(timeout= 2000) {
     const boardMenuItem = document.querySelector('.navLine[data-file*="board"], .navLine[data-file*="Board"]');
     setTimeout(() => {
         if (boardMenuItem) {
             boardMenuItem.click();
             return;
         }
-    }, 2000);
+    }, timeout);
 }
 
 /* Save task for all assigned users*/
@@ -463,5 +476,22 @@ function showAddTaskDialog() {
         setTimeout(() => {
             closeAddTaskOverlay();
         }, 1000);
+    }
+}
+
+function updateListSelectedContacts(users = []) {
+    const arr = selectedContactsAddTask.length ? selectedContactsAddTask : users;
+
+    if (arr.length){
+        arr.forEach((user) => {
+            const container = document.getElementById(`assignedToContact-${user.id}`);
+            const checkboxOff = document.getElementById(`assignedToCheckbox-${user.id}`);
+            const checkboxOn = document.getElementById(`assignedToCheckboxWhite-${user.id}`);
+
+            container.classList.toggle('dropdownItemOff');
+            container.classList.toggle('dropdownItemOn');
+            checkboxOff.classList.toggle('d-none');
+            checkboxOn.classList.toggle('d-none');
+        })
     }
 }
