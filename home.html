@@ -22,8 +22,10 @@
     <link rel="stylesheet" href="./stylesheets/board.css">
     <link rel="stylesheet" href="./stylesheets/addTask.css">
     <link rel="stylesheet" href="./stylesheets/addTaskOverlay.css">
+    <link rel="stylesheet" href="./stylesheets/boardMobile.css">
     <link rel="stylesheet" href="./stylesheets/mobile.css">
     <link rel="stylesheet" href="./stylesheets/addTaskMobile.css">
+    
 
     <script src="./js/templates.js"></script>
     <script src="./js/navigationBar.js"></script>
@@ -65,10 +67,10 @@
                     <div class="userProfileCirle" onclick="showSubmenu()">
                         <p id="userInitials"></p>
                     <div id="submenu" class="submenu d-none">
-                        <p class="submenuHelpButtonMobile"><a href="./htmlTemplates/help.html">Help</a></p>
-                        <p><a href="home.html?page=legalNotice">Legal Notice</a></p>
-                        <p><a href="home.html?page=privacyPolicy">Privacy Policy</a></p>
-                        <p><a onclick="logout()">Log out</a></p>
+                        <p class="submenuHelpButtonMobile submenuButton" data-file="./htmlTemplates/help.html">Help</p>
+                        <p class="submenuButton"><a href="./htmlTemplates/privacyPolicy.html">Legal Notice</a></p>
+                        <p class="submenuButton"><a href="./htmlTemplates/legalNotice.html">Privacy Policy</a></p>
+                        <p class="submenuButton"><a onclick="logout()">Log out</a></p>
                     </div>
                     </div>
                 </div>
@@ -88,7 +90,7 @@
                 <img class="navIcon" src="./assets/icons/summaryIcon.svg" alt="Summary Icon">
                 <p>Summary</p>
             </div>
-            <div class="navLine" data-file="./htmlTemplates/addTask.html">
+            <div id="navLineAddTask" class="navLine" data-file="./htmlTemplates/addTask.html">
                 <img class="navIcon" src="./assets/icons/addTaskIcon.svg" alt="Add Task Icon">
                 <p>Add Task</p>
             </div>
@@ -179,19 +181,19 @@
                             <div class="addTaskPriorityButtons">
                                 <button id="addTaskUrgentButton"
                                     onclick="activatePriorityButton('addTaskUrgentButton','buttonUrgentActive','urgentButtonOff','urgentButtonOn')"
-                                    class="buttonUrgent">Urgent <img id="urgentButtonOff" class="buttonUrgentIcon"
+                                    class="buttonUrgent prioButtonAddTask">Urgent <img id="urgentButtonOff" class="buttonUrgentIcon"
                                         src="../assets/icons/prio_high.svg" alt="Urgent Button Icon"><img
                                         id="urgentButtonOn" class="buttonUrgentIcon d-none"
                                         src="../assets/icons/prio_high_white.svg" alt="Urgent Button Icon"></button>
                                 <button id="addTaskMediumButton"
                                     onclick="activatePriorityButton('addTaskMediumButton','buttonMediumActive','mediumButtonOff','mediumButtonOn')"
-                                    class="buttonMedium buttonMediumActive">Medium <img id="mediumButtonOff"
+                                    class="buttonMedium prioButtonAddTask buttonMediumActive">Medium <img id="mediumButtonOff"
                                         class="buttonMediumIcon d-none" src="../assets/icons/prio_media.svg"
                                         alt="Medium Button Icon"><img id="mediumButtonOn" class="buttonMediumIcon"
                                         src="../assets/icons/prio_media_white.svg" alt="Medium Button Icon"></button>
                                 <button id="addTaskLowButton"
                                     onclick="activatePriorityButton('addTaskLowButton','buttonLowActive','lowButtonOff','lowButtonOn')"
-                                    class="buttonLow">Low <img id="lowButtonOff" class="buttonLowIcon"
+                                    class="buttonLow prioButtonAddTask">Low <img id="lowButtonOff" class="buttonLowIcon"
                                         src="../assets/icons/prio_low.svg" alt="Low Button Icon"><img id="lowButtonOn"
                                         class="buttonLowIcon d-none" src="../assets/icons/prio_low_white.svg"
                                         alt="Low Button Icon"></button>

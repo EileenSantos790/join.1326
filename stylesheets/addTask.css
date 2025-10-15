@@ -39,6 +39,13 @@
     font-size: 20px;
 }
 
+.addTaskContainerPadding {
+    padding-left: 116px;
+    padding-right: 96px;
+    padding-top: 110px;
+    padding-bottom: 127px;
+}
+
 .addTaskHeadline {
     height: 73px;
     display: flex;

@@ -1,11 +1,20 @@
-@media (max-width: 1200px) {
-
+@media (max-width: 1250px) {
     .contentContainerPadding {
         padding-left: 60px;
     }
+}
 
+@media (max-width: 1150px) {
     .summaryDashboardContainer {
         gap: 40px;
+    }
+
+    .largeWindowContainer {
+        gap: 40px;
+    }
+
+    .thirdLineText {
+        padding: 0 10px;
     }
 }
 
@@ -150,6 +159,11 @@
         padding-right: 16px;
     }
 
+    .summaryMainSection {
+        display: flex;
+        justify-content: center;
+    }
+
     .blueSeparationLine {
         display: none;
     }
@@ -241,9 +255,9 @@
         min-width: 0;
     }
 
-    .thirdLineText {
+    /* .thirdLineText {
         padding: 0px 10px;
-    }
+    } */
 
     .summaryPenIconNormal {
         display: none;
@@ -318,8 +332,32 @@
         display: none;
     }
 
-    .addContactSectionContainer {
+    .addContactSectionContainer  {
         flex-direction: column-reverse;
+    }
+
+    .submenu {
+        top: 49px;
+        right: 5px;
+        padding: 23px 0px;
+        gap: 24px;
+    }
+
+    .submenu p, a {
+        padding: 0;
+    }
+
+    .submenu p {
+        padding-left: 26px;
+    }
+
+    .submenu p:hover {
+        padding-left: 26px;
+        background-clip: content-box;
+    }
+
+    .submenuHelpButtonMobile {
+        display: block;
     }
 
     .contactListSection {

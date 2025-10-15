@@ -133,6 +133,8 @@ function getTasksToArray(tasks) {
 }
 
 function openAddTaskOverlay(status) {
+    const minWidth = window.innerWidth;
+    if (minWidth > 1024) {
     let overlay = document.getElementById('addTaskBoardOverlayMainSection');
     overlay.classList.add('show');
     document.getElementById('homeBody').style.overflow = 'hidden';
@@ -141,6 +143,7 @@ function openAddTaskOverlay(status) {
     span.dataset.status = status;
 
     resetAddTaskSide();
+    } else return;
 }
 
 

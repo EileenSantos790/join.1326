@@ -1,4 +1,23 @@
+@media (max-width: 1300px) {
+    .addTaskContainerPadding {
+        padding-right: 0;
+        padding-left: 60px;
+    }
+}
+
 @media (max-width: 1024px) {
+    .addTaskContainerPadding {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 48px;
+    }
+
+    .addTaskMainSectionContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .addTaskMainContent p {
         font-size: 16px;
     }
@@ -87,18 +106,21 @@
     }
 
     .addTaskHeadline {
-        height: 112px;
+        /* height: 112px; */
         display: flex;
-        align-items: end;
+        align-items: center;
+        justify-content: flex-start;
         margin-bottom: 32px;
         position: sticky;
         background-color: #F6F7F8;
-        padding-left: 16px;
+        max-width: 398px;
+        width: 100%;
+        /* padding-left: 16px; */
         z-index: 1;
     }
 
     .addTaskMainContent {
-        width: auto;
+        width: 100%;
         flex-direction: column;
         align-items: center;
         gap: 16px;
@@ -110,7 +132,8 @@
         padding-right: 16px;
     }
 
-    .addTaskInputsLeftSide, .addTaskInputRightSide {
+    .addTaskInputsLeftSide,
+    .addTaskInputRightSide {
         max-width: 398px;
     }
 
@@ -125,11 +148,13 @@
     .addTaskRequiredInfoMobile {
         display: block;
         margin-bottom: 60px;
+        width: 100%;
+        max-width: 398px;
     }
 
-    .contentContainerPadding {
+    /* .contentContainerPadding {
         padding: 0;
-    }
+    } */
 
     .addTaskMainButtons {
         position: sticky;
@@ -150,9 +175,13 @@
     .navLine p {
         font-size: 14px;
     }
+
+    .addTaskOverlayMainSection.show {
+        display: none;
+    }
 }
 
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
     .addTaskMainContent {
         align-items: unset;
     }
@@ -160,56 +189,22 @@
     .addTaskRequiredInfoMobile {
         width: 100%;
     }
-    
-    /* .addTaskHeadline {
-        height: 112px;
-        display: flex;
-        align-items: end;
-        margin-bottom: 32px;
-        position: sticky;
-        background-color: #F6F7F8;
-        padding-left: 16px;
-        z-index: 1;
-    }
+} */
 
-    .addTaskMainContent {
-        width: auto;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        overflow: scroll;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        max-height: 590px;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    .addTaskInputsLeftSide, .addTaskInputRightSide {
-        max-width: 398px;
-    }
-
-    .addTaskSeperator {
-        display: none;
-    }
-
-    .addTaskRequiredInfo {
-        display: none;
-    }
-
-    .addTaskRequiredInfoMobile {
-        display: block;
-        width: 100%;
-    }
-
-    .contentContainerPadding {
-        padding: 0;
+@media (max-width: 400px) {
+    .addTaskPriorityButtons {
+        gap: 10px;
     }
 
     .addTaskMainButtons {
-        position: absolute;
-        bottom: 88px;
-        right: 16px;
-        padding-right: 0;
-    } */
+        gap: 20px;
+    }
+
+    .buttonCreateTask {
+        font-size: 16px;
+    }
+
+    .buttonCancle {
+        font-size: 16px;
+    }
 }

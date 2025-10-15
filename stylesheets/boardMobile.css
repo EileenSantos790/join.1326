@@ -1,0 +1,114 @@
+@media (max-width: 1024px) {
+    .containerOfBoard {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .buttonaddTaskOnBoard {
+        display: none;
+    }
+
+    .headerContainerOfBoard {
+        flex-direction: column;
+        align-items: unset;
+        gap: 40px;
+    }
+
+    .headerContainerFormAndButton {
+        justify-content: center;
+    }
+
+    .searchForm {
+        max-width: 394px;
+        width: 100%;
+    }
+
+    .searchField {
+        width: inherit;
+    }
+
+    .boardHeadlineContent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .boardHeadlineAddButton {
+        display: block;
+    }
+
+    .boardHeadlineAddButton:hover {
+        cursor: pointer;
+    }
+
+    .boardProgressContainer {
+        margin-top: 24px;
+        flex-direction: column;
+        flex-wrap: unset;
+    }
+
+    .boardProgressTitle {
+        width: unset;
+        margin-top: 0;
+        margin-left: 0;
+        font-size: 27px;
+    }
+
+    .boardProgressTitle img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .boardProgressColumn {
+        max-width: unset;
+    }
+
+    .boardCardContainer {
+        width: 220px;
+        min-width: 220px;
+        margin-left: 0;
+        margin-bottom: 0;
+        gap: 0;
+    }
+
+    .boardLaneBody {
+        display: flex;
+        gap: 16px;
+    }
+
+    .categoryFieldTechnicalTask {
+        margin-bottom: 24px;
+    }
+
+    .categoryFieldUserStory {
+        margin-bottom: 24px;
+    }
+
+    .titleOfTask {
+        padding-bottom: 8px;
+    }
+
+    .descriptionOfTask {
+        padding-bottom: 24px;
+    }
+
+    .processBarContainer {
+        padding-bottom: 24px;
+    }
+
+    .avatarBoard {
+        width: 28px;
+        height: 28px;
+    }
+
+    .priorityIconBoard {
+        width: 17px;
+        height: 12px;
+    }
+
+    .marginBottom150 {
+        margin-bottom: 150px;
+    }
+}
+
+/* ab 1250px evtl mobile design beim board */
