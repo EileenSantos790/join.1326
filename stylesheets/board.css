@@ -114,6 +114,18 @@
     cursor: pointer;
 }
 
+.boardCardContainer:hover {
+    animation: wobble 0.5s ease;
+}
+
+@keyframes wobble {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-5px); }
+  50%  { transform: translateX(5px); }
+  75%  { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
 .categoryFieldTechnicalTask {
     color: white;
     background-color: rgba(31, 215, 193, 1);
