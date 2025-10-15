@@ -37,5 +37,7 @@
 
     .loginPageHeader {
         display: none;
+        width: 64px;
+        height: 78.3px;
     }
 }

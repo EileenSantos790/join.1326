@@ -1,5 +1,6 @@
 let userInitials;
 let greetingUserName;
+
 /**
  * Check the box and activate the button. 
  */
@@ -28,10 +29,16 @@ function togglePasswordVisibility(inputId, iconOffId, iconOnId) {
     }
 }
 
+/**
+ * Load the sign-up page.
+ */
 function loadSignUp(htmlName) {
     window.location.href = htmlName;
 }
 
+/**
+ * check if user is logged in and redirect to login page if not.
+ */
 function isUserLoggedIn() {
     const page = new URLSearchParams(location.search).get('page');
     const allowPublic = page === 'privacyPolicy' || page === 'legalNotice';
@@ -64,6 +71,9 @@ function isUserLoggedIn() {
     }
 }
 
+/**
+ * Set focus border on input field and remove error border and message.
+ */
 function setFocusBorder(containerId, errorMessageId) {
     document.getElementById(containerId).classList.add('inputBorderColorFocus');
     document.getElementById(containerId).classList.remove('inputErrorBorder');
@@ -91,6 +101,9 @@ function setErrorBorderForCategory(containerId) {
     }
 }
 
+/**
+ * Initialize session (Local Storage) and set user initials and greeting message.
+ */
 async function sessionInit() {
     const user = (sessionStorage.getItem('userName') || '').trim();
     if (typeof userInitials !== 'undefined' && userInitials) {
@@ -105,6 +118,9 @@ async function sessionInit() {
     setGreetingMessage();
 }
 
+/**
+ * Set greeting message based on the time of day and user name.
+ */
 function setGreetingMessage() {
     const greetingDayTimeEl = document.getElementById('greetingDayTime');
     const greetingUserNameEl = document.getElementById('greetingUserName');
@@ -152,6 +168,9 @@ function showSubmenu() {
     submenu.classList.toggle('d-none');
 }
 
+/**
+ * Logout the user and clear session storage.
+ */
 function logout(){
     sessionStorage.clear();
     window.location.href = 'index.html';
