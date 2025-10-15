@@ -21,17 +21,13 @@
 }
 
 .summaryDashboard {
-    /* display: flex; */
     padding-top: 56px;
-    /* max-width: 560px; */
-    /* justify-content: space-between; */
 }
 
 .summaryDashboardContainer {
     display: flex;
     flex-direction: row;
     gap: 80px;
-    /* justify-content: center; */
 }
 
 .summaryDashboardContainerLeft {
@@ -196,7 +192,6 @@
     margin-block-start: 0em;
     margin-block-end: 0em;
     text-align: center;
-    /* padding-inline: 42.5px; */
     padding: 0 18px;
 }
 
@@ -214,14 +209,12 @@
     font-size: 47px;
     font-weight: 500;
     color: #2A3647;
-    /* width: 385px; */
 }
 
 #greetingUserName {
     font-size: 64px;
     font-weight: 700;
     color: #23A3E9;
-    /* width: 385px; */
 }
 
 .overlaySummaryGreeting {

@@ -55,16 +55,14 @@
 
 .addTaskMainContent {
     width: 90%;
-    /* max-height: 376px; */
     height: 100%;
     display: flex;
     gap: 48px;
     max-height: 562px;
-    /* justify-content: space-between;
-    align-items: center; */
 }
 
-.addTaskInputsLeftSide, .addTaskInputRightSide {
+.addTaskInputsLeftSide,
+.addTaskInputRightSide {
     max-width: 440px;
     width: 100%;
 }
@@ -138,7 +136,6 @@
     width: 100%;
     margin-top: 8px;
     display: flex;
-    /* flex-wrap: wrap; */
     gap: 16px;
 }
 
@@ -188,7 +185,6 @@
 
 .dropdownContent {
     background: #FFFFFF;
-    /* box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04); */
     border-radius: 0px 0px 10px 10px;
     max-height: 288px;
     overflow: auto;
@@ -211,12 +207,10 @@
     background-color: #d1d1d152;
     border-radius: 43px;
     cursor: pointer;
-    /* top: 21.5px; */
 }
 
 .addTaskDropDownSection {
     border-radius: 10px 10px 10px 10px;
-
 }
 
 .boxShadow {
@@ -235,7 +229,6 @@
     z-index: 1;
 }
 
-/* class for the contact icons when adding */
 .addTaskAddedContactIcons {
     display: flex;
     gap: 8px;
@@ -334,14 +327,9 @@
 }
 
 .addTaskMainButtons {
-    /* padding-top: 162px;
-    padding-bottom: 79px; */
-    /* position: absolute; */
     display: flex;
     justify-content: end;
     gap: 16px;
-    /* top: 889px;
-    left: 995.25px; */
     z-index: 1;
     position: relative;
     max-width: 976.25px;

@@ -236,8 +236,8 @@
 }
 
 ::placeholder {
-  color: #D1D1D1;
-  opacity: 1;
+    color: #D1D1D1;
+    opacity: 1;
 }
 
 .inputBorderColorFocus {

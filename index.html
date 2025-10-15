@@ -4,29 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join 360 Login</title>
+    <title>Join</title>
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
     <link rel="stylesheet" href="./stylesheets/style.css">
-    <link rel="stylesheet" href="./stylesheets/login.css">
-    <link rel="stylesheet" href="./stylesheets/signUp.css">
+    <link rel="stylesheet" href="./stylesheets/assets.css">
     <link rel="stylesheet" href="./stylesheets/header.css">
+    <link rel="stylesheet" href="./stylesheets/navigationBar.css">
+    <link rel="stylesheet" href="./stylesheets/contentContainer.css">
+    <link rel="stylesheet" href="./stylesheets/summary.css">
     <link rel="stylesheet" href="./stylesheets/buttons.css">
     <link rel="stylesheet" href="./stylesheets/fonts.css">
+    <link rel="stylesheet" href="./stylesheets/login.css">
+    <link rel="stylesheet" href="./stylesheets/signUp.css">
     <link rel="stylesheet" href="./stylesheets/addContactPushUp.css">
-    <link rel="stylesheet" href="./stylesheets/mobile.css">
+    <link rel="stylesheet" href="./stylesheets/contacts.css">
+    <link rel="stylesheet" href="./stylesheets/overlays.css">
+    <link rel="stylesheet" href="./stylesheets/board.css">
+    <link rel="stylesheet" href="./stylesheets/addTask.css">
+    <link rel="stylesheet" href="./stylesheets/addTaskOverlay.css">
+    <link rel="stylesheet" href="./stylesheets/mobile/boardMobile.css">
+    <link rel="stylesheet" href="./stylesheets/mobile/mobile.css">
+    <link rel="stylesheet" href="./stylesheets/mobile/addTaskMobile.css">
+    <link rel="stylesheet" href="./stylesheets/mobile/loginquerie.css">
 
-    <link rel="stylesheet" href="./mediaqueries/loginquerie.css">
-</head>
-
-
-<script src="./script.js"></script>
-<script src="./js/firebase.js"></script>
-
+    <script src="./js/templates.js"></script>
+    <script src="./js/navigationBar.js"></script>
+    <script src="./js/firebase.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/overlays.js"></script>
+    <script src="./js/contacts.js"></script>
+    <script src="./js/validator.js"></script>
+    <script src="./js/addTask.js"></script>
+    <script src="./js/board.js"></script>
+    <script src="./js/summary.js"></script>
 </head>
 
 <body class="contentLimitation" onload="isUserAlreadyLogedIn()">
-    <!-- <button class="buttonAddTask">Cancle ></button> -->
+
     <div id="overlay"></div>
 
     <img class="loginPageMoveLogo" src="./assets/img/joinSymbol.svg" alt="Join logo">
@@ -67,7 +82,6 @@
                     </div>
                     <div id="loginFormValidationErrorMessage" class="loginFormValidationErrorMessage"></div>
                 </div>
-
             </div>
 
             <div class="loginPageMainContentButtons">
