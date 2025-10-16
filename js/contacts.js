@@ -394,6 +394,7 @@ async function deleteContact(userID) {
         const overlay = document.getElementById("contactOverlay");
         if (overlay) { overlay.classList.remove("active"); overlay.innerHTML = ""; }
         await loadContacts();
+        closeContactsOverlay();
         showMessageDialog("Contact successfully deleted");
     } catch (error) {
         console.error("Error:", error);
