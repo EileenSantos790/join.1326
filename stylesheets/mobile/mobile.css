@@ -20,6 +20,10 @@
 
 @media (max-width: 1024px) {
 
+    .contentContainer{
+        margin-bottom: 100px;
+    }
+
     .navContainer {
         left: 0;
         right: 0;
@@ -501,6 +505,8 @@
         margin: -60px auto 20px auto;
     }
 
+
+
     .addContactInputContainer {
         width: auto;
     }
@@ -514,8 +520,11 @@
         padding-top: 32px;
         padding-left: unset;
         align-items: center;
-        justify-content: center;
-        gap: unset;
+        justify-content: space-evenly;
+    }
+
+    .addContactButton{
+        justify-content: center !important;
     }
 
     .imputAndImageContainer {
@@ -602,6 +611,10 @@
         font-weight: 400;
         margin-bottom: 15px;
 
+    }
+
+    .contactsPageContainer{
+        background-color: white;
     }
 
 }
