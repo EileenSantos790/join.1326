@@ -40,7 +40,7 @@ async function toggleDropdownAssignedTo() {
     document.getElementById('addTaskDropdownAssignedTo').classList.toggle('d-none');
     document.getElementById('addTaskDropdownSearchContent').classList.toggle('d-none');
     document.getElementById('addTaskAddedContactIcons').classList.toggle('d-none');
-
+    
     //const taskId = document.querySelector('[data-task-id]')?.dataset.taskId;
     //const users = allTasks.find(task => task.id === taskId)?.assignedTo || [];
 
@@ -104,9 +104,9 @@ async function renderAllContacts() {
  */
 
 function saveClickedContact(initial, color, id, name) {
-    let index = selectedContactsAddTask.findIndex(c => c.id === id);
+    let index = selectedContactsAddTask?.findIndex(c => c.id === id);
 
-    if (index !== -1) {
+    if (index !== -1 && index != undefined) {
         selectedContactsAddTask.splice(index, 1);
     } else {
         selectedContactsAddTask.push({ id, name, initial, color });
@@ -283,12 +283,12 @@ function handleBlurSubtask(id) {
 }
 
 
-function resetAddTaskSide() {
+async function resetAddTaskSide() {
     resetInput('addTasktTitleInput', 'addTasktTitleErrorContainer', 'addTasktTitleInputContainer');
     resetInput('addTaskTextarea', '', 'addTaskDescriptionInputContainer');
     resetInput('addTasktDateInput', 'addTasktDateErrorContainer', 'addTasktDateInputContainer');
     resetPriority();
-    resetAssignedTo();
+    await resetAssignedTo();
     resetCategory();
     resetSubtask();
 }
@@ -312,14 +312,14 @@ function resetPriority() {
 }
 
 
-function resetAssignedTo() {
+async function resetAssignedTo() {
     document.getElementById('addTaskDropdownAssignedTo').classList.remove('d-none');
     document.getElementById('addTaskDropdownSearchContent').classList.add('d-none');
     let addedContacts = document.getElementById('addTaskAddedContactIcons');
     addedContacts.classList.remove('d-none');
     addedContacts.innerHTML = "";
     selectedContactsAddTask = [];
-    renderContactsInAddTask();
+    await renderContactsInAddTask();
 }
 
 
@@ -374,7 +374,7 @@ function getTaskData(editTask = false) {
     const dueDate = document.getElementById('addTasktDateInput').value;
     const priority = getSelectedPriority();
     const category = document.getElementById('categoryDropdownHeader').dataset.value;
-    const assignedTo = selectedContactsAddTask;
+    const assignedTo = selectedContactsAddTask || [];
     // const oSubtasks = !editTask || subtasks || subtasksListOnEdit
     //     ? subtasks.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done }))
     //     : subtasksListOnEdit.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done }));

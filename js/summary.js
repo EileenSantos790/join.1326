@@ -1,5 +1,4 @@
 let loadedTasks = [];
-let todoIconSvgApplied = false;
 
 onElementAppear('#summaryContainer', () => {
     ensureTodoIconSvg();
@@ -7,9 +6,14 @@ onElementAppear('#summaryContainer', () => {
 });
 
 function ensureTodoIconSvg() {
-    if (todoIconSvgApplied) return;
-    const img = document.querySelector('.smallWindows .summaryPenIconNormal');
-    if (!img || img.tagName !== 'IMG') return;
+    const container = document.querySelector('.smallWindows');
+    if (!container) return;
+
+    const existingSvg = container.querySelector('svg.summaryPenIconNormal');
+    if (existingSvg) return;
+
+    const img = container.querySelector('img.summaryPenIconNormal');
+    if (!img) return;
 
     const svgNS = 'http://www.w3.org/2000/svg';
     const svg = document.createElementNS(svgNS, 'svg');
@@ -34,13 +38,13 @@ function ensureTodoIconSvg() {
     svg.appendChild(circle);
     svg.appendChild(path);
     img.replaceWith(svg);
-    todoIconSvgApplied = true;
 }
 
 async function setPageLoad() {
     await setStatusQuantity();
     await setUrgentPriorityQuantity();
     await setTotalTasksQuantity();
+    setNextUrgentTaskDate();
 }
 
 async function getAllTasksByStatus(status) {
@@ -78,4 +82,34 @@ async function setUrgentPriorityQuantity() {
 
 async function setTotalTasksQuantity() {
     document.getElementById("tasksOnBoardNumber").innerHTML = loadedTasks.length;
+}
+
+async function setNextUrgentTaskDate() {
+  const urgentTasks = loadedTasks.filter(task => task.priority === "Urgent" && task.dueDate);
+  const closestDate = getClosestDueDate(urgentTasks);
+
+  if (!closestDate) {
+    document.getElementById("calenderDate").textContent = "No urgent tasks";
+    return;
+  }
+
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = closestDate.toLocaleDateString(undefined, options);
+  document.getElementById("calenderDate").textContent = formattedDate;
+}
+
+function getClosestDueDate(tasks) {
+  const now = new Date();
+  if (!tasks || tasks.length === 0) return null;
+
+  const closestTask = tasks.reduce((closest, current) => {
+    const currentDate = new Date(current.dueDate);
+    if (!closest) return current;
+    const closestDate = new Date(closest.dueDate);
+    const diffClosest = Math.abs(closestDate - now);
+    const diffCurrent = Math.abs(currentDate - now);
+    return diffCurrent < diffClosest ? current : closest;
+  }, null);
+
+  return closestTask ? new Date(closestTask.dueDate) : null;
 }

@@ -2,6 +2,7 @@ let allTasks = [];
 let subtasksListOnEdit = [];
 let usersListOnEdit = [];
 let draggedTaskId = null;
+let selectedTaskId = null;
 let dropPlaceholder = document.createElement('div');
 dropPlaceholder.className = 'dropPlaceholder';
 
@@ -502,13 +503,13 @@ function onDragLeave(ev) {
 
 
 async function editTask(taskId) {
-    resetAddTaskSide()
+    await resetAddTaskSide()
     const content = document.getElementById("boardOverlayContent");
     content.innerHTML = getBoardOverlayEditTaskTemplate(taskId);
     const task = await getTaskById(taskId)
-    updateListSelectedContacts(task.assignedTo);
 
     if (task) {
+        updateListSelectedContacts(task.assignedTo);
         document.getElementById("addTasktTitleInput").value = task.title;
         document.getElementById("addTaskTextarea").innerHTML = task.description;
         document.getElementById("addTasktDateInput").value = task.dueDate;
@@ -523,7 +524,7 @@ async function editTask(taskId) {
         renderSubtasksOnEdit(task.subtasks);
         content.dataset.overlayStatus = task.status;
         getContactsOnEditBoardTemplate(task.assignedTo);
-        selectedContactsAddTask = task.assignedTo;
+        selectedContactsAddTask = task.assignedTo || [];
     }
 }
 
@@ -539,8 +540,11 @@ function mapPriority(priority) {
 }
 
 function getContactsOnEditBoardTemplate(users) {
-    if (!users) return "";
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
+    if (!users) {
+        contentDiv.innerHTML = "No users assigned";
+        return
+    }
     let template = ''
     users.forEach(user => {
         usersListOnEdit.push(user)
@@ -548,8 +552,6 @@ function getContactsOnEditBoardTemplate(users) {
     });
     contentDiv.innerHTML = template;
 }
-
-let selectedTaskId = null;
 
 function selectTaskCard(taskId) {
     document.querySelectorAll('.boardCardContainer.is-selected')
