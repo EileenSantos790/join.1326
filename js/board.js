@@ -503,13 +503,13 @@ function onDragLeave(ev) {
 
 
 async function editTask(taskId) {
-    await resetAddTaskSide()
+    //resetAddTaskSide();
+    renderContactsInAddTask();
     const content = document.getElementById("boardOverlayContent");
     content.innerHTML = getBoardOverlayEditTaskTemplate(taskId);
     const task = await getTaskById(taskId)
 
     if (task) {
-        updateListSelectedContacts(task.assignedTo);
         document.getElementById("addTasktTitleInput").value = task.title;
         document.getElementById("addTaskTextarea").innerHTML = task.description;
         document.getElementById("addTasktDateInput").value = task.dueDate;
@@ -519,7 +519,6 @@ async function editTask(taskId) {
         document.getElementById(oPriority.buttonIconOff).classList.add('d-none');
         document.getElementById(oPriority.buttonId)?.classList.add(oPriority.buttonClass);
 
-        //subtasksListOnEdit = task.subtasks;
         subtasks = task.subtasks;
         renderSubtasksOnEdit(task.subtasks);
         content.dataset.overlayStatus = task.status;
