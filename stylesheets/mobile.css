@@ -147,9 +147,13 @@
         color: #23A3E9;
     }
 
-    .summaryDashboardContainerLeft {
+    .responsiveContactsDetailsSection .summaryDashboardContainerLeft {
         max-width: 396px;
         padding-inline: 16px;
+    }
+
+    .summaryMainSection .summaryDashboardContainerLeft {
+        max-width: 396px;
     }
 
     .contentContainerPadding {
@@ -164,8 +168,13 @@
         justify-content: center;
     }
 
-    .blueSeparationLine {
+    .summaryMainSection .blueSeparationLine {
         display: none;
+    }
+
+    .summaryMainSection .blueSeparationLineMobile {
+        display: block;
+        margin-top: 8px;
     }
 
     .templteTitle {
@@ -337,7 +346,7 @@
     }
 
     .submenu {
-        top: 49px;
+        top: 60px;
         right: 5px;
         padding: 23px 0px;
         gap: 24px;
@@ -596,11 +605,11 @@
         font-size: 21px;
     }
 
-    .blueSeparationLine {
+    .responsiveContactsDetailsSection .blueSeparationLine {
         display: none;
     }
 
-    .blueSeparationLineMobile {
+    .responsiveContactsDetailsSection .blueSeparationLineMobile {
         display: block;
         margin-top: 8px;
     }

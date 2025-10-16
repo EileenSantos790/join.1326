@@ -74,6 +74,8 @@
     .boardLaneBody {
         display: flex;
         gap: 16px;
+        overflow-x: auto;
+        scrollbar-width: none;
     }
 
     .categoryFieldTechnicalTask {
@@ -108,6 +110,10 @@
 
     .marginBottom150 {
         margin-bottom: 150px;
+    }
+
+    .spaceHolderContainer {
+        max-width: unset;
     }
 }
 

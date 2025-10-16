@@ -144,9 +144,6 @@ async function searchContactsForTask() {
         renderContactsInAddTask();
     }
 }
-/**
- * The filter function is not yet working properly because the render function must be called elsewhere. (when opening the addTask page)
- */
 
 
 function toggleDropdownCategory() {
