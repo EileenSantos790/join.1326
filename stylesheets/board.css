@@ -34,8 +34,6 @@
     border-color: #C9C9C9;
     max-width: 310px;
     height: 46px;
-    /* padding-inline: 16px; */
-    /* padding-block: 8px; */
     background-color: #FFFFFF;
 }
 
@@ -83,7 +81,6 @@
     flex-wrap: wrap;
     margin-top: 48px;
     gap: 26px;
-    /* overflow-x: auto; */
 }
 
 .boardProgressColumn {
@@ -101,7 +98,6 @@
     margin-bottom: 15.5px;
     font-weight: 700;
     font-size: 20px;
-    /* margin-left: 10px; */
 }
 
 .boardCardContainer {
@@ -116,8 +112,19 @@
     background-color: rgba(255, 255, 255, 1);
     border-radius: 24px;
     padding: 16px;
-    /* margin-left: 10px; */
     cursor: pointer;
+}
+
+.boardCardContainer:hover {
+    animation: wobble 0.5s ease;
+}
+
+@keyframes wobble {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-5px); }
+  50%  { transform: translateX(5px); }
+  75%  { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
 }
 
 .categoryFieldTechnicalTask {
@@ -196,7 +203,6 @@
 
 .boardCardContainerOverlay {
     display: flex;
-    height: auto;
     width: 445px;
     flex-direction: column;
     gap: 24px;
@@ -205,7 +211,8 @@
     border-radius: 30px;
     padding-inline: 40px;
     padding-block: 48px;
-    max-height: 931px;
+    max-height: 600px;
+    overflow-y: scroll;
 }
 
 .scrollBar {

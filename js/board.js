@@ -2,6 +2,7 @@ let allTasks = [];
 let subtasksListOnEdit = [];
 let usersListOnEdit = [];
 let draggedTaskId = null;
+let selectedTaskId = null;
 let dropPlaceholder = document.createElement('div');
 dropPlaceholder.className = 'dropPlaceholder';
 
@@ -502,11 +503,11 @@ function onDragLeave(ev) {
 
 
 async function editTask(taskId) {
-    resetAddTaskSide()
+    //resetAddTaskSide();
+    renderContactsInAddTask();
     const content = document.getElementById("boardOverlayContent");
     content.innerHTML = getBoardOverlayEditTaskTemplate(taskId);
     const task = await getTaskById(taskId)
-    updateListSelectedContacts(task.assignedTo);
 
     if (task) {
         document.getElementById("addTasktTitleInput").value = task.title;
@@ -518,12 +519,11 @@ async function editTask(taskId) {
         document.getElementById(oPriority.buttonIconOff).classList.add('d-none');
         document.getElementById(oPriority.buttonId)?.classList.add(oPriority.buttonClass);
 
-        //subtasksListOnEdit = task.subtasks;
         subtasks = task.subtasks;
         renderSubtasksOnEdit(task.subtasks);
         content.dataset.overlayStatus = task.status;
         getContactsOnEditBoardTemplate(task.assignedTo);
-        selectedContactsAddTask = task.assignedTo;
+        selectedContactsAddTask = task.assignedTo || [];
     }
 }
 
@@ -539,8 +539,11 @@ function mapPriority(priority) {
 }
 
 function getContactsOnEditBoardTemplate(users) {
-    if (!users) return "";
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
+    if (!users) {
+        contentDiv.innerHTML = "No users assigned";
+        return
+    }
     let template = ''
     users.forEach(user => {
         usersListOnEdit.push(user)
@@ -548,8 +551,6 @@ function getContactsOnEditBoardTemplate(users) {
     });
     contentDiv.innerHTML = template;
 }
-
-let selectedTaskId = null;
 
 function selectTaskCard(taskId) {
     document.querySelectorAll('.boardCardContainer.is-selected')

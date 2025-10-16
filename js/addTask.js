@@ -40,14 +40,6 @@ async function toggleDropdownAssignedTo() {
     document.getElementById('addTaskDropdownAssignedTo').classList.toggle('d-none');
     document.getElementById('addTaskDropdownSearchContent').classList.toggle('d-none');
     document.getElementById('addTaskAddedContactIcons').classList.toggle('d-none');
-
-    //const taskId = document.querySelector('[data-task-id]')?.dataset.taskId;
-    //const users = allTasks.find(task => task.id === taskId)?.assignedTo || [];
-
-    //makeSelectedContactsActive(selectedContactsAddTask);
-    //await renderContactsInAddTask([], users);
-    //getContactsOnEditBoardTemplate(users);
-    //await updateListSelectedContacts()
 }
 
 /**
@@ -65,14 +57,13 @@ function addTaskSelectContact(userId, initial, color, name) {
     checkboxOn.classList.toggle('d-none');
 
     saveClickedContact(initial, color, userId, name);
-    //updateListSelectedContacts();
     addContactToTask();
 }
 
 /**
  * Displays all or filtered contacts in the assigned to dropdown container.
  */
-async function renderContactsInAddTask(searchArray = [], arrSelectedContacts = []) {
+async function renderContactsInAddTask(searchArray = []) {
     if (searchArray.length) {
         let contentDiv = document.getElementById('assignedToContactContent');
         contentDiv.innerHTML = "";
@@ -104,17 +95,14 @@ async function renderAllContacts() {
  */
 
 function saveClickedContact(initial, color, id, name) {
-    let index = selectedContactsAddTask.findIndex(c => c.id === id);
+    let index = selectedContactsAddTask?.findIndex(c => c.id === id);
 
-    if (index !== -1) {
+    if (index !== -1 && index != undefined) {
         selectedContactsAddTask.splice(index, 1);
     } else {
         selectedContactsAddTask.push({ id, name, initial, color });
-        //updateListSelectedContacts(id);
     }
     selectedContactsAddTask.sort((a, b) => a.initial.localeCompare(b.initial));
-
-    //makeSelectedContactsActive(selectedContactsAddTask);
 }
 
 /**
@@ -371,7 +359,7 @@ function getTaskData(editTask = false) {
     const dueDate = document.getElementById('addTasktDateInput').value;
     const priority = getSelectedPriority();
     const category = document.getElementById('categoryDropdownHeader').dataset.value;
-    const assignedTo = selectedContactsAddTask;
+    const assignedTo = selectedContactsAddTask || [];
     // const oSubtasks = !editTask || subtasks || subtasksListOnEdit
     //     ? subtasks.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done }))
     //     : subtasksListOnEdit.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done }));
@@ -473,22 +461,5 @@ function showAddTaskDialog() {
         setTimeout(() => {
             closeAddTaskOverlay();
         }, 1000);
-    }
-}
-
-function updateListSelectedContacts(users = []) {
-    const arr = selectedContactsAddTask.length ? selectedContactsAddTask : users;
-
-    if (arr.length){
-        arr.forEach((user) => {
-            const container = document.getElementById(`assignedToContact-${user.id}`);
-            const checkboxOff = document.getElementById(`assignedToCheckbox-${user.id}`);
-            const checkboxOn = document.getElementById(`assignedToCheckboxWhite-${user.id}`);
-
-            container.classList.toggle('dropdownItemOff');
-            container.classList.toggle('dropdownItemOn');
-            checkboxOff.classList.toggle('d-none');
-            checkboxOn.classList.toggle('d-none');
-        })
     }
 }

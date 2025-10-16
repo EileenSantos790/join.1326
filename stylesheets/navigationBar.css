@@ -11,18 +11,18 @@
     position: fixed;
 }
 
-.navContainerLogo{
+.navContainerLogo {
     display: flex;
-    justify-content: center;  
+    justify-content: center;
 }
 
-.navContainerMenu{
+.navContainerMenu {
     gap: 15px;
     display: flex;
     flex-direction: column;
 }
 
-.navLine{
+.navLine {
     gap: 8px;
     display: flex;
     flex-direction: row;
@@ -32,12 +32,12 @@
     padding-left: 56px;
 }
 
-.navIcon{
+.navIcon {
     width: 30px;
     height: 30px;
 }
 
-.navContainerSites{
+.navContainerSites {
     display: flex;
     flex-direction: column;
     height: 317px;
@@ -56,25 +56,20 @@
     cursor: pointer;
 }
 
-/* active nav Bar CSS */
-
 .navLine.active {
     background-color: #091931;
     color: white;
 }
 
 .navLine.active .navIcon {
-    filter: brightness(0) invert(1); /* Icon is white */
+    filter: brightness(0) invert(1);
 }
 
-
-/* active nav Bar CSS */
-
 .navLine:hover {
-  background-color: #091931;
-  color: white;
+    background-color: #091931;
+    color: white;
 }
 
 .navLine:hover .navIcon {
-  filter: brightness(0) invert(1); /* Icon wird weiß */
+    filter: brightness(0) invert(1);
 }

@@ -20,6 +20,10 @@
 
 @media (max-width: 1024px) {
 
+    .contentContainer{
+        margin-bottom: 100px;
+    }
+
     .navContainer {
         left: 0;
         right: 0;
@@ -315,7 +319,7 @@
         padding-right: 16px;
     }
 
-    .addNewContactButton{
+    .addNewContactButton {
         position: fixed;
         right: 25px;
         bottom: 70px;
@@ -341,7 +345,7 @@
         display: none;
     }
 
-    .addContactSectionContainer  {
+    .addContactSectionContainer {
         flex-direction: column-reverse;
     }
 
@@ -352,7 +356,8 @@
         gap: 24px;
     }
 
-    .submenu p, a {
+    .submenu p,
+    a {
         padding: 0;
     }
 
@@ -509,6 +514,8 @@
         margin: -60px auto 20px auto;
     }
 
+
+
     .addContactInputContainer {
         width: auto;
     }
@@ -522,8 +529,11 @@
         padding-top: 32px;
         padding-left: unset;
         align-items: center;
-        justify-content: center;
-        gap: unset;
+        justify-content: space-evenly;
+    }
+
+    .addContactButton{
+        justify-content: center !important;
     }
 
     .imputAndImageContainer {
@@ -580,6 +590,42 @@
     .addContactPushUpContainerLeft {
         width: auto;
     }
+
+    .responsiveOverlayEdit {
+        position: fixed;
+        right: 0px;
+        bottom: 96px;
+        z-index: 1000;
+        flex-direction: column;
+        display: flex;
+        width: 116px;
+        height: 100px;
+        background-color: #FFFFFF;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 0px;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        padding: 10px;
+    }
+
+    .responsiveOverlayEdit.is-open {
+        transform: translateX(-10px);
+    }
+
+    .editMenuRes {
+        font-size: 16px;
+        font-weight: 400;
+        margin-bottom: 15px;
+
+    }
+
+    .contactsPageContainer{
+        background-color: white;
+    }
+
 }
 
 
@@ -631,19 +677,19 @@
         width: 330px;
     }
 
-    .contentContainerPaddingPrivacyAndLegalNotice{
+    .contentContainerPaddingPrivacyAndLegalNotice {
         padding-inline: 16px;
         padding-block: 48px;
     }
 
-    .userProfileCirle:hover{
+    .userProfileCirle:hover {
         cursor: pointer;
     }
 
-    .submenuHelpButtonMobile{
+    .submenuHelpButtonMobile {
         display: block;
     }
-    
+
     .alignArrowLeft {
         display: none;
     }

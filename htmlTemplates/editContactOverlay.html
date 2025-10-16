@@ -5,13 +5,14 @@
             <div class="addContactfontBold">Edit Contact</div>
             <div class="decorationLineBlue"></div>
         </section>
+
         <section>
             <div class="addContactPushUpContainerRight">
-                <section class="sectionPositionClose" id="closeBtnTop"><img class="closeIcon"
-                        onclick="closeOverlay()" src="../assets/icons/close.svg" alt="close icon"></section>
+                <section class="sectionPositionClose" id="closeBtnTop"><img class="closeIcon" onclick="closeOverlay()"
+                        src="../assets/icons/close.svg" alt="close icon"></section>
                 <section class="imputAndImageContainer">
                     <div id="avatarEdit" class="contactImgDiv">
-                        
+
                     </div>
                     <div class="addingContactSectionWidth">
                         <div class="addContactMainContentInputs">
@@ -38,7 +39,7 @@
                                 <div class="addContactInputContainer">
                                     <input id="contactPhone" class="fontInter inputInside" type="tel"
                                         placeholder="Phone" required>
-                                    <img class="inputPasswordIcon" src="../assets/icons/call.svg" alt="lock icon">
+                                    <img class="inputPasswordIcon" src="../assets/icons/call.svg" alt="call icon">
                                 </div>
                                 <div id="contactPhoneError" class="inputErrrorMessage" style="display:none"></div>
                             </div>
@@ -46,15 +47,19 @@
                         </div>
                     </div>
                 </section>
+
                 <section class="addContactButtonSection">
                     <div id="deleteContactFromEditOverlay">
-                        <button class="buttonSecondary addContactButton" id="closeBtnBottom" onclick="deleteContact()">Delete</button>
+                        <button class="buttonSecondary addContactButton" id="closeBtnBottom"
+                            onclick="deleteContact()">Delete</button>
                     </div>
                     <button class="buttonPrimary addContactButton" onclick="handleUpdateContact()">Save
                         <img class="checkIcon" src="../assets/icons/check.svg" alt="check icon">
                     </button>
                 </section>
+
             </div>
         </section>
+
     </div>
 </div>

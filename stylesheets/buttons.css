@@ -8,7 +8,6 @@ button:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-/* Primary Button */
 .buttonPrimary {
     width: 99px;
     height: 48px;
@@ -32,7 +31,6 @@ button:hover {
     background-color: #091931 !important;
 }
 
-/* Secondary Button */
 .buttonSecondary {
     width: 99px;
     height: 48px;
@@ -52,7 +50,6 @@ button:hover {
     color: #091931;
 }
 
-/* Create Task Button */
 .buttonCreateTask {
     width: 183px;
     height: 56px;
@@ -60,7 +57,6 @@ button:hover {
     color: white;
     font-size: 21px;
     font-weight: 700;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,15 +76,12 @@ button:hover {
     display: flex;
     width: 24px;
     height: 24px;
-
-
     background-image: url('../assets/icons/check.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-/* Add new Contact Button */
 .buttonAddContact {
     width: 255px;
     height: 56px;
@@ -96,7 +89,6 @@ button:hover {
     color: white;
     font-size: 21px;
     font-weight: 700;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -116,14 +108,12 @@ button:hover {
     display: flex;
     width: 33px;
     height: 33px;
-
     background-image: url('../assets/icons/person_add.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-/* Cancle Button */
 .buttonCancle {
     width: 126px;
     height: 56px;
@@ -131,7 +121,6 @@ button:hover {
     border: 2px solid #2A3647;
     font-size: 20px;
     color: #2A3647;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -149,7 +138,6 @@ button:hover {
     color: #091931;
 }
 
-/* Add Task */
 .buttonAddTask {
     width: 160px;
     height: 56px;
@@ -157,7 +145,6 @@ button:hover {
     color: white;
     font-size: 21px;
     font-weight: 700;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -177,7 +164,6 @@ button:hover {
     display: flex;
     width: 33px;
     height: 33px;
-
     background-image: url('../assets/icons/add.svg');
     background-size: contain;
     background-repeat: no-repeat;
@@ -196,7 +182,6 @@ button:hover {
 }
 
 .prioButtonAddTask {
-    /* width: 136px; */
     flex: 1;
     height: 56px;
     background-color: #FFFFFF;
@@ -207,18 +192,6 @@ button:hover {
     align-items: center;
     gap: 8px;
 }
-
-/* .buttonUrgent {
-    width: 136px;
-    height: 56px;
-    background-color: #FFFFFF;
-    font-size: 20px;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-} */
 
 .buttonUrgentIcon {
     width: 20px;
@@ -231,18 +204,6 @@ button:hover {
     box-shadow: unset !important;
 }
 
-/* .buttonMedium {
-    width: 136px;
-    height: 56px;
-    background-color: #FFFFFF;
-    font-size: 20px;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-} */
-
 .buttonMediumIcon {
     width: 20px;
     height: 7.45px;
@@ -253,18 +214,6 @@ button:hover {
     color: #FFFFFF;
     box-shadow: unset !important;
 }
-
-/* .buttonLow {
-    width: 136px;
-    height: 56px;
-    background-color: #FFFFFF;
-    font-size: 20px;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-} */
 
 .buttonLowIcon {
     width: 20px;
@@ -312,7 +261,6 @@ button:hover {
     margin-block: 22.5px;
     position: absolute;
     border-radius: 10px;
-
 }
 
 .userConfirmationContactCreation {
@@ -332,7 +280,6 @@ button:hover {
     color: white;
     font-size: 21px;
     font-weight: 700;
-
     display: flex;
     align-items: center;
     justify-content: center;

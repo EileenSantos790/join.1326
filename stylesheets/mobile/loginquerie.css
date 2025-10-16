@@ -1,0 +1,102 @@
+@media (max-width: 1024px) {
+    #overlay {
+        background-color: #2A3647;
+    }
+
+    .loginPageMoveLogo,
+    .signUpPageLogo {
+        width: 64px;
+        height: 78.3px;
+        top: 38px !important;
+        left: 38px !important;
+    }
+
+    .loginPageMainContentHeadline {
+        font-size: 47px;
+
+    }
+
+    .loginPageMainContentSeperator {
+        width: 90px;
+        margin-bottom: 32px;
+    }
+
+    .loginPageMainContentInputs {
+        margin-bottom: -30px;
+    }
+
+    .loginPageMainContentButtons {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 21px
+    }
+
+    .loginPageGuestLogInButton,
+    .loginPageLogInButton {
+        width: 180px;
+        height: 51px;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .signUpInputContainer,
+    .signUpValidationInputContainer {
+        height: 46px;
+        width: 364px;
+    }
+
+    .loginPageMainContentHeadline {
+        height: 475px;
+        width: 396px;
+    }
+
+    .loginPageHeader {
+        width: 64px;
+        height: 78.3px;
+        display: none;
+    }
+
+    .signUpInputContainer {
+        width: 100%;
+    }
+
+    .signUpValidationInputContainer {
+        width: 100%;
+    }
+
+    .buttonPrimary {
+        margin-top: 38px;
+        width: 180px !important;
+        height: 51px;
+        font-size: 16px;
+    }
+
+    .loginPageHeaderMobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 35px;
+        margin-bottom: 40px;
+    }
+
+    .signUpMobile{
+        width: 104px !important;
+        height: 49px !important;
+        font-size: 16px !important;
+        margin-top: 0 !important;
+    }
+
+}
+
+@media (max-width: 360px) {
+    .signUpArrowButton {
+        display: none;
+    }
+}
+
+@media (min-width: 1025px) {
+    .loginPageHeaderMobile {
+        display: none;
+    }
+}
