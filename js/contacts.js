@@ -146,8 +146,8 @@ function openContactDetails(userID) {
     if (isMobile()) {
         document.getElementById("btnAddNeuContact").classList.add("d-none");
         document.getElementById("btnEditNewContact").classList.remove("d-none");
+        document.getElementById("contactDetailsResponsive").setAttribute('data-edited-contactId', userID);
     }
-    //const color = avatarDiv.style.backgroundColor;
     card.style.backgroundColor = "#293647";
     card.style.color = "#FFFFFF";
     selectedCardEl = card;
@@ -301,7 +301,7 @@ function saveContact(newContact) {
         .then(data => {
             closeOverlay();
             loadContacts();
-            showMessageDialog("Contact successfully created/updated");
+            showMessageDialog("Contact successfully created");
         })
         .catch(error => {
             console.error("Erro:", error);
@@ -379,20 +379,59 @@ async function searchContactById(userID) {
  * @param {string|number} userID - The unique identifier of the user to delete.
  * @returns {void}
  */
-function deleteContact(userID) {
-    userID = userID || document.getElementById("avatarEdit").firstElementChild.id;
-    fetch(`${BASE_URL}users/${userID}.json`, { method: "DELETE" })
-        .then(response => { if (!response.ok) { throw new Error("Error deleting contact"); } return response.json(); })
-        .then(() => {
-            const overlay = document.getElementById("contactOverlay");
-            if (overlay) { overlay.classList.remove("active"); overlay.innerHTML = ""; }
-            if (selectedCardEl) { selectedCardEl.style.backgroundColor = ""; selectedCardEl.style.color = "#000000"; selectedCardEl = null; }
-            loadContacts();
-            removeAllTasksFromUser(userID)
-            showMessageDialog("Contact successfully deleted");
+async function deleteContact(userID) {
+    const avatarContainer = document.getElementById("avatarEdit");
+    const fallbackId = avatarContainer && avatarContainer.firstElementChild ? avatarContainer.firstElementChild.id : null;
+    const targetId = userID || fallbackId;
+    if (!targetId) return;
 
-        })
-        .catch(error => { console.error("Error:", error); });
+    await removeUserFromAllTasks(targetId);
+
+    try {
+        const response = await fetch(`${BASE_URL}users/${targetId}.json`, { method: "DELETE" });
+        if (!response.ok) { throw new Error("Error deleting contact"); }
+        await response.json();
+        const overlay = document.getElementById("contactOverlay");
+        if (overlay) { overlay.classList.remove("active"); overlay.innerHTML = ""; }
+        await loadContacts();
+        showMessageDialog("Contact successfully deleted");
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+async function removeUserFromAllTasks(userId) {
+    if (!userId) return;
+    try {
+        const user = await searchContactById(userId);
+        if (user && Array.isArray(user.tasks) && user.tasks.length) {
+            user.tasks = [];
+            updateContact(userId, user, true);
+        }
+
+        const response = await fetch(`${BASE_URL}tasks.json`);
+        if (!response.ok) { throw new Error("Error loading tasks"); }
+        const tasks = await response.json();
+        if (!tasks) return;
+
+        const operations = [];
+        for (const taskId in tasks) {
+            const task = tasks[taskId];
+            if (!task) continue;
+            const assigned = Array.isArray(task.assignedTo) ? task.assignedTo : [];
+            const filtered = assigned.filter(assignee => assignee && assignee.id !== userId);
+            if (filtered.length === assigned.length) continue;
+            operations.push(fetch(`${BASE_URL}tasks/${taskId}.json`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ assignedTo: filtered })
+            }));
+        }
+
+        if (operations.length) await Promise.allSettled(operations);
+    } catch (error) {
+        console.error(`Error removing user ${userId} from tasks:`, error);
+    }
 }
 
 /**
@@ -453,18 +492,19 @@ async function handleUpdateContact() {
  * @param {Object} user - The updated user data to be sent to the server.
  * @returns {void}
  */
-function updateContact(userID, user, createTask = false) {
+async function updateContact(userID, user, createTask = false) {
     fetch(`${BASE_URL}users/${userID}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ user }) })
         .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
-        .then(() => {
+        .then(async () => {
             if (!createTask) {
                 closeOverlay();
-                const overlay = document.getElementById("contactOverlay");
-                if (overlay) { overlay.classList.remove("active"); overlay.innerHTML = ""; }
-                if (selectedCardEl) { selectedCardEl.style.backgroundColor = ""; selectedCardEl.style.color = "#000000"; selectedCardEl = null; }
-                loadContacts();
+                //const overlay = document.getElementById("contactOverlay");
+                //if (overlay) { overlay.classList.remove("active"); overlay.innerHTML = ""; }
+                //if (selectedCardEl) { selectedCardEl.style.backgroundColor = ""; selectedCardEl.style.color = "#000000"; selectedCardEl = null; }
+                await loadContacts();
+                openContactDetails(userID)
                 showMessageDialog("Contact successfully updated");
-                removeAllTasksFromUser(userID)
+                //removeAllTasksFromUser(userID)
             }
         })
         .catch(error => { console.error("Error:", error); });
@@ -511,10 +551,6 @@ async function addTaskToUsers(userIds, taskId) {
     await Promise.allSettled(ops);
 }
 
-function editMenuContactMobile() {
-    console.log("hey")
-}
-
 function openResponsiveOverlayEdit() {
     const editOverlay = document.getElementById('responsiveOverlayEdit');
     const editContactBtn = document.getElementById('btnEditNewContact')
@@ -526,7 +562,8 @@ function openResponsiveOverlayEdit() {
     
 }
 
-function renderEditOverlay(editOverlay, userID){
+function renderEditOverlay(editOverlay){
+    const userID = document.getElementById("contactDetailsResponsive").getAttribute('data-edited-contactId');
     editOverlay.innerHTML = `
                     <div>
                          <div class="editContactBtn" onclick="editContact('${userID}')">
@@ -548,6 +585,5 @@ function renderEditOverlay(editOverlay, userID){
                          </div>
                     </div>`
 }
-
 
 
