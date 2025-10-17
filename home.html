@@ -43,7 +43,7 @@
 
 <body id="homeBody" onload="isUserLoggedIn()">
 
-    <div id="overlayRoot" class="overlay initalHiddenOverlay">
+    <div id="overlayRoot" onclick="closeOverlay()" class="overlay initalHiddenOverlay">
         <div class="overlayCenter" onclick="event.stopPropagation()">
             <div id="overlayPanel" class="overlayPanel"></div>
         </div>

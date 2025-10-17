@@ -561,12 +561,14 @@ async function addTaskToUsers(userIds, taskId) {
 function openResponsiveOverlayEdit() {
     const editOverlay = document.getElementById('responsiveOverlayEdit');
     const editContactBtn = document.getElementById('btnEditNewContact')
-    editContactBtn.classList.add('d-none');
+    //editContactBtn.classList.add('d-none');
     editOverlay.classList.toggle('is-open');
-
     renderEditOverlay(editOverlay);
+}
 
-    
+function closeResponsiveOverlayEdit() {
+    const editOverlay = document.getElementById('responsiveOverlayEdit');
+    editOverlay && editOverlay.classList.remove('is-open');
 }
 
 function renderEditOverlay(editOverlay){
@@ -589,8 +591,20 @@ function renderEditOverlay(editOverlay){
                                  </g>
                              </svg>
                              <p class="editMenuRes">Delete</p>
-                         </div>
+                        </div>
                     </div>`
 }
 
+function goToContacts() {
+    const contactsMenuItem = document.querySelector('.navLine[data-file*="contacts"], .navLine[data-file*="Contacts"]');
+    const content = document.getElementById('contentContainer');
+    const openContacts = () => {
+        if (contactsMenuItem) {
+            contactsMenuItem.click();
+        } else if (content) {
+            loadPage("./htmlTemplates/contacts.html", content);
+        }
+    };
+    openContacts();
+}
 
