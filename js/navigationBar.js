@@ -79,11 +79,6 @@ function loadPage(file, content) {
   if (file === "./htmlTemplates/addTask.html") {
     resetAddTaskSide();
   }
-
-  // if (file === "./htmlTemplates/summary.html") {
-  //     setStatusQuantity();
-  //     setUrgentPriorityQuantity();
-  // }
 }
 
 
@@ -138,7 +133,13 @@ function openPageFromUrl(content) {
   if (!fileToOpen) return;
 
   const menuItem = document.querySelector(`[data-file="${fileToOpen}"]`);
-  if (menuItem) menuItem.click();
+  if (menuItem) {
+    menuItem.click(); 
+    const path = menuItem.dataset.file;
+    if (path === "./htmlTemplates/privacyPolicy.html" || path === "./htmlTemplates/legalNotice.html") {
+      hideUserMenu() //For desktop
+    }
+  }
   else loadPage(fileToOpen, content);
 }
 

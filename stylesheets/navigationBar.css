@@ -73,3 +73,9 @@
 .navLine:hover .navIcon {
     filter: brightness(0) invert(1);
 }
+
+.policeAndNoticeMobile {
+    display: flex;
+    justify-content: right;
+    
+}

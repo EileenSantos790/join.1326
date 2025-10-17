@@ -43,6 +43,7 @@ function isUserLoggedIn() {
     const page = new URLSearchParams(location.search).get('page');
     const allowPublic = page === 'privacyPolicy' || page === 'legalNotice';
     const loggedIn = sessionStorage.getItem('userfound') === 'true';
+    const mobile = isMobile();
 
     if (!loggedIn && allowPublic) {
         const nav = document.querySelector('.navContainer');
@@ -56,9 +57,33 @@ function isUserLoggedIn() {
                     <img class="navIcon" src="./assets/icons/LogInIcon.svg" alt="Login Icon">
                     <p>Log In</p>
                 </div>
+
+                <div id="policeAndNoticeMobile" class="policeAndNoticeMobile d-none">
+                    <div id="privacePolicy" class="navLine" onclick="location.href='home.html?page=privacyPolicy&mobile=true'">
+                        <p>Privacy Policy</p>
+                    </div>
+
+                    <div id="legalNotice" class="navLine" onclick="location.href='home.html?page=legalNotice&mobile=true'">
+                        <p>Legal Notice</p>
+                    </div>
+                </div>
+
+                <div class="navContainerSites">
+                    <a class="sitesNavContainer" href="home.html?page=privacyPolicy&mobile=false">Privacy Policy</a>
+                    <a class="sitesNavContainer" href="home.html?page=legalNotice&mobile=false">Legal Notice</a>
+                </div>
+
             </div>
-        </div>
-    `;
+        </div>`;
+        if (mobile) {
+            page === "privacyPolicy" 
+                ? document.getElementById("privacePolicy")?.classList.add('active')
+                : document.getElementById("legalNotice")?.classList.add('active');
+            
+            document.getElementById("policeAndNoticeMobile")?.classList.remove('d-none');
+            hideUserMenu(); // For mobile
+        }
+        nav.getElementsByClassName("navContainerMenu")[0].style.gap = "301px"
         return;
     }
     userInitials = document.getElementById('userInitials');
@@ -68,6 +93,8 @@ function isUserLoggedIn() {
     }
     else {
         sessionInit();
+        document.getElementById("navContainerMenu").classList.remove("d-none");
+        document.getElementById("sitesNavContainer").classList.remove("d-none");
     }
 }
 
@@ -181,6 +208,11 @@ function closeSubmenu() {
     submenu.classList.add('d-none');
 }
 
+function hideUserMenu() {
+    const submenu = document.getElementById('menuIcons');
+    submenu.classList.add('d-none');
+}
+
 /**
  * Logout the user and clear session storage.
  */
@@ -193,6 +225,6 @@ function isMobile() {
     return window.innerWidth <= 1024;
 }
 
-function goingBack() {
-    window.location.reload();
+function goBack() {
+    window.history.back();
 }

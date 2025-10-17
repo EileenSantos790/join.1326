@@ -28,7 +28,7 @@
     border: 3px solid #2A3647;
     width: 56px;
     height: 56px;
-
+    cursor: pointer;
     justify-content: center;
     align-items: center;
     border-radius: 100%;
