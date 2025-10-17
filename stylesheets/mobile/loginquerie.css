@@ -70,7 +70,6 @@
 
     .buttonPrimary {
         margin-top: 38px;
-        width: 180px !important;
         height: 51px;
         font-size: 16px;
     }
@@ -83,18 +82,31 @@
         margin-bottom: 40px;
     }
 
-    .signUpMobile{
+    .signUpMobile {
         width: 104px !important;
         height: 49px !important;
         font-size: 16px !important;
         margin-top: 0 !important;
     }
 
+    .signUpPageFooter {
+        padding-top: 10px;
+        top: unset;
+    }
+
+    .signUpPageMainContent {
+        margin-top: 165px;
+    }
+
+    .loginPageMainContentHeadline {
+        width: auto;
+    }
 }
 
-@media (max-width: 360px) {
+
+@media (max-width: 400px) {
     .signUpArrowButton {
-        display: none;
+        left: 20px;
     }
 }
 

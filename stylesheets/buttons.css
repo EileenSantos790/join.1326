@@ -33,7 +33,7 @@ button:hover {
 
 .buttonSecondary {
     width: 99px;
-    height: 48px;
+    height: 51px;
     background-color: transparent;
     border: 2px solid #2A3647;
     font-size: 16px;
@@ -264,7 +264,7 @@ button:hover {
 }
 
 .userConfirmationContactCreation {
-    width: 326px;
+    max-width: 326px;
     height: 74px;
     font-size: 20px;
     font-weight: 400;

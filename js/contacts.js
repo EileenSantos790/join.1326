@@ -457,6 +457,12 @@ async function editContact(userID) {
         document.getElementById("contactEmail").value = user.email || "";
         document.getElementById("contactPhone").value = user.phone || "";
     }
+    if (isMobile()) {
+        const avatar =  document.getElementById(userID);
+        avatar.style.width = "120px";
+        avatar.style.height = "120px";
+        avatar.style.fontSize = "47px";
+    }
 }
 
 /**
