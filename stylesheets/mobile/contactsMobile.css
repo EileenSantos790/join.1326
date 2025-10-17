@@ -213,6 +213,7 @@
         align-items: center;
         justify-content: space-evenly;
         justify-content: center !important;
+        margin-top: 20px;
     }
 
     .addContactButton {
@@ -296,6 +297,10 @@
 
     .inputInside {
         font-size: 16px;
+    }
+
+    .responsveMarginElemination{
+        margin: unset !important;
     }
 }
 
