@@ -10,7 +10,7 @@
     }
 
     .largeWindowContainer {
-        gap: 40px;
+        gap: 30px;
     }
 
     .thirdLineText {
@@ -320,6 +320,7 @@
     }
 
     .addNewContactButton {
+        display: flex;
         position: fixed;
         right: 25px;
         bottom: 70px;
@@ -337,11 +338,7 @@
         justify-content: center;
     }
 
-    .addNewContactButton {
-        display: flex;
-    }
-
-    .addNewContactButton .addContactBtnText {
+    .addContactBtnText {
         display: none;
     }
 
@@ -514,10 +511,9 @@
         margin: -60px auto 20px auto;
     }
 
-
-
     .addContactInputContainer {
         width: auto;
+        height: 41px;
     }
 
     .responsiveAddContactButton {
@@ -525,11 +521,12 @@
     }
 
     .addContactButtonSection {
-        padding-bottom: 80px;
-        padding-top: 32px;
+        padding-bottom: 40px;
+        padding-top: 0px;
         padding-left: unset;
         align-items: center;
         justify-content: space-evenly;
+        justify-content: center !important;
     }
 
     .addContactButton {
@@ -543,11 +540,12 @@
 
     .overlayCenter {
         width: 100%;
+        margin: 20px;
     }
 
     .addContactPushUpContainerRight {
-        padding-left: unset;
-        padding-right: unset;
+        padding-left: 10px;
+        padding-right: 10px;
         height: auto;
     }
 
@@ -581,10 +579,6 @@
 
     .imputAndImageContainer {
         gap: 30px;
-    }
-
-    .addContactInputContainer {
-        height: 41px;
     }
 
     .addContactPushUpContainerLeft {
@@ -626,6 +620,11 @@
         background-color: white;
     }
 
+    .inputInside {
+        font-size: 16px;
+    }
+
+}
 
 @media (max-width: 1255px) {
 
@@ -659,7 +658,7 @@
     }
 
     .addContactPushUpContainerRight {
-        padding-left: 40px;
+        padding-left: 24px;
         padding-right: 24px;
     }
 
@@ -721,7 +720,7 @@
     }
 
     .addContactInputContainer {
-        width: 210px;
+        width: 230px;
     }
 
     .showDetailsContactsContainer {

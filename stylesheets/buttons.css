@@ -264,7 +264,7 @@ button:hover {
 }
 
 .userConfirmationContactCreation {
-    width: 326px;
+    max-width: 326px;
     height: 74px;
     font-size: 20px;
     font-weight: 400;
