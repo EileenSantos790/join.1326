@@ -561,17 +561,14 @@ async function addTaskToUsers(userIds, taskId) {
 function openResponsiveOverlayEdit() {
     const editOverlay = document.getElementById('responsiveOverlayEdit');
     const editContactBtn = document.getElementById('btnEditNewContact')
-    editContactBtn.classList.add('d-none');
+    //editContactBtn.classList.add('d-none');
     editOverlay.classList.toggle('is-open');
     renderEditOverlay(editOverlay);
 }
 
 function closeResponsiveOverlayEdit() {
     const editOverlay = document.getElementById('responsiveOverlayEdit');
-    // const editContactBtn = document.getElementById('btnEditNewContact')
-    // editContactBtn.classList.add('d-none');
-    editOverlay.classList.remove('is-open');
-    // renderEditOverlay(editOverlay);
+    editOverlay && editOverlay.classList.remove('is-open');
 }
 
 function renderEditOverlay(editOverlay){

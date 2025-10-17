@@ -168,6 +168,19 @@ function showSubmenu() {
     submenu.classList.toggle('d-none');
 }
 
+document.addEventListener('click', (event) => {
+    const submenu = document.getElementById('submenu');
+    if (!submenu || submenu.classList.contains('d-none')) return;
+    if (submenu.contains(event.target)) return;
+    if (event.target.closest('.userProfileCirle')) return;
+    closeSubmenu();
+});
+
+function closeSubmenu() {
+    const submenu = document.getElementById('submenu');
+    submenu.classList.add('d-none');
+}
+
 /**
  * Logout the user and clear session storage.
  */
