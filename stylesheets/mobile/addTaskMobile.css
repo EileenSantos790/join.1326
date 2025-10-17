@@ -194,8 +194,12 @@
 } */
 
 @media (max-width: 400px) {
+    button.prioButtonAddTask {
+        font-size: 14px;
+    }
+
     .addTaskPriorityButtons {
-        gap: 10px;
+        gap: 4px;
     }
 
     .addTaskMainButtons {

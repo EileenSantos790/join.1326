@@ -75,15 +75,15 @@ function loadPage(file, content) {
     .then(response => checkFile(response, file))
     .then(html => content.innerHTML = html)
     .catch(error => showError(error, content));
-  
+
   if (file === "./htmlTemplates/addTask.html") {
     resetAddTaskSide();
   }
 
-    // if (file === "./htmlTemplates/summary.html") {
-    //     setStatusQuantity();
-    //     setUrgentPriorityQuantity();
-    // }
+  // if (file === "./htmlTemplates/summary.html") {
+  //     setStatusQuantity();
+  //     setUrgentPriorityQuantity();
+  // }
 }
 
 
@@ -167,14 +167,17 @@ function attachHelp(content) {
 
 
 function openAddTaskSide(sideLink) {
-  const content = document.getElementById('contentContainer');
-  const items = document.querySelectorAll('.navLine');
-  const addTask = document.getElementById('navLineAddTask');
+  if (isMobile()) {
+    const content = document.getElementById('contentContainer');
+    const items = document.querySelectorAll('.navLine');
+    const addTask = document.getElementById('navLineAddTask');
 
-  loadPage(sideLink, content);
+    loadPage(sideLink, content);
 
-  for (const item of items) {
-    item.classList.remove('active');
+    for (const item of items) {
+      item.classList.remove('active');
+    }
+    addTask.classList.add('active');
   }
-  addTask.classList.add('active');
+
 }

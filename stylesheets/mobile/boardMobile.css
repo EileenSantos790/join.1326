@@ -1,4 +1,58 @@
+.boardMoveToIcon {
+    display: none;
+}
+
+.boardMoveToOverlay {
+    background-color: #2A3647;
+    color: #FFFFFF;
+    width: 106px;
+    height: 113px;
+    border-radius: 0px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    top: 16px;
+    right: -45px;
+    z-index: 1;
+}
+
+.boardMoveToHeadline {
+    width: 90px;
+    padding-left: 9px;
+}
+
+.boardMoveToOverlayButtons {
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.boardMoveToButtonContent {
+    display: flex;
+    gap: 8px;
+}
+
+.boardMoveToButtonContent:hover {
+    background-color: #091931;
+    border-radius: 8px;
+}
+
 @media (max-width: 1024px) {
+    .boardMoveToIcon {
+        display: block;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+    }
+
+    .boardMoveToIcon:hover {
+        scale: 1.2;
+    }
+
     .containerOfBoard {
         margin-left: 16px;
         margin-right: 16px;
@@ -69,6 +123,7 @@
         margin-left: 0;
         margin-bottom: 0;
         gap: 0;
+        position: relative;
     }
 
     .boardLaneBody {
@@ -76,6 +131,7 @@
         gap: 16px;
         overflow-x: auto;
         scrollbar-width: none;
+        padding: 7px;
     }
 
     .categoryFieldTechnicalTask {
@@ -117,6 +173,10 @@
     }
     
     /* ------Edit Overlay Board----- */
+    .overlayCenter:has(.addTaskEditBoardOverlay) {
+        margin: 10px;
+    }
+
     .addTaskEditBoardOverlay {
         width: 100%;
         max-width: 445px;
@@ -124,6 +184,7 @@
 
     .addTaskEditBoardOverlay .editBoardOverlayMainContent {
         max-height: 688px;
+        width: 100%;
     }
 
     .addTaskEditBoardOverlay .editBoardOverlayCloseSection {
@@ -133,6 +194,12 @@
     .boardCardContainerOverlay:has(.addTaskEditBoardOverlay) {
         padding-inline: 24px;
         padding-block: 40px;
+        display: flex;
+        max-width: 525px;
+        width: unset;
+        flex-direction: column;
+        /* align-items: center; */
+        max-height: 784px;
     }
 
     .addTaskEditBoardOverlay .addTaskMainContent {
@@ -164,6 +231,10 @@
     .boardCardContainerOverlay {
         padding-inline: 24px;
         padding-block: 34px;
+        max-width: 525px;
+        width: unset;
+        /* align-items: center; */
+        max-height: 784px;
     }
 
     .categoryFieldUserStoryOverlay {
@@ -191,5 +262,19 @@
     .containerEditTaskOverlay p {
         margin-block-start: unset;
         margin-block-end: unset;
+    }
+}
+
+@media (max-width: 400px) {
+    .prioButtonAddTask {
+        gap: 4px;
+    }
+
+    .editBoardOverlayMainContent:has(.addTaskMainContent) .buttonUrgentIcon, .buttonMediumIcon, .buttonLowIcon {
+        width: 14px;
+    }
+
+    .editBoardOverlayMainContent:has(.addTaskMainContent) .dropdownDownIcon {
+        right: 10px;
     }
 }

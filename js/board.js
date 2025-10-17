@@ -81,9 +81,49 @@ function renderCard(task, card) {
                     <div>${renderContactsOnBoard(task.assignedTo)}</div>
                     <div>${renderPriorityOnBoard(task.priority)}</div>
                 </div>
+                <div class="boardMoveToIcon" onclick="openBoardMoveToOverlay(event)"><img src="../assets/icons/board_task_move_to.svg" alt="Move To Icon"></div>
+                <div class="boardMoveToOverlay d-none">
+                    <div class="boardMoveToHeadline">Move To</div>
+                    <div class="boardMoveToOverlayButtons">
+                        <div class="boardMoveToButtonContent"><img src="../assets/icons/arrow_move_to_upward.svg" alt="arrow up">To-do</div>
+                        <div class="boardMoveToButtonContent"><img src="../assets/icons/arrow_move_to_downward.svg" alt="arrow down">Review</div>
+                    </div>
+                </div>
                 </div>`;
 
     card.innerHTML += html;
+}
+
+
+function openBoardMoveToOverlay(event) {
+    event.stopPropagation();
+    const icon = event.currentTarget;
+    const overlay = icon.nextElementSibling;
+
+    document.querySelectorAll('.boardMoveToOverlay').forEach(o => o.classList.add('d-none'));
+
+    if (overlay) {
+        overlay.classList.remove('d-none');
+    }
+
+    closeOverlayClickOutside(icon, overlay);
+    
+}
+
+
+function closeOverlayClickOutside(icon, overlay) {
+    if (overlay) {
+        overlay.classList.remove('d-none');
+
+        const closeOverlay = (e) => {
+            if (!overlay.contains(e.target) && !icon.contains(e.target)) {
+                overlay.classList.add('d-none');
+                document.removeEventListener('click', closeOverlay);
+            }
+        };
+
+        document.addEventListener('click', closeOverlay);
+    }
 }
 
 function renderProgressBar(task) {
