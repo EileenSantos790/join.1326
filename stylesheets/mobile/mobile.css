@@ -20,7 +20,7 @@
 
 @media (max-width: 1024px) {
 
-    .contentContainer{
+    .contentContainer {
         margin-bottom: 100px;
     }
 
@@ -532,7 +532,7 @@
         justify-content: space-evenly;
     }
 
-    .addContactButton{
+    .addContactButton {
         justify-content: center !important;
     }
 
@@ -622,11 +622,9 @@
 
     }
 
-    .contactsPageContainer{
+    .contactsPageContainer {
         background-color: white;
     }
-
-}
 
 
 @media (max-width: 1255px) {
