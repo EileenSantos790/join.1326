@@ -211,9 +211,20 @@
     border-radius: 30px;
     padding-inline: 40px;
     padding-block: 48px;
-    max-height: 600px;
-    overflow-y: scroll;
+    max-height: 802px;
+    overflow-y: auto;
 }
+
+.boardCardContainerOverlay:has(.addTaskEditBoardOverlay) {
+    overflow-y: unset;
+}
+
+.editBoardOverlayButton {
+        display: flex;
+        justify-content: end;
+        width: 100%;
+        max-width: 445px;
+    }
 
 .scrollBar {
     overflow-y: auto;

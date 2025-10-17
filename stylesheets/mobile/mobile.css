@@ -543,6 +543,7 @@
 
     .overlayCenter {
         width: 100%;
+        max-width: 396px;
     }
 
     .addContactPushUpContainerRight {
@@ -565,6 +566,16 @@
 
     .overlayPanel {
         transform: translateY(100vh);
+        width: 100%;
+    }
+
+    .boardCardContainerOverlay {
+        display: flex;
+        max-width: 525px;
+        width: unset;
+        flex-direction: column;
+        /* align-items: center; */
+        max-height: 784px;
     }
 
     .overlay.show .overlayPanel {

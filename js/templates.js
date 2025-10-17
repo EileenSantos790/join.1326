@@ -127,7 +127,7 @@ function getBoardOverlayEditTaskTemplate(taskId) {
                             <div class="loginFormValidationErrorMessage"></div>
                         </div>
                     </div>
-                    <div>
+                    <div class="addTaskDateContainer">
                         <p>Due date</p>
                         <div class="addTaskInputContainerWithValidation">
                             <div id="addTasktDateInputContainer" class="signUpValidationInputContainer bgWhite">
@@ -145,19 +145,19 @@ function getBoardOverlayEditTaskTemplate(taskId) {
                         <div class="addTaskPriorityButtons">
                             <button id="addTaskUrgentButton"
                                 onclick="activatePriorityButton('addTaskUrgentButton','buttonUrgentActive','urgentButtonOff','urgentButtonOn')"
-                                class="buttonUrgent">Urgent <img id="urgentButtonOff" class="buttonUrgentIcon"
+                                class="buttonUrgent prioButtonAddTask">Urgent <img id="urgentButtonOff" class="buttonUrgentIcon"
                                     src="../assets/icons/prio_high.svg" alt="Urgent Button Icon"><img
                                     id="urgentButtonOn" class="buttonUrgentIcon d-none"
                                     src="../assets/icons/prio_high_white.svg" alt="Urgent Button Icon"></button>
                             <button id="addTaskMediumButton"
                                 onclick="activatePriorityButton('addTaskMediumButton','buttonMediumActive','mediumButtonOff','mediumButtonOn')"
-                                class="buttonMedium">Medium <img id="mediumButtonOff"
+                                class="buttonMedium prioButtonAddTask">Medium <img id="mediumButtonOff"
                                     class="buttonMediumIcon d-none" src="../assets/icons/prio_media.svg"
                                     alt="Medium Button Icon"><img id="mediumButtonOn" class="buttonMediumIcon"
                                     src="../assets/icons/prio_media_white.svg" alt="Medium Button Icon"></button>
                             <button id="addTaskLowButton"
                                 onclick="activatePriorityButton('addTaskLowButton','buttonLowActive','lowButtonOff','lowButtonOn')"
-                                class="buttonLow">Low <img id="lowButtonOff" class="buttonLowIcon"
+                                class="buttonLow prioButtonAddTask">Low <img id="lowButtonOff" class="buttonLowIcon"
                                     src="../assets/icons/prio_low.svg" alt="Low Button Icon"><img id="lowButtonOn"
                                     class="buttonLowIcon d-none" src="../assets/icons/prio_low_white.svg"
                                     alt="Low Button Icon"></button>

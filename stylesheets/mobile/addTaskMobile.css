@@ -10,6 +10,7 @@
         padding-left: 16px;
         padding-right: 16px;
         padding-top: 48px;
+        padding-bottom: unset;
     }
 
     .addTaskMainSectionContent {
@@ -61,6 +62,7 @@
     .addTaskTextarea {
         margin: 18px 21px;
         height: unset;
+        font-size: 16px;
     }
 
     .dropdown span {
@@ -128,8 +130,8 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
         max-height: 590px;
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: 1px;
+        /* padding-right: 16px; */
     }
 
     .addTaskInputsLeftSide,
@@ -162,9 +164,9 @@
         right: 16px; */
         padding-right: 16px;
         padding-left: 16px;
-        height: 80px;
+        /* height: 80px;
         display: flex;
-        align-items: center;
+        align-items: center; */
     }
 
     .navIcon {

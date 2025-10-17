@@ -117,4 +117,5 @@
     max-height: 697px;
     gap: unset;
     overflow-y: scroll;
+    scrollbar-width: thin;
 }

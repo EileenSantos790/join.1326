@@ -115,6 +115,81 @@
     .spaceHolderContainer {
         max-width: unset;
     }
-}
+    
+    /* ------Edit Overlay Board----- */
+    .addTaskEditBoardOverlay {
+        width: 100%;
+        max-width: 445px;
+    }
 
-/* ab 1250px evtl mobile design beim board */
+    .addTaskEditBoardOverlay .editBoardOverlayMainContent {
+        max-height: 688px;
+    }
+
+    .addTaskEditBoardOverlay .editBoardOverlayCloseSection {
+        padding-bottom: 16px;
+    }
+
+    .boardCardContainerOverlay:has(.addTaskEditBoardOverlay) {
+        padding-inline: 24px;
+        padding-block: 40px;
+    }
+
+    .addTaskEditBoardOverlay .addTaskMainContent {
+        max-width: 347px;
+        width: 98%;
+    }
+
+    .editBoardOverlayMainContent .addTaskMainContent {
+        overflow: unset;
+        align-items: unset;
+    }
+
+    .editBoardOverlayMainContent:has(.addTaskMainContent) .addTaskTitleInputContent, .addTaskDescriptionInputContent {
+        padding-bottom: 8px;
+    }
+
+    .editBoardOverlayMainContent:has(.addTaskMainContent) .addTaskDateContainer {
+        padding-bottom: 16px;
+    }
+
+    /* .editBoardOverlayButton {
+        display: flex;
+        justify-content: end;
+        width: 100%;
+        max-width: 445px;
+    } */
+
+    /* --------Task Overlay Board--------- */
+    .boardCardContainerOverlay {
+        padding-inline: 24px;
+        padding-block: 34px;
+    }
+
+    .categoryFieldUserStoryOverlay {
+        font-size: 16px;
+    }
+
+    .titleOfTaskOverlay {
+        font-size: 36px;
+    }
+
+    .descriptionOfTaskOverlay, .detailsOverlayContainer, .contactBoardDetailsContainer {
+        font-size: 16px;
+    }
+
+    .priorityImg img {
+        width: 17px;
+        height: 12px;
+    }
+
+    .avatarBoardDetails {
+        width: 38px;
+        height: 38px;
+    }
+
+    .containerEditTaskOverlay p {
+        margin-block-start: unset;
+        margin-block-end: unset;
+    }
+}

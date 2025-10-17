@@ -40,10 +40,13 @@
         font-weight: 700;
     }
 
-    .signUpInputContainer,
-    .signUpValidationInputContainer {
+    .signUpInputContainer {
         height: 46px;
         width: 364px;
+    }
+
+    .loginInputContainerWithValidation:has(.signUpValidationInputContainer) .signUpValidationInputContainer {
+        height: 46px;
     }
 
     .loginPageMainContentHeadline {
