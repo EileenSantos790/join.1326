@@ -274,6 +274,10 @@
         width: 14px;
     }
 
+    .buttonUrgentIcon {
+        width: 14px;
+    }
+
     .editBoardOverlayMainContent:has(.addTaskMainContent) .dropdownDownIcon {
         right: 10px;
     }

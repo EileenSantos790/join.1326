@@ -46,6 +46,10 @@
     padding-bottom: 127px;
 }
 
+.addTaskContainerPadding:has(.addTaskMainSectionContent) {
+    padding-bottom: 71px;
+}
+
 .addTaskHeadline {
     height: 73px;
     display: flex;
@@ -58,7 +62,7 @@
     height: 100%;
     display: flex;
     gap: 48px;
-    max-height: 562px;
+    max-height: 548px;
 }
 
 .addTaskInputsLeftSide,
