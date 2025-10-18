@@ -1,7 +1,24 @@
-document.addEventListener("DOMContentLoaded", initContactsWhenReady);
-
 let usersById = null;
 let selectedCardEl = null;
+document.addEventListener("DOMContentLoaded", initContactsWhenReady);
+
+
+/* Fetches all users from the database. */
+async function getAllUsers() {
+    let usersList = await fetch(BASE_URL + "users.json");
+    let allUsers = await usersList.json();
+    return allUsers;
+}
+
+/** Fetches all users, sorts them by name, and renders their contact information to the DOM. */
+async function renderAllContacts() {
+    let allUsers = await getAllUsers();
+    let contentDiv = document.getElementById('assignedToContactContent');
+    contentDiv.innerHTML = "";
+    let contacts = getUserDataToArray(allUsers);
+    contacts.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    for (let index = 0; index < contacts.length; index++) { contentDiv.innerHTML += getContactTemplate(contacts, index); }
+}
 
 /**
  * Initializes the contacts section when it becomes available in the DOM.

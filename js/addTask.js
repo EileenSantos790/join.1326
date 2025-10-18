@@ -3,14 +3,7 @@ let contactSearchArray = [];
 let subtasks = [];
 let subtaskIdCounter = 0;
 
-
-async function fetchAllContacts() {
-    let usersList = await fetch(BASE_URL + "users.json");
-    let allUsers = await usersList.json();
-    return allUsers;
-}
-
-
+/** Activates a priority button by updating its style and icon based on the selected priority. */
 function activatePriorityButton(buttonId, buttonClass, buttonIconOff, buttonIconOn) {
     document.getElementById('addTaskUrgentButton').classList.remove('buttonUrgentActive');
     document.getElementById('addTaskMediumButton').classList.remove('buttonMediumActive');
@@ -18,12 +11,10 @@ function activatePriorityButton(buttonId, buttonClass, buttonIconOff, buttonIcon
     setPriorityButtonIconToDefault();
     document.getElementById(buttonIconOn).classList.remove('d-none');
     document.getElementById(buttonIconOff).classList.add('d-none');
-
-    let currentBtn = document.getElementById(buttonId);
-    currentBtn.classList.add(buttonClass);
+    document.getElementById(buttonId).classList.add(buttonClass);
 }
 
-
+/** Resets all priority button icons to their default (unselected) state. */
 function setPriorityButtonIconToDefault() {
     document.getElementById('urgentButtonOff').classList.remove('d-none');
     document.getElementById('mediumButtonOff').classList.remove('d-none');
@@ -33,107 +24,63 @@ function setPriorityButtonIconToDefault() {
     document.getElementById('lowButtonOn').classList.add('d-none');
 }
 
-/**
- * renderContactsInAddTask() function => Execute when opening the "addTask" page so that contacts remain clicked in "Assigned to". (that the dropdown menu works correctly).
- */
+/** renderContactsInAddTask() function => Execute when opening the "addTask" page so that contacts remain clicked in "Assigned to". (that the dropdown menu works correctly). */
 async function toggleDropdownAssignedTo() {
     document.getElementById('addTaskDropdownAssignedTo').classList.toggle('d-none');
     document.getElementById('addTaskDropdownSearchContent').classList.toggle('d-none');
     document.getElementById('addTaskAddedContactIcons').classList.toggle('d-none');
 }
 
-/**
- * marks the clicked contact.
- */
-
+/** marks the clicked contact. */
 function addTaskSelectContact(userId, initial, color, name) {
     const container = document.getElementById(`assignedToContact-${userId}`);
     const checkboxOff = document.getElementById(`assignedToCheckbox-${userId}`);
     const checkboxOn = document.getElementById(`assignedToCheckboxWhite-${userId}`);
-
     container.classList.toggle('dropdownItemOff');
     container.classList.toggle('dropdownItemOn');
     checkboxOff.classList.toggle('d-none');
     checkboxOn.classList.toggle('d-none');
-
     saveClickedContact(initial, color, userId, name);
     addContactToTask();
 }
 
-/**
- * Displays all or filtered contacts in the assigned to dropdown container.
- */
+/** Displays all or filtered contacts in the assigned to dropdown container. */
 async function renderContactsInAddTask(searchArray = []) {
     if (searchArray.length) {
         let contentDiv = document.getElementById('assignedToContactContent');
         contentDiv.innerHTML = "";
-        for (let index = 0; index < searchArray.length; index++) {
-            contentDiv.innerHTML += getContactTemplate(searchArray, index);
-        }
+        for (let index = 0; index < searchArray.length; index++) { contentDiv.innerHTML += getContactTemplate(searchArray, index); }
         return
     }
     await renderAllContacts();
 }
 
-
-async function renderAllContacts() {
-    let allUsers = await fetchAllContacts();
-    let contentDiv = document.getElementById('assignedToContactContent');
-    contentDiv.innerHTML = "";
-    let contacts = getUserDataToArray(allUsers);
-    contacts.sort((a, b) =>
-        a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-    );
-
-    for (let index = 0; index < contacts.length; index++) {
-        contentDiv.innerHTML += getContactTemplate(contacts, index);
-    }
-}
-
-/**
- * Adds the contact to a separate array and sorts them alphabetically.
- */
-
+/** Adds the contact to a separate array and sorts them alphabetically. */
 function saveClickedContact(initial, color, id, name) {
     let index = selectedContactsAddTask?.findIndex(c => c.id === id);
-
-    if (index !== -1 && index != undefined) {
-        selectedContactsAddTask.splice(index, 1);
-    } else {
-        selectedContactsAddTask.push({ id, name, initial, color });
-    }
+    if (index !== -1 && index != undefined) { selectedContactsAddTask.splice(index, 1); } 
+    else { selectedContactsAddTask.push({ id, name, initial, color }); }
     selectedContactsAddTask.sort((a, b) => a.initial.localeCompare(b.initial));
 }
 
-/**
- * Displays selected contacts when the dropdown menu is closed.
- */
+/** Displays selected contacts when the dropdown menu is closed. */
 function addContactToTask() {
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
     contentDiv.innerHTML = "";
-    selectedContactsAddTask.forEach((contact) => {
-        contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color, contact.id, contact.name);
-    });
+    selectedContactsAddTask.forEach((contact) => { contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color, contact.id, contact.name);});
 }
 
-/**
- * filter function to search for contacts.
- */
+/** filter function to search for contacts. */
 async function searchContactsForTask() {
     let inputRef = document.getElementById('addTaskSearchInput');
     let searchInput = inputRef.value;
-    let allUsers = await fetchAllContacts();
+    let allUsers = await getAllUsers();
     let contacts = getUserDataToArray(allUsers);
-
-    if (searchInput.length > 0) {
-        contactSearchArray = contacts.filter(contact => contact.name.toLowerCase().includes(searchInput.toLowerCase()));
-        renderContactsInAddTask(contactSearchArray);
-    } else {
-        renderContactsInAddTask();
-    }
+    if (searchInput.length > 0) { contactSearchArray = contacts.filter(contact => contact.name.toLowerCase().includes(searchInput.toLowerCase())); renderContactsInAddTask(contactSearchArray); }
+    else { renderContactsInAddTask(); }
 }
 
-
+/** Toggles the visibility of the category dropdown and its associated icons. */
 function toggleDropdownCategory() {
     document.getElementById('categoryDropdownContent').classList.toggle('d-none');
     document.getElementById('dropdownDownIcon').classList.toggle('d-none');
@@ -142,7 +89,7 @@ function toggleDropdownCategory() {
     document.getElementById('addTaskCategoryHeaderContainer').classList.remove('inputErrorBorder');
 }
 
-
+/** Selects a category from the dropdown and updates the header. */
 function selectedCategory(option) {
     let header = document.getElementById('categoryDropdownHeader');
     header.textContent = option.textContent;
@@ -150,19 +97,15 @@ function selectedCategory(option) {
     toggleDropdownCategory();
 }
 
-
-/**
- * close the assigned to and category dropdown when click outside.
- */
+/** close the assigned to and category dropdown when click outside. */
 document.onclick = function (click) {
     closeAssignedToClickOutside(click);
     closeCategoryClickOutside(click);
 }
 
-
+/** Closes the assigned-to dropdown when clicking outside its container. */
 function closeAssignedToClickOutside(click) {
     const dropdownAssignedTo = document.getElementById('addTaskAssignedToDropdownContent');
-
     if (dropdownAssignedTo && !dropdownAssignedTo.contains(click.target)) {
         document.getElementById('addTaskDropdownAssignedTo').classList.remove('d-none');
         document.getElementById('addTaskDropdownSearchContent').classList.add('d-none');
@@ -170,10 +113,9 @@ function closeAssignedToClickOutside(click) {
     }
 }
 
-
+/** Closes the category dropdown if a click occurs outside of it. */
 function closeCategoryClickOutside(click) {
     const dropdownCategory = document.getElementById('addTaskCategoryDropdownContent');
-
     if (dropdownCategory && !dropdownCategory.contains(click.target)) {
         document.getElementById('categoryDropdownContent').classList.add('d-none');
         document.getElementById('dropdownDownIcon').classList.remove('d-none');
@@ -182,7 +124,7 @@ function closeCategoryClickOutside(click) {
     }
 }
 
-
+/** Removes focus border from the container and checks if the input value is empty, displaying an error message if so. */
 function removeFocusBorderCheckInputValue(containerId, inputId, errorId) {
     document.getElementById(containerId).classList.remove('inputBorderColorFocus');
     let input = document.getElementById(inputId);
@@ -193,7 +135,7 @@ function removeFocusBorderCheckInputValue(containerId, inputId, errorId) {
     }
 }
 
-
+/** Adds a new subtask to the list and updates the display. */
 function addSubtaskToList() {
     let inputRef = document.getElementById('subtaskInput');
     let input = inputRef.value.trim();
@@ -205,70 +147,58 @@ function addSubtaskToList() {
     inputRef.value = "";
 }
 
-
+/** Clears the value of the subtask input field. */
 function clearSubtaskInput() {
     let inputRef = document.getElementById('subtaskInput');
     inputRef.value = "";
 }
 
-
+/** Renders the subtasks into the subtask list element. */
 function renderSubtasks() {
     let list = document.getElementById('subtaskListContent');
     list.innerHTML = "";
     let arr = [];
-
-    if (subtasks.length){
-        arr = subtasks
-    }else {arr = subtasksListOnEdit}
-    arr.forEach(subtask => {
-        list.innerHTML += getSubtaskListTemplate(subtask);
-    })
+    if (subtasks.length){ arr = subtasks } else {arr = subtasksListOnEdit}
+    arr.forEach(subtask => { list.innerHTML += getSubtaskListTemplate(subtask); })
 }
 
 
+/** Deletes a subtask by its ID from the subtasks list and updates the display. */
 function deleteSubtask(id) {
     subtasks = subtasks?.filter(s => s.id !== id);
     subtasksListOnEdit = subtasksListOnEdit?.filter(s => s.id !== id);
     renderSubtasks();
 }
 
-
+/** Edits a subtask by replacing its HTML and focusing on the input field. */
 function editSubtask(id) {
     let subtask = subtasks?.find(s => s.id === id) || subtasksListOnEdit.find(s => s.id === id);
     if (!subtask) return;
-
-    let element = document.getElementById(`subtask${id}`);
-    element.outerHTML = getSubtaskEditTemplate(subtask);
-
-    let input = document.getElementById(`editInput${id}`);
-    let inputlength = input.value.length;
+    document.getElementById(`subtask${id}`).outerHTML = getSubtaskEditTemplate(subtask);
+    const input = document.getElementById(`editInput${id}`);
     input.focus();
-    input.setSelectionRange(inputlength, inputlength);
+    input.setSelectionRange(input.value.length, input.value.length);
 }
 
-
+/** Updates a subtask's text by id from its edit input and re-renders */
 function saveSubtask(id) {
-    let input = document.getElementById(`editInput${id}`);
+    const input = document.getElementById(`editInput${id}`);
     if (!input) return;
-
-    let newText = input.value.trim() || "untitled";
-    let subtask = subtasks?.find(s => s.id === id) || subtasksListOnEdit.find(s => s.id === id);
+    const newText = input.value.trim() || "untitled";
+    const subtask = subtasks?.find(s => s.id === id) || subtasksListOnEdit.find(s => s.id === id);
     if (subtask) subtask.text = newText;
-
     renderSubtasks();
 }
 
-
+/** On blur, briefly delays and saves the subtask if its input exists. */
 function handleBlurSubtask(id) {
     setTimeout(() => {
         const input = document.getElementById(`editInput${id}`);
-        if (input) {
-            saveSubtask(id);
-        }
+        if (input) saveSubtask(id);
     }, 100);
 }
 
-
+/** Resets the Add Task side panel to its default input and selection state. */
 function resetAddTaskSide() {
     resetInput('addTasktTitleInput', 'addTasktTitleErrorContainer', 'addTasktTitleInputContainer');
     resetInput('addTaskTextarea', '', 'addTaskDescriptionInputContainer');
@@ -279,51 +209,44 @@ function resetAddTaskSide() {
     resetSubtask();
 }
 
-
+/** Resets the input field and clears any associated error messages. */
 function resetInput(inputId, errorId, containerId) {
-    let input = document.getElementById(inputId);
-    input.value = "";
-    if (errorId) {
-        let errorMessage = document.getElementById(errorId);
-        errorMessage.innerText = "";
-    }
-
+    document.getElementById(inputId).value = "";
+    if (errorId) document.getElementById(errorId).innerText = "";
     removeFocusBorder(containerId);
     document.getElementById(containerId).classList.remove('inputErrorBorder');
 }
 
-
+/** Resets the priority to medium by activating the corresponding button. */
 function resetPriority() {
     activatePriorityButton('addTaskMediumButton', 'buttonMediumActive', 'mediumButtonOff', 'mediumButtonOn');
 }
 
-
+/** Resets the assigned contacts dropdown and clears added contact icons. */
 function resetAssignedTo() {
     document.getElementById('addTaskDropdownAssignedTo').classList.remove('d-none');
     document.getElementById('addTaskDropdownSearchContent').classList.add('d-none');
-    let addedContacts = document.getElementById('addTaskAddedContactIcons');
+    const addedContacts = document.getElementById('addTaskAddedContactIcons');
     addedContacts.classList.remove('d-none');
     addedContacts.innerHTML = "";
     selectedContactsAddTask = [];
     renderContactsInAddTask();
 }
 
-
+/** Resets the category dropdown to its default state. */
 function resetCategory() {
     document.getElementById('categoryDropdownContent').classList.add('d-none');
     document.getElementById('dropdownDownIcon').classList.remove('d-none');
     document.getElementById('dropdownUpIcon').classList.add('d-none');
     document.getElementById('addTaskCategoryHeaderContainer').classList.remove('inputErrorBorder');
     document.getElementById('addTaskCategoryDropdownContent').classList.remove('boxShadow');
-    let header = document.getElementById('categoryDropdownHeader');
-    header.textContent = "Select task category";
+    document.getElementById('categoryDropdownHeader').textContent = "Select task category";
 }
 
-
+/** Resets the subtask input and clears the subtask list. */
 function resetSubtask() {
     clearSubtaskInput();
-    let list = document.getElementById('subtaskListContent');
-    list.innerHTML = "";
+    let list = document.getElementById('subtaskListContent').innerHTML = "";
     subtasks = [];
     subtaskIdCounter = 0;
 }
@@ -338,22 +261,21 @@ function createTask() {
     selectedContactsAddTask = [];
 }
 
-
+/** Validates required title, date, and category; returns true if all are set, else false. */
 function checkRequiredFields() {
-    let inputTitle = document.getElementById('addTasktTitleInput');
-    let inputDate = document.getElementById('addTasktDateInput');
-    let categoryHeader = document.getElementById('categoryDropdownHeader');
+    const inputTitle = document.getElementById('addTasktTitleInput');
+    const inputDate = document.getElementById('addTasktDateInput');
+    const categoryHeader = document.getElementById('categoryDropdownHeader');
     if (inputTitle.value === "" || inputDate.value === "" || categoryHeader.textContent === "Select task category") {
         removeFocusBorderCheckInputValue('addTasktTitleInputContainer', 'addTasktTitleInput', 'addTasktTitleErrorContainer');
         removeFocusBorderCheckInputValue('addTasktDateInputContainer', 'addTasktDateInput', 'addTasktDateErrorContainer');
         setErrorBorderForCategory('addTaskCategoryHeaderContainer');
         return false;
-    } else {
-        return true;
-    }
+    } else { return true; } 
 }
 
 
+/** Retrieves task data from input fields for creating or editing a task.*/
 function getTaskData(editTask = false) {
     const title = document.getElementById('addTasktTitleInput').value;
     const description = document.getElementById('addTaskTextarea').value;
@@ -361,9 +283,6 @@ function getTaskData(editTask = false) {
     const priority = getSelectedPriority();
     const category = document.getElementById('categoryDropdownHeader').dataset.value;
     const assignedTo = selectedContactsAddTask || [];
-    // const oSubtasks = !editTask || subtasks || subtasksListOnEdit
-    //     ? subtasks.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done }))
-    //     : subtasksListOnEdit.map(subtask => ({ id: subtask.id, text: subtask.text, done: subtask.done }));
     const status = !editTask
         ? document.getElementById('status').getAttribute('data-status')
         : document.getElementById('boardOverlayContent').getAttribute('data-overlay-status');
@@ -371,14 +290,12 @@ function getTaskData(editTask = false) {
 }
 
 
+/** Returns the selected task priority as a string: 'Urgent', 'Medium', 'Low', or null if none is selected. */
 function getSelectedPriority() {
-    if (document.getElementById('addTaskUrgentButton').classList.contains('buttonUrgentActive')) {
-        return 'Urgent';
-    } else if (document.getElementById('addTaskMediumButton').classList.contains('buttonMediumActive')) {
-        return 'Medium';
-    } else if (document.getElementById('addTaskLowButton').classList.contains('buttonLowActive')) {
-        return 'Low';
-    } else { return null; }
+    if (document.getElementById('addTaskUrgentButton').classList.contains('buttonUrgentActive')) { return 'Urgent'; } 
+    else if (document.getElementById('addTaskMediumButton').classList.contains('buttonMediumActive')) { return 'Medium'; }
+    else if (document.getElementById('addTaskLowButton').classList.contains('buttonLowActive')) { return 'Low'; }
+    else { return null; }
 }
 
 /* Save task on DB */
@@ -394,11 +311,13 @@ function saveTaskToDatabase(taskData) {
         });
 }
 
+/** Updates a task in the database using the provided task ID. */
 function handleUpdateTask(taskId) {
     const task = getTaskData(true);
     updateTaskOnDatabase(taskId, task);
 }
 
+/** Asynchronously updates a task by ID in the database and handles UI flow based on the subtask toggle. */
 async function updateTaskOnDatabase(taskId, task, SubtaskToggle = false) {
     await fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task ) })
         .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
@@ -431,14 +350,9 @@ async function assignedToUser(taskId) {
     for (let index = 0; index < users.length; index++) {
         const userId = users[index].id;
         const user = await searchContactById(userId);
-        if (user.tasks?.length) {
-            user.tasks.push(taskId)
-        } else {
-            user.tasks = [taskId]
-        }
+        if (user.tasks?.length) { user.tasks.push(taskId) } else { user.tasks = [taskId] }
         updateContact(userId, user, true);
     }
-
 }
 
 /* Get task by id */
