@@ -35,6 +35,7 @@
     .submenu {
         top: 60px;
         right: 5px;
+        margin-right: unset;
         padding: 23px 0px;
         gap: 24px;
     }
@@ -355,10 +356,6 @@
 
     .userProfileCirle:hover {
         cursor: pointer;
-    }
-
-    .submenuHelpButtonMobile {
-        display: block;
     }
 }
 
