@@ -3,8 +3,15 @@
         background-color: #2A3647;
     }
 
-    .loginPageMoveLogo,
     .signUpPageLogo {
+        position: absolute;
+        width: 64px;
+        height: 78.3px;
+        top: 38px;
+        left: 38px;
+    }
+
+    .loginPageMoveLogo {
         position: absolute;
         width: 64px;
         height: 78.3px;

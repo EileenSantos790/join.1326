@@ -197,11 +197,12 @@
         padding-inline: 14px;
         padding-block: 40px;
         display: flex;
-        max-width: 525px;
+        max-width: 396px;
+        width: auto;
         width: unset;
         flex-direction: column;
         /* align-items: center; */
-        max-height: 784px;
+        max-height: 640px;
     }
 
     .addTaskEditBoardOverlay .addTaskMainContent {
