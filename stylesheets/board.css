@@ -9,6 +9,7 @@
     justify-content: space-between;
     margin-top: 79.5px;
     gap: 30px;
+    max-width: 1920px;
 }
 
 .headerContainerFormAndButton {
