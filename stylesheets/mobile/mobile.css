@@ -278,7 +278,7 @@
     }
 
     .smallWindowContainer:hover .summaryIconMobile {
-        content: url(../assets/icons/penicon_mobile_white.svg);
+        content: url(/assets/icons/penicon_mobile_white.svg);
     }
 
     .summaryNumber {
