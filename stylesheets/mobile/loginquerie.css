@@ -21,12 +21,14 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(1);
+            fill: white !important;
         }
 
         100% {
             top: 38px;
             left: 38px;
             transform: translate(0, 0) scale(1);
+            fill: blue !important;
         }
     }
 
