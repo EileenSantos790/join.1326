@@ -81,21 +81,41 @@ function renderCard(task, card) {
                     <div>${renderContactsOnBoard(task.assignedTo)}</div>
                     <div>${renderPriorityOnBoard(task.priority)}</div>
                 </div>
-                <div class="boardMoveToIcon" onclick="openBoardMoveToOverlay(event)"><img src="../assets/icons/board_task_move_to.svg" alt="Move To Icon"></div>
-                <div class="boardMoveToOverlay d-none">
-                    <div class="boardMoveToHeadline">Move To</div>
-                    <div class="boardMoveToOverlayButtons">
-                        <div class="boardMoveToButtonContent"><img src="../assets/icons/arrow_move_to_upward.svg" alt="arrow up">To-do</div>
-                        <div class="boardMoveToButtonContent"><img src="../assets/icons/arrow_move_to_downward.svg" alt="arrow down">Review</div>
+
+                    <div class="boardMoveToIcon" onclick="openBoardMoveToOverlay(event)"><img src="../assets/icons/board_task_move_to.svg" alt="Move To Icon"></div>
+                    <div class="boardMoveToOverlay d-none" onclick="event.stopPropagation()">
+                        <div class="boardMoveToHeadline">Move To</div>
+                        <div class="boardMoveToOverlayButtons">
+                            ${getNewStatus(task.id, task.status)}
+                        </div>
                     </div>
-                </div>
-                </div>`;
+            </div>`;
 
     card.innerHTML += html;
 }
 
+function getNewStatus(taskId, currentStatus) {
+    const aStatus = ["Todo", "Progress", "Feedback", "Done"];
+    let currentIndex = aStatus.findIndex(s => s.includes(currentStatus));
 
-function openBoardMoveToOverlay(event) {
+    if (currentStatus === "Todo") return `<div class="boardMoveToButtonContent" onclick="changeBoardStatus('${taskId}', 'Progress')"><img src="../assets/icons/arrow_move_to_downward.svg" alt="arrow down">${aStatus[currentIndex + 1]}</div>`
+    if (currentStatus === "Done") return `<div class="boardMoveToButtonContent" onclick="changeBoardStatus('${taskId}', 'Feedback')"><img src="../assets/icons/arrow_move_to_upward.svg" alt="arrow up">${aStatus[currentIndex - 1]}</div>`
+
+    return `<div class="boardMoveToButtonContent" onclick="event.stopPropagation(); changeBoardStatus('${taskId}', '${aStatus[currentIndex - 1]}')"><img src="../assets/icons/arrow_move_to_upward.svg" alt="arrow up">${aStatus[currentIndex - 1]}</div>
+            <div class="boardMoveToButtonContent" onclick="event.stopPropagation(); changeBoardStatus('${taskId}', '${aStatus[currentIndex + 1]}')"><img src="../assets/icons/arrow_move_to_downward.svg" alt="arrow down">${aStatus[currentIndex + 1]}</div>`
+}
+
+async function changeBoardStatus(taskId, newStatus) {
+    const task = allTasks.find(t => t.id === taskId);
+    task.status = newStatus;
+
+  const overlay = document.getElementById("overlayLoading");
+  overlay.style.display = "block";
+  await updateTaskOnDatabase(taskId, task);
+  overlay.style.display = "none";  
+}
+
+function openBoardMoveToOverlay() {
     event.stopPropagation();
     const icon = event.currentTarget;
     const overlay = icon.nextElementSibling;
@@ -107,7 +127,7 @@ function openBoardMoveToOverlay(event) {
     }
 
     closeOverlayClickOutside(icon, overlay);
-    
+
 }
 
 
@@ -176,14 +196,14 @@ function getTasksToArray(tasks) {
 function openAddTaskOverlay(status) {
     const minWidth = window.innerWidth;
     if (minWidth > 1024) {
-    let overlay = document.getElementById('addTaskBoardOverlayMainSection');
-    overlay.classList.add('show');
-    document.getElementById('homeBody').style.overflow = 'hidden';
+        let overlay = document.getElementById('addTaskBoardOverlayMainSection');
+        overlay.classList.add('show');
+        document.getElementById('homeBody').style.overflow = 'hidden';
 
-    const span = overlay.querySelector('span[data-status]');
-    span.dataset.status = status;
+        const span = overlay.querySelector('span[data-status]');
+        span.dataset.status = status;
 
-    resetAddTaskSide();
+        resetAddTaskSide();
     } else return;
 }
 
@@ -271,12 +291,12 @@ async function openTaskDetails(taskId, editedTask = null) {
         const subtaskId = label?.dataset.subtaskId;
         const isDone = input.checked;
 
-        if (!task?.id){
+        if (!task?.id) {
             task.id = label?.dataset.taskId;
         }
 
         onSubtaskToggle(task, subtaskId, isDone);
-        }, { once: false });
+    }, { once: false });
 }
 
 function onSubtaskToggle(task, subtaskId, isDone) {
