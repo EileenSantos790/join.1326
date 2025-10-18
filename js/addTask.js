@@ -199,6 +199,7 @@ function addSubtaskToList() {
     let input = inputRef.value.trim();
     subtaskIdCounter++;
     let newSubtask = { "id": subtaskIdCounter, "text": input, "done": false };
+    subtasks = subtasks || [];
     subtasks.push(newSubtask);
     renderSubtasks();
     inputRef.value = "";
@@ -366,7 +367,7 @@ function getTaskData(editTask = false) {
     const status = !editTask
         ? document.getElementById('status').getAttribute('data-status')
         : document.getElementById('boardOverlayContent').getAttribute('data-overlay-status');
-    return { title, description, dueDate, priority, category, assignedTo, subtasks: subtasks, status };
+    return { title, description, dueDate, priority, category, assignedTo, subtasks: subtasks || [], status };
 }
 
 
@@ -398,15 +399,15 @@ function handleUpdateTask(taskId) {
     updateTaskOnDatabase(taskId, task);
 }
 
-function updateTaskOnDatabase(taskId, task, SubtaskToggle = false) {
-    fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task ) })
+async function updateTaskOnDatabase(taskId, task, SubtaskToggle = false) {
+    await fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task ) })
         .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
         .then(() => {
             if (!SubtaskToggle){
                 closeOverlay();
             }
             usersListOnEdit = [];
-            goToBoardHtml();
+            goToBoardHtml(0);
         })
         .catch(error => { console.error("Error:", error); });
 }
