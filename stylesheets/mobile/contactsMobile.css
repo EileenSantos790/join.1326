@@ -106,6 +106,7 @@
     .detailsCard {
         margin-top: 48px;
         gap: 20px;
+        display: flex;
     }
 
     .contactInformationContainer {
@@ -264,7 +265,7 @@
     .responsiveOverlayEdit {
         position: fixed;
         right: 0px;
-        bottom: 96px;
+        bottom: 88px;
         z-index: 1000;
         flex-direction: column;
         display: flex;
@@ -381,6 +382,10 @@
     }
 
     .showDetailsContactsContainer {
+        margin-left: 18px;
+    }
+
+    .detailsCard {
         margin-left: 18px;
     }
 }

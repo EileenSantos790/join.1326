@@ -4,7 +4,7 @@
 
 .boardMoveToOverlay {
     background-color: #2A3647;
-    color: #FFFFFF;
+    color: hsl(0, 0%, 100%);
     width: 106px;
     height: 113px;
     border-radius: 0px 20px 20px 20px;
@@ -15,8 +15,9 @@
     gap: 16px;
     position: absolute;
     top: 16px;
-    right: -45px;
+    right: -30px;
     z-index: 1;
+    padding-inline: 15px;
 }
 
 .boardMoveToHeadline {

@@ -206,11 +206,10 @@
     width: 445px;
     flex-direction: column;
     gap: 24px;
-    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
     background-color: rgba(255, 255, 255, 1);
     border-radius: 30px;
-    padding-inline: 40px;
-    padding-block: 48px;
+    padding-inline: 20px;
+    padding-block: 28px;
     max-height: 802px;
     overflow-y: auto;
 }
@@ -455,4 +454,13 @@ label:hover {
 .boardCardContainer.dragging {
     opacity: 0.6;
     transform: scale(0.98);
+}
+
+.aroundOverlayContainer{
+    padding: 20px;
+    display: flex;
+    background-color: white;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+
 }

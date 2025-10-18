@@ -331,9 +331,7 @@
 @media (max-width: 1255px) {
 
     .detailsCard {
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 62px;
+        display: block;
     }
 
     .alignArrowLeft {
