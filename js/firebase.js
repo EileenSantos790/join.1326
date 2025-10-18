@@ -63,32 +63,39 @@ async function checkIfDataIsCorrect(containerLoginId, containerPasswordId) {
 function loginAsGuest() {
     sessionStorage.setItem("userfound", true);
     sessionStorage.setItem("userName", "Guest");
-
     window.location.href = "home.html";
 }
 
 /**
  * Try to sign up a new user with the provided data.
  */
+function validatePasswordsAndFields(signUpName, signUpEmail, signUpPassword, signUpPasswordConfirm, confirmId) {
+    let signUpFormValidationErrorMessage = document.getElementById("signUpFormValidationErrorMessage");
+    if (signUpName !== "" && signUpEmail !== "" && signUpPassword !== "" && signUpPasswordConfirm !== "") {
+        if (signUpPassword === signUpPasswordConfirm) {
+            return true; 
+        } else {
+            signUpFormValidationErrorMessage.innerText = "Your passwords don't match. Please try again.";
+            setErrorBorder(confirmId);
+            return false;
+        }
+    } else {
+        signUpFormValidationErrorMessage.innerText = "Please fill in all fields!";
+        return false;
+    }
+}
+
 function tryToSignUp(confirmId) {
     let signUpName = document.getElementById("signUpNameInput").value;
     let signUpEmail = document.getElementById("signUpEmailInput").value;
     let signUpPassword = document.getElementById("signUpPasswordInput").value;
     let signUpPasswordConfirm = document.getElementById("signUpPasswordConfirmInput").value;
-    signUpFormValidationErrorMessage = document.getElementById("signUpFormValidationErrorMessage");
-    if (signUpName !== "" && signUpEmail !== "" && signUpPassword !== "" && signUpPasswordConfirm !== "") {
-        if (signUpPassword === signUpPasswordConfirm) {
-            checkIfUserAlreadyExists(signUpEmail, signUpName, signUpPassword);
-        }
-        else {
-            signUpFormValidationErrorMessage.innerText = "Your passwords don't match. Please try again.";
-            setErrorBorder(confirmId);
-        }
-    }
-    else {
-        signUpFormValidationErrorMessage.innerText = "Please fill in all fields!";
+
+    if (validatePasswordsAndFields(signUpName, signUpEmail, signUpPassword, signUpPasswordConfirm, confirmId)) {
+        checkIfUserAlreadyExists(signUpEmail, signUpName, signUpPassword);
     }
 }
+
 
 /**
  * Check if the user already exists in the database.
@@ -101,9 +108,7 @@ async function checkIfUserAlreadyExists(email, name, password) {
     for (let key in users) {
         if (users[key].user.email === email) {
             emailExists = true;
-            break;
-        }
-    }
+            break;}}
     if (emailExists) {
         signUpFormValidationErrorMessage.innerText = "This user is already registered!";
     } else {
@@ -118,25 +123,19 @@ async function checkIfUserAlreadyExists(email, name, password) {
 async function saveNewUserToDB(name, userEmail, userPassword) {
     signUpFormValidationErrorMessage = document.getElementById("signUpFormValidationErrorMessage");
     signUpFormValidationErrorMessage.innerText = "";
-
     const color = getRandomHexColor();
     const userJson = basicJsonStructure(name, userEmail, userPassword, color);
-
     await fetch(BASE_URL + "users.json", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userJson)
     });
-
     let popUp = document.getElementById("popupOverlay");
     popUp.classList.remove("d-none");
-
     email = userEmail;
     password = userPassword;
-
     setTimeout(async () => {
         popUp.classList.add("d-none");
-
         await checkIfDataIsCorrect("signUpEmailInputContainer", "signUpPasswordInputContainer");
     }, 2000);
 }
