@@ -62,9 +62,9 @@ input:placeholder-shown~.inputPasswordIcon {
     display: unset;
 }
 
-/* input:not(:placeholder-shown)~.inputPasswordIcon {
+input:not(:placeholder-shown)~.inputPasswordIcon {
     display: none;
-} */
+}
 
 input:placeholder-shown~.inputVisibilityOffIcon {
     opacity: 0;
