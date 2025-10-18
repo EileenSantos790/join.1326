@@ -1,3 +1,7 @@
+/**
+ * Checks if the user is logged in and redirects or modifies the navigation bar
+ * If not logged in, redirects to index.html unless on public pages (privacyPolicy or legalNotice)
+ */
 function isUserLoggedIn() {
     const page = new URLSearchParams(location.search).get('page');
     const allowPublic = page === 'privacyPolicy' || page === 'legalNotice';
@@ -30,7 +34,10 @@ function isUserLoggedIn() {
     }
 }
 
-
+/**
+ * Generates the HTML template for a contact in the assigned to dropdown
+ * @param {Array} contacts - Array of contact objects
+ */
 function getContactTemplate(contacts, index) {
     const contact = contacts[index];
     const isSelected = selectedContactsAddTask.some(c => c.id === contact.id);
@@ -60,14 +67,19 @@ function getContactTemplate(contacts, index) {
     `;
 }
 
-
+/**
+ * Generates the HTML template for a selected contact avatar
+ */
 function getSelectedContactTemplate(contact, color) {
     return `
             <div class="margin_top8 avatar" style="background:${color};color:#fff;">${contact}</div>
     `;
 }
 
-
+/**
+ * Generates the HTML template for a subtask in the subtask list
+ * @param {Object} subtask - The subtask object containing id and text
+*/
 function getSubtaskListTemplate(subtask) {
     return `<div class="subtaskItem" id="subtask${subtask.id}" ondblclick="editSubtask(${subtask.id})">
         <li class="subtaskText" id="subtaskText${subtask.id}">${subtask.text}</li>
@@ -79,7 +91,10 @@ function getSubtaskListTemplate(subtask) {
       </div>`;
 }
 
-
+/** 
+ * Generates the HTML template for editing a subtask
+ * @param {Object} subtask - The subtask object containing id and text
+ */
 function getSubtaskEditTemplate(subtask) {
     return `
       <div class="subtaskItemEdit" id="subtask${subtask.id}">
@@ -93,7 +108,10 @@ function getSubtaskEditTemplate(subtask) {
     `;
 }
 
-
+/**
+ * Generates the HTML template for the board overlay to edit a task
+ * @param {string} taskId - The ID of the task to be edited
+*/
 function getBoardOverlayEditTaskTemplate(taskId) {
     return `
         <div class="addTaskEditBoardOverlay">
