@@ -135,7 +135,7 @@ function removeFocusBorderCheckInputValue(containerId, inputId, errorId) {
     }
 }
 
-
+//** Add a new substask when enter is pressed  */
 function addSubtaskWithEnter() {
     const input = document.getElementById('subtaskInput');
     input.onkeydown = function (event) {
