@@ -5,10 +5,29 @@
 
     .loginPageMoveLogo,
     .signUpPageLogo {
+        position: absolute;
         width: 64px;
         height: 78.3px;
-        top: 38px !important;
-        left: 38px !important;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: moveLogoMobile 0.5s ease forwards;
+        animation-delay: 0.3s;
+        z-index: 101;
+    }
+
+    @keyframes moveLogoMobile {
+        0% {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        100% {
+            top: 38px;
+            left: 38px;
+            transform: translate(0, 0) scale(1);
+        }
     }
 
     .loginPageMainContentHeadline {
