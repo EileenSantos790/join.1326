@@ -1,9 +1,8 @@
 let userInitials;
 let greetingUserName;
 
-/**
- * Check the box and activate the button. 
- */
+
+/** Check the box and activate the button. */
 function toggleCheckbox(checkId, uncheckId, buttonId) {
     let checked = document.getElementById(checkId);
     let unchecked = document.getElementById(uncheckId);
@@ -13,9 +12,8 @@ function toggleCheckbox(checkId, uncheckId, buttonId) {
     buttonStatus.toggleAttribute('disabled');
 }
 
-/**
- * Switches the password and icon between visible and hidden. 
- */
+
+/** Switches the password and icon between visible and hidden. */
 function togglePasswordVisibility(inputId, iconOffId, iconOnId) {
     let input = document.getElementById(inputId);
     let iconOff = document.getElementById(iconOffId);
@@ -29,78 +27,14 @@ function togglePasswordVisibility(inputId, iconOffId, iconOnId) {
     }
 }
 
-/**
- * Load the sign-up page.
- */
+
+/** Load the sign-up page. */
 function loadSignUp(htmlName) {
     window.location.href = htmlName;
 }
 
-/**
- * check if user is logged in and redirect to login page if not.
- */
-function isUserLoggedIn() {
-    const page = new URLSearchParams(location.search).get('page');
-    const allowPublic = page === 'privacyPolicy' || page === 'legalNotice';
-    const loggedIn = sessionStorage.getItem('userfound') === 'true';
-    const mobile = isMobile();
 
-    if (!loggedIn && allowPublic) {
-        const nav = document.querySelector('.navContainer');
-        if (nav) nav.innerHTML = `
-        <div class="navContainer">
-            <div class="navContainerLogo">
-                <img class="joinIcon" src="./assets/img/joinSymbolWhite.svg" alt="Join Icon">
-            </div>
-            <div class="navContainerMenu">
-                <div class="navLine" onclick="location.href='index.html'">
-                    <img class="navIcon" src="./assets/icons/LogInIcon.svg" alt="Login Icon">
-                    <p>Log In</p>
-                </div>
-
-                <div id="policeAndNoticeMobile" class="policeAndNoticeMobile d-none">
-                    <div id="privacePolicy" class="navLine" onclick="location.href='home.html?page=privacyPolicy&mobile=true'">
-                        <p>Privacy Policy</p>
-                    </div>
-
-                    <div id="legalNotice" class="navLine" onclick="location.href='home.html?page=legalNotice&mobile=true'">
-                        <p>Legal Notice</p>
-                    </div>
-                </div>
-
-                <div class="navContainerSites">
-                    <a class="sitesNavContainer" href="home.html?page=privacyPolicy&mobile=false">Privacy Policy</a>
-                    <a class="sitesNavContainer" href="home.html?page=legalNotice&mobile=false">Legal Notice</a>
-                </div>
-
-            </div>
-        </div>`;
-        if (mobile) {
-            page === "privacyPolicy" 
-                ? document.getElementById("privacePolicy")?.classList.add('active')
-                : document.getElementById("legalNotice")?.classList.add('active');
-            
-            document.getElementById("policeAndNoticeMobile")?.classList.remove('d-none');
-            hideUserMenu(); // For mobile
-        }
-        nav.getElementsByClassName("navContainerMenu")[0].style.gap = "301px"
-        return;
-    }
-    userInitials = document.getElementById('userInitials');
-    greetingUserName = document.getElementById('greetingUserName');
-    if (!loggedIn && !allowPublic) {
-        window.location.href = 'index.html';
-    }
-    else {
-        sessionInit();
-        document.getElementById("navContainerMenu").classList.remove("d-none");
-        document.getElementById("sitesNavContainer").classList.remove("d-none");
-    }
-}
-
-/**
- * Set focus border on input field and remove error border and message.
- */
+/** Set focus border on input field and remove error border and message. */
 function setFocusBorder(containerId, errorMessageId) {
     document.getElementById(containerId).classList.add('inputBorderColorFocus');
     document.getElementById(containerId).classList.remove('inputErrorBorder');
@@ -110,10 +44,14 @@ function setFocusBorder(containerId, errorMessageId) {
     }
 }
 
+
+/** Removes the focus styling from the given input wrapper. */
 function removeFocusBorder(containerId) {
     document.getElementById(containerId).classList.remove('inputBorderColorFocus');
 }
 
+
+/** Applies the error border to the provided input wrappers. */
 function setErrorBorder(containerLoginId, containerPasswordId) {
     document.getElementById(containerLoginId).classList.add('inputErrorBorder');
     if (containerPasswordId) {
@@ -121,6 +59,8 @@ function setErrorBorder(containerLoginId, containerPasswordId) {
     }
 }
 
+
+/** Adds an error border when no category is selected. */
 function setErrorBorderForCategory(containerId) {
     let categoryHeader = document.getElementById('categoryDropdownHeader');
     if (categoryHeader.textContent == "Select task category") {
@@ -128,9 +68,8 @@ function setErrorBorderForCategory(containerId) {
     }
 }
 
-/**
- * Initialize session (Local Storage) and set user initials and greeting message.
- */
+
+/** Initialize session (Local Storage) and set user initials and greeting message. */
 async function sessionInit() {
     const user = (sessionStorage.getItem('userName') || '').trim();
     if (typeof userInitials !== 'undefined' && userInitials) {
@@ -145,47 +84,24 @@ async function sessionInit() {
     setGreetingMessage();
 }
 
-/**
- * Set greeting message based on the time of day and user name.
- */
+
+/** Set greeting message based on the time of day and user name. */
 function setGreetingMessage() {
-    const greetingDayTimeEl = document.getElementById('greetingDayTime');
-    const greetingUserNameEl = document.getElementById('greetingUserName');
-    const greetingDayTimeElMobile = document.getElementById('greetingDayTimeMobile');
-    const greetingUserNameElMobile = document.getElementById('greetingUserNameMobile');
+    const greetingDayTimeEl = document.getElementById('greetingDayTime'); const greetingUserNameEl = document.getElementById('greetingUserName'); const greetingDayTimeElMobile = document.getElementById('greetingDayTimeMobile'); const greetingUserNameElMobile = document.getElementById('greetingUserNameMobile');
     if (!greetingDayTimeEl || !greetingDayTimeElMobile) return;
-
-    const h = new Date().getHours();
-    const greeting = h < 12 ? 'Good Morning, '
-        : h < 18 ? 'Good Afternoon, '
-            : 'Good Night, ';
-
+    const h = new Date().getHours(); const greeting = h < 12 ? 'Good Morning, ' : h < 18 ? 'Good Afternoon, ' : 'Good Night, ';
     const userName = (sessionStorage.getItem('userName') || '').trim();
-    const isGuest = userName === '' || userName.toLowerCase() === 'guest';
-
-    if (isGuest) {
-        const greetingNoComma = greeting.replace(/,\s*$/, '') + '!';
-        greetingDayTimeEl.innerText = greetingNoComma;
-        greetingDayTimeElMobile.innerText = greetingNoComma;
-        if (greetingUserNameEl) greetingUserNameEl.textContent = '';
-        if (greetingUserNameElMobile) greetingUserNameElMobile.textContent = '';
-    } else {
-        greetingDayTimeEl.innerText = greeting;
-        greetingDayTimeElMobile.innerText = greeting;
-        if (greetingUserNameEl) greetingUserNameEl.textContent = userName;
-        if (greetingUserNameElMobile) greetingUserNameElMobile.textContent = userName;
+    greetingDayTimeEl.innerText = greeting;
+    greetingDayTimeElMobile.innerText = greeting;
+    if (greetingUserNameEl || greetingUserNameElMobile) {
+        greetingUserNameEl.textContent = userName || 'Guest';
+        greetingUserNameElMobile.textContent = userName || 'Guest'
     }
 }
 
 (function setupGreetingAutoUpdate() {
     const runNow = () => setGreetingMessage();
-    const schedule = () => {
-        runNow();
-        requestAnimationFrame(runNow);
-        setTimeout(runNow, 0);
-        setTimeout(runNow, 100);
-        setTimeout(runNow, 300);
-    };
+    const schedule = () => { runNow(); requestAnimationFrame(runNow); setTimeout(runNow, 0); setTimeout(runNow, 100); setTimeout(runNow, 300); };
     schedule();
     window.addEventListener('DOMContentLoaded', schedule);
     window.addEventListener('load', schedule);
@@ -198,6 +114,8 @@ function setGreetingMessage() {
     window.setGreetingMessage = setGreetingMessage;
 })();
 
+
+/** Toggles visibility of the user submenu. */
 function showSubmenu() {
     const submenu = document.getElementById('submenu');
     submenu.classList.toggle('d-none');
@@ -211,28 +129,35 @@ document.addEventListener('click', (event) => {
     closeSubmenu();
 });
 
+
+/** Hides the user submenu. */
 function closeSubmenu() {
     const submenu = document.getElementById('submenu');
     submenu.classList.add('d-none');
 }
 
+
+/** Hides the desktop user menu icons. */
 function hideUserMenu() {
     const submenu = document.getElementById('menuIcons');
     submenu.classList.add('d-none');
 }
 
-/**
- * Logout the user and clear session storage.
- */
+
+/** Logout the user and clear session storage. */
 function logout() {
     sessionStorage.clear();
     window.location.href = 'index.html';
 }
 
+
+/** Returns true when the viewport width is in mobile range. */
 function isMobile() {
     return window.innerWidth <= 1024;
 }
 
+
+/** Navigates back in the browser history. */
 function goBack() {
     window.history.back();
 }

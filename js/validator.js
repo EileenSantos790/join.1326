@@ -1,3 +1,4 @@
+/** Validates a contact form field and updates its error state. */
 function validateField(field) {
     const id = field.id;
     const raw = field.value || "";
@@ -80,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const nameInput = document.getElementById("contactName");
     const emailInput = document.getElementById("contactEmail");
     const phoneInput = document.getElementById("contactPhone");
-
     if (nameInput) nameInput.addEventListener("input", () => validateField(nameInput));
     if (emailInput) emailInput.addEventListener("input", () => validateField(emailInput));
     if (phoneInput) phoneInput.addEventListener("input", () => validateField(phoneInput));

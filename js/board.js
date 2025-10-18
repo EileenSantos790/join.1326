@@ -6,6 +6,7 @@ let selectedTaskId = null;
 let dropPlaceholder = document.createElement('div');
 dropPlaceholder.className = 'dropPlaceholder';
 
+
 /** Watches the DOM for a selector and runs a callback when it appears. */
 function onElementAppear(selector, cb) {
     let present = false;
@@ -53,6 +54,7 @@ async function changeBoardStatus(taskId, newStatus) {
     overlay.style.display = "none";  
 }
 
+
 /** Toggles the Move To overlay for the clicked task card. */
 function openBoardMoveToOverlay() {
     event.stopPropagation();
@@ -63,6 +65,7 @@ function openBoardMoveToOverlay() {
     closeOverlayClickOutside(icon, overlay);
 }
 
+
 /** Closes the overlay when clicking outside of the icon or overlay. */
 function closeOverlayClickOutside(icon, overlay) {
     if (overlay) {
@@ -71,6 +74,7 @@ function closeOverlayClickOutside(icon, overlay) {
         document.addEventListener('click', closeOverlay);
     }
 }
+
 
 /** Converts the tasks object from the backend into an array of task objects. */
 function getTasksToArray(tasks) {
@@ -82,6 +86,7 @@ function getTasksToArray(tasks) {
     }
     return arr;
 }
+
 
 /** Opens the add-task overlay with the given status selected on desktop. */
 function openAddTaskOverlay(status) {
@@ -103,10 +108,12 @@ function closeAddTaskOverlay() {
     document.getElementById('addTaskBoardOverlay').classList.add('d-none');
 }
 
+
 /** Displays the success message overlay after adding a task. */
 function showAddTaskOverlaySuccessMessage() {
     document.getElementById('addTaskBoardOverlay').classList.remove('d-none');
 }
+
 
 /** Updates a subtask's done state and saves the task. */
 function onSubtaskToggle(task, subtaskId, isDone) {
@@ -116,6 +123,7 @@ function onSubtaskToggle(task, subtaskId, isDone) {
     task.subtasks[idx].done = isDone;
     updateTaskOnDatabase(task.id, task, true);
 }
+
 
 /** Formats a date string into DD/MM/YYYY format. */
 function formatDate(date) {
@@ -127,6 +135,7 @@ function formatDate(date) {
     });
 }
 
+
 /** Deletes a task and refreshes the board after success. */
 async function deleteTask(taskId) {
     try {
@@ -136,6 +145,7 @@ async function deleteTask(taskId) {
         goToBoardHtml();
     } catch (err) { console.error("Error on delete task", err); }
 }
+
 
 /** Removes the task reference from each user that had it assigned. */
 async function updateContactTask(taskId) {
@@ -151,11 +161,13 @@ async function updateContactTask(taskId) {
     } catch (error) { console.error("Error getUsersTasks:", error); return []; }
 }
 
+
 /** Writes the updated task list for a user back to the database. */
 function refreshContactTasksOnDb(userId, updatedTasks) {
     try { fetch(`${BASE_URL}users/${userId}/user/tasks.json`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(updatedTasks) }); } 
     catch (error) { console.error("Erro update contact tasks:", error); return []; }
 }
+
 
 /** Removes a user from all tasks or deletes tasks with no remaining assignees. */
 async function removeAllTasksFromUser(userId) {
@@ -173,6 +185,7 @@ async function removeAllTasksFromUser(userId) {
     } catch (error) { console.error("Error removing user's tasks:", error);}
 }
 
+
 /** Marks a task card as dragging and prepares the placeholder element. */
 function onDragStart(ev) {
     const card = ev.currentTarget;
@@ -184,6 +197,7 @@ function onDragStart(ev) {
     dropPlaceholder.style.width = '100%';
 }
 
+
 /** Clears dragging styles and removes the placeholder after drop ends. */
 function onDragEnd(ev) {
     const card = ev.currentTarget;
@@ -191,6 +205,7 @@ function onDragEnd(ev) {
     if (dropPlaceholder.parentElement) dropPlaceholder.parentElement.removeChild(dropPlaceholder);
     draggedTaskId = null;
 }
+
 
 /** Handles dragover to position the placeholder within a lane. */
 function onDragOver(ev) {
@@ -206,6 +221,7 @@ function onDragOver(ev) {
         container.classList.add('dropAtEnd');
     } else { afterElement.classList.add('insertionBefore'); if (afterElement.previousSibling !== dropPlaceholder) { container.insertBefore(dropPlaceholder, afterElement); }}
 }
+
 
 /** Applies the new status on drop and syncs the task order. */
 async function onDrop(ev) {
@@ -223,6 +239,7 @@ async function onDrop(ev) {
     container.classList.remove('dropActive', 'dropAtEnd'); container.querySelectorAll('.insertionBefore').forEach(el => el.classList.remove('insertionBefore')); renderBoard(allTasks);
 }
 
+
 /** Finds the card element that should follow the dragged placeholder. */
 function getDragAfterElement(container, y) {
     const elements = [...container.querySelectorAll('.boardCardContainer:not(.dragging)')];
@@ -232,6 +249,7 @@ function getDragAfterElement(container, y) {
         if (offset < 0 && offset > closest.offset) { return { offset, element: child }; } else { return closest; }
     }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
 }
+
 
 /** Removes drag styling when the pointer leaves a lane. */
 function onDragLeave(ev) {
@@ -265,12 +283,14 @@ function selectTaskCard(taskId) {
     if (el) { el.classList.add('is-selected'); selectedTaskId = taskId; }
 }
 
+
 /** Removes the selected highlight from any task card. */
 function clearSelectedCard() {
     document.querySelectorAll('.boardCardContainer.is-selected')
         .forEach(el => el.classList.remove('is-selected'));
     selectedTaskId = null;
 }
+
 
 /** Lists subtasks inside the edit overlay subtasks section. */
 function renderSubtasksOnEdit(subtasks) {
@@ -280,6 +300,7 @@ function renderSubtasksOnEdit(subtasks) {
         list.innerHTML += getSubtaskListTemplate(subtask);
     })
 }
+
 
 /** Filters visible tasks on the board based on the search input. */
 function filterTasks() {
@@ -307,6 +328,7 @@ function clearTasksContainer() {
     addOverlayTaskNotFound();
 }
 
+
 /** Shows a red overlay message when no tasks match the filter. */
 function addOverlayTaskNotFound() {
     const aStatus = ['Todo', 'Progress', 'Feedback', 'Done'];
@@ -317,6 +339,7 @@ function addOverlayTaskNotFound() {
         document.getElementById(`spaceHolder${status}Container`).style.backgroundColor = "#F6E1E1";
     })
 }
+
 
 /** Restores the default empty-state overlay styling for each lane. */
 function removeOverlayTaskNotFound() {

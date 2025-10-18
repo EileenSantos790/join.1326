@@ -1,25 +1,13 @@
-/**
- * function renderMainContent can only be used when HTML is loaded
- */
+/** Starts rendering once the DOM content is loaded. */
 window.addEventListener('DOMContentLoaded', renderMainContent);
 
 
-/**
- * Initializes the main content area and navigation.
- *
- * - Finds the main content container and all navigation elements.
- * - Attaches click events to the main menu items (left sidebar).
- * - Attaches click events to the site menu items (privacy policy, legal notice).
- * - Attaches click event to the help icon in the header.
- * - If a "page" URL parameter is present, it opens that page.
- * - Otherwise, it automatically opens the first main menu item.
- */
+/** Initializes the main content area and navigation. */
 async function renderMainContent() {
   const content = document.getElementById('contentContainer');
   const items = document.querySelectorAll('.navLine');
   const sites = document.querySelectorAll('.sitesNavContainer');
   const buttons = document.querySelectorAll('.submenuButton');
-
   setClickEvents(items, content);
   setClickEvents(sites, content);
   setClickEvents(buttons, content);
@@ -29,13 +17,8 @@ async function renderMainContent() {
   else if (items.length > 0) items[0].click();
 }
 
-/**
- * Adds click events to each menu item.
- * On click, it marks the item as active and loads the corresponding page.
- *
- * @param {NodeList} items
- * @param {HTMLElement} content
- */
+
+/** Adds click events to each menu item. */
 function setClickEvents(items, content) {
   for (const item of items) {
     item.addEventListener('click', () => {
@@ -47,12 +30,7 @@ function setClickEvents(items, content) {
 }
 
 
-/**
- * Highlights the clicked menu item and removes highlight from others.
- *
- * @param {NodeList} items
- * @param {HTMLElement} activeItem
- */
+/** Highlights the clicked menu item and removes highlight from others. */
 function markActive(items, activeItem) {
   for (const item of items) {
     item.classList.remove('active');
@@ -61,35 +39,20 @@ function markActive(items, activeItem) {
 }
 
 
-/**
- * Loads the HTML content of the given file into the content container.
- * Shows a loading message and handles errors if the file cannot be loaded.
- *
- * @param {string} file
- * @param {HTMLElement} content
- */
+/** Loads the HTML content of the given file into the content container. */
 function loadPage(file, content) {
   content.innerHTML = 'Lade...';
-
   fetch(file)
     .then(response => checkFile(response, file))
     .then(html => content.innerHTML = html)
     .catch(error => showError(error, content));
-
   if (file === "./htmlTemplates/addTask.html") {
     resetAddTaskSide();
   }
 }
 
 
-/**
- * Checks if the fetched file response is OK.
- * Throws an error if the file cannot be loaded.
- *
- * @param {Response} response
- * @param {string} file
- * @returns {Promise<string>}
- */
+/** Checks if the fetched file response is OK. */
 function checkFile(response, file) {
   if (!response.ok) {
     throw new Error('Loading was not successful → ' + file);
@@ -98,63 +61,29 @@ function checkFile(response, file) {
 }
 
 
-/**
- * Displays an error message in the content container.
- *
- * @param {Error} error
- * @param {HTMLElement} content
- */
+/** Displays an error message in the content container. */
 function showError(error, content) {
   content.innerHTML = '<p style="color:red;">' + error.message + '</p>';
 }
 
 
-/**
- * Opens a specific page based on the URL parameter "page".
- *
- * - Supports the values "privacyPolicy" and "legalNotice".
- * - Looks up the corresponding HTML file path in the `files` map.
- * - If a matching navigation item exists, it triggers a click on that item
- *   (so it also gets marked as active).
- * - If no navigation item exists, it directly loads the file into the content container.
- * - If the "page" parameter is missing or invalid, nothing happens.
- *
- * @param {HTMLElement} content
- */
+/** Opens a specific page based on the URL parameter "page". */
 function openPageFromUrl(content) {
   const page = new URLSearchParams(window.location.search).get("page");
-
-  const files = {
-    privacyPolicy: "./htmlTemplates/privacyPolicy.html",
-    legalNotice: "./htmlTemplates/legalNotice.html"
-  };
-
+  const files = { privacyPolicy: "./htmlTemplates/privacyPolicy.html", legalNotice: "./htmlTemplates/legalNotice.html"};
   const fileToOpen = files[page];
   if (!fileToOpen) return;
-
   const menuItem = document.querySelector(`[data-file="${fileToOpen}"]`);
   if (menuItem) {
     menuItem.click(); 
     const path = menuItem.dataset.file;
-    if (path === "./htmlTemplates/privacyPolicy.html" || path === "./htmlTemplates/legalNotice.html") {
-      hideUserMenu() //For desktop
-    }
+    if (path === "./htmlTemplates/privacyPolicy.html" || path === "./htmlTemplates/legalNotice.html") { hideUserMenu(); } //For desktop
   }
   else loadPage(fileToOpen, content);
 }
 
 
-/**
- * Attaches a click event to the help icon in the header.
- * When clicked, it loads the HTML file specified in the icon's "data-file" attribute
- * into the given content container.
- *
- * Removes the "active" class from all navigation and site menu items,
- *   so the help icon acts independently of the side navigation.
- * Uses the loadPage() function to fetch and display the file.
- *
- * @param {HTMLElement} content
- */
+/** Attaches a click event to the help icon in the header. */
 function attachHelp(content) {
   const helpIcon = document.querySelector('.helpIcon');
   if (!helpIcon) return;
@@ -167,6 +96,7 @@ function attachHelp(content) {
 }
 
 
+/** Loads the add-task template and highlights its menu item. */
 function openAddTaskSide(sideLink) {
   if (isMobile()) {
     const content = document.getElementById('contentContainer');
@@ -180,5 +110,4 @@ function openAddTaskSide(sideLink) {
     }
     addTask.classList.add('active');
   }
-
 }

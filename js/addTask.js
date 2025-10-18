@@ -3,6 +3,7 @@ let contactSearchArray = [];
 let subtasks = [];
 let subtaskIdCounter = 0;
 
+
 /** Activates a priority button by updating its style and icon based on the selected priority. */
 function activatePriorityButton(buttonId, buttonClass, buttonIconOff, buttonIconOn) {
     document.getElementById('addTaskUrgentButton').classList.remove('buttonUrgentActive');
@@ -14,6 +15,7 @@ function activatePriorityButton(buttonId, buttonClass, buttonIconOff, buttonIcon
     document.getElementById(buttonId).classList.add(buttonClass);
 }
 
+
 /** Resets all priority button icons to their default (unselected) state. */
 function setPriorityButtonIconToDefault() {
     document.getElementById('urgentButtonOff').classList.remove('d-none');
@@ -24,14 +26,16 @@ function setPriorityButtonIconToDefault() {
     document.getElementById('lowButtonOn').classList.add('d-none');
 }
 
-/** renderContactsInAddTask() function => Execute when opening the "addTask" page so that contacts remain clicked in "Assigned to". (that the dropdown menu works correctly). */
+
+/** Toggles the assigned-to dropdown in the add-task view. */
 async function toggleDropdownAssignedTo() {
     document.getElementById('addTaskDropdownAssignedTo').classList.toggle('d-none');
     document.getElementById('addTaskDropdownSearchContent').classList.toggle('d-none');
     document.getElementById('addTaskAddedContactIcons').classList.toggle('d-none');
 }
 
-/** marks the clicked contact. */
+
+/** Toggles the selection state of a contact in the assigned list. */
 function addTaskSelectContact(userId, initial, color, name) {
     const container = document.getElementById(`assignedToContact-${userId}`);
     const checkboxOff = document.getElementById(`assignedToCheckbox-${userId}`);
@@ -44,6 +48,7 @@ function addTaskSelectContact(userId, initial, color, name) {
     addContactToTask();
 }
 
+
 /** Displays all or filtered contacts in the assigned to dropdown container. */
 async function renderContactsInAddTask(searchArray = []) {
     if (searchArray.length) {
@@ -55,22 +60,25 @@ async function renderContactsInAddTask(searchArray = []) {
     await renderAllContacts();
 }
 
+
 /** Adds the contact to a separate array and sorts them alphabetically. */
 function saveClickedContact(initial, color, id, name) {
     let index = selectedContactsAddTask?.findIndex(c => c.id === id);
-    if (index !== -1 && index != undefined) { selectedContactsAddTask.splice(index, 1); }
+    if (index !== -1 && index != undefined) { selectedContactsAddTask.splice(index, 1); } 
     else { selectedContactsAddTask.push({ id, name, initial, color }); }
     selectedContactsAddTask.sort((a, b) => a.initial.localeCompare(b.initial));
 }
+
 
 /** Displays selected contacts when the dropdown menu is closed. */
 function addContactToTask() {
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
     contentDiv.innerHTML = "";
-    selectedContactsAddTask.forEach((contact) => { contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color, contact.id, contact.name); });
+    selectedContactsAddTask.forEach((contact) => { contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color, contact.id, contact.name);});
 }
 
-/** filter function to search for contacts. */
+
+/** Filters contacts for the assigned-to dropdown. */
 async function searchContactsForTask() {
     let inputRef = document.getElementById('addTaskSearchInput');
     let searchInput = inputRef.value;
@@ -79,6 +87,7 @@ async function searchContactsForTask() {
     if (searchInput.length > 0) { contactSearchArray = contacts.filter(contact => contact.name.toLowerCase().includes(searchInput.toLowerCase())); renderContactsInAddTask(contactSearchArray); }
     else { renderContactsInAddTask(); }
 }
+
 
 /** Toggles the visibility of the category dropdown and its associated icons. */
 function toggleDropdownCategory() {
@@ -89,6 +98,7 @@ function toggleDropdownCategory() {
     document.getElementById('addTaskCategoryHeaderContainer').classList.remove('inputErrorBorder');
 }
 
+
 /** Selects a category from the dropdown and updates the header. */
 function selectedCategory(option) {
     let header = document.getElementById('categoryDropdownHeader');
@@ -97,11 +107,13 @@ function selectedCategory(option) {
     toggleDropdownCategory();
 }
 
+
 /** close the assigned to and category dropdown when click outside. */
 document.onclick = function (click) {
     closeAssignedToClickOutside(click);
     closeCategoryClickOutside(click);
 }
+
 
 /** Closes the assigned-to dropdown when clicking outside its container. */
 function closeAssignedToClickOutside(click) {
@@ -112,6 +124,7 @@ function closeAssignedToClickOutside(click) {
         document.getElementById('addTaskAddedContactIcons').classList.remove('d-none');
     }
 }
+
 
 /** Closes the category dropdown if a click occurs outside of it. */
 function closeCategoryClickOutside(click) {
@@ -124,6 +137,7 @@ function closeCategoryClickOutside(click) {
     }
 }
 
+
 /** Removes focus border from the container and checks if the input value is empty, displaying an error message if so. */
 function removeFocusBorderCheckInputValue(containerId, inputId, errorId) {
     document.getElementById(containerId).classList.remove('inputBorderColorFocus');
@@ -135,13 +149,6 @@ function removeFocusBorderCheckInputValue(containerId, inputId, errorId) {
     }
 }
 
-//** Add a new substask when enter is pressed  */
-function addSubtaskWithEnter() {
-    const input = document.getElementById('subtaskInput');
-    input.onkeydown = function (event) {
-        if (event.key === 'Enter' && input.value) addSubtaskToList();
-    };
-}
 
 /** Adds a new subtask to the list and updates the display. */
 function addSubtaskToList() {
@@ -155,18 +162,20 @@ function addSubtaskToList() {
     inputRef.value = "";
 }
 
+
 /** Clears the value of the subtask input field. */
 function clearSubtaskInput() {
     let inputRef = document.getElementById('subtaskInput');
     inputRef.value = "";
 }
 
+
 /** Renders the subtasks into the subtask list element. */
 function renderSubtasks() {
     let list = document.getElementById('subtaskListContent');
     list.innerHTML = "";
     let arr = [];
-    if (subtasks.length) { arr = subtasks } else { arr = subtasksListOnEdit }
+    if (subtasks.length){ arr = subtasks } else {arr = subtasksListOnEdit}
     arr.forEach(subtask => { list.innerHTML += getSubtaskListTemplate(subtask); })
 }
 
@@ -178,6 +187,7 @@ function deleteSubtask(id) {
     renderSubtasks();
 }
 
+
 /** Edits a subtask by replacing its HTML and focusing on the input field. */
 function editSubtask(id) {
     let subtask = subtasks?.find(s => s.id === id) || subtasksListOnEdit.find(s => s.id === id);
@@ -188,7 +198,8 @@ function editSubtask(id) {
     input.setSelectionRange(input.value.length, input.value.length);
 }
 
-/** Updates a subtask's text by id from its edit input and re-renders */
+
+/** Updates a subtask's text by id from its edit input and re-renders. */
 function saveSubtask(id) {
     const input = document.getElementById(`editInput${id}`);
     if (!input) return;
@@ -198,6 +209,7 @@ function saveSubtask(id) {
     renderSubtasks();
 }
 
+
 /** On blur, briefly delays and saves the subtask if its input exists. */
 function handleBlurSubtask(id) {
     setTimeout(() => {
@@ -205,6 +217,7 @@ function handleBlurSubtask(id) {
         if (input) saveSubtask(id);
     }, 100);
 }
+
 
 /** Resets the Add Task side panel to its default input and selection state. */
 function resetAddTaskSide() {
@@ -217,6 +230,7 @@ function resetAddTaskSide() {
     resetSubtask();
 }
 
+
 /** Resets the input field and clears any associated error messages. */
 function resetInput(inputId, errorId, containerId) {
     document.getElementById(inputId).value = "";
@@ -225,10 +239,12 @@ function resetInput(inputId, errorId, containerId) {
     document.getElementById(containerId).classList.remove('inputErrorBorder');
 }
 
+
 /** Resets the priority to medium by activating the corresponding button. */
 function resetPriority() {
     activatePriorityButton('addTaskMediumButton', 'buttonMediumActive', 'mediumButtonOff', 'mediumButtonOn');
 }
+
 
 /** Resets the assigned contacts dropdown and clears added contact icons. */
 function resetAssignedTo() {
@@ -241,6 +257,7 @@ function resetAssignedTo() {
     renderContactsInAddTask();
 }
 
+
 /** Resets the category dropdown to its default state. */
 function resetCategory() {
     document.getElementById('categoryDropdownContent').classList.add('d-none');
@@ -251,6 +268,7 @@ function resetCategory() {
     document.getElementById('categoryDropdownHeader').textContent = "Select task category";
 }
 
+
 /** Resets the subtask input and clears the subtask list. */
 function resetSubtask() {
     clearSubtaskInput();
@@ -259,7 +277,8 @@ function resetSubtask() {
     subtaskIdCounter = 0;
 }
 
-/* Create task function */
+
+/** Builds a task payload from the form and saves it. */
 function createTask() {
     if (!checkRequiredFields()) { return; }
     const taskData = getTaskData();
@@ -268,6 +287,7 @@ function createTask() {
     goToBoardHtml();
     selectedContactsAddTask = [];
 }
+
 
 /** Validates required title, date, and category; returns true if all are set, else false. */
 function checkRequiredFields() {
@@ -279,11 +299,11 @@ function checkRequiredFields() {
         removeFocusBorderCheckInputValue('addTasktDateInputContainer', 'addTasktDateInput', 'addTasktDateErrorContainer');
         setErrorBorderForCategory('addTaskCategoryHeaderContainer');
         return false;
-    } else { return true; }
+    } else { return true; } 
 }
 
 
-/** Retrieves task data from input fields for creating or editing a task.*/
+/** Retrieves task data from input fields for creating or editing a task. */
 function getTaskData(editTask = false) {
     const title = document.getElementById('addTasktTitleInput').value;
     const description = document.getElementById('addTaskTextarea').value;
@@ -291,33 +311,28 @@ function getTaskData(editTask = false) {
     const priority = getSelectedPriority();
     const category = document.getElementById('categoryDropdownHeader').dataset.value;
     const assignedTo = selectedContactsAddTask || [];
-    const status = !editTask
-        ? document.getElementById('status').getAttribute('data-status')
-        : document.getElementById('boardOverlayContent').getAttribute('data-overlay-status');
+    const status = !editTask ? document.getElementById('status').getAttribute('data-status') : document.getElementById('boardOverlayContent').getAttribute('data-overlay-status');
     return { title, description, dueDate, priority, category, assignedTo, subtasks: subtasks || [], status };
 }
 
 
 /** Returns the selected task priority as a string: 'Urgent', 'Medium', 'Low', or null if none is selected. */
 function getSelectedPriority() {
-    if (document.getElementById('addTaskUrgentButton').classList.contains('buttonUrgentActive')) { return 'Urgent'; }
+    if (document.getElementById('addTaskUrgentButton').classList.contains('buttonUrgentActive')) { return 'Urgent'; } 
     else if (document.getElementById('addTaskMediumButton').classList.contains('buttonMediumActive')) { return 'Medium'; }
     else if (document.getElementById('addTaskLowButton').classList.contains('buttonLowActive')) { return 'Low'; }
     else { return null; }
 }
 
-/* Save task on DB */
+
+/** Persists a new task to the database. */
 function saveTaskToDatabase(taskData) {
     fetch(BASE_URL + "tasks.json", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(taskData) })
         .then(response => { if (!response.ok) { throw new Error("Erro on save contact"); } return response.json(); })
-        .then(data => {
-            assignedToUser(data.name);
-        })
-        .catch(error => {
-            console.error("Erro:", error);
-            showMessageDialog("Erro:", error);
-        });
+        .then(data => { assignedToUser(data.name); })
+        .catch(error => { console.error("Erro:", error); showMessageDialog("Erro:", error); });
 }
+
 
 /** Updates a task in the database using the provided task ID. */
 function handleUpdateTask(taskId) {
@@ -325,32 +340,30 @@ function handleUpdateTask(taskId) {
     updateTaskOnDatabase(taskId, task);
 }
 
+
 /** Asynchronously updates a task by ID in the database and handles UI flow based on the subtask toggle. */
 async function updateTaskOnDatabase(taskId, task, SubtaskToggle = false) {
-    await fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task) })
+    await fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task ) })
         .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
         .then(() => {
-            if (!SubtaskToggle) {
-                closeOverlay();
-            }
+            if (!SubtaskToggle) closeOverlay();
             usersListOnEdit = [];
             goToBoardHtml(0);
         })
         .catch(error => { console.error("Error:", error); });
 }
 
-/* Redirect to board */
-function goToBoardHtml(timeout = 2000) {
+
+/** Navigates to the board page after an optional delay. */
+function goToBoardHtml(timeout= 2000) {
     const boardMenuItem = document.querySelector('.navLine[data-file*="board"], .navLine[data-file*="Board"]');
     setTimeout(() => {
-        if (boardMenuItem) {
-            boardMenuItem.click();
-            return;
-        }
+        if (boardMenuItem) { boardMenuItem.click(); return; }
     }, timeout);
 }
 
-/* Save task for all assigned users*/
+
+/** Adds the created task to each assigned user's task list. */
 async function assignedToUser(taskId) {
     const task = await getTaskById(taskId);
     const users = task.assignedTo;
@@ -363,23 +376,21 @@ async function assignedToUser(taskId) {
     }
 }
 
-/* Get task by id */
+
+/** Fetches a task by ID from the database. */
 async function getTaskById(taskId) {
     const url = `${BASE_URL}tasks/${taskId}.json`;
     const res = await fetch(url);
-    const task = await res.json();
-    return task
+    return await res.json();
 }
 
-/* Show Add Task Success Dialog */
+
+/** Displays the add-task success overlay. */
 function showAddTaskDialog() {
     const overlay = document.getElementById("addTaskOverlay");
     overlay.classList.add("show");
     const taskOverlay = document.getElementById('addTaskOverlayBackground');
-
-    if (taskOverlay) {
-        taskOverlay.style.display = "flex"
-    } else {
+    if (taskOverlay) {taskOverlay.style.display = "flex"; } else {
         showAddTaskOverlaySuccessMessage();
         setTimeout(() => {
             closeAddTaskOverlay();
