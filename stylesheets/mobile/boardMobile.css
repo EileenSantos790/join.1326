@@ -186,6 +186,7 @@
     .addTaskEditBoardOverlay .editBoardOverlayMainContent {
         max-height: 688px;
         width: 100%;
+        padding-inline: 10px;
     }
 
     .addTaskEditBoardOverlay .editBoardOverlayCloseSection {
@@ -193,7 +194,7 @@
     }
 
     .boardCardContainerOverlay:has(.addTaskEditBoardOverlay) {
-        padding-inline: 24px;
+        padding-inline: 14px;
         padding-block: 40px;
         display: flex;
         max-width: 525px;
