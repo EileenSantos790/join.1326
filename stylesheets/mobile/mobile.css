@@ -65,7 +65,7 @@
         color: rgba(205, 205, 205, 1);
         cursor: pointer;
         height: 76px;
-        width: 76px;
+        width: 104px;
         padding-left: 0;
         font-size: 14px;
         font-weight: 400px;
@@ -209,7 +209,8 @@
     }
 
     .headerContainer {
-        padding-block: 20px;
+        /* padding-block: 20px; */
+        height: unset;
         padding-right: 16px;
         padding-left: 16px;
     }
@@ -319,6 +320,10 @@
 
     .section {
         padding-left: 25px;
+    }
+
+    .headerContainerContent {
+        height: 80px;
     }
 
 }

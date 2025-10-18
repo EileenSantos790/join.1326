@@ -5,7 +5,7 @@ header {
 }
 
 .headerContainer {
-    padding-block: 17px;
+    height: 96px;
     background-color: #f8f9fa;
     padding-right: 40px;
     padding-left: 116px;
@@ -27,6 +27,7 @@ header {
     max-width: 1920px;
     font-size: 20px;
     font-weight: 400;
+    height: 96px;
 }
 
 .headerIcons {

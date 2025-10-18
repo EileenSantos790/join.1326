@@ -56,7 +56,7 @@
             <div class="headerContainerContent">
                 <span class="headerMainText">Kanban Project Management Tool</span>
                 <img class="headerJoinLogoMobile" src="./assets/img/joinSymbol.svg" alt="Join Logo">
-                <div class="headerIcons">
+                <div id="menuIcons" class="headerIcons">
                     <img data-file="./htmlTemplates/help.html" class="helpIcon" src="./assets/icons/help.png"
                         alt="help icon">
 
@@ -79,7 +79,7 @@
         <div class="navContainerLogo">
             <img class="joinIcon" src="./assets/img/joinSymbolWhite.svg" alt="Join Icon">
         </div>
-        <div class="navContainerMenu" onclick="setGreetingMessage()">
+        <div id="navContainerMenu" class="navContainerMenu d-none" onclick="setGreetingMessage()">
             <div class="navLine" data-file="./htmlTemplates/summary.html">
                 <img class="navIcon" src="./assets/icons/summaryIcon.svg" alt="Summary Icon">
                 <p>Summary</p>
@@ -98,7 +98,7 @@
             </div>
         </div>
 
-        <div class="navContainerSites">
+        <div id="sitesNavContainer" class="navContainerSites d-none">
             <div class="sitesNavContainer" data-file="./htmlTemplates/privacyPolicy.html">
                 <p>Privacy Policy</p>
             </div>
