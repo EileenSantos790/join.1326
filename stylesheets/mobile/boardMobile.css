@@ -173,7 +173,6 @@
         max-width: unset;
     }
     
-    /* ------Edit Overlay Board----- */
     .overlayCenter:has(.addTaskEditBoardOverlay) {
         margin: 10px;
     }
@@ -201,7 +200,6 @@
         width: auto;
         width: unset;
         flex-direction: column;
-        /* align-items: center; */
         max-height: 640px;
     }
 
@@ -223,20 +221,11 @@
         padding-bottom: 16px;
     }
 
-    /* .editBoardOverlayButton {
-        display: flex;
-        justify-content: end;
-        width: 100%;
-        max-width: 445px;
-    } */
-
-    /* --------Task Overlay Board--------- */
     .boardCardContainerOverlay {
         padding-inline: 24px;
         padding-block: 34px;
         max-width: 525px;
         width: unset;
-        /* align-items: center; */
         max-height: 784px;
     }
 

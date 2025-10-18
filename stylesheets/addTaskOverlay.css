@@ -84,7 +84,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    max-height: 697px;
     max-width: 445px;
     gap: unset;
 }

@@ -74,7 +74,6 @@
     border-color: #A8A8A8;
     border-radius: 10px;
     background-color: #E7E7E7;
-    /* margin-left: 10px; */
 }
 
 .boardProgressContainer {
@@ -95,7 +94,6 @@
     justify-content: space-between;
     align-items: center;
     width: 244px;
-    /* margin-top: 48px; */
     margin-bottom: 8.5px;
     font-weight: 700;
     font-size: 20px;
@@ -458,10 +456,10 @@ label:hover {
 }
 
 .aroundOverlayContainer{
-    padding: 20px;
-    display: flex;
+    padding: 10px;
     background-color: white;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
     border-radius: 30px;
+    overflow: hidden;
 
 }

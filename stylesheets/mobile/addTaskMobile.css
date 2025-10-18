@@ -104,7 +104,6 @@
     }
 
     .addTaskHeadline {
-        /* height: 112px; */
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -113,7 +112,6 @@
         background-color: #F6F7F8;
         max-width: 398px;
         width: 100%;
-        /* padding-left: 16px; */
         z-index: 1;
     }
 
@@ -133,9 +131,6 @@
         overflow: scroll;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        /* max-height: 590px;
-        padding-left: 1px; */
-        /* padding-right: 16px; */
     }
 
     .addTaskInputsLeftSide,
@@ -158,23 +153,13 @@
         max-width: 398px;
     }
 
-    /* .contentContainerPadding {
-        padding: 0;
-    } */
-
     .addTaskMainButtons {
         position: sticky;
         display: flex;
         align-items: center;
         height: 88px;
         gap: 32px;
-        /* bottom: 88px;
-        right: 16px; */
         padding-right: unset;
-        /* padding-left: 16px; */
-        /* height: 80px;
-        display: flex;
-        align-items: center; */
     }
 
     .navIcon {
@@ -190,16 +175,6 @@
         display: none;
     }
 }
-
-/* @media (max-width: 800px) {
-    .addTaskMainContent {
-        align-items: unset;
-    }
-
-    .addTaskRequiredInfoMobile {
-        width: 100%;
-    }
-} */
 
 @media (max-width: 400px) {
     button.prioButtonAddTask {

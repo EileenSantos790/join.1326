@@ -22,9 +22,12 @@ async function renderMainContent() {
 function setClickEvents(items, content) {
   for (const item of items) {
     item.addEventListener('click', () => {
-      markActive(items, item);
       const file = item.getAttribute('data-file');
-      loadPage(file, content);
+      const isStaticInfoPage = file === "./htmlTemplates/privacyPolicy.html" || file === "./htmlTemplates/legalNotice.html";
+      const shouldClearActive = typeof isMobile === 'function' && isMobile() && isStaticInfoPage;
+      if (shouldClearActive) {clearAllActiveStates();
+      } else {markActive(items, item); }
+      if (file) {loadPage(file, content); }
     });
   }
 }
@@ -36,6 +39,14 @@ function markActive(items, activeItem) {
     item.classList.remove('active');
   }
   activeItem.classList.add('active');
+}
+
+
+/** Clears the active state from all navigation-related elements. */
+function clearAllActiveStates() {
+  document
+    .querySelectorAll('.navLine.active, .sitesNavContainer.active, .submenuButton.active')
+    .forEach(el => el.classList.remove('active'));
 }
 
 
@@ -79,7 +90,12 @@ function openPageFromUrl(content) {
     const path = menuItem.dataset.file;
     if (path === "./htmlTemplates/privacyPolicy.html" || path === "./htmlTemplates/legalNotice.html") { hideUserMenu(); } //For desktop
   }
-  else loadPage(fileToOpen, content);
+  else {
+    if (typeof isMobile === 'function' && isMobile()) {
+      clearAllActiveStates();
+    }
+    loadPage(fileToOpen, content);
+  }
 }
 
 

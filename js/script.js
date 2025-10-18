@@ -159,5 +159,5 @@ function isMobile() {
 
 /** Navigates back in the browser history. */
 function goBack() {
-    window.history.back();
+    window.history.back() || goToBoardHtml(0);
 }
