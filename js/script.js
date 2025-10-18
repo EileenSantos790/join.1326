@@ -161,11 +161,19 @@ function setGreetingMessage() {
             : 'Good Night, ';
 
     const userName = (sessionStorage.getItem('userName') || '').trim();
-    greetingDayTimeEl.innerText = greeting;
-    greetingDayTimeElMobile.innerText = greeting;
-    if (greetingUserNameEl || greetingUserNameElMobile) {
-        greetingUserNameEl.textContent = userName || 'Guest';
-        greetingUserNameElMobile.textContent = userName || 'Guest'
+    const isGuest = userName === '' || userName.toLowerCase() === 'guest';
+
+    if (isGuest) {
+        const greetingNoComma = greeting.replace(/,\s*$/, '') + '!';
+        greetingDayTimeEl.innerText = greetingNoComma;
+        greetingDayTimeElMobile.innerText = greetingNoComma;
+        if (greetingUserNameEl) greetingUserNameEl.textContent = '';
+        if (greetingUserNameElMobile) greetingUserNameElMobile.textContent = '';
+    } else {
+        greetingDayTimeEl.innerText = greeting;
+        greetingDayTimeElMobile.innerText = greeting;
+        if (greetingUserNameEl) greetingUserNameEl.textContent = userName;
+        if (greetingUserNameElMobile) greetingUserNameElMobile.textContent = userName;
     }
 }
 
