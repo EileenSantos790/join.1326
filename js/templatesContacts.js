@@ -17,12 +17,12 @@ function getContactTemplate(contacts, index) {
 
             <img id="assignedToCheckbox-${contact.id}" 
                  class="checkboxImg ${isSelected ? 'd-none' : ''}" 
-                 src="../assets/icons/check-button.svg" 
+                 src="assets/icons/check-button.svg" 
                  alt="checkbox empty">
 
             <img id="assignedToCheckboxWhite-${contact.id}" 
                  class="${isSelected ? '' : 'd-none'}" 
-                 src="../assets/icons/checked_white.svg" 
+                 src="assets/icons/checked_white.svg" 
                  alt="">
         </div>
     `;

@@ -12,7 +12,7 @@ function renderCard(task, card) {
                     <div>${renderPriorityOnBoard(task.priority)}</div>
                 </div>
 
-                    <div class="boardMoveToIcon" onclick="openBoardMoveToOverlay(event)"><img src="../assets/icons/board_task_move_to.svg" alt="Move To Icon"></div>
+                    <div class="boardMoveToIcon" onclick="openBoardMoveToOverlay(event)"><img src="assets/icons/board_task_move_to.svg" alt="Move To Icon"></div>
                     <div class="boardMoveToOverlay d-none" onclick="event.stopPropagation()">
                         <div class="boardMoveToHeadline">Move To</div>
                         <div class="boardMoveToOverlayButtons">
@@ -44,9 +44,9 @@ function renderProgressBar(task) {
 /** Returns the priority icon markup based on task priority. */
 function renderPriorityOnBoard(priority) {
     switch (priority) {
-        case "Urgent": return `<img class="priorityIconBoard"src="../assets/icons/prio_high.svg"></img>`
-        case "Low": return `<img class="priorityIconBoard"src="../assets/icons/prio_low.svg">`
-        default: return `<img class="priorityIconBoard"src="../assets/icons/prio_media.svg"></img>`
+        case "Urgent": return `<img class="priorityIconBoard"src="assets/icons/prio_high.svg"></img>`
+        case "Low": return `<img class="priorityIconBoard"src="assets/icons/prio_low.svg">`
+        default: return `<img class="priorityIconBoard"src="assets/icons/prio_media.svg"></img>`
     }
 }
 

@@ -12,10 +12,10 @@
         <div class="headerContainerFormAndButton">
             <form class="searchForm">
                 <input id="searchTasks" class="searchField" placeholder="Find Task" onkeyup="filterTasks()">
-                <img class="searchIcon" src="../assets/icons/search.svg">
+                <img class="searchIcon" src="assets/icons/search.svg">
             </form>
             <button onclick="openAddTaskOverlay('Todo')" class="buttonPrimary buttonaddTaskOnBoard">Add task
-                <img src="../assets/icons/add.svg" alt="plus icon">
+                <img src="assets/icons/add.svg" alt="plus icon">
             </button>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="boardProgressColumn">
             <div class="boardProgressTitle">
                 <div>To do</div>
-                <img class="addNewTeskImg" src="../assets/icons/plus button.svg" onclick="openAddTaskOverlay('Todo'), openAddTaskSide('./htmlTemplates/addTask.html')">
+                <img class="addNewTeskImg" src="assets/icons/plus button.svg" onclick="openAddTaskOverlay('Todo'), openAddTaskSide('./htmlTemplates/addTask.html')">
             </div>
             <div id="spaceHolderTodoContainer" class="spaceHolderContainer">No tasks in To do</div>
             <div id="boardTodoContainer" class="boardLaneBody" data-status="Todo"></div>
@@ -32,7 +32,7 @@
         <div class="boardProgressColumn">
             <div class="boardProgressTitle">
                 <div>In progress</div>
-                <img class="addNewTeskImg" src="../assets/icons/plus button.svg"
+                <img class="addNewTeskImg" src="assets/icons/plus button.svg"
                     onclick="openAddTaskOverlay('Progress'), openAddTaskSide('./htmlTemplates/addTask.html')">
             </div>
             <div id="spaceHolderProgressContainer" class="spaceHolderContainer">No tasks in Progress</div>
@@ -42,7 +42,7 @@
         <div class="boardProgressColumn">
             <div class="boardProgressTitle">
                 <div>Await feedback</div>
-                <img  class="addNewTeskImg" src="../assets/icons/plus button.svg"
+                <img  class="addNewTeskImg" src="assets/icons/plus button.svg"
                     onclick="openAddTaskOverlay('Feedback'), openAddTaskSide('./htmlTemplates/addTask.html')">
             </div>
             <div id="spaceHolderFeedbackContainer" class="spaceHolderContainer">No tasks in Feedback</div>
@@ -52,7 +52,7 @@
         <div class="boardProgressColumn marginBottom150">
             <div class="boardProgressTitle">
                 <div>Done</div>
-                <!-- <img class="addNewTeskImg" src="../assets/icons/plus button.svg" onclick="openAddTaskOverlay('Done')"> -->
+                <!-- <img class="addNewTeskImg" src="assets/icons/plus button.svg" onclick="openAddTaskOverlay('Done')"> -->
             </div>
             <div id="spaceHolderDoneContainer" class="spaceHolderContainer">No tasks in Done</div>
             <div id="boardDoneContainer" class="boardLaneBody" data-status="Done"></div>

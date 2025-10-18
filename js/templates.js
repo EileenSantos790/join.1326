@@ -36,9 +36,9 @@ function getSubtaskListTemplate(subtask) {
     return `<div class="subtaskItem" id="subtask${subtask.id}" ondblclick="editSubtask(${subtask.id})">
         <li class="subtaskText" id="subtaskText${subtask.id}">${subtask.text}</li>
         <div class="subtaskActions">
-          <img src="../assets/icons/subtask_edit.svg" alt="Edit" onclick="editSubtask(${subtask.id})">
+          <img src="assets/icons/subtask_edit.svg" alt="Edit" onclick="editSubtask(${subtask.id})">
           <div class="subtaskSeperator"></div>
-          <img src="../assets/icons/subtask_delete.svg" alt="Delete" onclick="deleteSubtask(${subtask.id})">
+          <img src="assets/icons/subtask_delete.svg" alt="Delete" onclick="deleteSubtask(${subtask.id})">
         </div>
       </div>`;
 }
@@ -50,9 +50,9 @@ function getSubtaskEditTemplate(subtask) {
       <div class="subtaskItemEdit" id="subtask${subtask.id}">
         <input onblur="handleBlurSubtask(${subtask.id})" class="subtaskInput" type="text" id="editInput${subtask.id}" value="${subtask.text}">
         <div class="subtaskActionsEdit">
-          <img src="../assets/icons/subtask_delete.svg" alt="Save" onclick="deleteSubtask(${subtask.id})">
+          <img src="assets/icons/subtask_delete.svg" alt="Save" onclick="deleteSubtask(${subtask.id})">
           <div class="subtaskSeperator"></div>
-          <img src="../assets/icons/check_black.svg" alt="Cancel" onclick="saveSubtask(${subtask.id})">
+          <img src="assets/icons/check_black.svg" alt="Cancel" onclick="saveSubtask(${subtask.id})">
         </div>
       </div>
     `;
@@ -63,7 +63,7 @@ function getSubtaskEditTemplate(subtask) {
 function getBoardOverlayEditTaskTemplate(taskId) {
     return `
         <div class="addTaskEditBoardOverlay">
-            <div onclick="closeOverlay()" class="editBoardOverlayCloseSection"><img src="../assets/icons/close.svg"
+            <div onclick="closeOverlay()" class="editBoardOverlayCloseSection"><img src="assets/icons/close.svg"
                     alt="close Icon"></div>
             <div class="editBoardOverlayMainContent">
                 <div class="addTaskMainContent">
@@ -88,7 +88,7 @@ function getBoardOverlayEditTaskTemplate(taskId) {
                                     onblur="removeFocusBorder('addTaskDescriptionInputContainer')"
                                     class="addTaskTextarea" name="Description" placeholder="Enter a Description"
                                     id="addTaskTextarea"></textarea>
-                                <img src="../assets/icons/textarea_icon.svg" alt="resize icon">
+                                <img src="assets/icons/textarea_icon.svg" alt="resize icon">
                             </div>
                             <div class="loginFormValidationErrorMessage"></div>
                         </div>
@@ -112,20 +112,20 @@ function getBoardOverlayEditTaskTemplate(taskId) {
                             <button id="addTaskUrgentButton"
                                 onclick="activatePriorityButton('addTaskUrgentButton','buttonUrgentActive','urgentButtonOff','urgentButtonOn')"
                                 class="buttonUrgent prioButtonAddTask">Urgent <img id="urgentButtonOff" class="buttonUrgentIcon"
-                                    src="../assets/icons/prio_high.svg" alt="Urgent Button Icon"><img
+                                    src="assets/icons/prio_high.svg" alt="Urgent Button Icon"><img
                                     id="urgentButtonOn" class="buttonUrgentIcon d-none"
-                                    src="../assets/icons/prio_high_white.svg" alt="Urgent Button Icon"></button>
+                                    src="assets/icons/prio_high_white.svg" alt="Urgent Button Icon"></button>
                             <button id="addTaskMediumButton"
                                 onclick="activatePriorityButton('addTaskMediumButton','buttonMediumActive','mediumButtonOff','mediumButtonOn')"
                                 class="buttonMedium prioButtonAddTask">Medium <img id="mediumButtonOff"
-                                    class="buttonMediumIcon d-none" src="../assets/icons/prio_media.svg"
+                                    class="buttonMediumIcon d-none" src="assets/icons/prio_media.svg"
                                     alt="Medium Button Icon"><img id="mediumButtonOn" class="buttonMediumIcon"
-                                    src="../assets/icons/prio_media_white.svg" alt="Medium Button Icon"></button>
+                                    src="assets/icons/prio_media_white.svg" alt="Medium Button Icon"></button>
                             <button id="addTaskLowButton"
                                 onclick="activatePriorityButton('addTaskLowButton','buttonLowActive','lowButtonOff','lowButtonOn')"
                                 class="buttonLow prioButtonAddTask">Low <img id="lowButtonOff" class="buttonLowIcon"
-                                    src="../assets/icons/prio_low.svg" alt="Low Button Icon"><img id="lowButtonOn"
-                                    class="buttonLowIcon d-none" src="../assets/icons/prio_low_white.svg"
+                                    src="assets/icons/prio_low.svg" alt="Low Button Icon"><img id="lowButtonOn"
+                                    class="buttonLowIcon d-none" src="assets/icons/prio_low_white.svg"
                                     alt="Low Button Icon"></button>
                         </div>
                     </div>
@@ -136,7 +136,7 @@ function getBoardOverlayEditTaskTemplate(taskId) {
                             <div onclick="toggleDropdownAssignedTo()" id="addTaskDropdownAssignedTo"
                                 class="addTaskDropdownContainer bgWhite">
                                 <span>Select contacts to assign</span>
-                                <img class="dropdownDownIcon" src="../assets/icons/dropdown-down.svg" alt="Arrown down">
+                                <img class="dropdownDownIcon" src="assets/icons/dropdown-down.svg" alt="Arrown down">
                             </div>
                             <div id="addTaskAddedContactIcons" class="addTaskAddedContactIcons"></div>
                             <div id="addTaskDropdownSearchContent"
@@ -145,7 +145,7 @@ function getBoardOverlayEditTaskTemplate(taskId) {
                                     <input onkeyup="searchContactsForTask()" id="addTaskSearchInput"
                                         class="addTaskSearchInput" type="text">
                                     <img onclick="toggleDropdownAssignedTo()" class="dropdownDownIcon"
-                                        src="../assets/icons/dropdown-up.svg" alt="Arrown up">
+                                        src="assets/icons/dropdown-up.svg" alt="Arrown up">
                                 </div>
                                 <div class="dropdownContent">
                                     <div id="assignedToContactContent" class="dropdownItemContainer">
@@ -163,10 +163,10 @@ function getBoardOverlayEditTaskTemplate(taskId) {
                                     class="subtaskInput" type="text" placeholder="Add new subtask">
                                 <div class="subtaskInputIconContainer">
                                     <img onclick="clearSubtaskInput()" id="subtaskInputCancelButton"
-                                        class="subtaskInputIcon" src="../assets/icons/cancle.svg" alt="cancel x Icon">
+                                        class="subtaskInputIcon" src="assets/icons/cancle.svg" alt="cancel x Icon">
                                     <div class="subtaskSeperator"></div>
                                     <img onclick="addSubtaskToList()" id="subtaskInputCheckButton"
-                                        class="subtaskInputIcon" src="../assets/icons/check_black.svg" alt="check Icon">
+                                        class="subtaskInputIcon" src="assets/icons/check_black.svg" alt="check Icon">
                                 </div>
                             </div>
                             <div>
@@ -176,7 +176,7 @@ function getBoardOverlayEditTaskTemplate(taskId) {
                     </div>
                 </div>
             </div>
-            <div class="editBoardOverlayButton"><button class="buttonOk" onclick="handleUpdateTask('${taskId}')">Ok <img src="../assets/icons/check.svg"
+            <div class="editBoardOverlayButton"><button class="buttonOk" onclick="handleUpdateTask('${taskId}')">Ok <img src="assets/icons/check.svg"
                         alt="check Icon"></button></div>
         </div>
     `;
@@ -187,19 +187,19 @@ function getBoardOverlayEditTaskTemplate(taskId) {
 function getNewStatus(taskId, currentStatus) {
     const aStatus = ["Todo", "Progress", "Feedback", "Done"];
     let currentIndex = aStatus.findIndex(s => s.includes(currentStatus));
-    if (currentStatus === "Todo") return `<div class="boardMoveToButtonContent" onclick="changeBoardStatus('${taskId}', 'Progress')"><img src="../assets/icons/arrow_move_to_downward.svg" alt="arrow down">${aStatus[currentIndex + 1]}</div>`
-    if (currentStatus === "Done") return `<div class="boardMoveToButtonContent" onclick="changeBoardStatus('${taskId}', 'Feedback')"><img src="../assets/icons/arrow_move_to_upward.svg" alt="arrow up">${aStatus[currentIndex - 1]}</div>`
-    return `<div class="boardMoveToButtonContent" onclick="event.stopPropagation(); changeBoardStatus('${taskId}', '${aStatus[currentIndex - 1]}')"><img src="../assets/icons/arrow_move_to_upward.svg" alt="arrow up">${aStatus[currentIndex - 1]}</div>
-            <div class="boardMoveToButtonContent" onclick="event.stopPropagation(); changeBoardStatus('${taskId}', '${aStatus[currentIndex + 1]}')"><img src="../assets/icons/arrow_move_to_downward.svg" alt="arrow down">${aStatus[currentIndex + 1]}</div>`
+    if (currentStatus === "Todo") return `<div class="boardMoveToButtonContent" onclick="changeBoardStatus('${taskId}', 'Progress')"><img src="assets/icons/arrow_move_to_downward.svg" alt="arrow down">${aStatus[currentIndex + 1]}</div>`
+    if (currentStatus === "Done") return `<div class="boardMoveToButtonContent" onclick="changeBoardStatus('${taskId}', 'Feedback')"><img src="assets/icons/arrow_move_to_upward.svg" alt="arrow up">${aStatus[currentIndex - 1]}</div>`
+    return `<div class="boardMoveToButtonContent" onclick="event.stopPropagation(); changeBoardStatus('${taskId}', '${aStatus[currentIndex - 1]}')"><img src="assets/icons/arrow_move_to_upward.svg" alt="arrow up">${aStatus[currentIndex - 1]}</div>
+            <div class="boardMoveToButtonContent" onclick="event.stopPropagation(); changeBoardStatus('${taskId}', '${aStatus[currentIndex + 1]}')"><img src="assets/icons/arrow_move_to_downward.svg" alt="arrow down">${aStatus[currentIndex + 1]}</div>`
 }
 
 
 /** Returns the priority label and icon markup for the overlay. */
 function getPriorityDetailsTemplate(priority) {
     switch (priority) {
-        case "Urgent": return `<div class="priorityImg">Urgent <img src="../assets/icons/prio_high.svg"></div>`
-        case "Low": return `<div class="priorityImg">Low <img src="../assets/icons/prio_low.svg"></div>`
-        default: return `<div class="priorityImg">Medium <img src="../assets/icons/prio_media.svg"></div>`
+        case "Urgent": return `<div class="priorityImg">Urgent <img src="assets/icons/prio_high.svg"></div>`
+        case "Low": return `<div class="priorityImg">Low <img src="assets/icons/prio_low.svg"></div>`
+        default: return `<div class="priorityImg">Medium <img src="assets/icons/prio_media.svg"></div>`
     }
 }
 
