@@ -14,6 +14,8 @@
         animation: moveLogoMobile 0.5s ease forwards;
         animation-delay: 0.3s;
         z-index: 101;
+        filter: brightness(10) saturate(0);
+        transition: filter 0.25s ease 0.45s, opacity 0.25s ease 0.45s;
     }
 
     @keyframes moveLogoMobile {
@@ -21,14 +23,14 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(1);
-            fill: white !important;
+            filter: brightness(10) saturate(0);
         }
 
         100% {
             top: 38px;
             left: 38px;
             transform: translate(0, 0) scale(1);
-            fill: blue !important;
+            filter: none;
         }
     }
 
