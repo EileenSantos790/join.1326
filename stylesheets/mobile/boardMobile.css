@@ -55,8 +55,8 @@
     }
 
     .containerOfBoard {
-        margin-left: 16px;
-        margin-right: 16px;
+        margin-left: 16px !important;
+        margin-right: 16px !important;
     }
 
     .buttonaddTaskOnBoard {
@@ -193,7 +193,7 @@
     }
 
     .boardCardContainerOverlay:has(.addTaskEditBoardOverlay) {
-        padding-inline: 14px;
+        padding-inline: unset;
         padding-block: 40px;
         display: flex;
         max-width: 396px;
@@ -201,6 +201,12 @@
         width: unset;
         flex-direction: column;
         max-height: 640px;
+    }
+
+    .aroundOverlayContainer:has(.addTaskEditBoardOverlay) {
+        padding: unset;
+        padding-right: 25px;
+        padding-left: 10px;
     }
 
     .addTaskEditBoardOverlay .addTaskMainContent {

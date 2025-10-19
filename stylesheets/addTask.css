@@ -62,7 +62,7 @@
     height: 100%;
     display: flex;
     gap: 48px;
-    max-height: 548px;
+    max-height: 560px;
 }
 
 .addTaskInputsLeftSide,

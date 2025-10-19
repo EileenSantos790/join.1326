@@ -131,6 +131,7 @@
         overflow: scroll;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        max-height: calc(100vh - 400px);
     }
 
     .addTaskInputsLeftSide,
@@ -148,13 +149,15 @@
 
     .addTaskRequiredInfoMobile {
         display: block;
-        margin-bottom: 60px;
         width: 100%;
         max-width: 398px;
     }
 
     .addTaskMainButtons {
-        position: sticky;
+        position: fixed;
+        bottom: 80px;
+        right: 16px;
+        left: 16px;
         display: flex;
         align-items: center;
         height: 88px;
