@@ -85,17 +85,33 @@ async function sessionInit() {
 }
 
 
-/** Set greeting message based on the time of day and user name. */
 function setGreetingMessage() {
-    const greetingDayTimeEl = document.getElementById('greetingDayTime'); const greetingUserNameEl = document.getElementById('greetingUserName'); const greetingDayTimeElMobile = document.getElementById('greetingDayTimeMobile'); const greetingUserNameElMobile = document.getElementById('greetingUserNameMobile');
+    const greetingDayTimeEl = document.getElementById('greetingDayTime');
+    const greetingUserNameEl = document.getElementById('greetingUserName');
+    const greetingDayTimeElMobile = document.getElementById('greetingDayTimeMobile');
+    const greetingUserNameElMobile = document.getElementById('greetingUserNameMobile');
     if (!greetingDayTimeEl || !greetingDayTimeElMobile) return;
-    const h = new Date().getHours(); const greeting = h < 12 ? 'Good Morning, ' : h < 18 ? 'Good Afternoon, ' : 'Good Night, ';
-    const userName = (sessionStorage.getItem('userName') || '').trim();
+
+    const { greeting, userName } = getGreetingMessage();
+
     greetingDayTimeEl.innerText = greeting;
     greetingDayTimeElMobile.innerText = greeting;
-    if (greetingUserNameEl || greetingUserNameElMobile) {
-        greetingUserNameEl.textContent = userName || 'Guest';
-        greetingUserNameElMobile.textContent = userName || 'Guest'
+    if (greetingUserNameEl) greetingUserNameEl.textContent = userName;
+    if (greetingUserNameElMobile) greetingUserNameElMobile.textContent = userName;
+}
+
+function getGreetingMessage() {
+    const h = new Date().getHours();
+    const greeting = h < 12 ? 'Good Morning, '
+        : h < 18 ? 'Good Afternoon, '
+            : 'Good Night, ';
+    const userName = (sessionStorage.getItem('userName') || '').trim();
+    const isGuest = userName === '' || userName.toLowerCase() === 'guest';
+    if (isGuest) {
+        const greetingNoComma = greeting.replace(/,\s*$/, '') + '!';
+        return { greeting: greetingNoComma, userName: '' };
+    } else {
+        return { greeting, userName };
     }
 }
 
