@@ -15,7 +15,10 @@ function onElementAppear(selector, cb) {
     const observer = new MutationObserver(() => check());
     observer.observe(document.documentElement, { childList: true, subtree: true });
 }
-onElementAppear('#boardTodoContainer', () => { loadBoard(); });
+onElementAppear('#boardTodoContainer', () => { 
+    document.documentElement.classList.add('board-page');
+    loadBoard(); 
+});
 
 
 /** Fetches tasks, caches them locally, and renders the board. */

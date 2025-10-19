@@ -2,6 +2,16 @@ body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     background-color: #F6F7F8;
+    overflow: hidden;
+    height: 100vh;
+}
+
+body:has(.containerOfBoard) {
+    overflow: auto;
+}
+
+.board-page body {
+    overflow: auto !important;
 }
 
 .d-none {

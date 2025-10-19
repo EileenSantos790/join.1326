@@ -1,6 +1,8 @@
 .contactsPageContainer {
     display: flex;
     flex-direction: row;
+    height: 100%;
+    overflow: hidden;
 }
 
 .addContactSectionContainer {
@@ -10,10 +12,11 @@
     justify-content: center;
     background-color: #FFFFFF;
     box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
+    height: 100%;
+    overflow: hidden;
 }
 
 #contactsSection {
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,7 +31,7 @@
 .contactListSection {
     margin-top: 88px;
     width: 456px;
-    height: 928px;
+    height: calc(100% - 88px);
     overflow-y: auto;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;

@@ -53,6 +53,7 @@ function clearAllActiveStates() {
 /** Loads the HTML content of the given file into the content container. */
 function loadPage(file, content) {
   content.innerHTML = 'Lade...';
+  if (file !== "./htmlTemplates/board.html") { document.documentElement.classList.remove('board-page'); }
   fetch(file)
     .then(response => checkFile(response, file))
     .then(html => content.innerHTML = html)

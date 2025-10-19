@@ -1,6 +1,8 @@
 .containerOfBoard {
     margin-left: 54px;
     margin-right: 88px;
+    min-height: 100vh;
+    padding-bottom: 100px;
 }
 
 .headerContainerOfBoard {
@@ -81,11 +83,14 @@
     flex-wrap: wrap;
     margin-top: 48px;
     gap: 19px;
+    min-height: fit-content;
+    padding-bottom: 50px;
 }
 
 .boardProgressColumn {
     max-width: 262px;
     flex: 1;
+    min-height: fit-content;
 }
 
 .boardProgressTitle {
