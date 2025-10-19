@@ -357,3 +357,32 @@
         gap: 36px;
     }
 }
+
+@media (max-width: 375px) {
+    .contentContainerPadding:has(.containerOfBoard) {
+        padding-top: 48px !important;
+    }
+
+    .addContactPushUpContainerLeft{
+        height: 260px !important;
+    }
+
+    .addContactInputContainer{
+        height: 36px !important;
+    }
+
+    .addContactButtonSection{
+        margin: unset !important;
+    }
+
+    .addContactButton{
+        margin: unset !important;
+        margin-top: 16px !important;
+        gap: unset !important;
+    }
+
+    .addContactPushUpContainerRight{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}
