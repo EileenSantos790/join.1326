@@ -127,13 +127,9 @@
 
 .email {
     font-size: 16px;
-    color: #60a5fa;
+    color: #007CEE;
     text-decoration: none;
     padding: 0px;
-}
-
-.email:hover {
-    text-decoration: underline;
 }
 
 .contactListBtnContainer {

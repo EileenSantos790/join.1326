@@ -176,10 +176,11 @@ function showMessageDialog(message, duration = 3000) {
     if (existing) existing.remove();
     const section = document.createElement("section");
     section.id = "contactCreatedOverlay"; section.className = "userConfirmationContainerContacts"; section.setAttribute("aria-live", "polite");
-    const btn = document.createElement("button");
-    btn.className = "userConfirmationContactCreation";
-    btn.textContent = message;
-    section.appendChild(btn);
+    const msg = document.createElement("div");
+    msg.className = "userConfirmationContactCreation";
+    msg.textContent = message;
+    msg.setAttribute("role", "alert");
+    section.appendChild(msg);
     document.body.appendChild(section);
     initStyleSuccessDialog(section);
     requestAnimationFrame(() => { section.style.opacity = "1"; });
