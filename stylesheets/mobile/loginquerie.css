@@ -157,9 +157,6 @@
 }
 
 @media (max-height: 750px) {
-    body {
-        overflow-y: scroll;
-    }
 
     .buttonPrimary {
         margin-top: 20px;
