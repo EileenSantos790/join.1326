@@ -390,11 +390,36 @@
 
     .addContactButtonSection{
         margin: unset !important;
+        gap: unset !important;
+        padding-top: 12px !important;
+    }
+
+    .addContactButtonSection:has(#deleteContactFromEditOverlay) {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 16px !important;
+        width: 100% !important;
+    }
+
+    .addContactButtonSection:has(#deleteContactFromEditOverlay) .addContactButton {
+        margin-top: 0 !important;
+    }
+
+    .addContactButtonSection:not(:has(#deleteContactFromEditOverlay)) {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        width: 100% !important;
     }
 
     .addContactButton{
         margin: unset !important;
-        margin-top: 16px !important;
+        margin-top: 0 !important;
         gap: unset !important;
     }
 

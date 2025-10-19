@@ -145,7 +145,7 @@
     }
 
     .addContactfontBold {
-        font-size: 47px;
+        font-size: 36px;
     }
 
     .addContactfontNormal {
@@ -184,7 +184,7 @@
 
     .addContactMainContentInputs {
         height: auto;
-        gap: 15px;
+        gap: 19px;
     }
 
     .contactImgDiv {
