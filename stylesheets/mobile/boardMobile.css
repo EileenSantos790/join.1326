@@ -55,8 +55,8 @@
     }
 
     .containerOfBoard {
-        margin-left: 16px !important;
-        margin-right: 16px !important;
+        margin: 16px !important;
+        margin-top: 0 !important;
     }
 
     .buttonaddTaskOnBoard {
@@ -260,6 +260,15 @@
     .containerEditTaskOverlay p {
         margin-block-start: unset;
         margin-block-end: unset;
+    }
+}
+
+@media (max-width: 375px) {
+    .containerOfBoard {
+        margin-top: 0 !important;
+    }
+    .boardHeadlineContent {
+        margin-top: 0 !important;
     }
 }
 
