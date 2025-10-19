@@ -61,15 +61,20 @@ body.noscroll {
     margin: 0px;
     cursor: pointer;
     padding: 5px;
-}
-
-.submenu a {
-    color: #CDCDCD;
+    width: 85%;
+    text-align: left;
 }
 
 .submenu p:hover {
     background-color: #2A3D59;
     border-radius: 12px;
+}
+
+.submenu a {
+    color: #CDCDCD;
+    display: block;
+    width: 85%;
+    padding: 5px;
 }
 
 .submenuHelpButtonMobile {
