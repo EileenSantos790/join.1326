@@ -110,6 +110,7 @@
         justify-content: center;
         gap: 35px;
         margin-bottom: 40px;
+        margin-top: 10px;
     }
 
     .signUpMobile {
@@ -131,6 +132,15 @@
     .loginPageMainContentHeadline {
         width: auto;
     }
+
+    .submenu p {
+        width: 70%;
+    }
+
+
+    .submenu a {
+        width: 70%;
+    }
 }
 
 
@@ -144,4 +154,31 @@
     .loginPageHeaderMobile {
         display: none;
     }
+}
+
+@media (max-height: 750px) {
+    body {
+        overflow-y: scroll;
+    }
+
+    .buttonPrimary {
+        margin-top: 20px;
+    }
+
+    .signUpPageFooterContent {
+        margin-top: 150px;
+    }
+
+    .loginPageMainContent {
+        margin-top: 100px;
+    }
+
+    .loginPageFooter {
+       margin-bottom: -110px;
+    }
+
+    .contentLimitation {
+        overflow-y: scroll;
+    }
+
 }
