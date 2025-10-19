@@ -7,6 +7,9 @@ async function slideinAddContactOverlay() {
   panel.innerHTML = html;
 
   callCancelBtns();
+  if (typeof attachContactValidators === 'function') {
+    attachContactValidators();
+  }
   showoverlay(root);
 }
 
@@ -19,6 +22,9 @@ async function slideinEditContactOverlay() {
   const html = await overlayfile.text();
   panel.innerHTML = html;
   callCancelBtns();
+  if (typeof attachContactValidators === 'function') {
+    attachContactValidators();
+  }
   showoverlay(root);
 }
 

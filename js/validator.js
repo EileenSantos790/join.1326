@@ -58,12 +58,13 @@ function validateField(field) {
         }
     }
 
-    // Toggle error style on input
+    // Toggle error style on the input container (not on the input itself)
+    const container = field.closest('.addContactInputContainer');
     if (!isValid) {
-        field.classList.add("inputErrrorMessage");
+        if (container) container.classList.add('inputErrorBorder');
         field.setAttribute("aria-invalid", "true");
     } else {
-        field.classList.remove("inputErrrorMessage");
+        if (container) container.classList.remove('inputErrorBorder');
         field.removeAttribute("aria-invalid");
     }
 
@@ -77,11 +78,16 @@ function validateField(field) {
     return isValid;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+// Attach validation on blur (when leaving the field)
+document.addEventListener("DOMContentLoaded", attachContactValidators);
+
+// Overlays are injected dynamically; expose a function to (re)attach
+function attachContactValidators() {
     const nameInput = document.getElementById("contactName");
     const emailInput = document.getElementById("contactEmail");
     const phoneInput = document.getElementById("contactPhone");
-    if (nameInput) nameInput.addEventListener("input", () => validateField(nameInput));
-    if (emailInput) emailInput.addEventListener("input", () => validateField(emailInput));
-    if (phoneInput) phoneInput.addEventListener("input", () => validateField(phoneInput));
-});
+
+    if (nameInput) nameInput.addEventListener("blur", () => validateField(nameInput), { once: false });
+    if (emailInput) emailInput.addEventListener("blur", () => validateField(emailInput), { once: false });
+    if (phoneInput) phoneInput.addEventListener("blur", () => validateField(phoneInput), { once: false });
+}
