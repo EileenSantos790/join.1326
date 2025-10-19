@@ -86,6 +86,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top: 48px !important;
     }
 
     .boardHeadlineAddButton {
@@ -265,9 +266,6 @@
 
 @media (max-width: 375px) {
     .containerOfBoard {
-        margin-top: 0 !important;
-    }
-    .boardHeadlineContent {
         margin-top: 0 !important;
     }
 }

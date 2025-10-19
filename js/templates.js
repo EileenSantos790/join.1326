@@ -321,9 +321,10 @@ function isUserLoggedIn() {
 
             document.getElementById("policeAndNoticeMobile")?.classList.remove('d-none');
             hideUserMenu(); // For mobile
+        }else {
+            nav.getElementsByClassName("navContainerMenu")[0].style.gap = "150px"
+            nav.getElementsByClassName("sitesNavContainer")[0].style.paddingBottom = "20px"
         }
-        nav.getElementsByClassName("navContainerMenu")[0].style.gap = "150px"
-        nav.getElementsByClassName("sitesNavContainer")[0].style.paddingBottom = "20px"
         return;
     }
     userInitials = document.getElementById('userInitials');
