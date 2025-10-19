@@ -84,7 +84,7 @@ function renderContactSection(contacts) {
                     <div id="avatar" class="avatar" style="background:${contact.color};color:#fff;">${contact.initial}</div>
                     <div>
                         <div id="name" class="name">${contact.name}</div>
-                        <a class="email">${contact.email}</a>
+                        <div class="email">${contact.email}</div>
                     </div>
                 </div>`;
     }
@@ -143,7 +143,7 @@ function openContactDetails(userID) {
             </div>
             <div class="mailAndPhoneContainer">
                 <div class="subclassMailPhone">E-Mail</div>
-                <a class="email">${contact.email}</a>
+                <div class="email">${contact.email}</div>
                 <div class="subclassMailPhone">Phone</div>
                 <div>${contact.phone || "-"}</div>
             </div>
