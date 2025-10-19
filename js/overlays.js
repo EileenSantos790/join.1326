@@ -26,10 +26,16 @@ async function slideinEditContactOverlay() {
 /** Finds the close buttons inside the overlay. */
 async function callCancelBtns() {
   const cancelBtn = document.getElementById('closeBtnBottom');
-  const closeIcon = document.getElementById('closeBtnTop');
-
+  const closeSection = document.getElementById('closeBtnTop');
+  const closeSvg = document.querySelector('#closeBtnTop .closeIcon');
   if (cancelBtn) cancelBtn.addEventListener('click', closeOverlay);
-  if (closeIcon) closeIcon.addEventListener('click', closeOverlay);
+  if (closeSection) {
+    closeSection.addEventListener('click', (e) => {
+      const target = e.target;
+      if (!(target instanceof Element && target.closest('.closeIcon'))) { e.stopPropagation(); e.preventDefault(); }
+    });
+  }
+  if (closeSvg) closeSvg.addEventListener('click', closeOverlay);
 }
 
 

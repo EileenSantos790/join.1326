@@ -63,8 +63,7 @@ function getSubtaskEditTemplate(subtask) {
 function getBoardOverlayEditTaskTemplate(taskId) {
     return `
         <div class="addTaskEditBoardOverlay">
-            <div onclick="closeOverlay()" class="editBoardOverlayCloseSection"><img src="assets/icons/close.svg"
-                    alt="close Icon"></div>
+            <div class="editBoardOverlayCloseSection"><img src="assets/icons/close.svg" alt="close Icon" onclick="closeOverlay()"></div>
             <div class="editBoardOverlayMainContent">
                 <div class="addTaskMainContent">
                     <div class="addTaskTitleInputContent">
