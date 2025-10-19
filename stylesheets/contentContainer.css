@@ -14,7 +14,6 @@
     padding-bottom: 127px;
     height: calc(100vh - 237px);
     overflow-y: auto;
-    box-sizing: border-box;
 }
 
 .summaryMainSection {
