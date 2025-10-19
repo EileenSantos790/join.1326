@@ -357,3 +357,9 @@
         gap: 36px;
     }
 }
+
+@media (max-width: 375px) {
+    .contentContainerPadding:has(.containerOfBoard) {
+        padding-top: 48px !important;
+    }
+}
