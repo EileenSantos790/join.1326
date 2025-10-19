@@ -167,6 +167,11 @@
         padding-right: 16px;
     }
 
+    .contentContainerPadding:has(.summaryMainContent) {
+        padding-left: unset;
+        padding-right: unset;
+    }
+
     .summaryMainSection {
         display: flex;
         justify-content: center;
@@ -187,6 +192,7 @@
         align-items: unset;
         height: unset;
         gap: 8px;
+        padding-left: 16px;
     }
 
     h1 {
@@ -199,9 +205,20 @@
         margin-block-end: 0;
     }
 
+    .summaryMainContent {
+        overflow: auto;
+        scrollbar-width: none;
+        width: 100%;
+        max-width: 416px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
     .summaryDashboard {
         padding-top: 40px;
         display: block;
+        /* height: calc(100vh - 200px); */
+        margin-bottom: 100px;
     }
 
     .helpIcon {

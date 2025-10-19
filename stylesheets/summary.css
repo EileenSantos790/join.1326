@@ -102,6 +102,8 @@
     cursor: pointer;
     background-color: #2A3647;
     color: white;
+    overflow: visible;
+    position: relative;
 }
 
 .largeWindowFirstPart {
