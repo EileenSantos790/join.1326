@@ -9,11 +9,11 @@ function isUserLoggedIn() {
         if (nav) nav.innerHTML = `
         <div class="navContainer">
             <div class="navContainerLogo">
-                <img class="joinIcon" src="./assets/img/joinSymbolWhite.svg" alt="Join Icon">
+                <img class="joinIcon" src="assets/img/joinSymbolWhite.svg" alt="Join Icon">
             </div>
             <div class="navContainerMenu">
                 <div class="navLine" onclick="location.href='index.html'">
-                    <img class="navIcon" src="./assets/icons/LogInIcon.svg" alt="Login Icon">
+                    <img class="navIcon" src="assets/icons/LogInIcon.svg" alt="Login Icon">
                     <p>Log In</p>
                 </div>
             </div>
@@ -290,11 +290,11 @@ function isUserLoggedIn() {
         if (nav) nav.innerHTML = `
         <div class="navContainer">
             <div class="navContainerLogo">
-                <img class="joinIcon" src="./assets/img/joinSymbolWhite.svg" alt="Join Icon">
+                <img class="joinIcon" src="assets/img/joinSymbolWhite.svg" alt="Join Icon">
             </div>
             <div class="navContainerMenu">
                 <div class="navLine" onclick="location.href='index.html'">
-                    <img class="navIcon" src="./assets/icons/LogInIcon.svg" alt="Login Icon">
+                    <img class="navIcon" src="assets/icons/logInIcon.svg" alt="Login Icon">
                     <p>Log In</p>
                 </div>
 
