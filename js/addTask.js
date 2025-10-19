@@ -163,6 +163,15 @@ function addSubtaskToList() {
 }
 
 
+//** Add a new substask when enter is pressed  */
+function addSubtaskWithEnter() {
+    const input = document.getElementById('subtaskInput');
+    input.onkeydown = function (event) {
+        if (event.key === 'Enter' && input.value) addSubtaskToList();
+    };
+}
+
+
 /** Clears the value of the subtask input field. */
 function clearSubtaskInput() {
     let inputRef = document.getElementById('subtaskInput');

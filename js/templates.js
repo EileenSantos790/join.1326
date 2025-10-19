@@ -157,7 +157,7 @@ function getBoardOverlayEditTaskTemplate(taskId) {
                         <p>Subtasks</p>
                         <div>
                             <div id="subtaskInputContainer" class="subtaskInputContainer">
-                                <input onfocus="setFocusBorder('subtaskInputContainer')"
+                                <input onkeydown="addSubtaskWithEnter()" onfocus="setFocusBorder('subtaskInputContainer')"
                                     onblur="removeFocusBorder('subtaskInputContainer')" id="subtaskInput"
                                     class="subtaskInput" type="text" placeholder="Add new subtask">
                                 <div class="subtaskInputIconContainer">
