@@ -192,7 +192,6 @@
         align-items: unset;
         height: unset;
         gap: 8px;
-        padding-left: 16px;
     }
 
     h1 {
@@ -348,15 +347,6 @@
 
     .detailsCard {
         display: block;
-    }
-
-    .alignArrowLeft {
-        display: none;
-    }
-
-    .alignArrowLeft {
-        display: flex;
-        align-items: flex-end;
     }
 }
 

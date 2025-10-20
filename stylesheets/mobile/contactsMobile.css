@@ -123,11 +123,6 @@
         scroll-padding-top: calc(24px + env(safe-area-inset-top, 0px));
     }
 
-    .alignArrowContacts {
-        padding-right: 18px;
-        padding-top: 128px;
-    }
-
     .showDetailsContactsContainer {
         margin-left: 18px;
         margin-top: 0px;
@@ -333,6 +328,20 @@
 
     .responsveMarginElemination {
         margin: unset !important;
+    }
+
+    .alignArrowContacts {
+        padding-right: 18px;
+        padding-top: 128px;
+    }
+
+    .alignArrowLeft {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .showDetailsContactsContainer{
+        margin: unset;
     }
 }
 
