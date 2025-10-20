@@ -100,6 +100,7 @@ function openAddTaskOverlay(status) {
         document.getElementById('homeBody').style.overflow = 'hidden';
         overlay.querySelector('span[data-status]').dataset.status = status;
         resetAddTaskSide();
+        attachBoardAddTaskOutsideClickHandler();
     } else return;
 }
 
@@ -109,12 +110,38 @@ function closeAddTaskOverlay() {
     document.getElementById('addTaskBoardOverlayMainSection').classList.remove('show');
     document.getElementById('homeBody').style.overflow = 'unset';
     document.getElementById('addTaskBoardOverlay').classList.add('d-none');
+    detachBoardAddTaskOutsideClickHandler();
 }
 
 
 /** Displays the success message overlay after adding a task. */
 function showAddTaskOverlaySuccessMessage() {
     document.getElementById('addTaskBoardOverlay').classList.remove('d-none');
+}
+
+// Add Task overlay (board) outside-click handling
+let __boardAddTaskPointerDownOutside = false;
+function attachBoardAddTaskOutsideClickHandler() {
+    const root = document.getElementById('addTaskBoardOverlayMainSection');
+    const panel = root?.querySelector('.addTaskOverlayMainContainer');
+    if (!root || !panel) return;
+    if (root.__handlersAttached) return;
+    const onPointerDown = (e) => { const target = e.target; __boardAddTaskPointerDownOutside = !(target instanceof Element && panel.contains(target)); };
+    const onPointerUp = (e) => { const target = e.target; const upOutside = !(target instanceof Element && panel.contains(target)); if (__boardAddTaskPointerDownOutside && upOutside) { closeAddTaskOverlay(); }};
+    root.addEventListener('pointerdown', onPointerDown);
+    root.addEventListener('pointerup', onPointerUp);
+    root.__handlersAttached = { onPointerDown, onPointerUp };
+}
+
+
+/** Detaches the pointer down and pointer up event handlers from the addTaskBoardOverlayMainSection element. */
+function detachBoardAddTaskOutsideClickHandler() {
+    const root = document.getElementById('addTaskBoardOverlayMainSection');
+    if (!root || !root.__handlersAttached) return;
+    const { onPointerDown, onPointerUp } = root.__handlersAttached;
+    root.removeEventListener('pointerdown', onPointerDown);
+    root.removeEventListener('pointerup', onPointerUp);
+    root.__handlersAttached = null;
 }
 
 

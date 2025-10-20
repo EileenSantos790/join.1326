@@ -50,6 +50,7 @@ async function showoverlay(root) {
   document.body.classList.add('noscroll');
   root.classList.remove('initalHiddenOverlay');
   root.classList.add('show');
+  attachOverlayOutsideClickHandler();
 }
 
 
@@ -57,9 +58,8 @@ async function showoverlay(root) {
 function closeOverlay() {
   const root = document.getElementById('overlayRoot');
   const panel = document.getElementById('overlayPanel');
-
+  detachOverlayOutsideClickHandler();
   panel.style.transform = 'translateX(100vw)';
-
   setTimeout(() => {
     root.classList.remove('show');
     document.body.classList.remove('noscroll');
@@ -77,4 +77,28 @@ async function slideinBoardDetailsOverlay() {
   const html = await overlayfile.text();
   panel.innerHTML = html;
   showoverlay(root);
+}
+
+/** Attaches pointer handlers so the overlay closes only when both pointerdown and pointerup occur outside the overlay panel (true outside click) */
+let __overlayPointerDownOutside = false;
+function attachOverlayOutsideClickHandler() {
+  const root = document.getElementById('overlayRoot');
+  const panel = document.getElementById('overlayPanel');
+  if (!root || !panel) return;
+  if (root.__overlayHandlersAttached) return;
+  const onPointerDown = (e) => { const target = e.target; __overlayPointerDownOutside = !(target instanceof Element && panel.contains(target)); };
+  const onPointerUp = (e) => { const target = e.target; const upOutside = !(target instanceof Element && panel.contains(target)); if (__overlayPointerDownOutside && upOutside) { closeOverlay();}};
+  root.addEventListener('pointerdown', onPointerDown);
+  root.addEventListener('pointerup', onPointerUp);
+  root.__overlayHandlersAttached = { onPointerDown, onPointerUp };
+}
+
+/** Detaches the pointer event handlers from the overlay root element and cleans up the stored handler references. */
+function detachOverlayOutsideClickHandler() {
+  const root = document.getElementById('overlayRoot');
+  if (!root || !root.__overlayHandlersAttached) return;
+  const { onPointerDown, onPointerUp } = root.__overlayHandlersAttached;
+  root.removeEventListener('pointerdown', onPointerDown);
+  root.removeEventListener('pointerup', onPointerUp);
+  root.__overlayHandlersAttached = null;
 }

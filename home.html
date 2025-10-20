@@ -45,7 +45,7 @@
 
 <body id="homeBody" onload="isUserLoggedIn()">
 
-    <div id="overlayRoot" onclick="closeOverlay()" class="overlay initalHiddenOverlay">
+    <div id="overlayRoot" class="overlay initalHiddenOverlay">
         <div class="overlayCenter" onclick="event.stopPropagation()">
             <div id="overlayPanel" class="overlayPanel"></div>
         </div>
@@ -113,7 +113,7 @@
 <div id="overlayLoading" class="loadingPage">Loading...</div>
     <div id="contentContainer" class="contentContainer"></div>
 
-    <section onclick="closeAddTaskOverlay()" id="addTaskBoardOverlayMainSection" class="addTaskOverlayMainSection">
+    <section id="addTaskBoardOverlayMainSection" class="addTaskOverlayMainSection">
         <span id="status" data-status="Todo"></span>
         <div onclick="event.stopPropagation()" class="addTaskOverlayMainContainer">
             <div class="addTaskMainSection">
