@@ -1,81 +1,87 @@
 /** Validates a contact form field and updates its error state. */
 function validateField(field) {
-    const id = field.id;
-    const raw = field.value || "";
-    const value = raw.trim();
+  const id = field.id;
+  const raw = field.value || "";
+  const value = raw.trim();
 
-    let isValid = false;
-    let errorMsg = "";
+  let isValid = false;
+  let errorMsg = "";
 
-    switch (id) {
-        case "contactName": {
-            if (!value) {
-                errorMsg = "Name is required.";
-                isValid = false;
-                break;
-            }
-            const parts = value.split(/\s+/).filter(Boolean);
-            isValid = parts.length >= 2;
-            if (!isValid) {
-                errorMsg = "Please enter first and last name.";
-            }
-            break;
-        }
-        case "contactEmail": {
-            if (!value) {
-                errorMsg = "Email is required.";
-                isValid = false;
-                break;
-            }
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            isValid = emailRegex.test(value);
-            if (!isValid) {
-                errorMsg = "Please enter a valid email address.";
-            }
-            break;
-        }
+  switch (id) {
+    case "contactName": {
+      if (/^\s*$/.test(value)) {
+        errorMsg = "Name is required.";
+        isValid = false;
+        break;
+      }
+      const parts = value.split(/\s+/).filter(Boolean);
+      isValid = parts.length >= 2;
+      if (!isValid) {
+        errorMsg = "Please enter first and last name.";
+      }
+      break;
+    }
+    case "contactEmail": {
+      if (/^\s*$/.test(value)) {
+        errorMsg = "Email is required.";
+        isValid = false;
+        break;
+      }
+      const emailRegex =
+        /^[a-zA-Z0-9._%+-]+@(?!.*\.\.)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      isValid = emailRegex.test(value);
+      if (!isValid) {
+        errorMsg = "Please enter a valid email address.";
+      }
+      break;
+    }
         case "contactPhone": {
             if (!value) {
                 errorMsg = "Phone number is required.";
-                isValid = false;
-                break;
-            }
-            const MAX_DE_DIGITS = 13;
-            const digitsOnly = /^\d+$/.test(value);
-            if (!digitsOnly) {
-                errorMsg = "Phone number must contain digits only.";
-                isValid = false;
-                break;
-            }
-            isValid = value.length <= MAX_DE_DIGITS;
-            if (!isValid) {
-                errorMsg = `Phone number must be at most ${MAX_DE_DIGITS} digits.`;
-            }
-            break;
-        }
-        default: {
-            isValid = field.checkValidity();
-        }
+        isValid = false;
+        break;
+      }
+      
+      isValid = true;
+      break;
     }
+    case "contactPhone": {
+      if (/^\s*$/.test(value)) {
+        errorMsg = "Phone number is required.";
+        isValid = false;
+        break;
+      }
+      const phoneRegex = /^\+?\d{1,3}?\s?\d{8,13}$/;
+      isValid = phoneRegex.test(value);
 
-    // Toggle error style on the input container (not on the input itself)
-    const container = field.closest('.addContactInputContainer');
-    if (!isValid) {
-        if (container) container.classList.add('inputErrorBorder');
-        field.setAttribute("aria-invalid", "true");
-    } else {
-        if (container) container.classList.remove('inputErrorBorder');
-        field.removeAttribute("aria-invalid");
+      if (!isValid) {
+        errorMsg = "Please enter a valid phone number.";
+      }
+      break;
     }
-
-    // Show/hide matching error message element
-    const errorEl = document.getElementById(`${id}Error`);
-    if (errorEl) {
-        errorEl.textContent = isValid ? "" : errorMsg;
-        errorEl.style.display = isValid ? "none" : "block";
+    default: {
+      isValid = field.checkValidity();
     }
+  }
 
-    return isValid;
+  // Toggle error style on the input container (not on the input itself)
+  const container = field.closest(".addContactInputContainer");
+  if (!isValid) {
+    if (container) container.classList.add("inputErrorBorder");
+    field.setAttribute("aria-invalid", "true");
+  } else {
+    if (container) container.classList.remove("inputErrorBorder");
+    field.removeAttribute("aria-invalid");
+  }
+
+  // Show/hide matching error message element
+  const errorEl = document.getElementById(`${id}Error`);
+  if (errorEl) {
+    errorEl.textContent = isValid ? "" : errorMsg;
+    errorEl.style.display = isValid ? "none" : "block";
+  }
+
+  return isValid;
 }
 
 // Attach validation on blur (when leaving the field)
