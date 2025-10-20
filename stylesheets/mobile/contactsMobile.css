@@ -86,8 +86,14 @@
         inset: 0;
         background: #f6f7f8;
         z-index: 99;
-        height: 100%;
-        overflow: hidden;
+        height: 100vh;
+        height: 100dvh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        padding-bottom: calc(160px + env(safe-area-inset-bottom, 0px));
+        box-sizing: border-box;
     }
 
     body.scroll-locked {
@@ -101,7 +107,7 @@
         height: 100dvh;
         min-height: 0;
     }
-    
+
     #contactsSection {
         margin-top: 0;
         padding-top: calc(24px + env(safe-area-inset-top, 0px));
@@ -324,7 +330,7 @@
         font-size: 16px;
     }
 
-    .responsveMarginElemination{
+    .responsveMarginElemination {
         margin: unset !important;
     }
 }
