@@ -29,7 +29,10 @@
     }
 
     .addContactSectionContainer {
-        flex-direction: column-reverse;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100%;
+        min-height: 0;
     }
 
     .submenu {
@@ -59,8 +62,18 @@
     }
 
     .contactListSection {
-        margin-top: 24px;
+        margin-top: 0;
+        padding-top: 0;
         width: 100%;
+        flex: 1 1 auto;
+        height: auto;
+        min-height: 0;
+        box-sizing: border-box;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: none;
+        padding-bottom: calc(160px + env(safe-area-inset-bottom, 0px));
+        scroll-padding-bottom: calc(160px + env(safe-area-inset-bottom, 0px));
     }
 
     .responsiveContactsDetailsSection {
@@ -84,6 +97,14 @@
 
     .contactsPageContainer {
         justify-content: center;
+        height: 100vh;
+        height: 100dvh;
+        min-height: 0;
+    }
+    
+    #contactsSection {
+        margin-top: 0;
+        padding-top: calc(24px + env(safe-area-inset-top, 0px));
     }
 
     .addContactSectionContainer {
@@ -92,6 +113,7 @@
 
     .separationLineContactListContainer {
         width: 300px;
+        scroll-padding-top: calc(24px + env(safe-area-inset-top, 0px));
     }
 
     .alignArrowContacts {
