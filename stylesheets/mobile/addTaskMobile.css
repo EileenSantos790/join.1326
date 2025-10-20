@@ -89,6 +89,11 @@
         margin-bottom: 4px;
     }
 
+    .subtaskListContent {
+        max-height: unset;
+        overflow-y: unset;
+    }
+
     .subtaskInput {
         font-size: 16px;
         height: 19px;

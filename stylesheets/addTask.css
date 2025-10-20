@@ -1,3 +1,8 @@
+.addTaskBody {
+    height: calc(100vh - 32px);
+    overflow: auto;
+}
+
 .addTaskOverlayBackground {
     position: fixed;
     top: 0;
@@ -192,6 +197,17 @@
     border-radius: 0px 0px 10px 10px;
     max-height: 288px;
     overflow: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+.selectList {
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    background-color: #FFFFFF;
+    border-radius: 0px 0px 10px 10px;
 }
 
 .paddingBottom24 {
@@ -313,6 +329,12 @@
     cursor: pointer;
     background-color: #d1d1d152;
     border-radius: 16px;
+}
+
+.subtaskListContent {
+    max-height: 140px;
+    overflow-y: auto;
+    scrollbar-width: thin;
 }
 
 .subtaskSeperator {

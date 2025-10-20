@@ -64,7 +64,7 @@ async function renderContactsInAddTask(searchArray = []) {
 /** Adds the contact to a separate array and sorts them alphabetically. */
 function saveClickedContact(initial, color, id, name) {
     let index = selectedContactsAddTask?.findIndex(c => c.id === id);
-    if (index !== -1 && index != undefined) { selectedContactsAddTask.splice(index, 1); } 
+    if (index !== -1 && index != undefined) { selectedContactsAddTask.splice(index, 1); }
     else { selectedContactsAddTask.push({ id, name, initial, color }); }
     selectedContactsAddTask.sort((a, b) => a.initial.localeCompare(b.initial));
 }
@@ -74,7 +74,7 @@ function saveClickedContact(initial, color, id, name) {
 function addContactToTask() {
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
     contentDiv.innerHTML = "";
-    selectedContactsAddTask.forEach((contact) => { contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color, contact.id, contact.name);});
+    selectedContactsAddTask.forEach((contact) => { contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color, contact.id, contact.name); });
 }
 
 
@@ -154,12 +154,23 @@ function removeFocusBorderCheckInputValue(containerId, inputId, errorId) {
 function addSubtaskToList() {
     let inputRef = document.getElementById('subtaskInput');
     let input = inputRef.value.trim();
-    subtaskIdCounter++;
-    let newSubtask = { "id": subtaskIdCounter, "text": input, "done": false };
-    subtasks = subtasks || [];
-    subtasks.push(newSubtask);
-    renderSubtasks();
-    inputRef.value = "";
+    if (checkSubtaskValue(input)) {
+        subtaskIdCounter++;
+        let newSubtask = { "id": subtaskIdCounter, "text": input, "done": false };
+        subtasks = subtasks || [];
+        subtasks.push(newSubtask);
+        renderSubtasks();
+        inputRef.value = "";
+    } else {
+        inputRef.value = "";
+    }
+}
+
+/**checks whether the input is empty */
+function checkSubtaskValue(input) {
+    if (input.length > 0) {
+        return true;
+    } else return false;
 }
 
 
@@ -184,7 +195,7 @@ function renderSubtasks() {
     let list = document.getElementById('subtaskListContent');
     list.innerHTML = "";
     let arr = [];
-    if (subtasks.length){ arr = subtasks } else {arr = subtasksListOnEdit}
+    if (subtasks.length) { arr = subtasks } else { arr = subtasksListOnEdit }
     arr.forEach(subtask => { list.innerHTML += getSubtaskListTemplate(subtask); })
 }
 
@@ -308,7 +319,7 @@ function checkRequiredFields() {
         removeFocusBorderCheckInputValue('addTasktDateInputContainer', 'addTasktDateInput', 'addTasktDateErrorContainer');
         setErrorBorderForCategory('addTaskCategoryHeaderContainer');
         return false;
-    } else { return true; } 
+    } else { return true; }
 }
 
 
@@ -327,7 +338,7 @@ function getTaskData(editTask = false) {
 
 /** Returns the selected task priority as a string: 'Urgent', 'Medium', 'Low', or null if none is selected. */
 function getSelectedPriority() {
-    if (document.getElementById('addTaskUrgentButton').classList.contains('buttonUrgentActive')) { return 'Urgent'; } 
+    if (document.getElementById('addTaskUrgentButton').classList.contains('buttonUrgentActive')) { return 'Urgent'; }
     else if (document.getElementById('addTaskMediumButton').classList.contains('buttonMediumActive')) { return 'Medium'; }
     else if (document.getElementById('addTaskLowButton').classList.contains('buttonLowActive')) { return 'Low'; }
     else { return null; }
@@ -352,7 +363,7 @@ function handleUpdateTask(taskId) {
 
 /** Asynchronously updates a task by ID in the database and handles UI flow based on the subtask toggle. */
 async function updateTaskOnDatabase(taskId, task, SubtaskToggle = false) {
-    await fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task ) })
+    await fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task) })
         .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
         .then(() => {
             if (!SubtaskToggle) closeOverlay();
@@ -364,7 +375,7 @@ async function updateTaskOnDatabase(taskId, task, SubtaskToggle = false) {
 
 
 /** Navigates to the board page after an optional delay. */
-function goToBoardHtml(timeout= 2000) {
+function goToBoardHtml(timeout = 2000) {
     const boardMenuItem = document.querySelector('.navLine[data-file*="board"], .navLine[data-file*="Board"]');
     setTimeout(() => {
         if (boardMenuItem) { boardMenuItem.click(); return; }
@@ -399,7 +410,7 @@ function showAddTaskDialog() {
     const overlay = document.getElementById("addTaskOverlay");
     overlay.classList.add("show");
     const taskOverlay = document.getElementById('addTaskOverlayBackground');
-    if (taskOverlay) {taskOverlay.style.display = "flex"; } else {
+    if (taskOverlay) { taskOverlay.style.display = "flex"; } else {
         showAddTaskOverlaySuccessMessage();
         setTimeout(() => {
             closeAddTaskOverlay();
