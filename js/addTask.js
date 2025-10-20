@@ -143,10 +143,7 @@ function removeFocusBorderCheckInputValue(containerId, inputId, errorId) {
     document.getElementById(containerId).classList.remove('inputBorderColorFocus');
     let input = document.getElementById(inputId);
     let errorMessage = document.getElementById(errorId);
-    if (!input.value) {
-        document.getElementById(containerId).classList.add('inputErrorBorder');
-        errorMessage.textContent = "This field is required";
-    }
+    if (!input.value) { document.getElementById(containerId).classList.add('inputErrorBorder'); errorMessage.textContent = "This field is required"; }
 }
 
 
@@ -309,17 +306,19 @@ function createTask() {
 }
 
 
-/** Validates required title, date, and category; returns true if all are set, else false. */
+/** Validates required title, date, and category; returns true if all are set and date is valid. */
 function checkRequiredFields() {
     const inputTitle = document.getElementById('addTasktTitleInput');
     const inputDate = document.getElementById('addTasktDateInput');
     const categoryHeader = document.getElementById('categoryDropdownHeader');
-    if (inputTitle.value === "" || inputDate.value === "" || categoryHeader.textContent === "Select task category") {
-        removeFocusBorderCheckInputValue('addTasktTitleInputContainer', 'addTasktTitleInput', 'addTasktTitleErrorContainer');
-        removeFocusBorderCheckInputValue('addTasktDateInputContainer', 'addTasktDateInput', 'addTasktDateErrorContainer');
-        setErrorBorderForCategory('addTaskCategoryHeaderContainer');
-        return false;
-    } else { return true; }
+    if (typeof validateField === 'function') { validateField(inputTitle); }
+    if (!inputTitle.value || !inputTitle.value.trim()) { removeFocusBorderCheckInputValue('addTasktTitleInputContainer', 'addTasktTitleInput', 'addTasktTitleErrorContainer'); }
+    if (!inputDate.value) { removeFocusBorderCheckInputValue('addTasktDateInputContainer', 'addTasktDateInput', 'addTasktDateErrorContainer');}
+    if (categoryHeader.textContent === "Select task category") { setErrorBorderForCategory('addTaskCategoryHeaderContainer');}
+    const isDateValid = typeof validateField === 'function' ? validateField(inputDate) : !!inputDate.value;
+    const isTitleValid = !!(inputTitle.value && inputTitle.value.trim());
+    const isCategoryValid = categoryHeader.textContent !== "Select task category";
+    return isTitleValid && isDateValid && isCategoryValid;
 }
 
 
@@ -355,21 +354,14 @@ function saveTaskToDatabase(taskData) {
 
 
 /** Updates a task in the database using the provided task ID. */
-function handleUpdateTask(taskId) {
-    const task = getTaskData(true);
-    updateTaskOnDatabase(taskId, task);
-}
+function handleUpdateTask(taskId) { const task = getTaskData(true); updateTaskOnDatabase(taskId, task); }
 
 
 /** Asynchronously updates a task by ID in the database and handles UI flow based on the subtask toggle. */
 async function updateTaskOnDatabase(taskId, task, SubtaskToggle = false) {
     await fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task) })
         .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
-        .then(() => {
-            if (!SubtaskToggle) closeOverlay();
-            usersListOnEdit = [];
-            goToBoardHtml(0);
-        })
+        .then(() => { if (!SubtaskToggle) closeOverlay(); usersListOnEdit = []; goToBoardHtml(0); })
         .catch(error => { console.error("Error:", error); });
 }
 
@@ -377,9 +369,7 @@ async function updateTaskOnDatabase(taskId, task, SubtaskToggle = false) {
 /** Navigates to the board page after an optional delay. */
 function goToBoardHtml(timeout = 2000) {
     const boardMenuItem = document.querySelector('.navLine[data-file*="board"], .navLine[data-file*="Board"]');
-    setTimeout(() => {
-        if (boardMenuItem) { boardMenuItem.click(); return; }
-    }, timeout);
+    setTimeout(() => { if (boardMenuItem) { boardMenuItem.click(); return; } }, timeout);
 }
 
 
@@ -388,12 +378,7 @@ async function assignedToUser(taskId) {
     const task = await getTaskById(taskId);
     const users = task.assignedTo;
     if (!users) return [];
-    for (let index = 0; index < users.length; index++) {
-        const userId = users[index].id;
-        const user = await searchContactById(userId);
-        if (user.tasks?.length) { user.tasks.push(taskId) } else { user.tasks = [taskId] }
-        updateContact(userId, user, true);
-    }
+    for (let index = 0; index < users.length; index++) { const userId = users[index].id; const user = await searchContactById(userId); if (user.tasks?.length) { user.tasks.push(taskId) } else { user.tasks = [taskId] } updateContact(userId, user, true);}
 }
 
 
@@ -410,10 +395,5 @@ function showAddTaskDialog() {
     const overlay = document.getElementById("addTaskOverlay");
     overlay.classList.add("show");
     const taskOverlay = document.getElementById('addTaskOverlayBackground');
-    if (taskOverlay) { taskOverlay.style.display = "flex"; } else {
-        showAddTaskOverlaySuccessMessage();
-        setTimeout(() => {
-            closeAddTaskOverlay();
-        }, 1000);
-    }
+    if (taskOverlay) { taskOverlay.style.display = "flex"; } else { showAddTaskOverlaySuccessMessage(); setTimeout(() => { closeAddTaskOverlay(); }, 1000); }
 }

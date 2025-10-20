@@ -98,7 +98,8 @@ function getBoardOverlayEditTaskTemplate(taskId) {
                             <div id="addTasktDateInputContainer" class="signUpValidationInputContainer bgWhite">
                                 <input
                                     onfocus="setFocusBorder('addTasktDateInputContainer', 'addTasktDateErrorContainer')"
-                                    onblur="removeFocusBorderCheckInputValue('addTasktDateInputContainer', 'addTasktDateInput', 'addTasktDateErrorContainer')"
+                                    oninput="if(window.validateField){ validateField(this); }"
+                                    onblur="if(window.validateField){ validateField(this); } else { removeFocusBorderCheckInputValue('addTasktDateInputContainer', 'addTasktDateInput', 'addTasktDateErrorContainer'); }"
                                     id="addTasktDateInput" class="addTaskInputs defaultInput placeholderStyle" required
                                     type="date">
                             </div>
