@@ -119,7 +119,7 @@ input:not(:placeholder-shown)~.inputVisibilityIcon {
     position: absolute;
     width: 100%;
     max-width: 1920px;
-    top: 949px;
+    top: 870px;
 }
 
 .signUpPageFooterContent {

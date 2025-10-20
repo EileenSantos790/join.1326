@@ -156,14 +156,17 @@
     }
 }
 
-@media (max-height: 750px) {
+@media (max-height: 900px) {
+    body {
+        overflow-y: scroll;
+    }
 
     .buttonPrimary {
         margin-top: 20px;
     }
 
-    .signUpPageFooterContent {
-        margin-top: 150px;
+    .signUpPageFooter {
+        margin-top: 110px;
     }
 
     .loginPageMainContent {
