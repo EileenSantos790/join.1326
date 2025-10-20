@@ -31,15 +31,16 @@
 }
 
 .contactListSection {
-    margin-top: 0;
-    padding-top: 88px;
+    margin-top: 100px;
+    margin-bottom: 100px;
     width: 456px;
-    height: 100%;
+    height: calc(100vh - 100px);
+    height: calc(100dvh - 100px);
+    height: clamp(320px, calc(100dvh - 100px), calc(100svh - 100px));
     box-sizing: border-box;
     overflow-y: auto;
     scroll-snap-type: none;
     scroll-behavior: smooth;
-    padding-bottom: 96px;
     scroll-padding-bottom: 96px;
     scrollbar-color: rgba(168, 168, 168, 1) white;
     scrollbar-width: auto;

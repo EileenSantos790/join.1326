@@ -62,18 +62,19 @@
     }
 
     .contactListSection {
-        margin-top: 0;
+        margin-top: 20px;
+        margin-bottom: 170px;
         padding-top: 0;
         width: 100%;
         flex: 1 1 auto;
-        height: auto;
+        height: 100vh;
+        height: 100dvh;
+        height: clamp(320px, 100dvh, 100svh);
         min-height: 0;
         box-sizing: border-box;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: none;
-        padding-bottom: calc(160px + env(safe-area-inset-bottom, 0px));
-        scroll-padding-bottom: calc(160px + env(safe-area-inset-bottom, 0px));
     }
 
     .responsiveContactsDetailsSection {
