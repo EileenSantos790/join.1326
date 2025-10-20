@@ -29,7 +29,10 @@
     }
 
     .addContactSectionContainer {
-        flex-direction: column-reverse;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100%;
+        min-height: 0;
     }
 
     .submenu {
@@ -59,8 +62,19 @@
     }
 
     .contactListSection {
-        margin-top: 24px;
+        margin-top: 20px;
+        margin-bottom: 170px;
+        padding-top: 0;
         width: 100%;
+        flex: 1 1 auto;
+        height: 100vh;
+        height: 100dvh;
+        height: clamp(320px, 100dvh, 100svh);
+        min-height: 0;
+        box-sizing: border-box;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: none;
     }
 
     .responsiveContactsDetailsSection {
@@ -73,8 +87,14 @@
         inset: 0;
         background: #f6f7f8;
         z-index: 99;
-        height: 100%;
-        overflow: hidden;
+        height: 100vh;
+        height: 100dvh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        padding-bottom: calc(160px + env(safe-area-inset-bottom, 0px));
+        box-sizing: border-box;
     }
 
     body.scroll-locked {
@@ -84,6 +104,14 @@
 
     .contactsPageContainer {
         justify-content: center;
+        height: 100vh;
+        height: 100dvh;
+        min-height: 0;
+    }
+
+    #contactsSection {
+        margin-top: 0;
+        padding-top: calc(24px + env(safe-area-inset-top, 0px));
     }
 
     .addContactSectionContainer {
@@ -92,11 +120,7 @@
 
     .separationLineContactListContainer {
         width: 300px;
-    }
-
-    .alignArrowContacts {
-        padding-right: 18px;
-        padding-top: 128px;
+        scroll-padding-top: calc(24px + env(safe-area-inset-top, 0px));
     }
 
     .showDetailsContactsContainer {
@@ -145,7 +169,7 @@
     }
 
     .addContactfontBold {
-        font-size: 47px;
+        font-size: 36px;
     }
 
     .addContactfontNormal {
@@ -184,7 +208,7 @@
 
     .addContactMainContentInputs {
         height: auto;
-        gap: 15px;
+        gap: 19px;
     }
 
     .contactImgDiv {
@@ -302,8 +326,22 @@
         font-size: 16px;
     }
 
-    .responsveMarginElemination{
+    .responsveMarginElemination {
         margin: unset !important;
+    }
+
+    .alignArrowContacts {
+        padding-right: 18px;
+        padding-top: 128px;
+    }
+
+    .alignArrowLeft {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .showDetailsContactsContainer{
+        margin: unset;
     }
 }
 
