@@ -340,7 +340,7 @@
         align-items: flex-end;
     }
 
-    .showDetailsContactsContainer{
+    .showDetailsContactsContainer {
         margin: unset;
     }
 }
@@ -437,5 +437,26 @@
 
     .mailAndPhoneContainer {
         margin-left: 48px;
+    }
+}
+
+@media (min-width: 567px) and (max-width: 1024px) {
+
+    .contactListSection {
+        width: 550px;
+        box-sizing: border-box; 
+        overflow-x: hidden;
+    }
+
+    #contactsSection{
+        overflow-x: hidden;
+    }
+
+   .separationLineContactListContainer{
+        width: unset;
+   }
+
+    .separationLineContactList{
+        width: 600px;
     }
 }
