@@ -59,7 +59,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 21px
+        gap: 15px
     }
 
     .loginPageGuestLogInButton,
@@ -104,6 +104,14 @@
         font-size: 16px;
     }
 
+    .loginPageMainContent {
+        max-height: 475px;
+    }
+
+    .loginPageMainContent:has(.buttonPrimary) .buttonPrimary {
+        margin-top: 70px;
+    }
+
     .loginPageHeaderMobile {
         display: flex;
         align-items: center;
@@ -131,6 +139,7 @@
 
     .loginPageMainContentHeadline {
         width: auto;
+        padding-top: 32px;
     }
 
     .submenu p {
@@ -167,7 +176,7 @@
 @media (max-height: 900px) {
 
     .loginPageMainContent {
-        margin-top: 100px;
+        margin-top: 80px;
     }
 
     .loginPageFooter {
