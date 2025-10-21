@@ -365,14 +365,20 @@
     }
 }
 
+@media (max-width: 390px) {
+    .overlayCenter {
+        margin: unset !important;
+    }
+}
+
 @media (max-width: 375px) {
     .contentContainerPadding:has(.containerOfBoard) {
         padding-top: 48px !important;
     }
 
-    .addContactInputContainer{
-        height: 36px !important;
-    }
+    /* .addContactInputContainer{
+        height: 25px !important;
+    } */
 
     .addContactButtonSection{
         margin: unset !important;

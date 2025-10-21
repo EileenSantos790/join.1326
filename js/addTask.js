@@ -143,7 +143,7 @@ function removeFocusBorderCheckInputValue(containerId, inputId, errorId) {
     document.getElementById(containerId).classList.remove('inputBorderColorFocus');
     let input = document.getElementById(inputId);
     let errorMessage = document.getElementById(errorId);
-    if (!input.value) { document.getElementById(containerId).classList.add('inputErrorBorder'); errorMessage.textContent = "This field is required"; }
+    if (!input.value.trim()) { input.value = ""; document.getElementById(containerId).classList.add('inputErrorBorder'); errorMessage.textContent = "This field is required"; }
 }
 
 
