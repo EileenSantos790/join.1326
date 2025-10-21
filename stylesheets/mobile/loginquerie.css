@@ -141,12 +141,20 @@
     .submenu a {
         width: 70%;
     }
+
+    .signUpPageMainSection:has(.signUpValidationInputContainer) .signUpValidationInputContainer {
+        height: 46px;
+    }
 }
 
 
 @media (max-width: 400px) {
     .signUpArrowButton {
         left: 20px;
+    }
+
+    .signUpArrowButton:hover {
+        left: 18px;
     }
 }
 
@@ -157,17 +165,6 @@
 }
 
 @media (max-height: 900px) {
-    body {
-        overflow-y: scroll;
-    }
-
-    .loginPageMainSection:has(.buttonPrimary) .buttonPrimary {
-        margin-top: 20px;
-    }
-
-    .signUpPageFooter {
-        margin-top: 110px;
-    }
 
     .loginPageMainContent {
         margin-top: 100px;
@@ -181,4 +178,13 @@
         overflow-y: scroll;
     }
 
+    .signUpPageMainContent {
+        max-height: 595px;
+    }
+}
+
+@media (max-height: 780px) {
+    .signUpPageFooter {
+        margin-top: 110px;
+    }
 }
