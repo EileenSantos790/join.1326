@@ -208,7 +208,6 @@
 
     .addContactMainContentInputs {
         height: auto;
-        gap: 19px;
     }
 
     .contactImgDiv {
@@ -234,7 +233,7 @@
     .addContactButtonSection {
         padding-bottom: 40px;
         padding-top: 0px;
-        padding-left: unset;
+        padding-left: unset !important;
         align-items: center;
         justify-content: space-evenly;
         justify-content: center !important;
@@ -379,6 +378,10 @@
         gap: 10px;
     }
 
+    .addContactButtonSection {
+        padding-left: 132px;
+    }
+
     .addContactPushUpContainerLeft {
         padding-inline: 24px;
     }
@@ -458,5 +461,19 @@
 
     .separationLineContactList{
         width: 600px;
+    }
+
+    .addContactPushUpSectionRight {
+        display: contents;
+    }
+}
+
+@media screen and (max-height: 900px) and (max-width: 1024px) {
+    .addContactPushUpContainer {
+        height: 100vh;
+    }
+
+    .addContactPushUpContainerLeft {
+        height: 100%;
     }
 }

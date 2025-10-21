@@ -161,7 +161,7 @@
         overflow-y: scroll;
     }
 
-    .buttonPrimary {
+    .loginPageMainSection:has(.buttonPrimary) .buttonPrimary {
         margin-top: 20px;
     }
 

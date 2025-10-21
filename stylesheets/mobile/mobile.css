@@ -370,10 +370,6 @@
         padding-top: 48px !important;
     }
 
-    .addContactPushUpContainerLeft{
-        height: 260px !important;
-    }
-
     .addContactInputContainer{
         height: 36px !important;
     }
@@ -408,8 +404,6 @@
     }
 
     .addContactButton{
-        margin: unset !important;
-        margin-top: 0 !important;
         gap: unset !important;
     }
 
