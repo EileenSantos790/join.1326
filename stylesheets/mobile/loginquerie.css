@@ -122,7 +122,7 @@
 
     .signUpPageFooter {
         padding-top: 10px;
-        top: unset;
+        /* top: unset; */
     }
 
     .signUpPageMainContent {
@@ -186,5 +186,6 @@
 @media (max-height: 780px) {
     .signUpPageFooter {
         margin-top: 110px;
+        top: unset;
     }
 }
