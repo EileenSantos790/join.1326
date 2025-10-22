@@ -407,6 +407,32 @@ label:hover {
     flex-direction: row;
 }
 
+.assignedContactsList {
+    display: block;
+    max-height: 750px;
+    min-height: 100px;
+    height: auto;
+    overflow-y: auto;
+    margin-block: 4px 8px;
+    padding-right: 4px;
+}
+
+.subtasksList {
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    min-height: 100px;
+    height: auto;
+    overflow-y: auto;
+    margin-block: 4px 8px;
+    padding-right: 4px;
+    gap: 4px;
+}
+
+.subtasksList .cb {
+    display: flex;
+}
+
 .boardContactsContainer {
     display: flex;
     align-items: center;

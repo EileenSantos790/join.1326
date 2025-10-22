@@ -107,9 +107,13 @@ async function openTaskDetails(taskId, editedTask = null) {
         <div class="detailsOverlayContainer">
             <span>Assigned To:</span>
         </div>
-        ${getContactsOnBoardDetailsTemplate(task.assignedTo)}
+        <div class="assignedContactsList">
+            ${getContactsOnBoardDetailsTemplate(task.assignedTo)}
+        </div>
         <div class="detailsOverlayContainer">Subtasks:</div>
-        ${getSubtasksOnBoardDetails(taskId, task.subtasks)}
+        <div class="subtasksList">
+            ${getSubtasksOnBoardDetails(taskId, task.subtasks)}
+        </div>
         <div class="containerEditTaskOverlay">
             <div class="editContactBtn" onclick="deleteTask('${task.id}')">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
