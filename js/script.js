@@ -173,7 +173,12 @@ function isMobile() {
 }
 
 
-/** Navigates back in the browser history. */
+/** Navigate back to home or login page based on session status. */
 function goBack() {
-    window.history.back() || goToBoardHtml(0);
+    const userName = sessionStorage.getItem('userName');
+    if (userName !== null && userName.trim() !== "") {
+       window.location.href = 'home.html';
+    } else {
+        window.location.href = 'index.html';
+    }
 }
