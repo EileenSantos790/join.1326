@@ -381,7 +381,7 @@
         height: 25px !important;
     } */
 
-    .addContactButtonSection{
+    .addContactButtonSection {
         margin: unset !important;
         gap: unset !important;
         padding-top: 12px !important;
@@ -410,12 +410,18 @@
         width: 100% !important;
     }
 
-    .addContactButton{
+    .addContactButton {
         gap: unset !important;
     }
 
-    .addContactPushUpContainerRight{
+    .addContactPushUpContainerRight {
         padding-left: 10px !important;
         padding-right: 10px !important;
+    }
+}
+
+@media (max-height: 950px) {
+    .addTaskContainerPadding:has(.addTaskMainSectionContent) {
+        padding-top: 60px;
     }
 }
