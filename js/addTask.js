@@ -73,8 +73,10 @@ function saveClickedContact(initial, color, id, name) {
 /** Displays selected contacts when the dropdown menu is closed. */
 function addContactToTask() {
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
-    contentDiv.innerHTML = "";
-    selectedContactsAddTask.forEach((contact) => { contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color, contact.id, contact.name); });
+    contentDiv.innerHTML = ""; const MAX_VISIBLE = 5; const visible = selectedContactsAddTask.slice(0, MAX_VISIBLE);
+    visible.forEach((contact) => { contentDiv.innerHTML += getSelectedContactTemplate(contact.initial, contact.color, contact.id, contact.name);});
+    const remaining = selectedContactsAddTask.length - MAX_VISIBLE;
+    if (remaining > 0) { if (typeof getMoreAvatarTemplate === 'function') { contentDiv.innerHTML += getMoreAvatarTemplate(remaining);} else {contentDiv.innerHTML += `<div class="margin_top8 avatar" style="background:#2A3647;color:#fff;">${remaining}</div>`;}}
 }
 
 
@@ -110,8 +112,7 @@ function selectedCategory(option) {
 
 /** close the assigned to and category dropdown when click outside. */
 document.onclick = function (click) {
-    closeAssignedToClickOutside(click);
-    closeCategoryClickOutside(click);
+    closeAssignedToClickOutside(click); closeCategoryClickOutside(click);
 }
 
 

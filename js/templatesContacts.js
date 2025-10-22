@@ -36,6 +36,13 @@ function getSelectedContactTemplate(contact, color) {
     `;
 }
 
+/** Generates the HTML template for the "+N more" avatar badge. */
+function getMoreAvatarTemplate(count) {
+    return `
+            <div class="margin_top8 avatar" style="background:#2A3647;color:#fff;">${count}</div>
+    `;
+}
+
 /** Builds the assigned contacts list for the details overlay. */
 function getContactsOnBoardDetailsTemplate(users) {
     if (!users) return "";
@@ -53,15 +60,14 @@ function getContactsOnBoardDetailsTemplate(users) {
 /** Renders assigned contact avatars inside the edit overlay. */
 function getContactsOnEditBoardTemplate(users) {
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
-    if (!users) {
-        contentDiv.innerHTML = "No users assigned";
-        return
-    }
+    if (!users) { contentDiv.innerHTML = "No users assigned"; return; } 
     let template = ''
-    users.forEach(user => {
-        usersListOnEdit.push(user)
-        template += `<div class="margin_top8 avatar" style="background:${user.color}">${user.initial}</div>`
-    });
+    const MAX_VISIBLE = 5;
+    users.forEach(user => { usersListOnEdit.push(user) });
+    const visible = users.slice(0, MAX_VISIBLE);
+    visible.forEach(user => { template += `<div class="margin_top8 avatar" style="background:${user.color}">${user.initial}</div>` });
+    const remaining = users.length - MAX_VISIBLE;
+    if (remaining > 0) { template += getMoreAvatarTemplate(remaining); }
     contentDiv.innerHTML = template;
 }
 
@@ -159,9 +165,19 @@ function openContactDetails(userID) {
 function renderContactsOnBoard(users) {
     if (!users) return `<div id="avatarBoard">No users assigned</div>`
     let template = '<div class="boardContactsContainer">'
-    users.forEach(user => {
+    const MAX_VISIBLE = 5; const visible = users.slice(0, MAX_VISIBLE);
+    visible.forEach(user => {
         template += `<div id="avatarBoard" class="avatarBoard" style="background:${user.color};color:#fff;">${user.initial}</div>`
     });
+    const remaining = users.length - MAX_VISIBLE;
+    if (remaining > 0) {
+        template += getMoreAvatarBoardTemplate(remaining);
+    }
     template += "</div>";
     return template;
+}
+
+/** Generates the board-sized "+N" avatar badge. */
+function getMoreAvatarBoardTemplate(count) {
+    return `<div id="avatarBoard" class="avatarBoard" style="background:#2A3647;color:#fff;">${count}</div>`;
 }
