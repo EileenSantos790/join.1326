@@ -29,6 +29,7 @@ function setPriorityButtonIconToDefault() {
 
 /** Toggles the assigned-to dropdown in the add-task view. */
 async function toggleDropdownAssignedTo() {
+    await renderAllContacts();
     document.getElementById('addTaskDropdownAssignedTo').classList.toggle('d-none');
     document.getElementById('addTaskDropdownSearchContent').classList.toggle('d-none');
     document.getElementById('addTaskAddedContactIcons').classList.toggle('d-none');
