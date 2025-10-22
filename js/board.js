@@ -97,7 +97,7 @@ function openAddTaskOverlay(status) {
     if (minWidth > 1024) {
         let overlay = document.getElementById('addTaskBoardOverlayMainSection');
         overlay.classList.add('show');
-        document.getElementById('homeBody').style.overflow = 'hidden';
+        document.getElementById('homeBody').classList.add('overflowHidden');
         overlay.querySelector('span[data-status]').dataset.status = status;
         resetAddTaskSide();
         attachBoardAddTaskOutsideClickHandler();
@@ -108,7 +108,7 @@ function openAddTaskOverlay(status) {
 /** Closes the add-task overlay and restores body scrolling. */
 function closeAddTaskOverlay() {
     document.getElementById('addTaskBoardOverlayMainSection').classList.remove('show');
-    document.getElementById('homeBody').style.overflow = 'unset';
+    document.getElementById('homeBody').classList.remove('overflowHidden');
     document.getElementById('addTaskBoardOverlay').classList.add('d-none');
     detachBoardAddTaskOutsideClickHandler();
 }

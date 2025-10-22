@@ -11,7 +11,7 @@ body:has(.containerOfBoard) {
 }
 
 .board-page body {
-    overflow: auto !important;
+    overflow: auto;
 }
 
 .d-none {
@@ -40,4 +40,8 @@ body:has(.containerOfBoard) {
 redirectionTags :hover{
     color:rgb(0, 106, 255);
     cursor: hover;
+}
+
+.overflowHidden {
+    overflow: hidden !important;
 }

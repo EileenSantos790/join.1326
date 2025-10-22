@@ -56,6 +56,7 @@ async function showoverlay(root) {
 
 /** Closes the overlay:. */
 function closeOverlay() {
+  document.getElementById('homeBody').classList.remove('overflowHidden');
   const root = document.getElementById('overlayRoot');
   const panel = document.getElementById('overlayPanel');
   detachOverlayOutsideClickHandler();
