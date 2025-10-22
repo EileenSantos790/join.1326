@@ -188,6 +188,7 @@ function goBack() {
     } else { window.location.href = 'index.html'; }
 }
 
+
 /** Stores the previous page in session storage. */
 function storePreviousPage(aPreviousPage) {
     sessionStorage.setItem('pageHistory', JSON.stringify(aPreviousPage));

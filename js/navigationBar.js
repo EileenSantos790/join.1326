@@ -1,7 +1,7 @@
 /** Starts rendering once the DOM content is loaded. */
 window.addEventListener('DOMContentLoaded', renderMainContent);
 
-let aPreviousPage = [];
+let aPreviousPage = JSON.parse(sessionStorage.getItem('pageHistory')) || [];
 
 
 /** Initializes the main content area and navigation. */
@@ -30,7 +30,7 @@ function setClickEvents(items, content) {
       if (shouldClearActive) {clearAllActiveStates();
       } else {markActive(items, item); }
       if (file) {loadPage(file, content); }
-      aPreviousPage.push(file.replace("./htmlTemplates/", "").replace(".html", ""))
+      aPreviousPage.push(file.replace("./htmlTemplates/", "").replace(".html", ""));
       storePreviousPage(aPreviousPage);
     });
   }
@@ -56,7 +56,7 @@ function clearAllActiveStates() {
 
 /** Loads the HTML content of the given file into the content container. */
 function loadPage(file, content) {
-  content.innerHTML = 'Lade...';
+  content.innerHTML = '';
   if (file !== "./htmlTemplates/board.html") { document.documentElement.classList.remove('board-page'); }
   fetch(file)
     .then(response => checkFile(response, file))
@@ -132,3 +132,17 @@ function openAddTaskSide(sideLink) {
     addTask.classList.add('active');
   }
 }
+
+
+// On reload, try to navigate back to the last registered page
+window.addEventListener('load', () => {
+    try {
+        const historyArr = JSON.parse(sessionStorage.getItem('pageHistory') || '[]');
+        const loggedIn = sessionStorage.getItem('userfound') === 'true';
+        if (historyArr?.length >= 2 && loggedIn) {
+            goBack();
+        }
+    } catch (error) {
+        console.error("Error occurred while navigating:", error);
+    }
+});

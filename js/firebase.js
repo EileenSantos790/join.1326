@@ -4,7 +4,6 @@ let email;
 let password;
 let loginFormValidationErrorMessage;
 let signUpFormValidationErrorMessage;
-
 let userfound = false;
 
 
@@ -42,6 +41,7 @@ async function checkIfDataIsCorrect(containerLoginId, containerPasswordId) {
             userfound = true;
             sessionStorage.setItem("userfound", userfound);
             sessionStorage.setItem("userName", users[key].user.name);
+            sessionStorage.removeItem("pageHistory");
             break;
         }
     }
@@ -53,6 +53,7 @@ async function checkIfDataIsCorrect(containerLoginId, containerPasswordId) {
 function loginAsGuest() {
     sessionStorage.setItem("userfound", true);
     sessionStorage.setItem("userName", "Guest");
+    sessionStorage.removeItem("pageHistory");
     window.location.href = "home.html";
 }
 

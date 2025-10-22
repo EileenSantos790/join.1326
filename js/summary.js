@@ -7,53 +7,55 @@ onElementAppear('#summaryContainer', () => {
 
 
 /** Populates the summary counters when the page loads. */
-async function setPageLoad() {
-    await setStatusQuantity();
-    await setUrgentPriorityQuantity();
-    await setTotalTasksQuantity();
+function setPageLoad() {
+    loadTasksFromDb().then(() => {
+    setStatusQuantity();
+    setUrgentPriorityQuantity();
+    setTotalTasksQuantity();
     setNextUrgentTaskDate();
+});
 }
 
 
 /** Returns how many tasks currently have the given status. */
-async function getAllTasksByStatus(status) {
+function getAllTasksByStatus(status) {
+    if(loadedTasks.length) return loadedTasks.filter(task => task.status === status).length;
+}
+
+/** Loads tasks from the database and stores them in the loadedTasks array. */
+async function loadTasksFromDb() {
     try {
         const res = await fetch(BASE_URL + "tasks.json");
         const data = await res.json();
-        const tasks = await getTasksToArray(data);
-        loadedTasks = tasks;
-
-        return tasks.filter(task => task.status === status).length;
-    } catch (err) {
-        console.error(err);
-    }
+        loadedTasks = getTasksToArray(data);
+    } catch (err) { console.error(err); }
 }
 
 
 /** Counts loaded tasks marked with urgent priority. */
 function getAllUrgentTasks() {
-    return loadedTasks.filter(task => task.priority === "Urgent").length;
+    if(loadedTasks.length) return loadedTasks.filter(task => task.priority === "Urgent").length;
 }
 
 
 /** Updates the DOM with task totals per status. */
-async function setStatusQuantity() {
-    document.getElementById("todoNumber").innerHTML = await getAllTasksByStatus("Todo");
-    document.getElementById("doneNumber").innerHTML = await getAllTasksByStatus("Done");
-    document.getElementById("tasksInProgressNumber").innerHTML = await getAllTasksByStatus("Progress");
-    document.getElementById("awaitingFeedbackNumber").innerHTML = await getAllTasksByStatus("Feedback");
+function setStatusQuantity() {
+    document.getElementById("todoNumber") && (document.getElementById("todoNumber").innerHTML = getAllTasksByStatus("Todo"));
+    document.getElementById("doneNumber") && (document.getElementById("doneNumber").innerHTML = getAllTasksByStatus("Done"));
+    document.getElementById("tasksInProgressNumber") && (document.getElementById("tasksInProgressNumber").innerHTML = getAllTasksByStatus("Progress"));
+    document.getElementById("awaitingFeedbackNumber") && (document.getElementById("awaitingFeedbackNumber").innerHTML = getAllTasksByStatus("Feedback"));
 }
 
 
 /** Updates the urgent task counter. */
-async function setUrgentPriorityQuantity() {
-    document.getElementById("urgentNumber").innerHTML = getAllUrgentTasks();
+function setUrgentPriorityQuantity() {
+    document.getElementById("urgentNumber") && (document.getElementById("urgentNumber").innerHTML = getAllUrgentTasks());
 }
-
+    
 
 /** Updates the overall task count in the summary. */
-async function setTotalTasksQuantity() {
-    document.getElementById("tasksOnBoardNumber").innerHTML = loadedTasks.length;
+function setTotalTasksQuantity() {
+    document.getElementById("tasksOnBoardNumber") && (document.getElementById("tasksOnBoardNumber").innerHTML = loadedTasks.length);
 }
 
 
@@ -69,7 +71,7 @@ async function setNextUrgentTaskDate() {
 
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const formattedDate = closestDate.toLocaleDateString(undefined, options);
-  document.getElementById("calenderDate").textContent = formattedDate;
+  document.getElementById("calenderDate") && (document.getElementById("calenderDate").textContent = formattedDate);
 }
 
 
