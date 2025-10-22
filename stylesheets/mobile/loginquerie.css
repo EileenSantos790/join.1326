@@ -211,6 +211,14 @@
     .signUpPageMainContent {
         max-height: 595px;
     }
+
+    .contentContainer {
+        overflow: auto;
+    }
+
+    .summaryMainSection {
+        overflow: auto;
+    }
 }
 
 @media (max-height: 780px) {

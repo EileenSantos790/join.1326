@@ -170,6 +170,7 @@
     .contentContainerPadding:has(.summaryMainContent) {
         padding-left: unset;
         padding-right: unset;
+        padding-bottom: unset;
     }
 
     .summaryMainSection {
