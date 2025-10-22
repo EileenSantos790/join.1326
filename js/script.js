@@ -173,12 +173,24 @@ function isMobile() {
 }
 
 
-/** Navigate back to home or login page based on session status. */
+/** Navigates back in the browser history. */
 function goBack() {
-    const userName = sessionStorage.getItem('userName');
-    if (userName !== null && userName.trim() !== "") {
-       window.location.href = 'home.html';
-    } else {
-        window.location.href = 'index.html';
-    }
+    const loggedIn = sessionStorage.getItem('userfound') === 'true';
+    const aPreviousPage = JSON.parse(sessionStorage.getItem('pageHistory')) || [];
+    const previewPage = aPreviousPage[aPreviousPage.length - 2];
+    if (loggedIn) {
+        if (aPreviousPage.length) {
+            const menuItem = document.querySelector(`.navLine[data-file*=${previewPage}], .sitesNavContainer[data-file*=${previewPage}], #btnHelpe[data-file*=${previewPage}]`);
+            menuItem.click();
+            aPreviousPage.pop();
+            storePreviousPage(aPreviousPage);
+        } else { window.location.href = 'home.html'; }
+    } else { window.location.href = 'index.html'; }
 }
+
+/** Stores the previous page in session storage. */
+function storePreviousPage(aPreviousPage) {
+    sessionStorage.setItem('pageHistory', JSON.stringify(aPreviousPage));
+}
+
+

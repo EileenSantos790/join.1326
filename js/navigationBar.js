@@ -1,6 +1,8 @@
 /** Starts rendering once the DOM content is loaded. */
 window.addEventListener('DOMContentLoaded', renderMainContent);
 
+let aPreviousPage = [];
+
 
 /** Initializes the main content area and navigation. */
 async function renderMainContent() {
@@ -28,6 +30,8 @@ function setClickEvents(items, content) {
       if (shouldClearActive) {clearAllActiveStates();
       } else {markActive(items, item); }
       if (file) {loadPage(file, content); }
+      aPreviousPage.push(file.replace("./htmlTemplates/", "").replace(".html", ""))
+      storePreviousPage(aPreviousPage);
     });
   }
 }
