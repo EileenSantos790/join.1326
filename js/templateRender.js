@@ -79,6 +79,7 @@ function renderEditOverlay(editOverlay){
 
 /** Opens the task details overlay for the given task. */
 async function openTaskDetails(taskId, editedTask = null) {
+    document.getElementById('homeBody').classList.add('overflowHidden');
     const task = !editedTask ? allTasks.find(task => task.id === taskId) : editedTask;
     await slideinBoardDetailsOverlay()
     const content = document.getElementById("boardOverlayContent");

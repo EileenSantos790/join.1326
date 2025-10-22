@@ -1,6 +1,5 @@
 .addTaskBody {
     height: calc(100vh - 32px);
-    overflow: auto;
 }
 
 .addTaskOverlayBackground {
