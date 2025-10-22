@@ -25,7 +25,7 @@ function setClickEvents(items, content) {
   for (const item of items) {
     item.addEventListener('click', () => {
       const file = item.getAttribute('data-file');
-      const isStaticInfoPage = file === "./htmlTemplates/privacyPolicy.html" || file === "./htmlTemplates/legalNotice.html";
+      const isStaticInfoPage = file === "./htmlTemplates/privacyPolicy.html" || file === "./htmlTemplates/legalNotice.html" || file === "./htmlTemplates/help.html";
       const shouldClearActive = typeof isMobile === 'function' && isMobile() && isStaticInfoPage;
       if (shouldClearActive) {clearAllActiveStates();
       } else {markActive(items, item); }
