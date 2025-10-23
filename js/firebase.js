@@ -7,7 +7,9 @@ let signUpFormValidationErrorMessage;
 let userfound = false;
 
 
-/** Check if User is already logged in and redirect to home page if true. */
+/**
+ * check if the user is already logged in by looking for a session variable.
+ */
 function isUserAlreadyLogedIn() {
     const loggedIn = sessionStorage.getItem('userfound') === 'true';
     if (loggedIn) {
@@ -16,7 +18,11 @@ function isUserAlreadyLogedIn() {
 }
 
 
-/** Try to login with the provided email and password. */
+/**
+ * try to log in the user with the provided email and password.
+ * @param {string} containerLoginId - The ID of the login input container.
+ * @param {string} containerPasswordId - The ID of the password input container.
+ */
 function tryToLogin(containerLoginId, containerPasswordId) {
     email = document.getElementById("emailInput").value;
     password = document.getElementById("passwordInput").value;
@@ -32,7 +38,11 @@ function tryToLogin(containerLoginId, containerPasswordId) {
 }
 
 
-/** Check if the provided email and password are correct. */
+/** 
+ * check if the provided email and password are correct.
+ * @param {string} containerLoginId - The ID of the login input container.
+ * @param {string} containerPasswordId - The ID of the password input container.
+*/
 async function checkIfDataIsCorrect(containerLoginId, containerPasswordId) {
     let responseUseres = await fetch(BASE_URL + "users.json"); let users = await responseUseres.json();
     for (let key in users) {
@@ -49,7 +59,10 @@ async function checkIfDataIsCorrect(containerLoginId, containerPasswordId) {
 }
 
 
-/** Login as a guest user (no authentication, just for demo purposes). */
+/**
+ * log in as a guest user.
+ * sets session variables and redirects to home page.
+*/
 function loginAsGuest() {
     sessionStorage.setItem("userfound", true);
     sessionStorage.setItem("userName", "Guest");
@@ -58,7 +71,15 @@ function loginAsGuest() {
 }
 
 
-/** Try to sign up a new user with the provided data. */
+/**
+ * Validate passwords and fields for sign up.
+ * @param {string} signUpName - The name input value.
+ * @param {string} signUpEmail - The email input value.
+ * @param {string} signUpPassword - The password input value.
+ * @param {string} signUpPasswordConfirm - The password confirmation input value.
+ * @param {string} confirmId - The ID of the password confirmation input container.
+ * @returns {boolean} - True if validation passes, false otherwise.
+ */
 function validatePasswordsAndFields(signUpName, signUpEmail, signUpPassword, signUpPasswordConfirm, confirmId) {
     let signUpFormValidationErrorMessage = document.getElementById("signUpFormValidationErrorMessage");
     if (signUpName !== "" && signUpEmail !== "" && signUpPassword !== "" && signUpPasswordConfirm !== "") {
@@ -75,7 +96,10 @@ function validatePasswordsAndFields(signUpName, signUpEmail, signUpPassword, sig
 }
 
 
-/** Attempts to sign up a new user after validating inputs. */
+/**
+ * Try to sign up a new user.
+ * @param {string} confirmId - The ID of the password confirmation input container.
+*/
 function tryToSignUp(confirmId) {
     let signUpName = document.getElementById("signUpNameInput").value;
     let signUpEmail = document.getElementById("signUpEmailInput").value;
@@ -88,7 +112,12 @@ function tryToSignUp(confirmId) {
 }
 
 
-/** Check if the user already exists in the database. */
+/**
+ * Check if a user with the given email already exists in the database.
+ * @param {string} email - The email to check.
+ * @param {string} name - The name of the new user.
+ * @param {string} password - The password of the new user.
+*/
 async function checkIfUserAlreadyExists(email, name, password) {
     signUpFormValidationErrorMessage = document.getElementById("signUpFormValidationErrorMessage");
     let response = await fetch(BASE_URL + "users.json");
@@ -104,7 +133,12 @@ async function checkIfUserAlreadyExists(email, name, password) {
 }
 
 
-/** Save the new user to the database. */
+/**
+ * Save a new user to the database.
+ * @param {string} name - The name of the new user.
+ * @param {string} userEmail - The email of the new user.
+ * @param {string} userPassword - The password of the new user.
+ */
 async function saveNewUserToDB(name, userEmail, userPassword) {
     signUpFormValidationErrorMessage = document.getElementById("signUpFormValidationErrorMessage");
     signUpFormValidationErrorMessage.innerText = "";
@@ -119,7 +153,14 @@ async function saveNewUserToDB(name, userEmail, userPassword) {
 }
 
 
-/** Basic JSON structure for a new user. */
+/** 
+ * Create a basic JSON structure for a new user.
+ * @param {string} name - The name of the user.
+ * @param {string} email - The email of the user.
+ * @param {string} password - The password of the user.
+ * @param {string} color - The color associated with the user.
+ * @returns {object} - The JSON structure for the new user.
+*/
 function basicJsonStructure(name, email, password, color) {
     return {
         user: {
@@ -134,19 +175,29 @@ function basicJsonStructure(name, email, password, color) {
 }
 
 
-/** Get a random hex color. */
+/** 
+ * Generate a random hex color.
+ * @returns {string} - A random hex color string.
+*/
 function getRandomHexColor() {
     return "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
 }
 
 
-/** Get initials from a name (first two letters). */
+/** 
+ * Get initials from a name.
+ * @param {string} name - The full name of the user.
+ * @returns {string} - The initials of the user.
+ */
 function getInitials(name) {
     return name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
 }
 
 
-/** Get all tasks from the database. */
+/** 
+ * Fetch tasks from the database.
+ * @returns {object} - The tasks retrieved from the database.
+ */
 async function getTasks() {
     const tasks = await fetch(BASE_URL + "tasks.json");
     const results = await tasks.json();
