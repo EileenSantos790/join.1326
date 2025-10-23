@@ -137,6 +137,8 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
         max-height: calc(100vh - 400px);
+        padding-left: 1px;
+        padding-right: 1px;
     }
 
     .addTaskInputsLeftSide,
