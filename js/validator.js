@@ -1,4 +1,18 @@
-/** Validates a contact form field and updates its error state. */
+/**
+ * Validates a contact or add-task form field and updates its error state.
+ *
+ * Behavior:
+ * - Field-specific rules by `id` (e.g., contactName, contactEmail, addTasktDateInput)
+ * - Falls back to native `checkValidity()` when no explicit rule applies
+ * - Toggles error classes on a matching container element and sets ARIA state
+ * - Writes error message into a derived `...ErrorContainer`/`...Error` element
+ *
+ * Note: There are two switch cases for `contactPhone`. The first one only checks presence;
+ * the second applies a regex. This function preserves the current behavior.
+ *
+ * @param {HTMLInputElement|HTMLTextAreaElement} field - The input or textarea element to validate.
+ * @returns {boolean} True when valid, false otherwise.
+ */
 function validateField(field) {
   const id = field.id;
   const raw = field.value || "";
@@ -122,10 +136,17 @@ function validateField(field) {
   return isValid;
 }
 
-// Attach validation on blur (when leaving the field)
+/**
+ * Attaches blur listeners after DOM is ready so fields get validated on leave.
+ */
 document.addEventListener("DOMContentLoaded", attachContactValidators);
 
-// Overlays are injected dynamically; expose a function to (re)attach
+/**
+ * Overlays are injected dynamically; expose a function to (re)attach validation handlers.
+ * Binds blur/input events for contact and add-task inputs when present in DOM.
+ *
+ * @returns {void}
+ */
 function attachContactValidators() {
     const nameInput = document.getElementById("contactName");
     const emailInput = document.getElementById("contactEmail");
@@ -147,7 +168,13 @@ function attachContactValidators() {
     }
 }
 
-/** Converts a valid DD.MM.YYYY date string to ISO YYYY-MM-DD; returns null if invalid. */
+/**
+ * Converts a valid date string (DD.MM.YYYY or YYYY-MM-DD) to ISO format YYYY-MM-DD.
+ * Returns null when the input cannot be parsed strictly as a valid calendar date.
+ *
+ * @param {string} str - Input date string (e.g., "31.01.2025" or "2025-01-31").
+ * @returns {string|null} Normalized ISO date or null when invalid.
+ */
 function normalizeDateToISO(str) {
   const parsed = parseDateStrict(str);
   if (!parsed) return null;
@@ -157,17 +184,20 @@ function normalizeDateToISO(str) {
   return `${yyyy}-${mm}-${dd}`;
 }
 
-// Expose helpers globally if running in browser
+/** Expose helpers globally when running in a browser environment. */
 if (typeof window !== 'undefined') {
   window.normalizeDateToISO = normalizeDateToISO;
 }
 
 /**
  * Parses a date string strictly in one of the allowed formats and verifies calendar validity.
+ *
  * Allowed formats:
- *  - YYYY-MM-DD
- *  - DD.MM.YYYY (year must have exactly 4 digits)
- * Returns Date on success, else null.
+ * - YYYY-MM-DD
+ * - DD.MM.YYYY (year must have exactly 4 digits)
+ *
+ * @param {string} str - The input date string.
+ * @returns {Date|null} A Date object on success, else null when invalid.
  */
 function parseDateStrict(str) {
   if (!str || typeof str !== 'string') return null;
@@ -196,6 +226,15 @@ function parseDateStrict(str) {
   return null;
 }
 
+/**
+ * Validates that numeric year, month, and day are within acceptable ranges.
+ * Year must be 4 digits (1000-9999), month 1-12, day 1-31.
+ *
+ * @param {number} y - Year (four digits).
+ * @param {number} m - Month (1-12).
+ * @param {number} d - Day (1-31).
+ * @returns {boolean} True if within ranges; false otherwise.
+ */
 function isValidYMD(y, m, d) {
   // enforce 4-digit year range
   if (!(y >= 1000 && y <= 9999)) return false;
@@ -204,6 +243,15 @@ function isValidYMD(y, m, d) {
   return true;
 }
 
+/**
+ * Ensures the Date instance matches the exact provided Y-M-D (no overflow).
+ *
+ * @param {Date} date - Date object to inspect.
+ * @param {number} y - Expected year.
+ * @param {number} m - Expected month (1-12).
+ * @param {number} d - Expected day (1-31).
+ * @returns {boolean} True when date matches exactly; false otherwise.
+ */
 function sameYMD(date, y, m, d) {
   return (
     date.getFullYear() === y &&
