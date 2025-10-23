@@ -7,7 +7,11 @@ let dropPlaceholder = document.createElement('div');
 dropPlaceholder.className = 'dropPlaceholder';
 
 
-/** Watches the DOM for a selector and runs a callback when it appears. */
+/**
+ * Observe the DOM and invoke a callback once a selector appears.
+ * @param {string} selector CSS selector to watch for
+ * @param {(el: Element) => void} cb Callback invoked with the found element
+ */
 function onElementAppear(selector, cb) {
     let present = false;
     const check = () => { const el = document.querySelector(selector); if (el && !present) { present = true; cb(el); } else if (!el && present) { present = false; } };
@@ -21,7 +25,10 @@ onElementAppear('#boardTodoContainer', () => {
 });
 
 
-/** Fetches tasks, caches them locally, and renders the board. */
+/**
+ * Load tasks from backend, cache them into `allTasks`, and render the board lanes.
+ * @returns {Promise<void>}
+ */
 async function loadBoard() {
     const tasks = await getTasks();
     const arrTasks = getTasksToArray(tasks)
@@ -30,7 +37,10 @@ async function loadBoard() {
 }
 
 
-/** Clears status lanes and renders task cards into each lane. */
+/**
+ * Clear lanes and render provided tasks into their status lanes.
+ * @param {Array<{id:string,status:string}>} tasks Array of task objects
+ */
 function renderBoard(tasks) {
     const statuses = ['Todo', 'Progress', 'Feedback', 'Done'];
     statuses.forEach(s => { const lane = document.getElementById(`board${s}Container`); const ph = document.getElementById(`spaceHolder${s}Container`);
@@ -47,7 +57,11 @@ function renderBoard(tasks) {
 }
 
 
-/** Updates the task status locally and persists the change to the backend. */
+/**
+ * Update a task status locally and persist to backend.
+ * @param {string} taskId Task identifier
+ * @param {string} newStatus One of: Todo | Progress | Feedback | Done
+ */
 async function changeBoardStatus(taskId, newStatus) {
     const task = allTasks.find(t => t.id === taskId);
     task.status = newStatus;
@@ -58,7 +72,7 @@ async function changeBoardStatus(taskId, newStatus) {
 }
 
 
-/** Toggles the Move To overlay for the clicked task card. */
+/** Toggle the "Move To" overlay for the clicked task card. */
 function openBoardMoveToOverlay() {
     event.stopPropagation();
     const icon = event.currentTarget;
@@ -69,7 +83,11 @@ function openBoardMoveToOverlay() {
 }
 
 
-/** Closes the overlay when clicking outside of the icon or overlay. */
+/**
+ * Close a small overlay if a click occurs outside of its bounds.
+ * @param {HTMLElement} icon The icon element that opened the overlay
+ * @param {HTMLElement} overlay The overlay element to close
+ */
 function closeOverlayClickOutside(icon, overlay) {
     if (overlay) {
         overlay.classList.remove('d-none');
@@ -79,7 +97,11 @@ function closeOverlayClickOutside(icon, overlay) {
 }
 
 
-/** Converts the tasks object from the backend into an array of task objects. */
+/**
+ * Convert tasks response object into an array of normalized task objects.
+ * @param {Record<string, any>} tasks Keyed object from backend
+ * @returns {Array<{id:string,title:string,description:string,status:string,assignedTo:any,category:string,dueDate:string,priority:string,subtasks:Array}>}
+ */
 function getTasksToArray(tasks) {
     const arr = [];
     if (!tasks) return arr;
@@ -91,7 +113,10 @@ function getTasksToArray(tasks) {
 }
 
 
-/** Opens the add-task overlay with the given status selected on desktop. */
+/**
+ * Open the Add Task overlay with given status preselected (desktop only).
+ * @param {string} status Initial status for new task
+ */
 function openAddTaskOverlay(status) {
     const minWidth = window.innerWidth;
     if (minWidth > 1024) {
@@ -105,7 +130,7 @@ function openAddTaskOverlay(status) {
 }
 
 
-/** Closes the add-task overlay and restores body scrolling. */
+/** Close the Add Task overlay and restore scrolling. */
 function closeAddTaskOverlay() {
     document.getElementById('addTaskBoardOverlayMainSection').classList.remove('show');
     document.getElementById('homeBody').classList.remove('overflowHidden');
@@ -114,7 +139,7 @@ function closeAddTaskOverlay() {
 }
 
 
-/** Displays the success message overlay after adding a task. */
+/** Show the success message overlay after adding a task. */
 function showAddTaskOverlaySuccessMessage() {
     document.getElementById('addTaskBoardOverlay').classList.remove('d-none');
 }
@@ -134,7 +159,7 @@ function attachBoardAddTaskOutsideClickHandler() {
 }
 
 
-/** Detaches the pointer down and pointer up event handlers from the addTaskBoardOverlayMainSection element. */
+/** Detach pointer events previously bound for outside-click close on Add Task overlay. */
 function detachBoardAddTaskOutsideClickHandler() {
     const root = document.getElementById('addTaskBoardOverlayMainSection');
     if (!root || !root.__handlersAttached) return;
@@ -145,7 +170,12 @@ function detachBoardAddTaskOutsideClickHandler() {
 }
 
 
-/** Updates a subtask's done state and saves the task. */
+/**
+ * Toggle a subtask done state and save the parent task.
+ * @param {{id:string,subtasks?:Array<{id:number|string,done:boolean}>}} task Parent task
+ * @param {number|string} subtaskId Subtask identifier
+ * @param {boolean} isDone New done state
+ */
 function onSubtaskToggle(task, subtaskId, isDone) {
     const idx = (task.subtasks || []).findIndex(s => String(s.id) === String(subtaskId));
     if (idx === -1) return;
@@ -155,7 +185,11 @@ function onSubtaskToggle(task, subtaskId, isDone) {
 }
 
 
-/** Formats a date string into DD/MM/YYYY format. */
+/**
+ * Format an ISO date string into DD/MM/YYYY (en-GB locale).
+ * @param {string|number|Date} date Input date
+ * @returns {string}
+ */
 function formatDate(date) {
     const data = new Date(date);
     return data.toLocaleDateString("en-GB", {
@@ -166,7 +200,10 @@ function formatDate(date) {
 }
 
 
-/** Deletes a task and refreshes the board after success. */
+/**
+ * Delete a task by id and refresh the board UI.
+ * @param {string} taskId
+ */
 async function deleteTask(taskId) {
     try {
         await updateContactTask(taskId);
@@ -177,7 +214,10 @@ async function deleteTask(taskId) {
 }
 
 
-/** Removes the task reference from each user that had it assigned. */
+/**
+ * Remove the task reference from each user who had it assigned.
+ * @param {string} taskId
+ */
 async function updateContactTask(taskId) {
     try {
         const resp = await fetch(`${BASE_URL}users.json`);
@@ -192,14 +232,21 @@ async function updateContactTask(taskId) {
 }
 
 
-/** Writes the updated task list for a user back to the database. */
+/**
+ * Persist updated tasks list into a user's record.
+ * @param {string} userId
+ * @param {string[]} updatedTasks
+ */
 function refreshContactTasksOnDb(userId, updatedTasks) {
     try { fetch(`${BASE_URL}users/${userId}/user/tasks.json`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(updatedTasks) }); } 
     catch (error) { console.error("Erro update contact tasks:", error); return []; }
 }
 
 
-/** Removes a user from all tasks or deletes tasks with no remaining assignees. */
+/**
+ * Remove a user from all tasks; delete tasks that become unassigned.
+ * @param {string} userId
+ */
 async function removeAllTasksFromUser(userId) {
     if (!userId) return;
     try {
@@ -216,79 +263,10 @@ async function removeAllTasksFromUser(userId) {
 }
 
 
-/** Marks a task card as dragging and prepares the placeholder element. */
-function onDragStart(ev) {
-    const card = ev.currentTarget;
-    draggedTaskId = card.id;
-    ev.dataTransfer.effectAllowed = 'move';
-    ev.dataTransfer.setData('text/plain', draggedTaskId);
-    card.classList.add('dragging');
-    dropPlaceholder.style.height = card.offsetHeight + 'px';
-    dropPlaceholder.style.width = '100%';
-}
-
-
-/** Clears dragging styles and removes the placeholder after drop ends. */
-function onDragEnd(ev) {
-    const card = ev.currentTarget;
-    card.classList.remove('dragging');
-    if (dropPlaceholder.parentElement) dropPlaceholder.parentElement.removeChild(dropPlaceholder);
-    draggedTaskId = null;
-}
-
-
-/** Handles dragover to position the placeholder within a lane. */
-function onDragOver(ev) {
-    ev.preventDefault(); ev.dataTransfer.dropEffect = 'move'; let container = null; const ct = ev.currentTarget;
-    if (ct.classList && ct.classList.contains('boardLaneBody')) { container = ct; } else if (ct.id && ct.id.startsWith('spaceHolder')) { const mappedId = ct.id.replace('spaceHolder', 'board'); container = document.getElementById(mappedId); } else { container = ct.closest('.boardLaneBody'); }
-    if (!container) return;
-    container.classList.add('dropActive');
-    container.classList.remove('dropAtEnd');
-    container.querySelectorAll('.insertionBefore').forEach(el => el.classList.remove('insertionBefore'));
-    const afterElement = getDragAfterElement(container, ev.clientY);
-    if (afterElement == null) {
-        if (dropPlaceholder.parentElement !== container) container.appendChild(dropPlaceholder); else container.appendChild(dropPlaceholder);
-        container.classList.add('dropAtEnd');
-    } else { afterElement.classList.add('insertionBefore'); if (afterElement.previousSibling !== dropPlaceholder) { container.insertBefore(dropPlaceholder, afterElement); }}
-}
-
-
-/** Applies the new status on drop and syncs the task order. */
-async function onDrop(ev) {
-    ev.preventDefault(); let container = null; const ct = ev.currentTarget;
-    if (ct.classList && ct.classList.contains('boardLaneBody')) { container = ct; } else if (ct.id && ct.id.startsWith('spaceHolder')) { const mappedId = ct.id.replace('spaceHolder', 'board'); container = document.getElementById(mappedId); } else { container = ct.closest('.boardLaneBody'); }
-    if (!container) return;
-    const targetStatus = container.dataset.status || '';
-    const droppedId = ev.dataTransfer.getData('text/plain') || draggedTaskId;
-    if (!droppedId) return;
-    const dragging = document.getElementById(droppedId);
-    if (dragging && dropPlaceholder.parentElement === container) { container.insertBefore(dragging, dropPlaceholder); } else if (dragging && !dropPlaceholder.parentElement) {  container.appendChild(dragging); }
-    const byId = new Map(allTasks.map(t => [t.id, t])); Array.from(container.querySelectorAll('.boardCardContainer')).forEach(el => { const t = byId.get(el.id); if (t) t.status = targetStatus; });
-    try { await fetch(`${BASE_URL}tasks/${droppedId}.json`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: targetStatus }) }); } catch (e) { console.error('Failed to update task status:', e); }
-    if (dropPlaceholder.parentElement) dropPlaceholder.parentElement.removeChild(dropPlaceholder);
-    container.classList.remove('dropActive', 'dropAtEnd'); container.querySelectorAll('.insertionBefore').forEach(el => el.classList.remove('insertionBefore')); renderBoard(allTasks);
-}
-
-
-/** Finds the card element that should follow the dragged placeholder. */
-function getDragAfterElement(container, y) {
-    const elements = [...container.querySelectorAll('.boardCardContainer:not(.dragging)')];
-    return elements.reduce((closest, child) => {
-        const box = child.getBoundingClientRect();
-        const offset = y - (box.top + box.height / 2);
-        if (offset < 0 && offset > closest.offset) { return { offset, element: child }; } else { return closest; }
-    }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
-}
-
-
-/** Removes drag styling when the pointer leaves a lane. */
-function onDragLeave(ev) {
-    const lane = ev.currentTarget;
-    if (lane && lane.classList) { lane.classList.remove('dropActive'); lane.classList.remove('dropAtEnd'); lane.querySelectorAll('.insertionBefore').forEach(el => el.classList.remove('insertionBefore')); }
-}
-
-
-/** Opens the edit overlay populated with the task data. */
+/**
+ * Open the edit overlay and populate with task data by id.
+ * @param {string} taskId
+ */
 async function editTask(taskId) {
     renderContactsInAddTask();
     const content = document.getElementById("boardOverlayContent");
@@ -305,7 +283,10 @@ async function editTask(taskId) {
 }
 
 
-/** Highlights the selected task card on the board. */
+/**
+ * Highlight a task card as selected in the board.
+ * @param {string} taskId
+ */
 function selectTaskCard(taskId) {
     document.querySelectorAll('.boardCardContainer.is-selected')
         .forEach(el => el.classList.remove('is-selected'));
@@ -314,7 +295,7 @@ function selectTaskCard(taskId) {
 }
 
 
-/** Removes the selected highlight from any task card. */
+/** Remove the selected highlight from any task card. */
 function clearSelectedCard() {
     document.querySelectorAll('.boardCardContainer.is-selected')
         .forEach(el => el.classList.remove('is-selected'));
@@ -322,7 +303,10 @@ function clearSelectedCard() {
 }
 
 
-/** Lists subtasks inside the edit overlay subtasks section. */
+/**
+ * Render the list of subtasks inside the edit overlay section.
+ * @param {Array<{id:number|string,text:string,done:boolean}>} subtasks
+ */
 function renderSubtasksOnEdit(subtasks) {
     let list = document.getElementById('subtaskListContent');
     list.innerHTML = "";
@@ -332,7 +316,7 @@ function renderSubtasksOnEdit(subtasks) {
 }
 
 
-/** Filters visible tasks on the board based on the search input. */
+/** Filter visible tasks on the board based on the search input. */
 function filterTasks() {
     let search = document.getElementById('searchTasks').value.toLowerCase();
     if (search.trim() === '') { removeOverlayTaskNotFound(); renderBoard(allTasks); }  else {
@@ -349,7 +333,7 @@ function filterTasks() {
 }
 
 
-/** Clears all board lanes before rendering filtered results. */
+/** Clear all board lanes before rendering filtered results. */
 function clearTasksContainer() {
     document.getElementById('boardTodoContainer').innerHTML = ``;
     document.getElementById('boardProgressContainer').innerHTML = ``;
@@ -359,7 +343,7 @@ function clearTasksContainer() {
 }
 
 
-/** Shows a red overlay message when no tasks match the filter. */
+/** Show a red overlay message when no tasks match the filter. */
 function addOverlayTaskNotFound() {
     const aStatus = ['Todo', 'Progress', 'Feedback', 'Done'];
     aStatus.forEach(status => {
@@ -371,7 +355,7 @@ function addOverlayTaskNotFound() {
 }
 
 
-/** Restores the default empty-state overlay styling for each lane. */
+/** Restore the default empty-state overlay styling for each lane. */
 function removeOverlayTaskNotFound() {
     const aStatus = ['Todo', 'Progress', 'Feedback', 'Done'];
     aStatus.forEach(status => {

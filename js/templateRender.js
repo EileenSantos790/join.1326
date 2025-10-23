@@ -1,4 +1,25 @@
-/** Builds and appends a task card element into the target lane. */
+/**
+ * Builds and appends a task card element into the target lane.
+ *
+ * Structure includes:
+ * - Category badge, title, truncated description
+ * - Optional subtasks progress bar
+ * - Avatars and priority icon
+ * - "Move To" overlay trigger and options
+ *
+ * @param {{
+ *   id: string,
+ *   title: string,
+ *   description: string,
+ *   category: 'User Story' | 'Technical Task' | string,
+ *   priority: 'Urgent' | 'Medium' | 'Low' | string,
+ *   status: string,
+ *   assignedTo?: Array<any>,
+ *   subtasks?: Array<{id: string|number, text: string, done?: boolean}>
+ * }} task - Task data used to render the card.
+ * @param {HTMLElement} card - Lane container where the HTML will be appended.
+ * @returns {void}
+ */
 function renderCard(task, card) {
     let html = `<div id="${task.id}" class="boardCardContainer drag" draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)" onclick="openTaskDetails('${task.id}')">`;
     const description = task.description.length > 7 ? task.description.split(" ", 7).join(" ").concat("...") : task.description
@@ -24,7 +45,12 @@ function renderCard(task, card) {
 }
 
 
-/** Renders a subtasks progress bar if the task contains subtasks. */
+/**
+ * Renders a subtasks progress bar if the task contains subtasks.
+ *
+ * @param {{subtasks?: Array<{done?: boolean}>}} task - Task containing optional subtasks.
+ * @returns {string} HTML string for the progress bar or an empty string.
+ */
 function renderProgressBar(task) {
     if (!task.subtasks) return ""
     const total = task.subtasks.length;
@@ -41,7 +67,12 @@ function renderProgressBar(task) {
 }
 
 
-/** Returns the priority icon markup based on task priority. */
+/**
+ * Returns the priority icon SVG markup based on task priority.
+ *
+ * @param {"Urgent"|"Medium"|"Low"|string} priority - Priority label.
+ * @returns {string} HTML string for the priority icon.
+ */
 function renderPriorityOnBoard(priority) {
     switch (priority) {
         case "Urgent": return `<img class="priorityIconBoard"src="assets/icons/prio_high.svg"></img>`
@@ -51,7 +82,12 @@ function renderPriorityOnBoard(priority) {
 }
 
 
-/** Renders the responsive edit overlay with actions. */
+/**
+ * Renders the responsive edit overlay with Edit/Delete actions for a contact.
+ *
+ * @param {HTMLElement} editOverlay - Container element where the overlay HTML is injected.
+ * @returns {void}
+ */
 function renderEditOverlay(editOverlay){
     const userID = document.getElementById("contactDetailsResponsive").getAttribute('data-edited-contactId');
     editOverlay.innerHTML = `
@@ -77,7 +113,20 @@ function renderEditOverlay(editOverlay){
 }
 
 
-/** Opens the task details overlay for the given task. */
+/**
+ * Opens the task details overlay for the given task and wires subtask toggling.
+ *
+ * Behavior:
+ * - Loads overlay shell (HTML template)
+ * - Populates task details (category, title, description, due date, priority)
+ * - Renders assigned contacts and subtasks checklist
+ * - Attaches delegated change listener to update subtask completion
+ *
+ * @async
+ * @param {string} taskId - Task identifier; used to look up task when editedTask not provided.
+ * @param {object|null} [editedTask=null] - Optional task object when provided externally.
+ * @returns {Promise<void>}
+ */
 async function openTaskDetails(taskId, editedTask = null) {
     document.getElementById('homeBody').classList.add('overflowHidden');
     const task = !editedTask ? allTasks.find(task => task.id === taskId) : editedTask;

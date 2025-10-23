@@ -2,7 +2,12 @@ let userInitials;
 let greetingUserName;
 
 
-/** Check the box and activate the button. */
+/** 
+ * Toggles the checkbox state and enables/disables the associated button.
+ * @param {string} checkId - The ID of the checked checkbox element.
+ * @param {string} uncheckId - The ID of the unchecked checkbox element.
+ * @param {string} buttonId - The ID of the button to enable/disable.
+ */
 function toggleCheckbox(checkId, uncheckId, buttonId) {
     let checked = document.getElementById(checkId);
     let unchecked = document.getElementById(uncheckId);
@@ -13,7 +18,12 @@ function toggleCheckbox(checkId, uncheckId, buttonId) {
 }
 
 
-/** Switches the password and icon between visible and hidden. */
+/** 
+ * Switches the password and icon between visible and hidden. 
+ * @param {string} inputId - The ID of the password input field.
+ * @param {string} iconOffId - The ID of the "eye-off" icon element.
+ * @param {string} iconOnId - The ID of the "eye-on" icon element. 
+ */
 function togglePasswordVisibility(inputId, iconOffId, iconOnId) {
     let input = document.getElementById(inputId);
     let iconOff = document.getElementById(iconOffId);
@@ -28,13 +38,20 @@ function togglePasswordVisibility(inputId, iconOffId, iconOnId) {
 }
 
 
-/** Load the sign-up page. */
+/**
+ * Load the sign-up page.
+ * @param {string} htmlName - The name of the HTML file to load.
+ */
 function loadSignUp(htmlName) {
     window.location.href = htmlName;
 }
 
 
-/** Set focus border on input field and remove error border and message. */
+/** 
+ * Adds focus styling to the given input wrapper and clears any error messages.
+ * @param {string} containerId - The ID of the input container element.
+ * @param {string} errorMessageId - The ID of the error message element.
+ */
 function setFocusBorder(containerId, errorMessageId) {
     document.getElementById(containerId).classList.add('inputBorderColorFocus');
     document.getElementById(containerId).classList.remove('inputErrorBorder');
@@ -45,13 +62,18 @@ function setFocusBorder(containerId, errorMessageId) {
 }
 
 
-/** Removes the focus styling from the given input wrapper. */
+/** Removes the focus styling from the given input wrapper. 
+ * @param {string} containerId - The ID of the input container element.
+*/
 function removeFocusBorder(containerId) {
     document.getElementById(containerId).classList.remove('inputBorderColorFocus');
 }
 
 
-/** Applies the error border to the provided input wrappers. */
+/** Applies the error border to the provided input wrappers. 
+ * @param {string} containerLoginId - The ID of the login input container.
+ * @param {string} containerPasswordId - The ID of the password input container.
+*/
 function setErrorBorder(containerLoginId, containerPasswordId) {
     document.getElementById(containerLoginId).classList.add('inputErrorBorder');
     if (containerPasswordId) {
@@ -60,7 +82,9 @@ function setErrorBorder(containerLoginId, containerPasswordId) {
 }
 
 
-/** Adds an error border when no category is selected. */
+/** Adds an error border when no category is selected. 
+ * @param {string} containerId - The ID of the category input container.
+*/
 function setErrorBorderForCategory(containerId) {
     let categoryHeader = document.getElementById('categoryDropdownHeader');
     if (categoryHeader.textContent == "Select task category") {
@@ -69,7 +93,9 @@ function setErrorBorderForCategory(containerId) {
 }
 
 
-/** Initialize session (Local Storage) and set user initials and greeting message. */
+/** 
+ * Initialize session (Local Storage) and set user initials and greeting message.
+*/
 async function sessionInit() {
     const user = (sessionStorage.getItem('userName') || '').trim();
     if (typeof userInitials !== 'undefined' && userInitials) {
@@ -85,6 +111,9 @@ async function sessionInit() {
 }
 
 
+/**
+ * set greeting message based on the time of day and user's name.
+ */
 function setGreetingMessage() {
     const greetingDayTimeEl = document.getElementById('greetingDayTime');
     const greetingUserNameEl = document.getElementById('greetingUserName');
@@ -100,6 +129,11 @@ function setGreetingMessage() {
     if (greetingUserNameElMobile) greetingUserNameElMobile.textContent = userName;
 }
 
+
+/**
+ * function to get greeting message and user name.
+ * @returns {object} - An object containing the greeting message and user name.
+ */
 function getGreetingMessage() {
     const h = new Date().getHours();
     const greeting = h < 12 ? 'Good Morning, '
@@ -115,6 +149,11 @@ function getGreetingMessage() {
     }
 }
 
+
+/**
+ * Setup automatic updates for the greeting message.
+ * This ensures the greeting message is always current without requiring a page refresh.
+ */
 (function setupGreetingAutoUpdate() {
     const runNow = () => setGreetingMessage();
     const schedule = () => { runNow(); requestAnimationFrame(runNow); setTimeout(runNow, 0); setTimeout(runNow, 100); setTimeout(runNow, 300); };
@@ -131,12 +170,13 @@ function getGreetingMessage() {
 })();
 
 
-/** Toggles visibility of the user submenu. */
+/** 
+ * Toggles visibility of the user submenu. 
+*/
 function showSubmenu() {
     const submenu = document.getElementById('submenu');
     submenu.classList.toggle('d-none');
 }
-
 document.addEventListener('click', (event) => {
     const submenu = document.getElementById('submenu');
     if (!submenu || submenu.classList.contains('d-none')) return;
@@ -146,34 +186,44 @@ document.addEventListener('click', (event) => {
 });
 
 
-/** Hides the user submenu. */
+/** 
+ * Hides the user submenu. 
+*/
 function closeSubmenu() {
     const submenu = document.getElementById('submenu');
     submenu.classList.add('d-none');
 }
 
 
-/** Hides the desktop user menu icons. */
+/**
+ * Hides the desktop user menu icons. 
+*/
 function hideUserMenu() {
     const submenu = document.getElementById('menuIcons');
     submenu.classList.add('d-none');
 }
 
 
-/** Logout the user and clear session storage. */
+/** 
+ * Logout the user and clear session storage.
+*/
 function logout() {
     sessionStorage.clear();
     window.location.href = 'index.html';
 }
 
 
-/** Returns true when the viewport width is in mobile range. */
+/** 
+ * Returns true when the viewport width is in mobile range. 
+*/
 function isMobile() {
     return window.innerWidth <= 1024;
 }
 
 
-/** Navigates back in the browser history. */
+/**
+ * Navigates back in the browser history. 
+*/
 function goBack() {
     const loggedIn = sessionStorage.getItem('userfound') === 'true';
     const aPreviousPage = JSON.parse(sessionStorage.getItem('pageHistory')) || [];
@@ -189,9 +239,10 @@ function goBack() {
 }
 
 
-/** Stores the previous page in session storage. */
+/** 
+ * Stores the previous page in session storage. 
+ * @param {Array} aPreviousPage - An array of previous page identifiers.
+*/
 function storePreviousPage(aPreviousPage) {
     sessionStorage.setItem('pageHistory', JSON.stringify(aPreviousPage));
 }
-
-

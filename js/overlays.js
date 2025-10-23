@@ -1,4 +1,14 @@
-/** Displays the add-contact overlay panel. */
+/**
+ * Loads and displays the Add Contact overlay panel.
+ *
+ * Behavior:
+ * - Fetches the `addContactOverlay.html` template and injects it into `#overlayPanel`.
+ * - Wires up cancel/close button handlers and optional validators.
+ * - Shows the overlay with proper body scroll locking.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 async function slideinAddContactOverlay() {
   const root = document.getElementById('overlayRoot');
   const panel = document.getElementById('overlayPanel');
@@ -14,7 +24,17 @@ async function slideinAddContactOverlay() {
 }
 
 
-/** Displays the edit-contact overlay panel. */
+/**
+ * Loads and displays the Edit Contact overlay panel.
+ *
+ * Behavior:
+ * - Fetches the `editContactOverlay.html` template and injects it into `#overlayPanel`.
+ * - Wires up cancel/close button handlers and optional validators.
+ * - Shows the overlay with proper body scroll locking.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 async function slideinEditContactOverlay() {
   const root = document.getElementById('overlayRoot');
   const panel = document.getElementById('overlayPanel');
@@ -29,7 +49,17 @@ async function slideinEditContactOverlay() {
 }
 
 
-/** Finds the close buttons inside the overlay. */
+/**
+ * Finds and wires close/dismiss buttons inside the current overlay.
+ *
+ * Elements handled:
+ * - `#closeBtnBottom` (button): click closes overlay
+ * - `#closeBtnTop` (section): prevents accidental close unless icon clicked
+ * - `#closeBtnTop .closeIcon` (svg/icon): click closes overlay
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 async function callCancelBtns() {
   const cancelBtn = document.getElementById('closeBtnBottom');
   const closeSection = document.getElementById('closeBtnTop');
@@ -45,7 +75,14 @@ async function callCancelBtns() {
 }
 
 
-/** Shows the overlay:. */
+/**
+ * Reveals the overlay root and locks body scroll.
+ * Also attaches outside-click pointer handlers for reliable dismissal.
+ *
+ * @param {HTMLElement} root - The overlay root element (`#overlayRoot`).
+ * @async
+ * @returns {Promise<void>}
+ */
 async function showoverlay(root) {
   document.body.classList.add('noscroll');
   root.classList.remove('initalHiddenOverlay');
@@ -54,7 +91,16 @@ async function showoverlay(root) {
 }
 
 
-/** Closes the overlay:. */
+/**
+ * Closes the overlay with a slide-out transition and cleans up listeners/state.
+ *
+ * Side effects:
+ * - Removes `.overflowHidden` from `#homeBody`
+ * - Detaches outside-click handlers
+ * - Clears panel content after transition
+ *
+ * @returns {void}
+ */
 function closeOverlay() {
   document.getElementById('homeBody').classList.remove('overflowHidden');
   const root = document.getElementById('overlayRoot');
@@ -70,7 +116,16 @@ function closeOverlay() {
 }
 
 
-/** Displays the board details overlay panel. */
+/**
+ * Loads and displays the Board Details overlay panel.
+ *
+ * Behavior:
+ * - Fetches the `boardoverlay.html` template and injects it into `#overlayPanel`.
+ * - Shows the overlay with proper body scroll locking.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 async function slideinBoardDetailsOverlay() {
   const root = document.getElementById('overlayRoot');
   const panel = document.getElementById('overlayPanel');
@@ -80,8 +135,20 @@ async function slideinBoardDetailsOverlay() {
   showoverlay(root);
 }
 
-/** Attaches pointer handlers so the overlay closes only when both pointerdown and pointerup occur outside the overlay panel (true outside click) */
+/**
+ * Tracks whether the pointerdown originated outside the overlay panel.
+ * Used to ensure that only a true outside-click (down+up outside) closes the overlay.
+ * @type {boolean}
+ */
 let __overlayPointerDownOutside = false;
+
+/**
+ * Attaches pointer handlers so the overlay closes only when both pointerdown and
+ * pointerup occur outside the overlay panel (true outside click).
+ * Stores handlers on the root element to avoid multiple bindings.
+ *
+ * @returns {void}
+ */
 function attachOverlayOutsideClickHandler() {
   const root = document.getElementById('overlayRoot');
   const panel = document.getElementById('overlayPanel');
@@ -94,7 +161,12 @@ function attachOverlayOutsideClickHandler() {
   root.__overlayHandlersAttached = { onPointerDown, onPointerUp };
 }
 
-/** Detaches the pointer event handlers from the overlay root element and cleans up the stored handler references. */
+/**
+ * Detaches the pointer event handlers from the overlay root element and
+ * cleans up the stored handler references.
+ *
+ * @returns {void}
+ */
 function detachOverlayOutsideClickHandler() {
   const root = document.getElementById('overlayRoot');
   if (!root || !root.__overlayHandlersAttached) return;
