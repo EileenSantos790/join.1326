@@ -1,4 +1,14 @@
-/** Checks if the user is logged in and redirects or modifies the navigation bar. */
+/**
+ * Checks if the user is logged in and either redirects to login, allows
+ * public pages (privacy policy, legal notice), or initializes UI elements.
+ *
+ * Behavior:
+ * - For public pages when not logged in: renders a minimal navigation with a Login link
+ * - When logged in: initializes references and session checks
+ * - When not logged in and page not public: redirects to index.html
+ *
+ * @returns {void}
+ */
 function isUserLoggedIn() {
     const page = new URLSearchParams(location.search).get('page');
     const allowPublic = page === 'privacyPolicy' || page === 'legalNotice';
@@ -31,7 +41,13 @@ function isUserLoggedIn() {
     }
 }
 
-/** Generates the HTML template for a subtask in the subtask list. */
+
+/**
+ * Generates the HTML markup for a subtask list item (read-only view).
+ *
+ * @param {{id: number|string, text: string}} subtask - Subtask data object.
+ * @returns {string} HTML string representing the subtask item with actions.
+ */
 function getSubtaskListTemplate(subtask) {
     return `<div class="subtaskItem" id="subtask${subtask.id}" ondblclick="editSubtask(${subtask.id})">
         <li class="subtaskText" id="subtaskText${subtask.id}">${subtask.text}</li>
@@ -44,7 +60,12 @@ function getSubtaskListTemplate(subtask) {
 }
 
 
-/** Generates the HTML template for editing a subtask. */
+/**
+ * Generates the HTML markup for a subtask item in edit mode.
+ *
+ * @param {{id: number|string, text: string}} subtask - Subtask data object.
+ * @returns {string} HTML string for the editable subtask row.
+ */
 function getSubtaskEditTemplate(subtask) {
     return `
       <div class="subtaskItemEdit" id="subtask${subtask.id}">
@@ -59,7 +80,12 @@ function getSubtaskEditTemplate(subtask) {
 }
 
 
-/** Generates the HTML template for the board overlay to edit a task. */
+/**
+ * Generates the HTML template for the board overlay used to edit a task.
+ *
+ * @param {string} taskId - Identifier of the task to be edited.
+ * @returns {string} HTML string for the board edit overlay.
+ */
 function getBoardOverlayEditTaskTemplate(taskId) {
     return `
         <div class="addTaskEditBoardOverlay">
@@ -183,7 +209,14 @@ function getBoardOverlayEditTaskTemplate(taskId) {
 }
 
 
-/** Returns the Move To overlay options based on the task status. */
+/**
+ * Returns the "Move To" menu options based on the current task status.
+ * Produces one or two options that change the task's status.
+ *
+ * @param {string} taskId - Task identifier used in the onclick handlers.
+ * @param {string} currentStatus - Current status label (e.g., "Todo", "Progress", "Feedback", "Done").
+ * @returns {string} HTML string containing one or more move action items.
+ */
 function getNewStatus(taskId, currentStatus) {
     const aStatus = ["Todo", "Progress", "Feedback", "Done"];
     let currentIndex = aStatus.findIndex(s => s.includes(currentStatus));
@@ -194,7 +227,12 @@ function getNewStatus(taskId, currentStatus) {
 }
 
 
-/** Returns the priority label and icon markup for the overlay. */
+/**
+ * Returns the priority label + icon markup for display in the overlay.
+ *
+ * @param {"Urgent"|"Medium"|"Low"} priority - The priority level for the task.
+ * @returns {string} HTML string for the priority badge/label.
+ */
 function getPriorityDetailsTemplate(priority) {
     switch (priority) {
         case "Urgent": return `<div class="priorityImg">Urgent <img src="assets/icons/prio_high.svg"></div>`
@@ -204,7 +242,13 @@ function getPriorityDetailsTemplate(priority) {
 }
 
 
-/** Renders the subtasks checklist within the details overlay. */
+/**
+ * Renders the subtasks checklist within the details overlay.
+ *
+ * @param {string} taskId - Parent task identifier used as data attributes.
+ * @param {Array<{id: number|string, text: string, done?: boolean}>} subtasks - Subtasks collection to render.
+ * @returns {string} HTML string for all subtasks checkboxes; empty string when none.
+ */
 function getSubtasksOnBoardDetails(taskId, subtasks) {
     if (!subtasks) return "";
     let template = ''
@@ -238,7 +282,12 @@ function getSubtasksOnBoardDetails(taskId, subtasks) {
 }
 
 
-/** Maps a priority value to the corresponding button configuration. */
+/**
+ * Maps a priority value to its corresponding button configuration for Add Task UI.
+ *
+ * @param {"Urgent"|"Medium"|"Low"} priority - Priority level.
+ * @returns {{buttonId: string, buttonClass: string, buttonIconOn: string, buttonIconOff: string}} Mapping object.
+ */
 function mapPriority(priority) {
     switch (priority) {
         case "Urgent": return { buttonId: "addTaskUrgentButton", buttonClass: "buttonUrgentActive", buttonIconOn: "urgentButtonOn", buttonIconOff: "urgentButtonOff" };
@@ -248,7 +297,12 @@ function mapPriority(priority) {
 }
 
 
-/** Ensures the summary pen icon uses an inline SVG. */
+/**
+ * Ensures the summary pen icon is an inline SVG for better theming/accessibility.
+ * Replaces an existing <img> with an equivalent inline <svg> if not already present.
+ *
+ * @returns {void}
+ */
 function ensureTodoIconSvg() {
     const container = document.querySelector('.smallWindows');
     if (!container) return;
@@ -278,7 +332,15 @@ function ensureTodoIconSvg() {
     img.replaceWith(svg);
 }
 
-/** check if user is logged in and redirect to login page if not. */
+
+/**
+ * Checks if the user is logged in and redirects or configures the navigation for
+ * public pages (privacy policy, legal notice). On mobile, highlights the active
+ * public page and hides the user menu; on desktop, adjusts layout spacing.
+ * When authenticated, initializes session UI and unhides navigation sections.
+ *
+ * @returns {void}
+ */
 function isUserLoggedIn() {
     const page = new URLSearchParams(location.search).get('page');
     const allowPublic = page === 'privacyPolicy' || page === 'legalNotice';
@@ -315,11 +377,9 @@ function isUserLoggedIn() {
 
             </div>
         </div>`;
-        if (mobile) {
-            page === "privacyPolicy" 
+        if (mobile) { page === "privacyPolicy" 
                 ? document.getElementById("privacePolicy")?.classList.add('active')
                 : document.getElementById("legalNotice")?.classList.add('active');
-
             document.getElementById("policeAndNoticeMobile")?.classList.remove('d-none');
             hideUserMenu(); // For mobile
         }else {
@@ -330,9 +390,7 @@ function isUserLoggedIn() {
     }
     userInitials = document.getElementById('userInitials');
     greetingUserName = document.getElementById('greetingUserName');
-    if (!loggedIn && !allowPublic) {
-        window.location.href = 'index.html';
-    }
+    if (!loggedIn && !allowPublic) {window.location.href = 'index.html';}
     else {
         sessionInit();
         document.getElementById("navContainerMenu").classList.remove("d-none");

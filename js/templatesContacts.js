@@ -1,4 +1,11 @@
-/** Generates the HTML template for a contact in the assigned to dropdown. */
+/**
+ * Generates the HTML template for a contact row within the "Assigned to" dropdown.
+ * Highlights the row when already selected and wires the click to selection handler.
+ *
+ * @param {Array<{id: string, initial: string, color: string, name: string}>} contacts - Full contacts array.
+ * @param {number} index - Index of the contact to render.
+ * @returns {string} HTML string for the contact dropdown item.
+ */
 function getContactTemplate(contacts, index) {
     const contact = contacts[index];
     const isSelected = selectedContactsAddTask.some(c => c.id === contact.id);
@@ -29,21 +36,38 @@ function getContactTemplate(contacts, index) {
 }
 
 
-/** Generates the HTML template for a selected contact avatar. */
+/**
+ * Generates the HTML template for a selected contact avatar (small round badge).
+ *
+ * @param {string} contact - The contact initials to display inside the avatar.
+ * @param {string} color - Background color (hex or CSS color) for the avatar circle.
+ * @returns {string} HTML string for a single selected contact avatar.
+ */
 function getSelectedContactTemplate(contact, color) {
     return `
             <div class="margin_top8 avatar" style="background:${color};color:#fff;">${contact}</div>
     `;
 }
 
-/** Generates the HTML template for the "+N more" avatar badge. */
+/**
+ * Generates the HTML template for the numeric avatar badge representing remaining selections.
+ * Example: when more than 5 contacts are selected, this shows the "+N" count avatar.
+ *
+ * @param {number} count - The number to display in the badge (remaining count).
+ * @returns {string} HTML string for the numeric count avatar.
+ */
 function getMoreAvatarTemplate(count) {
     return `
             <div class="margin_top8 avatar" style="background:#2A3647;color:#fff;">${count}</div>
     `;
 }
 
-/** Builds the assigned contacts list for the details overlay. */
+/**
+ * Builds the assigned contacts list for the task details overlay.
+ *
+ * @param {Array<{initial: string, color: string, name: string}>} users - Assigned users for the task.
+ * @returns {string} HTML string for the vertical list of avatar + name.
+ */
 function getContactsOnBoardDetailsTemplate(users) {
     if (!users) return "";
     let template = ''
@@ -57,7 +81,18 @@ function getContactsOnBoardDetailsTemplate(users) {
     return template;
 }
 
-/** Renders assigned contact avatars inside the edit overlay. */
+/**
+ * Renders assigned contact avatars inside the edit overlay, with a cap of 5 visible avatars
+ * and a numeric "+N" badge for remaining users.
+ * Populates `#addTaskAddedContactIcons` container.
+ *
+ * Side effects:
+ * - Mutates global `usersListOnEdit` by pushing provided users
+ * - Writes HTML into `#addTaskAddedContactIcons`
+ *
+ * @param {Array<{initial: string, color: string, name?: string, id?: string}>} users - Users assigned to the task.
+ * @returns {void}
+ */
 function getContactsOnEditBoardTemplate(users) {
     let contentDiv = document.getElementById('addTaskAddedContactIcons');
     if (!users) { contentDiv.innerHTML = "No users assigned"; return; } 
@@ -72,7 +107,13 @@ function getContactsOnEditBoardTemplate(users) {
 }
 
 
-/** Renders the contact section by grouping contacts by their initial letter and displaying them in the DOM. */
+/**
+ * Renders the contacts section, grouped by the first letter of their initials.
+ * Appends section headers (A, B, C, ...) and contact cards to `#contactsSection`.
+ *
+ * @param {Array<{id: string, initial: string, color: string, name: string, email: string}>} contacts - Contact list sorted by initial.
+ * @returns {void}
+ */
 function renderContactSection(contacts) {
     const section = document.getElementById("contactsSection");
     let lastInitial, html = "";
@@ -98,7 +139,14 @@ function renderContactSection(contacts) {
 }
 
 
-/** Opens the contact details overlay for a given user. */
+/**
+ * Opens the contact details overlay for a given user id.
+ * Applies selection styling in the list and fills the details panel with user info.
+ * On mobile, toggles responsive controls and stores the edited contact id.
+ *
+ * @param {string} userID - The contact id to open.
+ * @returns {void}
+ */
 function openContactDetails(userID) {
     const overlay = document.getElementById("contactOverlay");
     if (!overlay) return;
@@ -161,7 +209,13 @@ function openContactDetails(userID) {
 }
 
 
-/** Builds the assigned contacts avatar strip for a task card. */
+/**
+ * Builds the assigned contacts avatar strip for a task card, capping at 5 visible avatars
+ * and adding a numeric "+N" avatar for remaining users.
+ *
+ * @param {Array<{initial: string, color: string}>|null} users - Assigned users array or null/undefined.
+ * @returns {string} HTML string for the avatar strip or a fallback when empty.
+ */
 function renderContactsOnBoard(users) {
     if (!users) return `<div id="avatarBoard">No users assigned</div>`
     let template = '<div class="boardContactsContainer">'
@@ -177,7 +231,12 @@ function renderContactsOnBoard(users) {
     return template;
 }
 
-/** Generates the board-sized "+N" avatar badge. */
+/**
+ * Generates the board-sized numeric avatar badge (e.g., "+2").
+ *
+ * @param {number} count - Remaining contacts count to display.
+ * @returns {string} HTML string for the board-sized numeric avatar badge.
+ */
 function getMoreAvatarBoardTemplate(count) {
     return `<div id="avatarBoard" class="avatarBoard" style="background:#2A3647;color:#fff;">${count}</div>`;
 }
