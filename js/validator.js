@@ -58,16 +58,6 @@ function validateField(field) {
       }
       break;
     }
-        case "contactPhone": {
-            if (!value) {
-                errorMsg = "Phone number is required.";
-        isValid = false;
-        break;
-      }
-      
-      isValid = true;
-      break;
-    }
     case "contactPhone": {
       if (/^\s*$/.test(value)) {
         errorMsg = "Phone number is required.";
