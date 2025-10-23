@@ -3,26 +3,7 @@ let selectedCardEl = null;
 document.addEventListener("DOMContentLoaded", initContactsWhenReady);
 
 
-/** Fetches all users from the database. */
-async function getAllUsers() {
-    let usersList = await fetch(BASE_URL + "users.json");
-    let allUsers = await usersList.json();
-    return allUsers;
-}
-
-
-/** Fetches all users, sorts them by name, and renders their contact information to the DOM. */
-async function renderAllContacts() {
-    let allUsers = await getAllUsers();
-    let contentDiv = document.getElementById('assignedToContactContent');
-    contentDiv.innerHTML = "";
-    let contacts = getUserDataToArray(allUsers);
-    contacts.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
-    for (let index = 0; index < contacts.length; index++) { contentDiv.innerHTML += getContactTemplate(contacts, index); }
-}
-
-
-/** Initializes the contacts section when it becomes available in the DOM. */
+/** Initialize the contacts section when the element appears in the DOM. */
 function initContactsWhenReady() {
     const contactsSectionExisting = document.getElementById("contactsSection");
     if (contactsSectionExisting) { safeLoadContacts(); return; }
@@ -36,7 +17,7 @@ function initContactsWhenReady() {
 }
 
 
-/** Safely loads contacts into the contacts section of the page. */
+/** Safely load contacts into the contacts section (once). */
 function safeLoadContacts() {
     const section = document.getElementById("contactsSection");
     if (!section || section.dataset.initialized === "true") return;
@@ -45,19 +26,11 @@ function safeLoadContacts() {
 }
 
 
-/** Loads contacts from the server and renders them alphabetically. */
-async function loadContacts() {
-    const response = await fetch(BASE_URL + "users.json");
-    usersById = await response.json();
-    const contacts = getUserDataToArray(usersById);
-    contacts.sort((a, b) =>
-        a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-    );
-    renderContactSection(contacts)
-}
-
-
-/** Converts a users object into an array of user data objects. */
+/**
+ * Convert a keyed users object into a flat array of user data.
+ * @param {Record<string, {user?: {name?:string,email?:string,phone?:string,color?:string,initial?:string}}>} users
+ * @returns {Array<{id:string,name:string,email:string,initial:string,color:string}>}
+ */
 function getUserDataToArray(users) {
     const arr = [];
     if (!users) return arr;
@@ -70,7 +43,11 @@ function getUserDataToArray(users) {
 }
 
 
-/** Returns the initials of the given name. */
+/**
+ * Get initials from a full name (first two words).
+ * @param {string} name
+ * @returns {string}
+ */
 function getInitials(name) {
     if (!name) return "?";
     const fristAndLastName = name.trim().split(/\s+/).slice(0, 2);
@@ -80,7 +57,7 @@ function getInitials(name) {
 }
 
 
-/** Opens the mobile contact overlay if the layout is narrow. */
+/** Open the mobile contact overlay if viewport is <= 1024px. */
 function openMobileOverlayIfNeeded() {
     if (window.matchMedia('(max-width:1024px)').matches) {
         const section = document.querySelector('.responsiveContactsDetailsSection');
@@ -91,7 +68,7 @@ function openMobileOverlayIfNeeded() {
 }
 
 
-/** Closes the responsive contact overlay and resets mobile UI helpers. */
+/** Close the responsive contact overlay and reset mobile UI helpers. */
 function closeContactsOverlay() {
     if (isMobile()) {
         document.getElementById("btnEditNewContact").classList.add("d-none");
@@ -104,19 +81,25 @@ function closeContactsOverlay() {
 }
 
 
-/** Generates a random hexadecimal color string in the format "#RRGGBB". */
+/**
+ * Generate a random hexadecimal color string (#RRGGBB).
+ * @returns {string}
+ */
 function getRandomHexColor() {
     return "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
 }
 
 
-/** Handles the creation of a new contact by displaying the add contact overlay. */
+/** Handle the create-contact action by opening the add contact overlay. */
 function handleCreateContact() {
     slideinAddContactOverlay();
 }
 
 
-/** Creates a new contact after validating input fields and checking for duplicate emails. */
+/**
+ * Create a new contact after validating inputs and checking duplicate email.
+ * @returns {Promise<void>}
+ */
 async function createContact() {
     const nameInput = document.getElementById("contactName");
     const emailInput = document.getElementById("contactEmail");
@@ -132,7 +115,7 @@ async function createContact() {
 }
 
 
-/** Displays an error message indicating that a contact with the entered email already exists. */
+/** Display an error message indicating an email conflict for contact creation. */
 function emailExistsMessage() {
     const emailInput = document.getElementById("contactEmail");
     const emailErrorEl = document.getElementById("contactEmailError");
@@ -145,7 +128,11 @@ function emailExistsMessage() {
 }
 
 
-/** Capitalizes the first letter of each word in a full name and converts the rest to lowercase. */
+/**
+ * Capitalize each word in a full name; rest in lowercase.
+ * @param {string} fullName
+ * @returns {string}
+ */
 function capitalizeName(fullName) {
     return fullName
         .trim()
@@ -155,22 +142,11 @@ function capitalizeName(fullName) {
 }
 
 
-/** Saves a new contact by sending a POST request to the server. */
-function saveContact(newContact) {
-    fetch(BASE_URL + "users.json", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ user: newContact }) })
-        .then(response => { if (!response.ok) { throw new Error("Erro on save contact"); } return response.json(); })
-        .then(data => {
-            closeOverlay();
-            loadContacts();
-            showMessageDialog("Contact successfully created");
-        })
-        .catch(error => {
-            console.error("Erro:", error);
-        });
-}
-
-
-/** Displays a temporary message dialog overlay on the page. */
+/**
+ * Display a temporary message dialog overlay on the page.
+ * @param {string} message
+ * @param {number} [duration=3000]
+ */
 function showMessageDialog(message, duration = 3000) {
     const existing = document.getElementById("contactCreatedOverlay");
     if (existing) existing.remove();
@@ -188,7 +164,10 @@ function showMessageDialog(message, duration = 3000) {
 }
 
 
-/** Initializes the style properties for a success dialog section element. */
+/**
+ * Initialize inline styles for the success dialog element.
+ * @param {HTMLElement} section
+ */
 function initStyleSuccessDialog(section) {
     if (!section.style.position) {
         section.style.position = "fixed";
@@ -202,59 +181,11 @@ function initStyleSuccessDialog(section) {
 }
 
 
-/** Searches for a contact by email in the users database. */
-async function searchContactByEmail(email) {
-    const url = `${BASE_URL}users.json?orderBy=${encodeURIComponent('"user/email"')}&equalTo=${encodeURIComponent(`"${email}"`)}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    return data && Object.keys(data).length > 0;
-}
-
-
-/** Fetches a contact entry by ID from the database. */
-async function searchContactById(userID) {
-    const url = `${BASE_URL}users/${userID}.json`;
-    const res = await fetch(url);
-    const data = await res.json();
-    return data && data.user ? data.user : null;
-}
-
-
-/** Deletes a contact by user ID from the server and updates the UI accordingly. */
-async function deleteContact(userID) {
-    const avatarContainer = document.getElementById("avatarEdit");
-    const fallbackId = avatarContainer && avatarContainer.firstElementChild ? avatarContainer.firstElementChild.id : null;
-    const targetId = userID || fallbackId;
-    if (!targetId) return;
-    await removeUserFromAllTasks(targetId);
-    try {
-        const response = await fetch(`${BASE_URL}users/${targetId}.json`, { method: "DELETE" });
-        if (!response.ok) { throw new Error("Error deleting contact"); }
-        await response.json(); const overlay = document.getElementById("contactOverlay");
-        if (overlay) { overlay.classList.remove("active"); overlay.innerHTML = ""; }
-        await loadContacts(); closeContactsOverlay(); showMessageDialog("Contact successfully deleted");
-    } catch (error) { console.error("Error:", error); }
-}
-
-
-/** Removes a user from every task assignment in the system. */
-async function removeUserFromAllTasks(userId) {
-    if (!userId) return;
-    try {
-        const user = await searchContactById(userId); if (user && Array.isArray(user.tasks) && user.tasks.length) { user.tasks = []; updateContact(userId, user, true); }
-        const response = await fetch(`${BASE_URL}tasks.json`); if (!response.ok) { throw new Error("Error loading tasks"); }
-        const tasks = await response.json(); if (!tasks) return; const operations = [];
-        for (const taskId in tasks) {
-            const task = tasks[taskId]; if (!task) continue; const assigned = Array.isArray(task.assignedTo) ? task.assignedTo : [];const filtered = assigned.filter(assignee => assignee && assignee.id !== userId);
-            if (filtered.length === assigned.length) continue;
-            operations.push(fetch(`${BASE_URL}tasks/${taskId}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ assignedTo: filtered }) }));
-        }
-        if (operations.length) await Promise.allSettled(operations);
-    } catch (error) { console.error(`Error removing user ${userId} from tasks:`, error); }
-}
-
-
-/** Opens the edit overlay for a contact and preloads its data. */
+/**
+ * Open the contact edit overlay and preload its data.
+ * @param {string} userID
+ * @returns {Promise<void>}
+ */
 async function editContact(userID) {
     const user = await searchContactById(userID)
     if (user) {
@@ -269,7 +200,7 @@ async function editContact(userID) {
 }
 
 
-/** Handles updating a contact's information based on user input. */
+/** Handle updating a contact with the current form values. */
 async function handleUpdateContact() {
     const userID = document.getElementById("avatarEdit").firstElementChild.id;
     const user = await searchContactById(userID);
@@ -286,23 +217,12 @@ async function handleUpdateContact() {
 }
 
 
-/** Updates a contact's information on the server and refreshes the contact list UI. */
-async function updateContact(userID, user, createTask = false) {
-    fetch(`${BASE_URL}users/${userID}.json`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ user }) })
-        .then(response => { if (!response.ok) { throw new Error("Error updating contact"); } return response.json(); })
-        .then(async () => {
-            if (!createTask) {
-                closeOverlay();
-                await loadContacts();
-                openContactDetails(userID)
-                showMessageDialog("Contact successfully updated");
-            }
-        })
-        .catch(error => { console.error("Error:", error); });
-}
-
-
-/** Detaches a single task from a specific user. */
+/**
+ * Detach a single task from a specific user.
+ * @param {string} userId
+ * @param {string} taskId
+ * @returns {Promise<void>}
+ */
 async function removeTaskFromUser(userId, taskId) {
     try {
         const user = await searchContactById(userId);
@@ -318,7 +238,12 @@ async function removeTaskFromUser(userId, taskId) {
 }
 
 
-/** Detaches a task from multiple users at once. */
+/**
+ * Detach a task from multiple users at once.
+ * @param {string[]} userIds
+ * @param {string} taskId
+ * @returns {Promise<void>}
+ */
 async function removeTaskFromUsers(userIds, taskId) {
     if (!Array.isArray(userIds) || !taskId) return;
     const ops = userIds.map(uid => removeTaskFromUser(uid, taskId));
@@ -326,7 +251,12 @@ async function removeTaskFromUsers(userIds, taskId) {
 }
 
 
-/** Assigns a task to a specific user if not already linked. */
+/**
+ * Assign a task to a specific user if not already linked.
+ * @param {string} userId
+ * @param {string} taskId
+ * @returns {Promise<void>}
+ */
 async function addTaskToUser(userId, taskId) {
     try {
         const user = await searchContactById(userId);
@@ -343,7 +273,12 @@ async function addTaskToUser(userId, taskId) {
 }
 
 
-/** Assigns a task to several users in parallel. */
+/**
+ * Assign a task to several users in parallel.
+ * @param {string[]} userIds
+ * @param {string} taskId
+ * @returns {Promise<void>}
+ */
 async function addTaskToUsers(userIds, taskId) {
     if (!Array.isArray(userIds) || !taskId) return;
     const ops = userIds.map(uid => addTaskToUser(uid, taskId));
@@ -351,7 +286,7 @@ async function addTaskToUsers(userIds, taskId) {
 }
 
 
-/** Toggles the responsive edit overlay for contacts. */
+/** Toggle the responsive edit overlay for contacts. */
 function openResponsiveOverlayEdit() {
     const editOverlay = document.getElementById('responsiveOverlayEdit');
     const editContactBtn = document.getElementById('btnEditNewContact')
@@ -360,14 +295,14 @@ function openResponsiveOverlayEdit() {
 }
 
 
-/** Closes the responsive edit overlay. */
+/** Close the responsive edit overlay. */
 function closeResponsiveOverlayEdit() {
     const editOverlay = document.getElementById('responsiveOverlayEdit');
     editOverlay && editOverlay.classList.remove('is-open');
 }
 
 
-/** Navigates to the contacts view in the navigation menu. */
+/** Navigate to the contacts view in the navigation menu. */
 function goToContacts() {
     const contactsMenuItem = document.querySelector('.navLine[data-file*="contacts"], .navLine[data-file*="Contacts"]');
     const content = document.getElementById('contentContainer');
